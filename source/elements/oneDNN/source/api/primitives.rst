@@ -50,4 +50,21 @@ On the logical level, the library provides the following abstractions:
    :maxdepth: 1
 
    primitives/common.rst
+   primitives/attributes.rst
    primitives/convolution.rst
+   primitives/deconvolution.rst
+   primitives/inner_product.rst
+   primitives/rnn.rst
+   primitives/batch_normalization.rst
+   primitives/binary.rst
+   primitives/concat.rst
+   primitives/eltwise.rst
+   primitives/layer_normalization.rst
+   primitives/lrn.rst
+   primitives/logsoftmax.rst
+   primitives/pooling.rst
+   primitives/resampling.rst
+   primitives/softmax.rst
+   primitives/shuffle.rst
+   primitives/sum.rst
+   primitives/reorder.rst

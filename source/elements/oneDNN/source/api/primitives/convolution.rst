@@ -6,9 +6,9 @@
 Convolution
 ~~~~~~~~~~~
 
-A convolution primitive performs 1D, 2D or 3D convolution. Supported
-variants are forward propagation, backward propagation, and weights
-gradient with or without bias.
+A convolution primitive performs 1D, 2D or 3D convolution. Supported variants
+are forward propagation, backward propagation, and weights gradient with or
+without bias.
 
 API
 +++
