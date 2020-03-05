@@ -90,7 +90,7 @@ API
 ---
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    api/utilities.rst
    api/engine.rst

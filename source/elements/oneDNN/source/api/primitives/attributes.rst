@@ -14,15 +14,12 @@ the primitive.
 API
 +++
 
-.. doxygenclass:: dnnl::scratchpad_mode
+.. doxygenenum:: dnnl::scratchpad_mode
    :project: oneDNN
-   :members:
 
-.. doxygenclass:: dnnl::prop_kind
+.. doxygenenum:: dnnl::prop_kind
    :project: oneDNN
-   :members:
 
-.. doxygenclass:: dnnl::algorithm
+.. doxygenenum:: dnnl::algorithm
    :project: oneDNN
-   :members:
 

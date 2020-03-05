@@ -6,11 +6,9 @@
 RNN
 ~~~
 
-.. doxygenclass:: dnnl::rnn_flags
+.. doxygenenum:: dnnl::rnn_flags
    :project: oneDNN
-   :members:
 
-.. doxygenclass:: dnnl::rnn_direction
+.. doxygenenum:: dnnl::rnn_direction
    :project: oneDNN
-   :members:
 
