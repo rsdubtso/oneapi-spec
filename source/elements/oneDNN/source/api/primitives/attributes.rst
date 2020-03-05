@@ -23,3 +23,9 @@ API
 .. doxygenenum:: dnnl::algorithm
    :project: oneDNN
 
+.. doxygenstruct:: dnnl::post_ops
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::primitive_attr
+   :project: oneDNN
+

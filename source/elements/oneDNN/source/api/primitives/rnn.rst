@@ -6,9 +6,41 @@
 RNN
 ~~~
 
+A primitive to compute recurrent neural network layers.
+
+API
++++
+
 .. doxygenenum:: dnnl::rnn_flags
    :project: oneDNN
 
 .. doxygenenum:: dnnl::rnn_direction
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::rnn_primitive_desc_base
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::vanilla_rnn_forward
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::vanilla_rnn_backward
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::lstm_forward
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::lstm_backward
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::gru_forward
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::gru_backward
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::lbr_gru_forward
+   :project: oneDNN
+
+.. doxygenstruct:: dnnl::lbr_gru_backward
    :project: oneDNN
 
