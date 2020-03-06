@@ -92,11 +92,11 @@ API
 .. toctree::
    :maxdepth: 2
 
-   api/utilities.rst
    api/engine.rst
    api/stream.rst
    api/memory.rst
    api/primitives.rst
+   api/utilities.rst
 
 -------
 Testing

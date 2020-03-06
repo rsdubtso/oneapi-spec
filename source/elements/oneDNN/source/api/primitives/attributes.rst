@@ -25,7 +25,9 @@ API
 
 .. doxygenstruct:: dnnl::post_ops
    :project: oneDNN
+   :members:
 
 .. doxygenstruct:: dnnl::primitive_attr
    :project: oneDNN
+   :members:
 

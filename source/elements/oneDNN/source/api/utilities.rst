@@ -10,3 +10,11 @@ Utility Types and Definitions
    :project: oneDNN
    :members:
 
+.. doxygenstruct:: dnnl::primitive_desc_base
+   :project: oneDNN
+   :members:
+
+.. doxygenstruct:: dnnl::rnn_primitive_desc_base
+   :project: oneDNN
+   :members:
+

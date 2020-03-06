@@ -48,6 +48,7 @@ struct error : public std::exception {};
 
 struct stream;
 struct memory;
+struct primitive_desc_base;
 
 /// @addtogroup dnnl_api_primitives Primitives
 /// Compute primitives
@@ -121,7 +122,7 @@ struct primitive {
     /// such as `DNNL_ARG_SRC`, and the memory must have a memory descriptor
     /// matching the one returned by
     /// primitive_desc::query_md(#query::exec_arg_md, index) unless using
-    /// dynamic shapes (see DNNL_RUNTIME_DIM_VAL).
+    /// dynamic shapes (see #DNNL_RUNTIME_DIM_VAL).
     ///
     /// @param stream Stream object. The stream must belong to the same engine
     ///     as the primitive.
@@ -412,7 +413,7 @@ enum class algorithm {
     eltwise_abs,
     /// Elementwise: square root
     eltwise_sqrt,
-    /// Elementwise: x*sigmoid(a*x)
+    /// Elementwise: \f$x\cdot sigmoid(a\cdot x)\f$
     eltwise_swish,
     /// Elementwise: linear
     eltwise_linear,
@@ -463,13 +464,10 @@ enum class algorithm {
     vanilla_lstm,
     /// GRU cell
     vanilla_gru,
-    /// GRU cell with linear before reset
-    ///
-    /// Modification of original GRU cell. Differs from
-    /// #dnnl::algorithm::vanilla_gru in how the new memory gate is
-    /// calculated:
-    /// \f[ c_t = tanh(W_c*x_t + b_{c_x} + r_t*(U_c*h_{t-1}+b_{c_h})) \f]
-    /// Primitive expects 4 biases on input:
+    /// GRU cell with linear before reset. Differs from original GRU
+    /// in how the new memory gate is calculated:
+    /// \f$c_t = tanh(W_c*x_t + b_{c_x} + r_t*(U_c*h_{t-1}+b_{c_h})) \f$
+    /// LRB GRU expects 4 biase tensors on input:
     /// \f$[b_{u}, b_{r}, b_{c_x}, b_{c_h}]\f$
     lbr_gru,
     /// Binary add
@@ -3720,13 +3718,7 @@ struct softmax_backward : public primitive {
         /// @param data_desc Destination memory descriptor.
         /// @param softmax_axis Axis over which softmax is computed.
         desc(const memory::desc &diff_data_desc, const memory::desc &data_desc,
-                int softmax_axis) {
-            error::wrap_c_api(
-                    dnnl_softmax_backward_desc_init(&data, &diff_data_desc.data,
-                            &data_desc.data, softmax_axis),
-                    "could not create a descriptor for a softmax backward "
-                    "propagation primitive");
-        }
+                int softmax_axis);
     };
 
     /// Primitive descriptor for a softmax backward propagation primitive.
@@ -3892,13 +3884,7 @@ struct logsoftmax_backward : public primitive {
         /// @param data_desc Destination memory descriptor.
         /// @param logsoftmax_axis Axis over which softmax is computed.
         desc(const memory::desc &diff_data_desc, const memory::desc &data_desc,
-                int logsoftmax_axis) {
-            error::wrap_c_api(dnnl_logsoftmax_backward_desc_init(&data,
-                                      &diff_data_desc.data, &data_desc.data,
-                                      logsoftmax_axis),
-                    "could not create a descriptor for a logsoftmax backward "
-                    "propagation primitive");
-        }
+                int logsoftmax_axis);
     };
 
     /// Primitive descriptor for a logsoftmax backward propagation primitive.
@@ -6154,9 +6140,7 @@ struct lbr_gru_backward : public primitive {
         ///     defaults to false.
         primitive_desc(const desc &desc, const engine &engine,
                 const lbr_gru_forward::primitive_desc &hint_fwd_pd,
-                bool allow_empty = false)
-            : rnn_primitive_desc_base(&desc.data, nullptr, engine,
-                    hint_fwd_pd.get(), allow_empty) {}
+                bool allow_empty = false);
 
         /// Constructs a primitive descriptor for an LBR GRU backward
         /// propagation primitive.
