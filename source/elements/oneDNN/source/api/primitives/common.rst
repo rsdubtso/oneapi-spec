@@ -6,9 +6,21 @@
 Common
 ~~~~~~
 
+Base class for primitives
++++++++++++++++++++++++++
+
 .. doxygenstruct:: dnnl::primitive
    :project: oneDNN
    :members:
+
+Normalization primitives flags
+++++++++++++++++++++++++++++++
+
+.. doxygenenum:: dnnl::normalization_flags
+   :project: oneDNN
+
+Execution argument indices
+++++++++++++++++++++++++++
 
 .. doxygendefine:: DNNL_ARG_SRC_0
    :project: oneDNN
