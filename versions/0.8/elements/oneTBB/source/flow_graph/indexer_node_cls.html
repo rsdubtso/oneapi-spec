@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>indexer_node &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="composite_node" href="composite_node_cls.html" />
+    <link rel="prev" title="split_node" href="split_node_cls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../algorithms.html">Algorithms</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flow_graph.html">Flow Graph</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#graph-class">Graph Class</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../flow_graph.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#ports-and-edges">Ports and Edges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#special-messages-types">Special Messages Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/flow_graph/indexer_node_cls.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="indexer-node">
+<h1>indexer_node<a class="headerlink" href="#indexer-node" title="Permalink to this headline">¶</a></h1>
+<p><strong>[flow_graph.indexer_node]</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">indexer_node</span></code> broadcasts messages received at its input ports to
+all of its successors. The messages are broadcast individually as they
+are received at each port. The output is a <a class="reference internal" href="tagged_msg_cls.html"><span class="doc">tagged message</span></a>
+that contains a tag and a value; the tag identifies the input port on
+which the message was received.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined in header &lt;tbb/flow_graph.h&gt;</span>
+
+<span class="k">namespace</span> <span class="n">tbb</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">flow</span> <span class="p">{</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T0</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">TN</span><span class="o">&gt;</span>
+    <span class="k">class</span> <span class="nc">indexer_node</span> <span class="o">:</span> <span class="k">public</span> <span class="n">graph_node</span><span class="p">,</span> <span class="k">public</span> <span class="n">sender</span><span class="o">&lt;</span><span class="cm">/*implementation_defined*/</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">indexer_node</span><span class="p">(</span><span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">);</span>
+        <span class="n">indexer_node</span><span class="p">(</span><span class="k">const</span> <span class="n">indexer_node</span> <span class="o">&amp;</span><span class="n">src</span><span class="p">);</span>
+
+        <span class="k">using</span> <span class="n">input_ports_type</span> <span class="o">=</span> <span class="cm">/*implementation_defined*/</span><span class="p">;</span>
+        <span class="n">input_ports_type</span> <span class="o">&amp;</span><span class="n">input_ports</span><span class="p">();</span>
+
+        <span class="k">using</span> <span class="n">output_type</span> <span class="o">=</span> <span class="n">tagged_msg</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> <span class="n">TN</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="nf">try_get</span><span class="p">(</span> <span class="n">output_type</span> <span class="o">&amp;</span><span class="n">v</span> <span class="p">);</span>
+    <span class="p">};</span>
+
+<span class="p">}</span> <span class="c1">// namespace flow</span>
+<span class="p">}</span> <span class="c1">// namespace tbb</span>
+</pre></div>
+</div>
+<p>Requirements:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">T</span></code> type and all types in <code class="docutils literal notranslate"><span class="pre">TN</span></code> template parameter pack shall meet the
+<cite>CopyConstructible</cite> requirements from [copyconstructible] and
+<cite>CopyAssignable</cite> requirements from [copyassignable] ISO C++ Standard
+sections.</p></li>
+</ul>
+<p>An <code class="docutils literal notranslate"><span class="pre">indexer_node</span></code> is a <code class="docutils literal notranslate"><span class="pre">graph_node</span></code> and <code class="docutils literal notranslate"><span class="pre">sender&lt;tagged_msg&lt;size_t,</span> <span class="pre">T0,</span> <span class="pre">TN...&gt;&gt;</span></code>.
+It contains a tuple of input ports, each of which is a
+<code class="docutils literal notranslate"><span class="pre">receiver</span></code> specified by corresponding input template parameter pack element. It
+supports multiple input receivers with distinct types and broadcasts
+each received message to all of its successors. Unlike a
+<code class="docutils literal notranslate"><span class="pre">join_node</span></code>, each message is broadcast individually to all
+successors of the <code class="docutils literal notranslate"><span class="pre">indexer_node</span></code> as it arrives at an input
+port. Before broadcasting, a message is tagged with the index of the
+port on which the message arrived.</p>
+<p><code class="docutils literal notranslate"><span class="pre">indexer_node</span></code> has a <cite>discarding</cite> and <cite>broadcast-push</cite> <a class="reference internal" href="forwarding_and_buffering.html"><span class="doc">properties</span></a>.</p>
+<p>The function template <a class="reference internal" href="input_port_func.html"><span class="doc">input_port</span></a> simplifies the syntax for getting
+a reference to a specific input port.</p>
+<div class="section" id="member-types">
+<h2>Member types<a class="headerlink" href="#member-types" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">input_ports_type</span></code> is an alias to a tuple of input ports.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_type</span></code> is an alias to the message of type <code class="docutils literal notranslate"><span class="pre">tagged_msg</span></code>, which is sent to successors.</p></li>
+</ul>
+</div>
+<div class="section" id="member-functions">
+<h2>Member functions<a class="headerlink" href="#member-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp function">
+<dt id="_CPPv412indexer_nodeR5graph">
+<span id="_CPPv312indexer_nodeR5graph"></span><span id="_CPPv212indexer_nodeR5graph"></span><span id="indexer_node__graphR"></span><code class="sig-name descname">indexer_node</code><span class="sig-paren">(</span><a class="reference internal" href="graph_cls.html#_CPPv45graphR18task_group_context" title="graph">graph</a> &amp;<em>g</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412indexer_nodeR5graph" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs an <code class="docutils literal notranslate"><span class="pre">indexer_node</span></code> that belongs to the graph <code class="docutils literal notranslate"><span class="pre">g</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412indexer_nodeRK12indexer_node">
+<span id="_CPPv312indexer_nodeRK12indexer_node"></span><span id="_CPPv212indexer_nodeRK12indexer_node"></span><span id="indexer_node__indexer_nodeCR"></span><code class="sig-name descname">indexer_node</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv412indexer_nodeRK12indexer_node" title="indexer_node">indexer_node</a> &amp;<em>src</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412indexer_nodeRK12indexer_node" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs an <code class="docutils literal notranslate"><span class="pre">indexer_node</span></code>. The list of predecessors, messages
+in the input ports, and successors are not copied.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411input_portsv">
+<span id="_CPPv311input_portsv"></span><span id="_CPPv211input_portsv"></span><span id="input_ports"></span>input_ports_type &amp;<code class="sig-name descname">input_ports</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p><strong>Returns</strong>: A <code class="docutils literal notranslate"><span class="pre">std::tuple</span></code> of receivers. Each element inherits
+from <code class="docutils literal notranslate"><span class="pre">receiver&lt;T&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">T</span></code> is the type of message expected at
+that input. Each tuple element can be used like any other
+<code class="docutils literal notranslate"><span class="pre">receiver&lt;T&gt;</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv47try_getR11output_type">
+<span id="_CPPv37try_getR11output_type"></span><span id="_CPPv27try_getR11output_type"></span><span id="try_get__output_typeR"></span>bool <code class="sig-name descname">try_get</code><span class="sig-paren">(</span>output_type &amp;<em>v</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>An <code class="docutils literal notranslate"><span class="pre">indexer_node</span></code> contains no buffering and therefore does not
+support gets.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</dd></dl>
+
+<p>See also:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="input_port_func.html"><span class="doc">input_port function template</span></a></p></li>
+<li><p><a class="reference internal" href="tagged_msg_cls.html"><span class="doc">tagged_msg template class</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="composite_node_cls.html" class="btn btn-neutral float-right" title="composite_node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="split_node_cls.html" class="btn btn-neutral float-left" title="split_node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

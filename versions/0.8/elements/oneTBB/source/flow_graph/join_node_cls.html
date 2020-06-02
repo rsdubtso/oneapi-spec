@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>join_node &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="join_node Policies" href="join_node_policies.html" />
+    <link rel="prev" title="broadcast_node" href="broadcast_node_cls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../algorithms.html">Algorithms</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flow_graph.html">Flow Graph</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#graph-class">Graph Class</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../flow_graph.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#ports-and-edges">Ports and Edges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#special-messages-types">Special Messages Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/flow_graph/join_node_cls.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="join-node">
+<h1>join_node<a class="headerlink" href="#join-node" title="Permalink to this headline">¶</a></h1>
+<p><strong>[flow_graph.join_node]</strong></p>
+<p>A node that creates a tuple from a set of messages received at its input ports and broadcasts the
+tuple to all of its successors.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined in header &lt;tbb/flow_graph.h&gt;</span>
+
+<span class="k">namespace</span> <span class="n">tbb</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">flow</span> <span class="p">{</span>
+    <span class="k">using</span> <span class="n">tag_value</span> <span class="o">=</span> <span class="cm">/*implementation-specific*/</span><span class="p">;</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">OutputTuple</span><span class="p">,</span> <span class="k">class</span> <span class="nc">JoinPolicy</span> <span class="o">=</span> <span class="cm">/*implementation-defined*/</span><span class="o">&gt;</span>
+    <span class="k">class</span> <span class="nc">join_node</span> <span class="o">:</span> <span class="k">public</span> <span class="n">graph_node</span><span class="p">,</span> <span class="k">public</span> <span class="n">sender</span><span class="o">&lt;</span> <span class="n">OutputTuple</span> <span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">using</span> <span class="n">input_ports_type</span> <span class="o">=</span> <span class="cm">/*implementation-defined*/</span><span class="p">;</span>
+
+        <span class="k">explicit</span> <span class="nf">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span> <span class="p">);</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="k">const</span> <span class="n">join_node</span> <span class="o">&amp;</span><span class="n">src</span> <span class="p">);</span>
+
+        <span class="n">input_ports_type</span> <span class="o">&amp;</span><span class="n">input_ports</span><span class="p">(</span> <span class="p">);</span>
+
+        <span class="kt">bool</span> <span class="nf">try_get</span><span class="p">(</span> <span class="n">OutputTuple</span> <span class="o">&amp;</span><span class="n">v</span> <span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">OutputTuple</span><span class="p">,</span> <span class="k">typename</span> <span class="n">K</span><span class="p">,</span> <span class="k">class</span> <span class="nc">KHash</span><span class="o">=</span><span class="n">tbb_hash_compare</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="o">&gt;</span>
+    <span class="k">class</span> <span class="nc">join_node</span><span class="o">&lt;</span> <span class="n">OutputTuple</span><span class="p">,</span> <span class="n">key_matching</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">KHash</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">:</span> <span class="k">public</span> <span class="n">graph_node</span><span class="p">,</span> <span class="k">public</span> <span class="n">sender</span><span class="o">&lt;</span> <span class="n">OutputTuple</span> <span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">using</span> <span class="n">input_ports_type</span> <span class="o">=</span> <span class="cm">/*implementation-defined*/</span><span class="p">;</span>
+
+        <span class="k">explicit</span> <span class="nf">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span> <span class="p">);</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="k">const</span> <span class="n">join_node</span> <span class="o">&amp;</span><span class="n">src</span> <span class="p">);</span>
+
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B4</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span><span class="p">,</span> <span class="n">B7</span> <span class="n">b7</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B7</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span><span class="p">,</span> <span class="n">B7</span> <span class="n">b7</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B7</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B8</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span><span class="p">,</span> <span class="n">B7</span> <span class="n">b7</span><span class="p">,</span> <span class="n">B8</span> <span class="n">b8</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B7</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B8</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B9</span><span class="o">&gt;</span>
+        <span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span><span class="p">,</span> <span class="n">B7</span> <span class="n">b7</span><span class="p">,</span> <span class="n">B8</span> <span class="n">b8</span><span class="p">,</span> <span class="n">B9</span> <span class="n">b9</span> <span class="p">);</span>
+
+        <span class="n">input_ports_type</span> <span class="o">&amp;</span><span class="n">input_ports</span><span class="p">(</span> <span class="p">);</span>
+
+        <span class="kt">bool</span> <span class="nf">try_get</span><span class="p">(</span> <span class="n">OutputTuple</span> <span class="o">&amp;</span><span class="n">v</span> <span class="p">);</span>
+    <span class="p">};</span>
+
+<span class="p">}</span> <span class="c1">// namespace flow</span>
+<span class="p">}</span> <span class="c1">// namespace tbb</span>
+</pre></div>
+</div>
+<p>Requirements:</p>
+<ul class="simple">
+<li><p>The type <code class="docutils literal notranslate"><span class="pre">OutputTuple</span></code> must be an instantiation of <code class="docutils literal notranslate"><span class="pre">std::tuple</span></code>. Each type that the tuple stores
+shall meet the <cite>CopyConstructible</cite> requirements from [copyconstructible] and <cite>CopyAssignable</cite>
+requirements from [copyassignable] ISO C++ Standard sections.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">JoinPolicy</span></code> type should be specified as one of <a class="reference internal" href="join_node_policies.html"><span class="doc">buffering policies</span></a> for <code class="docutils literal notranslate"><span class="pre">join_node</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">KHash</span></code> type shall meet the <a class="reference internal" href="../named_requirements/containers/hash_compare.html"><span class="doc">HashCompare requirements</span></a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Bi</span></code> types shall meet the <a class="reference internal" href="../named_requirements/flow_graph/join_node_func_obj.html"><span class="doc">JoinNodeFunctionObject requirements</span></a>.</p></li>
+</ul>
+<p>A <code class="docutils literal notranslate"><span class="pre">join_node</span></code> is a <code class="docutils literal notranslate"><span class="pre">graph_node</span></code> and a <code class="docutils literal notranslate"><span class="pre">sender&lt;OutputTuple&gt;</span></code>.
+It contains a tuple of input ports, each of which is a <code class="docutils literal notranslate"><span class="pre">receiver&lt;Type&gt;</span></code> for each <cite>Type</cite> in
+<code class="docutils literal notranslate"><span class="pre">OutputTuple</span></code>. It supports multiple input receivers with distinct types and broadcasts a tuple
+of received messages to all of its successors. All input ports of a <code class="docutils literal notranslate"><span class="pre">join_node</span></code> must use the same
+buffering policy.</p>
+<p>The behavior of a <code class="docutils literal notranslate"><span class="pre">join_node</span></code> is based on its buffering policy.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="join_node_policies.html">join_node Policies</a></li>
+</ul>
+</div>
+<p>The function template <a class="reference internal" href="input_port_func.html"><span class="doc">input_port</span></a> simplifies the syntax for getting a
+reference to a specific input port.</p>
+<p><code class="docutils literal notranslate"><span class="pre">join_node</span></code> has a <cite>buffering</cite> and <cite>broadcast-push</cite> <a class="reference internal" href="forwarding_and_buffering.html"><span class="doc">properties</span></a>.</p>
+<div class="section" id="member-types">
+<h2>Member types<a class="headerlink" href="#member-types" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">input_ports_type</span></code> is an alias to a tuple of input ports.</p>
+</div>
+<div class="section" id="member-functions">
+<h2>Member functions<a class="headerlink" href="#member-functions" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">explicit</span> <span class="nf">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Constructs an empty <code class="docutils literal notranslate"><span class="pre">join_node</span></code> that belongs to the graph <code class="docutils literal notranslate"><span class="pre">g</span></code>.</p>
+<hr class="docutils" />
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B4</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span><span class="p">,</span> <span class="n">B7</span> <span class="n">b7</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B7</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span><span class="p">,</span> <span class="n">B7</span> <span class="n">b7</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B7</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B8</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span><span class="p">,</span> <span class="n">B7</span> <span class="n">b7</span><span class="p">,</span> <span class="n">B8</span> <span class="n">b8</span> <span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">B0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B1</span><span class="p">,</span> <span class="p">,</span> <span class="k">typename</span> <span class="n">B2</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B5</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B6</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B7</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B8</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B9</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span> <span class="n">B0</span> <span class="n">b0</span><span class="p">,</span> <span class="n">B1</span> <span class="n">b1</span><span class="p">,</span> <span class="n">B2</span> <span class="n">b2</span><span class="p">,</span> <span class="n">B3</span> <span class="n">b3</span><span class="p">,</span> <span class="n">B4</span> <span class="n">b4</span><span class="p">,</span> <span class="n">B5</span> <span class="n">b5</span><span class="p">,</span> <span class="n">B6</span> <span class="n">b6</span><span class="p">,</span> <span class="n">B7</span> <span class="n">b7</span><span class="p">,</span> <span class="n">B8</span> <span class="n">b8</span><span class="p">,</span> <span class="n">B9</span> <span class="n">b9</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>A constructor only available in the <code class="docutils literal notranslate"><span class="pre">key_matching</span></code> specialization of <code class="docutils literal notranslate"><span class="pre">join_node</span></code>.</p>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">join_node</span></code> that uses the function objects <code class="docutils literal notranslate"><span class="pre">b0</span></code>, <code class="docutils literal notranslate"><span class="pre">b1</span></code>, … , <code class="docutils literal notranslate"><span class="pre">bN</span></code> to determine
+that tags for the input ports <code class="docutils literal notranslate"><span class="pre">0</span></code> through <code class="docutils literal notranslate"><span class="pre">N</span></code>.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Function objects passed to the join_node constructor must not
+throw. They are called in parallel, and should be pure, take minimal
+time and be non-blocking.</p>
+</div>
+<hr class="docutils" />
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">join_node</span><span class="p">(</span> <span class="k">const</span> <span class="n">join_node</span> <span class="o">&amp;</span><span class="n">src</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">join_node</span></code> that has the same initial state that
+<code class="docutils literal notranslate"><span class="pre">src</span></code> had at its construction. The list of predecessors,
+messages in the input ports, and successors are not copied.</p>
+<hr class="docutils" />
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">input_ports_type</span> <span class="o">&amp;</span><span class="n">input_ports</span><span class="p">(</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Returns</strong>: a <code class="docutils literal notranslate"><span class="pre">std::tuple</span></code> of receivers. Each element inherits from <code class="docutils literal notranslate"><span class="pre">receiver&lt;T&gt;</span></code> where
+<code class="docutils literal notranslate"><span class="pre">T</span></code> is the type of message expected at that input. Each tuple element can be used like any
+other <code class="docutils literal notranslate"><span class="pre">receiver&lt;T&gt;</span></code>. The behavior of the ports based on the selected <code class="docutils literal notranslate"><span class="pre">join_node</span></code> policy.</p>
+<hr class="docutils" />
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="n">try_get</span><span class="p">(</span> <span class="n">output_type</span> <span class="o">&amp;</span><span class="n">v</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Attempts to generate a tuple based on the buffering policy of the <code class="docutils literal notranslate"><span class="pre">join_node</span></code>.</p>
+<p>If it can successfully generate a tuple, it copies it to <code class="docutils literal notranslate"><span class="pre">v</span></code> and returns <code class="docutils literal notranslate"><span class="pre">true</span></code>.
+Otherwise it returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</div>
+<div class="section" id="non-member-types">
+<h2>Non-Member Types<a class="headerlink" href="#non-member-types" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">tag_value</span> <span class="o">=</span> <span class="cm">/*implementation-specific*/</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">tag_value</span></code> is an unsigned integral type for defining <code class="docutils literal notranslate"><span class="pre">tag_matching</span></code> policy.</p>
+</div>
+<div class="section" id="deduction-guides">
+<h2>Deduction Guides<a class="headerlink" href="#deduction-guides" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Body</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Bodies</span><span class="o">&gt;</span>
+<span class="n">join_node</span><span class="p">(</span><span class="n">graph</span><span class="o">&amp;</span><span class="p">,</span> <span class="n">Body</span><span class="p">,</span> <span class="n">Bodies</span><span class="p">...)</span>
+    <span class="o">-&gt;</span><span class="n">join_node</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">decay_t</span><span class="o">&lt;</span><span class="n">input_t</span><span class="o">&lt;</span><span class="n">Body</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">decay_t</span><span class="o">&lt;</span><span class="n">input_t</span><span class="o">&lt;</span><span class="n">Bodies</span><span class="o">&gt;&gt;</span><span class="p">...</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">key_matching</span><span class="o">&lt;</span><span class="n">output_t</span><span class="o">&lt;</span><span class="n">Body</span><span class="o">&gt;&gt;&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">input_t</span></code> is an alias to the input argument type of the passed function object.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_t</span></code> is an alias to the return type of the passed function object.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="join_node_policies.html" class="btn btn-neutral float-right" title="join_node Policies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="broadcast_node_cls.html" class="btn btn-neutral float-left" title="broadcast_node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

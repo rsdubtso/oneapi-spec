@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Collective Operations &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Data Types" href="ccl_datatypes.html" />
+    <link rel="prev" title="oneCCL Collective Communication" href="collective_communication.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">oneCCL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../definitions.html">Definitions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="main_objects.html">oneCCL Concepts</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="collective_communication.html">oneCCL Collective Communication</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Collective Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ccl_datatypes.html">Data Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collective_call_attributes.html">Collective Call Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="completion.html">Track Communication Progress</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="error_handling.html">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../programming_model.html">Programming Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../index.html">oneCCL</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneCCL/source/spec/communication_primitives.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="collective-operations">
+<h1>Collective Operations<a class="headerlink" href="#collective-operations" title="Permalink to this headline">¶</a></h1>
+<p>oneAPI Collective Communications Library introduces the following list of communication primitives:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#allgatherv">Allgatherv</a></p></li>
+<li><p><a class="reference internal" href="#allreduce">Allreduce</a></p></li>
+<li><p><a class="reference internal" href="#reduce">Reduce</a></p></li>
+<li><p><a class="reference internal" href="#alltoall">Alltoall</a></p></li>
+<li><p><a class="reference internal" href="#barrier">Barrier</a></p></li>
+<li><p><a class="reference internal" href="#broadcast">Broadcast</a></p></li>
+</ul>
+<p>These operations are collective, meaning that all participants of oneCCL communicator should make a call.</p>
+<div class="section" id="allgatherv">
+<h2>Allgatherv<a class="headerlink" href="#allgatherv" title="Permalink to this headline">¶</a></h2>
+<p>Allgatherv is a collective communication operation that collects data from all processes within oneCCL communicator.
+Each participant gets the same result data. Different participants can contribute segments of different sizes.</p>
+<p><strong>C version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl_status_t</span> <span class="n">ccl_allgatherv</span><span class="p">(</span>
+    <span class="n">const</span> <span class="n">void</span><span class="o">*</span> <span class="n">send_buf</span><span class="p">,</span>
+    <span class="n">size_t</span> <span class="n">send_count</span><span class="p">,</span>
+    <span class="n">void</span><span class="o">*</span> <span class="n">recv_buf</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">size_t</span><span class="o">*</span> <span class="n">recv_counts</span><span class="p">,</span>
+    <span class="n">ccl_datatype_t</span> <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">ccl_coll_attr_t</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+    <span class="n">ccl_comm_t</span> <span class="n">comm</span><span class="p">,</span>
+    <span class="n">ccl_stream_t</span> <span class="n">stream</span><span class="p">,</span>
+    <span class="n">ccl_request_t</span><span class="o">*</span> <span class="n">req</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>C++ version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">buffer_type</span><span class="o">&gt;</span>
+<span class="n">coll_request_t</span> <span class="n">communicator</span><span class="p">::</span><span class="n">allgatherv</span><span class="p">(</span><span class="n">const</span> <span class="n">buffer_type</span><span class="o">*</span> <span class="n">send_buf</span><span class="p">,</span>
+                            <span class="n">size_t</span> <span class="n">send_count</span><span class="p">,</span>
+                            <span class="n">buffer_type</span><span class="o">*</span> <span class="n">recv_buf</span><span class="p">,</span>
+                            <span class="n">const</span> <span class="n">size_t</span><span class="o">*</span> <span class="n">recv_counts</span><span class="p">,</span>
+                            <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">coll_attr</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+                            <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">stream_t</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>send_buf</dt><dd><p>the buffer with <code class="docutils literal notranslate"><span class="pre">count</span></code> elements of type <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> that stores local data to be sent</p>
+</dd>
+<dt>recv_buf [out]</dt><dd><p>the buffer to store received data, must have the same dimension as <code class="docutils literal notranslate"><span class="pre">send_buf</span></code></p>
+</dd>
+<dt>count</dt><dd><p>the number of elements of type <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> to be sent by a participant of oneCCL communicator</p>
+</dd>
+<dt>recv_counts</dt><dd><p>the number of elements of type <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> to be received from each participant of oneCCL communicator</p>
+</dd>
+<dt>dtype</dt><dd><p>datatype of the elements (for C++ API gets inferred from the buffer type)</p>
+</dd>
+<dt>attr</dt><dd><p>optional attributes that customize operation</p>
+</dd>
+<dt>comm</dt><dd><p>oneCCL communicator for the operation</p>
+</dd>
+<dt>stream</dt><dd><p>oneCCL stream associated with the operation</p>
+</dd>
+<dt>req</dt><dd><p>object that can be used to track the progress of the operation (returned value for C++ API)</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="allreduce">
+<span id="id1"></span><h2>Allreduce<a class="headerlink" href="#allreduce" title="Permalink to this headline">¶</a></h2>
+<p>Global reduction operations such as sum, max, min, or user-defined functions, where the result is returned to all members of oneCCL communicator.</p>
+<p><strong>C version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl_status_t</span> <span class="n">ccl_allreduce</span><span class="p">(</span>
+    <span class="n">const</span> <span class="n">void</span><span class="o">*</span> <span class="n">send_buf</span><span class="p">,</span>
+    <span class="n">void</span><span class="o">*</span> <span class="n">recv_buf</span><span class="p">,</span>
+    <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span>
+    <span class="n">ccl_datatype_t</span> <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">ccl_reduction_t</span> <span class="n">reduction</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">ccl_coll_attr_t</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+    <span class="n">ccl_comm_t</span> <span class="n">comm</span><span class="p">,</span>
+    <span class="n">ccl_stream_t</span> <span class="n">stream</span><span class="p">,</span>
+    <span class="n">ccl_request_t</span><span class="o">*</span> <span class="n">req</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>C++ version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">buffer_type</span><span class="o">&gt;</span>
+<span class="n">coll_request_t</span> <span class="n">communicator</span><span class="p">::</span><span class="n">allreduce</span><span class="p">(</span><span class="n">const</span> <span class="n">buffer_type</span><span class="o">*</span> <span class="n">send_buf</span><span class="p">,</span>
+                        <span class="n">buffer_type</span><span class="o">*</span> <span class="n">recv_buf</span><span class="p">,</span>
+                        <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span>
+                        <span class="n">ccl</span><span class="p">::</span><span class="n">reduction</span> <span class="n">reduction</span><span class="p">,</span>
+                        <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">coll_attr</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+                        <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">stream_t</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>send_buf</dt><dd><p>the buffer with <code class="docutils literal notranslate"><span class="pre">count</span></code> elements of <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> that stores local data to be reduced</p>
+</dd>
+<dt>recv_buf [out]</dt><dd><p>the buffer to store reduced result, must have the same dimension as <code class="docutils literal notranslate"><span class="pre">send_buf</span></code></p>
+</dd>
+<dt>count</dt><dd><p>the number of elements of <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> in <code class="docutils literal notranslate"><span class="pre">send_buf</span></code></p>
+</dd>
+<dt>dtype</dt><dd><p>datatype of the elements (for C++ API gets inferred from the buffer type)</p>
+</dd>
+<dt>reduction</dt><dd><p>type of reduction operation to be applied</p>
+</dd>
+<dt>attr</dt><dd><p>optional attributes that customize operation</p>
+</dd>
+<dt>comm</dt><dd><p>oneCCL communicator for the operation</p>
+</dd>
+<dt>stream</dt><dd><p>oneCCL stream associated with the operation</p>
+</dd>
+<dt>req</dt><dd><p>object that can be used to track the progress of the operation (returned value for C++ API)</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="reduce">
+<h2>Reduce<a class="headerlink" href="#reduce" title="Permalink to this headline">¶</a></h2>
+<p>Global reduction operations such as sum, max, min, or user-defined functions, where the result is returned to a single member of oneCCL communicator (root).</p>
+<p><strong>C version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl_status_t</span> <span class="n">ccl_reduce</span><span class="p">(</span>
+    <span class="n">const</span> <span class="n">void</span><span class="o">*</span> <span class="n">send_buf</span><span class="p">,</span>
+    <span class="n">void</span><span class="o">*</span> <span class="n">recv_buf</span><span class="p">,</span>
+    <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span>
+    <span class="n">ccl_datatype_t</span> <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">ccl_reduction_t</span> <span class="n">reduction</span><span class="p">,</span>
+    <span class="n">size_t</span> <span class="n">root</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">ccl_coll_attr_t</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+    <span class="n">ccl_comm_t</span> <span class="n">comm</span><span class="p">,</span>
+    <span class="n">ccl_stream_t</span> <span class="n">stream</span><span class="p">,</span>
+    <span class="n">ccl_request_t</span><span class="o">*</span> <span class="n">req</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>C++ version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">buffer_type</span><span class="o">&gt;</span>
+<span class="n">coll_request_t</span> <span class="n">communicator</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">const</span> <span class="n">buffer_type</span><span class="o">*</span> <span class="n">send_buf</span><span class="p">,</span>
+                        <span class="n">buffer_type</span><span class="o">*</span> <span class="n">recv_buf</span><span class="p">,</span>
+                        <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span>
+                        <span class="n">ccl</span><span class="p">::</span><span class="n">reduction</span> <span class="n">reduction</span><span class="p">,</span>
+                        <span class="n">size_t</span> <span class="n">root</span><span class="p">,</span>
+                        <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">coll_attr</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+                        <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">stream_t</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>send_buf</dt><dd><p>the buffer with <code class="docutils literal notranslate"><span class="pre">count</span></code> elements of <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> that stores local data to be reduced</p>
+</dd>
+<dt>recv_buf [out]</dt><dd><p>the buffer to store reduced result, must have the same dimension as <code class="docutils literal notranslate"><span class="pre">send_buf</span></code></p>
+</dd>
+<dt>count</dt><dd><p>the number of elements of <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> in <code class="docutils literal notranslate"><span class="pre">send_buf</span></code></p>
+</dd>
+<dt>dtype</dt><dd><p>datatype of the elements (for C++ API gets inferred from the buffer type)</p>
+</dd>
+<dt>reduction</dt><dd><p>type of reduction operation to be applied</p>
+</dd>
+<dt>root</dt><dd><p>the rank of the process that gets the result of reduction</p>
+</dd>
+<dt>attr</dt><dd><p>optional attributes that customize operation</p>
+</dd>
+<dt>comm</dt><dd><p>oneCCL communicator for the operation</p>
+</dd>
+<dt>stream</dt><dd><p>oneCCL stream associated with the operation</p>
+</dd>
+<dt>req</dt><dd><p>object that can be used to track the progress of the operation (returned value for C++ API)</p>
+</dd>
+</dl>
+<p>The following reduction operations are supported for <a class="reference internal" href="#allreduce">Allreduce</a> and <a class="reference internal" href="#reduce">Reduce</a> primitives:</p>
+<dl class="simple">
+<dt>ccl_reduction_sum</dt><dd><p>elementwise summation</p>
+</dd>
+<dt>ccl_reduction_prod</dt><dd><p>elementwise multiplication</p>
+</dd>
+<dt>ccl_reduction_min</dt><dd><p>elementwise min</p>
+</dd>
+<dt>ccl_reduction_max</dt><dd><p>elementwise max</p>
+</dd>
+<dt>ccl_reduction_custom:</dt><dd><p>class of user-defined operations</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="alltoall">
+<h2>Alltoall<a class="headerlink" href="#alltoall" title="Permalink to this headline">¶</a></h2>
+<p>oneCCL Alltoall is an extension of oneCCL Allgather for cases when each process
+sends different data to each receiver. The <span class="math notranslate nohighlight">\(j\)</span>-th block sent from the process <span class="math notranslate nohighlight">\(i\)</span> is received
+by the process <span class="math notranslate nohighlight">\(j\)</span> and is placed in the <span class="math notranslate nohighlight">\(i\)</span>-th block of <code class="docutils literal notranslate"><span class="pre">recvbuf</span></code>.
+For each pair of processes the amount of sent data must be equal to
+the amount of received data.</p>
+<p><strong>C version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl_status_t</span> <span class="n">ccl_alltoall</span><span class="p">(</span>
+                <span class="n">const</span> <span class="n">void</span><span class="o">*</span> <span class="n">send_buf</span><span class="p">,</span>
+                <span class="n">void</span><span class="o">*</span> <span class="n">recv_buf</span><span class="p">,</span>
+                <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span>
+                <span class="n">ccl_datatype_t</span> <span class="n">dtype</span><span class="p">,</span>
+                <span class="n">const</span> <span class="n">ccl_coll_attr_t</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+                <span class="n">ccl_comm_t</span> <span class="n">comm</span><span class="p">,</span>
+                <span class="n">ccl_stream_t</span> <span class="n">stream</span><span class="p">,</span>
+                <span class="n">ccl_request_t</span><span class="o">*</span> <span class="n">req</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>C++ version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">buffer_type</span><span class="o">&gt;</span>
+<span class="n">coll_request_t</span> <span class="n">communicator</span><span class="p">::</span><span class="n">alltoall</span><span class="p">(</span><span class="n">const</span> <span class="n">buffer_type</span><span class="o">*</span> <span class="n">send_buf</span><span class="p">,</span>
+                                    <span class="n">buffer_type</span><span class="o">*</span> <span class="n">recv_buf</span><span class="p">,</span>
+                                    <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span>
+                                    <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">coll_attr</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+                                    <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">stream_t</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>send_buf</dt><dd><p>the buffer with <code class="docutils literal notranslate"><span class="pre">count</span></code> elements of <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> that stores local data to be sent</p>
+</dd>
+<dt>recv_buf [out]</dt><dd><p>the buffer to store received data, must have the same dimension as <code class="docutils literal notranslate"><span class="pre">send_buf</span></code></p>
+</dd>
+<dt>count</dt><dd><p>the number of elements of type <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> to be sent to or received from each participant of oneCCL communicator</p>
+</dd>
+<dt>dtype</dt><dd><p>datatype of the elements (for C++ API gets inferred from the buffer type)</p>
+</dd>
+<dt>attr</dt><dd><p>optional attributes that customize operation</p>
+</dd>
+<dt>comm</dt><dd><p>oneCCL communicator for the operation</p>
+</dd>
+<dt>stream</dt><dd><p>oneCCL stream associated with the operation</p>
+</dd>
+<dt>req</dt><dd><p>object that can be used to track the progress of the operation (returned value for C++ API)</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="barrier">
+<h2>Barrier<a class="headerlink" href="#barrier" title="Permalink to this headline">¶</a></h2>
+<p>Blocking barrier synchronization across all members of oneCCL communicator.</p>
+<p><strong>C version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl_status_t</span> <span class="n">ccl_barrier</span><span class="p">(</span><span class="n">ccl_comm_t</span> <span class="n">comm</span><span class="p">,</span>
+                        <span class="n">ccl_stream_t</span> <span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>C++ version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">communicator</span><span class="p">::</span><span class="n">barrier</span><span class="p">(</span><span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">stream_t</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>comm</dt><dd><p>oneCCL communicator for the operation</p>
+</dd>
+<dt>stream</dt><dd><p>oneCCL stream associated with the operation</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="broadcast">
+<h2>Broadcast<a class="headerlink" href="#broadcast" title="Permalink to this headline">¶</a></h2>
+<p>Collective communication operation that broadcasts data from one participant of oneCCL communicator (denoted as root) to all other participants.</p>
+<p><strong>C version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl_status_t</span> <span class="n">ccl_bcast</span><span class="p">(</span>
+    <span class="n">void</span><span class="o">*</span> <span class="n">buf</span><span class="p">,</span>
+    <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span>
+    <span class="n">ccl_datatype_t</span> <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">size_t</span> <span class="n">root</span><span class="p">,</span>
+    <span class="n">const</span> <span class="n">ccl_coll_attr_t</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+    <span class="n">ccl_comm_t</span> <span class="n">comm</span><span class="p">,</span>
+    <span class="n">ccl_stream_t</span> <span class="n">stream</span><span class="p">,</span>
+    <span class="n">ccl_request_t</span><span class="o">*</span> <span class="n">req</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>C++ version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">buffer_type</span><span class="o">&gt;</span>
+<span class="n">col_request_t</span> <span class="n">communicator</span><span class="p">::</span><span class="n">bcast</span><span class="p">(</span><span class="n">buffer_type</span><span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span>
+                        <span class="n">size_t</span> <span class="n">root</span><span class="p">,</span>
+                        <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">coll_attr</span><span class="o">*</span> <span class="n">attr</span><span class="p">,</span>
+                        <span class="n">const</span> <span class="n">ccl</span><span class="p">::</span><span class="n">stream_t</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>buf</dt><dd><p>serves as send buffer for root and as receive buffer for other participants</p>
+</dd>
+<dt>count</dt><dd><p>the number of elements of type <code class="docutils literal notranslate"><span class="pre">buffer_type</span></code> in <code class="docutils literal notranslate"><span class="pre">send_buf</span></code></p>
+</dd>
+<dt>dtype</dt><dd><p>datatype of the elements (for C++ API gets inferred from the buffer type)</p>
+</dd>
+<dt>root</dt><dd><p>the rank of the process that broadcasts the data</p>
+</dd>
+<dt>attr</dt><dd><p>optional attributes that customize the operation</p>
+</dd>
+<dt>comm</dt><dd><p>oneCCL communicator for the operation</p>
+</dd>
+<dt>stream</dt><dd><p>oneCCL stream associated with the operation</p>
+</dd>
+<dt>req</dt><dd><p>object that can be used to track the progress of the operation (returned value for C++ API)</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ccl_datatypes.html" class="btn btn-neutral float-right" title="Data Types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="collective_communication.html" class="btn btn-neutral float-left" title="oneCCL Collective Communication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

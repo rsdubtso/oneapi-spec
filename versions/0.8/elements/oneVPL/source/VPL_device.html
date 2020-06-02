@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneVPL/source/VPL_device.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference internal" href="index.html#_CPPv4N3vpl10DeviceInfoE" title="vpl::DeviceInfo"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::DeviceInfo</span></code></a> defines a device and property query interface.</p>
+<p>At runtime, VPL discovers available devices declared in <a class="reference internal" href="index.html#_CPPv413VplDeviceType" title="VplDeviceType"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">VplDeviceType</span></code></a>,
+the number of devices of each type (<a class="reference internal" href="index.html#_CPPv4N3vpl10DeviceInfo14GetDeviceCountE13VplDeviceType" title="vpl::DeviceInfo::GetDeviceCount"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vpl::DeviceInfo::GetDeviceCount()</span></code></a>),
+and <a class="reference internal" href="index.html#_CPPv4N3vpl17VplDevicePropertyE" title="vpl::VplDeviceProperty"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">vpl::VplDeviceProperty</span></code></a> of each device (<a class="reference internal" href="index.html#_CPPv4N3vpl10DeviceInfo17GetDevicePropertyE13VplDeviceType8uint32_t" title="vpl::DeviceInfo::GetDeviceProperty"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vpl::DeviceInfo::GetDeviceProperty()</span></code></a>).</p>
+<p>This class also provides two important member functions:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="index.html#_CPPv4N3vpl10DeviceInfo18GetPreferredDeviceE8uint32_t" title="vpl::DeviceInfo::GetPreferredDevice"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vpl::DeviceInfo::GetPreferredDevice()</span></code></a>: get a preferred device instance <a class="reference internal" href="index.html#_CPPv4N3vpl14DeviceInstanceE" title="vpl::DeviceInstance"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">vpl::DeviceInstance</span></code></a> for a <a class="reference internal" href="index.html#_CPPv4N3vpl10WorkstreamE" title="vpl::Workstream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::Workstream</span></code></a> (<a href="#id1"><span class="problematic" id="id2">workstream_</span></a>)</p></li>
+<li><p><a class="reference internal" href="index.html#_CPPv4N3vpl10DeviceInfo9GetPresetE13VplDeviceType17VplWorkstreamType8uint32_t" title="vpl::DeviceInfo::GetPreset"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vpl::DeviceInfo::GetPreset()</span></code></a>: get the device preset configuration for a <a class="reference internal" href="index.html#_CPPv417VplWorkstreamType" title="VplWorkstreamType"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">VplWorkstreamType</span></code></a> and a device instance</p></li>
+</ol>
+<p>We recommend the following code sequence to select a device and get the device’s preset
+configuration parameters before creating a <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Workstream</span></code> on a device:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Find all the devices in the system and select a preferred device</span>
+<span class="n">DeviceInfo</span> <span class="o">*</span><span class="n">dinfo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DeviceInfo</span><span class="p">();</span>
+<span class="n">DeviceInstance</span> <span class="o">*</span><span class="n">dev</span> <span class="o">=</span> <span class="n">dinfo</span><span class="o">-&gt;</span><span class="n">GetPreferredDevice</span><span class="p">(</span><span class="n">VPL_WORKSTREAM_DECODE</span><span class="p">);</span>
+
+<span class="c1">// Get decode preset</span>
+<span class="n">config</span><span class="o">::</span><span class="n">VPLParams</span> <span class="o">*</span><span class="n">dconfig</span> <span class="o">=</span> <span class="n">dinfo</span><span class="o">-&gt;</span><span class="n">GetPreset</span><span class="p">(</span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">m_dtype</span><span class="p">,</span> <span class="n">VPL_WORKSTREAM_DECODE</span><span class="p">,</span> <span class="n">dev</span><span class="o">-&gt;</span><span class="n">m_id</span><span class="p">);</span>
+</pre></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

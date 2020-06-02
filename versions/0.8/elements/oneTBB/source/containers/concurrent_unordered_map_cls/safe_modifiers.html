@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Concurrently safe modifiers &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Concurrently unsafe modifiers" href="unsafe_modifiers.html" />
+    <link rel="prev" title="Size and capacity" href="size_and_capacity.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../algorithms.html">Algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flow_graph.html">Flow Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../containers.html">Containers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../containers.html#sequences">Sequences</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../containers.html#queues">Queues</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../containers.html#unordered-associative-containers">Unordered associative containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../containers.html#ordered-associative-containers">Ordered associative containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../containers.html#auxiliary-classes">Auxiliary classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/containers/concurrent_unordered_map_cls/safe_modifiers.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="concurrently-safe-modifiers">
+<h1>Concurrently safe modifiers<a class="headerlink" href="#concurrently-safe-modifiers" title="Permalink to this headline">¶</a></h1>
+<p>All member functions in this section can be performed concurrently with each other,
+lookup methods and while traversing the container.</p>
+<div class="section" id="emplacing-elements">
+<h2>Emplacing elements<a class="headerlink" href="#emplacing-elements" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">iterator</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">emplace</span><span class="p">(</span> <span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Attempts to insert an element ,constructed in-place from <code class="docutils literal notranslate"><span class="pre">args</span></code> into the container.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">std::pair&lt;iterator,</span> <span class="pre">bool&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">iterator</span></code> points to the inserted element
+or to an existing element with equal key. Boolean value is <code class="docutils literal notranslate"><span class="pre">true</span></code> if insertion took place,
+<code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+<p><strong>Requirements</strong>: the type <code class="docutils literal notranslate"><span class="pre">value_type</span></code> shall meet the <code class="docutils literal notranslate"><span class="pre">EmplaceConstructible</span></code> requirements
+from [container.requirements] ISO C++ Standard section.</p>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+<span class="n">iterator</span> <span class="n">emplace_hint</span><span class="p">(</span> <span class="n">const_iterator</span> <span class="n">hint</span><span class="p">,</span> <span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Attempts to insert an element ,constructed in-place from <code class="docutils literal notranslate"><span class="pre">args</span></code> into the container.</p>
+<p>Optionally uses the parameter <code class="docutils literal notranslate"><span class="pre">hint</span></code> as a suggestion to where the node should be placed.</p>
+<p><strong>Returns</strong>: an <code class="docutils literal notranslate"><span class="pre">iterator</span></code> to the inserted element or to an existing element with equal key.</p>
+<p><strong>Requirements</strong>: the type <code class="docutils literal notranslate"><span class="pre">value_type</span></code> shall meet the <code class="docutils literal notranslate"><span class="pre">EmplaceConstructible</span></code> requirements
+from [container.requirements] ISO C++ Standard section.</p>
+</div></blockquote>
+</div>
+<div class="section" id="inserting-values">
+<h2>Inserting values<a class="headerlink" href="#inserting-values" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">iterator</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">insert</span><span class="p">(</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">value</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Attempts to insert <code class="docutils literal notranslate"><span class="pre">value</span></code> into the container.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">std::pair&lt;iterator,</span> <span class="pre">bool&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">iterator</span></code> points to the inserted element
+or to an existing element with equal key. Boolean value is <code class="docutils literal notranslate"><span class="pre">true</span></code> if insertion took place,
+<code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+<p><strong>Requirements</strong>: the type <code class="docutils literal notranslate"><span class="pre">value_type</span></code> shall meet the <code class="docutils literal notranslate"><span class="pre">CopyInsertable</span></code> requirements from
+[container.requirements] ISO C++ Standard section.</p>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="nf">insert</span><span class="p">(</span> <span class="n">const_iterator</span> <span class="n">hint</span><span class="p">,</span> <span class="k">const</span> <span class="n">value_type</span><span class="o">&amp;</span> <span class="n">value</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Attempts to insert <code class="docutils literal notranslate"><span class="pre">value</span></code> into the container.</p>
+<p>Optionally uses the parameter <code class="docutils literal notranslate"><span class="pre">hint</span></code> as a suggestion to where the element should be placed.</p>
+<p><strong>Returns</strong>: an <code class="docutils literal notranslate"><span class="pre">iterator</span></code> to the inserted element or to an existing element with equal key.</p>
+<p><strong>Requirements</strong>: the type <code class="docutils literal notranslate"><span class="pre">value_type</span></code> shall meet the <code class="docutils literal notranslate"><span class="pre">CopyInsertable</span></code> requirements from
+[container.requirements] ISO C++ Standard section.</p>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">P</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">iterator</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">insert</span><span class="p">(</span> <span class="n">P</span><span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Equivalent to <code class="docutils literal notranslate"><span class="pre">emplace(std::forward&lt;P&gt;(value))</span></code>.</p>
+<p>This overload only participates in overload resolution if
+<code class="docutils literal notranslate"><span class="pre">std::is_constructible&lt;value_type,</span> <span class="pre">P&amp;&amp;&gt;::value</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">P</span><span class="o">&gt;</span>
+<span class="n">iterator</span> <span class="n">insert</span><span class="p">(</span> <span class="n">const_iterator</span> <span class="n">hint</span><span class="p">,</span> <span class="n">P</span><span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Equivalent to <code class="docutils literal notranslate"><span class="pre">emplace_hint(hint,</span> <span class="pre">std::forward&lt;P&gt;(value))</span></code>.</p>
+<p>This overload only participates in overload resolution if
+<code class="docutils literal notranslate"><span class="pre">std::is_constructible&lt;value_type,</span> <span class="pre">P&amp;&amp;&gt;::value</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">iterator</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">insert</span><span class="p">(</span> <span class="n">value_type</span><span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Attempts to insert <code class="docutils literal notranslate"><span class="pre">value</span></code> into the container using move semantics.</p>
+<p><code class="docutils literal notranslate"><span class="pre">value</span></code> is left in a valid, but unspecified state.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">std::pair&lt;iterator,</span> <span class="pre">bool&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">iterator</span></code> points to the inserted
+element or to an existing element with equal key. Boolean value is <code class="docutils literal notranslate"><span class="pre">true</span></code>
+if insertion took place, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+<p><strong>Requirements</strong>: the type <code class="docutils literal notranslate"><span class="pre">value_type</span></code> shall meet the <code class="docutils literal notranslate"><span class="pre">MoveInsertable</span></code> requirements from
+[container.requirements] ISO C++ Standard section.</p>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="nf">insert</span><span class="p">(</span> <span class="n">const_iterator</span> <span class="n">hint</span><span class="p">,</span> <span class="n">value_type</span><span class="o">&amp;&amp;</span> <span class="n">other</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Attempts to insert <code class="docutils literal notranslate"><span class="pre">value</span></code> into the container using move semantics.</p>
+<p>Optionally uses the parameter <code class="docutils literal notranslate"><span class="pre">hint</span></code> as a suggestion to where the element should be placed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">value</span></code> is left in a valid, but unspecified state.</p>
+<p><strong>Returns</strong>: an <code class="docutils literal notranslate"><span class="pre">iterator</span></code> to the inserted element or to an existing element with equal key.</p>
+<p><strong>Requirements</strong>: the type <code class="docutils literal notranslate"><span class="pre">value_type</span></code> shall meet the <code class="docutils literal notranslate"><span class="pre">MoveInsertable</span></code> requirements from
+[container.requirements] ISO C++ Standard section.</p>
+</div></blockquote>
+</div>
+<div class="section" id="inserting-sequences-of-elements">
+<h2>Inserting sequences of elements<a class="headerlink" href="#inserting-sequences-of-elements" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIterator</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">insert</span><span class="p">(</span> <span class="n">InputIterator</span> <span class="n">first</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Attempts to insert all items from the half-open interval <code class="docutils literal notranslate"><span class="pre">[first,</span> <span class="pre">last)</span></code>
+into the container.</p>
+<p>If the interval <code class="docutils literal notranslate"><span class="pre">[first,</span> <span class="pre">last)</span></code> contains multiple elements with equal keys,
+it is unspecified which element should be inserted.</p>
+<p><strong>Requirements</strong>: the type <code class="docutils literal notranslate"><span class="pre">InputIterator</span></code> must meet the requirements of <cite>InputIterator</cite>
+from <code class="docutils literal notranslate"><span class="pre">[input.iterators]</span></code> ISO C++ Standard section.</p>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="n">init</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Equivalent to <code class="docutils literal notranslate"><span class="pre">insert(init.begin(),</span> <span class="pre">init.end())</span></code>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="inserting-nodes">
+<h2>Inserting nodes<a class="headerlink" href="#inserting-nodes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">iterator</span><span class="p">,</span> <span class="kt">bool</span><span class="o">&gt;</span> <span class="n">insert</span><span class="p">(</span> <span class="n">node_type</span><span class="o">&amp;&amp;</span> <span class="n">nh</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>If the node handle <code class="docutils literal notranslate"><span class="pre">nh</span></code> is empty, does nothing.</p>
+<p>Otherwise - attempts to insert the node, owned by <code class="docutils literal notranslate"><span class="pre">nh</span></code> into the container.</p>
+<p>If the insertion fails, node handle <code class="docutils literal notranslate"><span class="pre">nh</span></code> remains ownership of the node.</p>
+<p>Otherwise - <code class="docutils literal notranslate"><span class="pre">nh</span></code> is left in an empty state.</p>
+<p>No copy or move constructors of <code class="docutils literal notranslate"><span class="pre">value_type</span></code> are performed.</p>
+<p>The behavior is undefined if <code class="docutils literal notranslate"><span class="pre">nh</span></code> is not empty and <code class="docutils literal notranslate"><span class="pre">get_allocator()</span> <span class="pre">!=</span> <span class="pre">nh.get_allocator()</span></code>.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">std::pair&lt;iterator,</span> <span class="pre">bool&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">iterator</span></code> points to the
+inserted element or to an existing element with key equal to
+<code class="docutils literal notranslate"><span class="pre">nh.key()</span></code>. Boolean value is <code class="docutils literal notranslate"><span class="pre">true</span></code> if insertion took place, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span> <span class="nf">insert</span><span class="p">(</span> <span class="n">const_iterator</span> <span class="n">hint</span><span class="p">,</span> <span class="n">node_type</span><span class="o">&amp;&amp;</span> <span class="n">nh</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>If the node handle <code class="docutils literal notranslate"><span class="pre">nh</span></code> is empty, does nothing.</p>
+<p>Otherwise - attempts to insert the node, owned by <code class="docutils literal notranslate"><span class="pre">nh</span></code> into the container.</p>
+<p>Optionally uses the parameter <code class="docutils literal notranslate"><span class="pre">hint</span></code> as a suggestion to where the node should be placed.</p>
+<p>If the insertion fails, node handle <code class="docutils literal notranslate"><span class="pre">nh</span></code> remains ownership of the node.</p>
+<p>Otherwise - <code class="docutils literal notranslate"><span class="pre">nh</span></code> is left in an empty state.</p>
+<p>No copy or move constructors of <code class="docutils literal notranslate"><span class="pre">value_type</span></code> are performed.</p>
+<p>The behavior is undefined if <code class="docutils literal notranslate"><span class="pre">nh</span></code> is not empty and <code class="docutils literal notranslate"><span class="pre">get_allocator()</span> <span class="pre">!=</span> <span class="pre">nh.get_allocator()</span></code>.</p>
+<p><strong>Returns</strong>: an iterator pointing to the inserted element or to an existing element
+with key equal to <code class="docutils literal notranslate"><span class="pre">nh.key()</span></code>.</p>
+</div></blockquote>
+<p><strong>Merging containers</strong></p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">SrcHash</span><span class="p">,</span> <span class="k">typename</span> <span class="n">SrcKeyEqual</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">merge</span><span class="p">(</span> <span class="n">concurrent_unordered_map</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">SrcHash</span><span class="p">,</span> <span class="n">SrcKeyEqual</span><span class="p">,</span> <span class="n">Allocator</span><span class="o">&gt;&amp;</span> <span class="n">source</span> <span class="p">);</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">SrcHash</span><span class="p">,</span> <span class="k">typename</span> <span class="n">SrcKeyEqual</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">merge</span><span class="p">(</span> <span class="n">concurrent_unordered_map</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">SrcHash</span><span class="p">,</span> <span class="n">SrcKeyEqual</span><span class="p">,</span> <span class="n">Allocator</span><span class="o">&gt;&amp;&amp;</span> <span class="n">source</span> <span class="p">);</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">SrcHash</span><span class="p">,</span> <span class="k">typename</span> <span class="n">SrcKeyEqual</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">merge</span><span class="p">(</span> <span class="n">concurrent_unordered_multimap</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">SrcHash</span><span class="p">,</span> <span class="n">SrcKeyEqual</span><span class="p">,</span> <span class="n">Allocator</span><span class="o">&gt;&amp;</span> <span class="n">source</span> <span class="p">);</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">SrcHash</span><span class="p">,</span> <span class="k">typename</span> <span class="n">SrcKeyEqual</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">merge</span><span class="p">(</span> <span class="n">concurrent_unordered_multimap</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">SrcHash</span><span class="p">,</span> <span class="n">SrcKeyEqual</span><span class="p">,</span> <span class="n">Allocator</span><span class="o">&gt;&amp;&amp;</span> <span class="n">source</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>Transfers those elements from <code class="docutils literal notranslate"><span class="pre">source</span></code> which keys do not exist in the container.</p>
+<p>In case of merging with the container with multiple elements with equal keys,
+it is unspecified which element would be transfered.</p>
+<p>No copy or move constructors of <code class="docutils literal notranslate"><span class="pre">value_type</span></code> are performed.</p>
+<p>The behavior is undefined if <code class="docutils literal notranslate"><span class="pre">get_allocator()</span> <span class="pre">!=</span> <span class="pre">source.get_allocator()</span></code>.</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="unsafe_modifiers.html" class="btn btn-neutral float-right" title="Concurrently unsafe modifiers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="size_and_capacity.html" class="btn btn-neutral float-left" title="Size and capacity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

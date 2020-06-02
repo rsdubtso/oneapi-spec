@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Algorithms &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="parallel_for" href="algorithms/functions/parallel_for_func.html" />
+    <link rel="prev" title="Feature Macros" href="configuration/feature_macros.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Algorithms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parallel-functions">Parallel Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blocked-ranges">Blocked Ranges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partitioners">Partitioners</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#split-tags">Split Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="flow_graph.html">Flow Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/algorithms.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="algorithms">
+<h1>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h1>
+<p><strong>[algorithms]</strong></p>
+<p>oneAPI Threading Building Blocks provides a set of generic parallel algorithms.</p>
+<div class="section" id="parallel-functions">
+<h2>Parallel Functions<a class="headerlink" href="#parallel-functions" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/functions/parallel_for_func.html">parallel_for</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/functions/parallel_reduce_func.html">parallel_reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/functions/parallel_deterministic_reduce_func.html">parallel_deterministic_reduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/functions/parallel_scan_func.html">parallel_scan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/functions/pre_scan_tag_and_final_scan_tag_clses.html">pre_scan_tag and final_scan_tag</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/functions/parallel_for_each_func.html">parallel_for_each</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/functions/feeder.html">feeder</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/functions/parallel_invoke_func.html">parallel_invoke</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/functions/parallel_pipeline_func.html">parallel_pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/functions/parallel_pipeline_func/filter_cls.html">filter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="algorithms/functions/parallel_pipeline_func/filter_mode_enum.html">filter_mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/functions/parallel_pipeline_func/flow_control_cls.html">flow_control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/functions/parallel_sort_func.html">parallel_sort</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="blocked-ranges">
+<h2>Blocked Ranges<a class="headerlink" href="#blocked-ranges" title="Permalink to this headline">¶</a></h2>
+<p>Types that meet the <a class="reference internal" href="named_requirements/algorithms/range.html"><span class="doc">Range requirements</span></a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/blocked_ranges/blocked_range_cls.html">blocked_range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/blocked_ranges/blocked_range2d_cls.html">blocked_range2d</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/blocked_ranges/blocked_range3d_cls.html">blocked_range3d</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="partitioners">
+<span id="id1"></span><h2>Partitioners<a class="headerlink" href="#partitioners" title="Permalink to this headline">¶</a></h2>
+<p>A partitioner specifies how a loop template should partition its work among threads.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/partitioners/auto_partitioner.html">auto_partitioner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/partitioners/affinity_partitioner.html">affinity_partitioner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/partitioners/static_partitioner.html">static_partitioner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/partitioners/simple_partitioner.html">simple_partitioner</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="split-tags">
+<h2>Split Tags<a class="headerlink" href="#split-tags" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/split_tags/proportional_split_cls.html">proportional split</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/split_tags/split_cls.html">split</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="algorithms/functions/parallel_for_func.html" class="btn btn-neutral float-right" title="parallel_for" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configuration/feature_macros.html" class="btn btn-neutral float-left" title="Feature Macros" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

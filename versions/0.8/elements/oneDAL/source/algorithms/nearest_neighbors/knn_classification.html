@@ -1,0 +1,740 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>k-Nearest Neighbors Classification (k-NN) &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Decomposition" href="../decomposition/index.html" />
+    <link rel="prev" title="Nearest Neighbors (kNN)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">oneDAL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notations.html">Mathematical Notations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../programming_model/index.html">Programming model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common_interface/index.html">Common Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_management/index.html">Data management</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Algorithms</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../clustering/index.html">Clustering</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Nearest Neighbors (kNN)</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">k-Nearest Neighbors Classification (k-NN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../decomposition/index.html">Decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bibliography.html">Bibliography</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneDAL</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneDAL/source/algorithms/nearest_neighbors/knn_classification.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="k-nearest-neighbors-classification-k-nn">
+<h1>k-Nearest Neighbors Classification (k-NN)<a class="headerlink" href="#k-nearest-neighbors-classification-k-nn" title="Permalink to this headline">¶</a></h1>
+<p><span class="math notranslate nohighlight">\(k\)</span>-NN classification algorithm infers the class for the new feature
+vector by computing majority vote of the <span class="math notranslate nohighlight">\(k\)</span> nearest observations from the
+training set.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 11%" />
+<col style="width: 15%" />
+<col style="width: 17%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Operation</strong></p></td>
+<td colspan="2"><p><strong>Computational methods</strong></p></td>
+<td colspan="3"><p><strong>Programming Interface</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#t-math">Training</a></p></td>
+<td><p><a class="reference internal" href="#t-math-brute-force">Brute-force</a></p></td>
+<td><p><a class="reference internal" href="#t-math-kd-tree">k-d tree</a></p></td>
+<td><p><a class="reference internal" href="#t-api">train(…)</a></p></td>
+<td><p><a class="reference internal" href="#t-api-input">train_input</a></p></td>
+<td><p><a class="reference internal" href="#t-api-result">train_result</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#i-math">Inference</a></p></td>
+<td><p><a class="reference internal" href="#i-math-brute-force">Brute-force</a></p></td>
+<td><p><a class="reference internal" href="#i-math-kd-tree">k-d tree</a></p></td>
+<td><p><a class="reference internal" href="#i-api">infer(…)</a></p></td>
+<td><p><a class="reference internal" href="#i-api-input">infer_input</a></p></td>
+<td><p><a class="reference internal" href="#i-api-result">infer_result</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="mathematical-formulation">
+<h2>Mathematical formulation<a class="headerlink" href="#mathematical-formulation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="training">
+<span id="t-math"></span><h3>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(X = \{ x_1, \ldots, x_n \}\)</span> be the training set of
+<span class="math notranslate nohighlight">\(p\)</span>-dimensional feature vectors, let <span class="math notranslate nohighlight">\(Y = \{ y_1, \ldots, y_n \}\)</span> be
+the set of class labels, where <span class="math notranslate nohighlight">\(y_i \in \{ 0, \ldots, c-1 \}\)</span>, <span class="math notranslate nohighlight">\(1
+\leq i \leq n\)</span>. Given <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> and the number of nearest neighbors
+<span class="math notranslate nohighlight">\(k\)</span>, the problem is to build a model that allows distance computation
+between the feature vectors in training and inference sets at the inference
+stage.</p>
+<div class="section" id="training-method-brute-force">
+<span id="t-math-brute-force"></span><h4>Training method: <em>brute-force</em><a class="headerlink" href="#training-method-brute-force" title="Permalink to this headline">¶</a></h4>
+<p>The training operation produces the model that stores all the feature vectors
+from the initial training set <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</div>
+<div class="section" id="training-method-k-d-tree">
+<span id="t-math-kd-tree"></span><h4>Training method: <em>k-d tree</em><a class="headerlink" href="#training-method-k-d-tree" title="Permalink to this headline">¶</a></h4>
+<p>The training operation builds a <span class="math notranslate nohighlight">\(k\)</span>-<span class="math notranslate nohighlight">\(d\)</span> tree that partitions the
+training set <span class="math notranslate nohighlight">\(X\)</span> (for more details, see <a class="reference internal" href="../../appendix/kd_tree.html#kd-tree"><span class="std std-ref">k-d Tree</span></a>).</p>
+</div>
+</div>
+<div class="section" id="inference">
+<span id="i-math"></span><h3>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(X' = \{ x_1', \ldots, x_m' \}\)</span> be the inference set of
+<span class="math notranslate nohighlight">\(p\)</span>-dimensional feature vectors. Given <span class="math notranslate nohighlight">\(X'\)</span>, the model produced at
+the training stage and the number of nearest neighbors <span class="math notranslate nohighlight">\(k\)</span>, the problem is
+to predict the label <span class="math notranslate nohighlight">\(y_j'\)</span> for each <span class="math notranslate nohighlight">\(x_j'\)</span>, <span class="math notranslate nohighlight">\(1 \leq j \leq
+m\)</span>, by performing the following steps:</p>
+<ol class="arabic">
+<li><p>Identify the set <span class="math notranslate nohighlight">\(N(x_j') \subseteq X\)</span> of the <span class="math notranslate nohighlight">\(k\)</span> feature vectors
+in the training set that are nearest to <span class="math notranslate nohighlight">\(x_j'\)</span> with respect to the
+Euclidean distance.</p></li>
+<li><p>Estimate the conditional probability for the <span class="math notranslate nohighlight">\(l\)</span>-th class as the
+fraction of vectors in <span class="math notranslate nohighlight">\(N(x_j')\)</span> whose labels <span class="math notranslate nohighlight">\(y_j\)</span> are equal to
+<span class="math notranslate nohighlight">\(l\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-p-predict">
+<span class="eqno">(1)<a class="headerlink" href="#equation-p-predict" title="Permalink to this equation">¶</a></span>\[P_{jl} = \frac{1}{| N(x_j') |} \Big| \big\{ x_r \in N(x_j') : y_r = l
+\big\} \Big|, \quad 1 \leq j \leq m, \; 0 \leq l &lt; c.\]</div>
+</li>
+<li><p>Predict the class that has the highest probability for the feature vector
+<span class="math notranslate nohighlight">\(x_j'\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-y-predict">
+<span class="eqno">(2)<a class="headerlink" href="#equation-y-predict" title="Permalink to this equation">¶</a></span>\[y_j' = \mathrm{arg}\max_{0 \leq l &lt; c} P_{jl},
+\quad 1 \leq j \leq m.\]</div>
+</li>
+</ol>
+<div class="section" id="inference-method-brute-force">
+<span id="i-math-brute-force"></span><h4>Inference method: <em>brute-force</em><a class="headerlink" href="#inference-method-brute-force" title="Permalink to this headline">¶</a></h4>
+<p>The inference operation determines the set <span class="math notranslate nohighlight">\(N(x_j')\)</span> of the nearest
+feature vectors by iterating over all the pairs <span class="math notranslate nohighlight">\((x_j', x_i)\)</span> in the
+implementation defined order, <span class="math notranslate nohighlight">\(1 \leq i \leq n\)</span>, <span class="math notranslate nohighlight">\(1 \leq j \leq m\)</span>.
+The final prediction is computed according to the equations <a class="reference internal" href="#equation-p-predict">(1)</a> and
+<a class="reference internal" href="#equation-y-predict">(2)</a>.</p>
+</div>
+<div class="section" id="inference-method-k-d-tree">
+<span id="i-math-kd-tree"></span><h4>Inference method: <em>k-d tree</em><a class="headerlink" href="#inference-method-k-d-tree" title="Permalink to this headline">¶</a></h4>
+<p>The inference operation traverses the <span class="math notranslate nohighlight">\(k\)</span>-<span class="math notranslate nohighlight">\(d\)</span> tree to find feature
+vectors associated with a leaf node that are closest to <span class="math notranslate nohighlight">\(x_j'\)</span>, <span class="math notranslate nohighlight">\(1
+\leq j \leq m\)</span>. The set <span class="math notranslate nohighlight">\(\tilde{n}(x_j')\)</span> of the currently-known nearest
+<span class="math notranslate nohighlight">\(k\)</span>-th neighbors is progressively updated during tree traversal. The
+search algorithm limits exploration of the nodes for which the distance between
+the <span class="math notranslate nohighlight">\(x_j'\)</span> and respective part of the feature space is not less than the
+distance between <span class="math notranslate nohighlight">\(x_j'\)</span> and the most distant feature vector from
+<span class="math notranslate nohighlight">\(\tilde{n}(x_j')\)</span>. Once tree traversal is finished, <span class="math notranslate nohighlight">\(\tilde{n}(x_j')
+\equiv N(x_j')\)</span>. The final prediction is computed according to the equations
+<a class="reference internal" href="#equation-p-predict">(1)</a> and <a class="reference internal" href="#equation-y-predict">(2)</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="programming-interface">
+<h2>Programming Interface<a class="headerlink" href="#programming-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="descriptor">
+<h3>Descriptor<a class="headerlink" href="#descriptor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Float</span> <span class="o">=</span> <span class="kt">float</span><span class="p">,</span>
+          <span class="k">typename</span> <span class="n">Method</span> <span class="o">=</span> <span class="n">method</span><span class="o">::</span><span class="n">by_default</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">descriptor</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+   <span class="k">explicit</span> <span class="n">descriptor</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">int64_t</span> <span class="n">class_count</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="kt">int64_t</span> <span class="n">neighbor_count</span><span class="p">);</span>
+
+   <span class="n">std</span><span class="o">::</span><span class="kt">int64_t</span> <span class="n">get_class_count</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+   <span class="n">descriptor</span><span class="o">&amp;</span> <span class="n">set_class_count</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">int64_t</span><span class="p">);</span>
+
+   <span class="n">std</span><span class="o">::</span><span class="kt">int64_t</span> <span class="n">get_neighbor_count</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+   <span class="n">descriptor</span><span class="o">&amp;</span> <span class="n">set_neighbor_count</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">int64_t</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4I00EN6onedal3knn10descriptorE">
+<span id="_CPPv3I00EN6onedal3knn10descriptorE"></span><span id="_CPPv2I00EN6onedal3knn10descriptorE"></span>template&lt;typename <code class="sig-name descname">Float</code> = float, typename <code class="sig-name descname">Method</code> = method::<a class="reference internal" href="#_CPPv4N6onedal3knn6method10by_defaultE" title="onedal::knn::method::by_default">by_default</a>&gt;<br /><em class="property">class </em><code class="sig-name descname">descriptor</code><a class="headerlink" href="#_CPPv4I00EN6onedal3knn10descriptorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Template Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Float</strong> – The floating-point type that the algorithm uses for intermediate computations. Can be <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">float</span></code> or <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">double</span></code>.</p></li>
+<li><p><strong>Method</strong> – Tag-type that specifies an implementation of algorithm. Can be <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">method</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6onedal3knn6method10bruteforceE" title="onedal::knn::method::bruteforce"><span class="pre">bruteforce</span></a></code> or <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">method</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6onedal3knn6method7kd_treeE" title="onedal::knn::method::kd_tree"><span class="pre">kd_tree</span></a></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Constructors</strong></p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onedal3knn10descriptor10descriptorENSt7int64_tENSt7int64_tE">
+<span id="_CPPv3N6onedal3knn10descriptor10descriptorENSt7int64_tENSt7int64_tE"></span><span id="_CPPv2N6onedal3knn10descriptor10descriptorENSt7int64_tENSt7int64_tE"></span><span id="onedal::knn::descriptor::descriptor__std::int64_t.std::int64_t"></span><code class="sig-name descname">descriptor</code><span class="sig-paren">(</span>std::int64_t <em>class_count</em>, std::int64_t <em>neighbor_count</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onedal3knn10descriptor10descriptorENSt7int64_tENSt7int64_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new instance of the class with the given <code class="docutils literal notranslate"><span class="pre">class_count</span></code> and <code class="docutils literal notranslate"><span class="pre">neighbor_count</span></code> property values.</p>
+</dd></dl>
+
+<p><strong>Properties</strong></p>
+<dl class="cpp member">
+<dt id="_CPPv4N6onedal3knn10descriptor11class_countE">
+<span id="_CPPv3N6onedal3knn10descriptor11class_countE"></span><span id="_CPPv2N6onedal3knn10descriptor11class_countE"></span><span id="onedal::knn::descriptor::class_count__std::int64_t"></span>std::int64_t <code class="sig-name descname">class_count</code><a class="headerlink" href="#_CPPv4N6onedal3knn10descriptor11class_countE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The number of classes <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<dl>
+<dt>Getter &amp; Setter</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">std::int64_t</span> <span class="pre">get_class_count()</span> <span class="pre">const</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">descriptor</span> <span class="pre">&amp;</span> <span class="pre">set_class_count(std::int64_t)</span></code></div>
+</div>
+</dd>
+<dt>Invariants</dt><dd><div class="line-block">
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4N6onedal3knn10descriptor11class_countE" title="onedal::knn::descriptor::class_count"><span class="pre">class_count</span></a> <span class="pre">&gt;</span> <span class="pre">1</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp member">
+<dt id="_CPPv4N6onedal3knn10descriptor14neighbor_countE">
+<span id="_CPPv3N6onedal3knn10descriptor14neighbor_countE"></span><span id="_CPPv2N6onedal3knn10descriptor14neighbor_countE"></span><span id="onedal::knn::descriptor::neighbor_count__std::int64_t"></span>std::int64_t <code class="sig-name descname">neighbor_count</code><a class="headerlink" href="#_CPPv4N6onedal3knn10descriptor14neighbor_countE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The number of neighbors <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<dl>
+<dt>Getter &amp; Setter</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">std::int64_t</span> <span class="pre">get_neighbor_count()</span> <span class="pre">const</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">descriptor</span> <span class="pre">&amp;</span> <span class="pre">set_neighbor_count(std::int64_t)</span></code></div>
+</div>
+</dd>
+<dt>Invariants</dt><dd><div class="line-block">
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4N6onedal3knn10descriptor14neighbor_countE" title="onedal::knn::descriptor::neighbor_count"><span class="pre">neighbor_count</span></a> <span class="pre">&gt;</span> <span class="pre">0</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="computational-methods">
+<h3>Computational methods<a class="headerlink" href="#computational-methods" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">method</span> <span class="p">{</span>
+   <span class="k">struct</span> <span class="n">bruteforce</span> <span class="p">{};</span>
+   <span class="k">struct</span> <span class="n">kd_tree</span> <span class="p">{};</span>
+   <span class="k">using</span> <span class="n">by_default</span> <span class="o">=</span> <span class="n">bruteforce</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// namespace method</span>
+</pre></div>
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N6onedal3knn6method10bruteforceE">
+<span id="_CPPv3N6onedal3knn6method10bruteforceE"></span><span id="_CPPv2N6onedal3knn6method10bruteforceE"></span><span id="onedal::knn::method::bruteforce"></span><em class="property">struct </em><code class="sig-name descname">bruteforce</code><a class="headerlink" href="#_CPPv4N6onedal3knn6method10bruteforceE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tag-type that denotes <a class="reference internal" href="#t-math-brute-force">brute-force</a> computational method.</p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N6onedal3knn6method7kd_treeE">
+<span id="_CPPv3N6onedal3knn6method7kd_treeE"></span><span id="_CPPv2N6onedal3knn6method7kd_treeE"></span><span id="onedal::knn::method::kd_tree"></span><em class="property">struct </em><code class="sig-name descname">kd_tree</code><a class="headerlink" href="#_CPPv4N6onedal3knn6method7kd_treeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tag-type that denotes <a class="reference external" href="t_math_kd_tree">k-d tree</a> computational method.</p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N6onedal3knn6method10by_defaultE">
+<span id="_CPPv3N6onedal3knn6method10by_defaultE"></span><span id="_CPPv2N6onedal3knn6method10by_defaultE"></span><em class="property">using </em><code class="sig-name descname">by_default</code> = <a class="reference internal" href="#_CPPv4N6onedal3knn6method10bruteforceE" title="onedal::knn::method::bruteforce">bruteforce</a><a class="headerlink" href="#_CPPv4N6onedal3knn6method10by_defaultE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Alias tag-type for <a class="reference internal" href="#t-math-brute-force">brute-force</a> computational method.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">model</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+   <span class="n">model</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N6onedal3knn5modelE">
+<span id="_CPPv3N6onedal3knn5modelE"></span><span id="_CPPv2N6onedal3knn5modelE"></span><span id="onedal::knn::model"></span><em class="property">class </em><code class="sig-name descname">model</code><a class="headerlink" href="#_CPPv4N6onedal3knn5modelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Constructors</strong></p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onedal3knn5model5modelEv">
+<span id="_CPPv3N6onedal3knn5model5modelEv"></span><span id="_CPPv2N6onedal3knn5model5modelEv"></span><span id="onedal::knn::model::model"></span><code class="sig-name descname">model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onedal3knn5model5modelEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new instance of the class with the default property values.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="training-train">
+<span id="t-api"></span><h3>Training <code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train"><span class="pre">train</span></a><span class="sig-paren">(</span><span class="pre">...</span><span class="sig-paren">)</span></code><a class="headerlink" href="#training-train" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="input">
+<span id="t-api-input"></span><h4>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">train_input</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+   <span class="n">train_input</span><span class="p">(</span><span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">table</span><span class="p">{},</span>
+               <span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">table</span><span class="p">{});</span>
+
+   <span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span> <span class="n">get_data</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+   <span class="n">train_input</span><span class="o">&amp;</span> <span class="n">set_data</span><span class="p">(</span><span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span><span class="p">);</span>
+
+   <span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span> <span class="n">get_labels</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+   <span class="n">train_input</span><span class="o">&amp;</span> <span class="n">set_labels</span><span class="p">(</span><span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N6onedal3knn11train_inputE">
+<span id="_CPPv3N6onedal3knn11train_inputE"></span><span id="_CPPv2N6onedal3knn11train_inputE"></span><span id="onedal::knn::train_input"></span><em class="property">class </em><code class="sig-name descname">train_input</code><a class="headerlink" href="#_CPPv4N6onedal3knn11train_inputE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Constructors</strong></p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onedal3knn11train_input11train_inputERK5tableRK5table">
+<span id="_CPPv3N6onedal3knn11train_input11train_inputERK5tableRK5table"></span><span id="_CPPv2N6onedal3knn11train_input11train_inputERK5tableRK5table"></span><span id="onedal::knn::train_input::train_input__tableCR.tableCR"></span><code class="sig-name descname">train_input</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a> &amp;<em>data</em> = <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a>{}, <em class="property">const</em> <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a> &amp;<em>labels</em> = <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a>{}<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onedal3knn11train_input11train_inputERK5tableRK5table" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p><strong>Properties</strong></p>
+<dl class="cpp member">
+<dt id="_CPPv4N6onedal3knn11train_input4dataE">
+<span id="_CPPv3N6onedal3knn11train_input4dataE"></span><span id="_CPPv2N6onedal3knn11train_input4dataE"></span><span id="onedal::knn::train_input::data__tableCR"></span><em class="property">const</em> <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a> &amp;<code class="sig-name descname">data</code> = <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a>{}<a class="headerlink" href="#_CPPv4N6onedal3knn11train_input4dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The training set <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<dl>
+<dt>Getter &amp; Setter</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">table</span> <span class="pre">&amp;</span> <span class="pre">get_data()</span> <span class="pre">const</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">train_input</span> <span class="pre">&amp;</span> <span class="pre">set_data(const</span> <span class="pre">table</span> <span class="pre">&amp;)</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp member">
+<dt id="_CPPv4N6onedal3knn11train_input6labelsE">
+<span id="_CPPv3N6onedal3knn11train_input6labelsE"></span><span id="_CPPv2N6onedal3knn11train_input6labelsE"></span><span id="onedal::knn::train_input::labels__tableCR"></span><em class="property">const</em> <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a> &amp;<code class="sig-name descname">labels</code> = <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a>{}<a class="headerlink" href="#_CPPv4N6onedal3knn11train_input6labelsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Vector of labels <span class="math notranslate nohighlight">\(y\)</span> for the training set <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<dl>
+<dt>Getter &amp; Setter</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">table</span> <span class="pre">&amp;</span> <span class="pre">get_labels()</span> <span class="pre">const</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">train_input</span> <span class="pre">&amp;</span> <span class="pre">set_labels(const</span> <span class="pre">table</span> <span class="pre">&amp;)</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="result">
+<span id="t-api-result"></span><h4>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">train_result</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+   <span class="n">train_result</span><span class="p">();</span>
+
+   <span class="k">const</span> <span class="n">model</span><span class="o">&amp;</span> <span class="n">get_model</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N6onedal3knn12train_resultE">
+<span id="_CPPv3N6onedal3knn12train_resultE"></span><span id="_CPPv2N6onedal3knn12train_resultE"></span><span id="onedal::knn::train_result"></span><em class="property">class </em><code class="sig-name descname">train_result</code><a class="headerlink" href="#_CPPv4N6onedal3knn12train_resultE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Constructors</strong></p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onedal3knn12train_result12train_resultEv">
+<span id="_CPPv3N6onedal3knn12train_result12train_resultEv"></span><span id="_CPPv2N6onedal3knn12train_result12train_resultEv"></span><span id="onedal::knn::train_result::train_result"></span><code class="sig-name descname">train_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onedal3knn12train_result12train_resultEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p><strong>Properties</strong></p>
+<dl class="cpp member">
+<dt id="_CPPv4N6onedal3knn12train_result5modelE">
+<span id="_CPPv3N6onedal3knn12train_result5modelE"></span><span id="_CPPv2N6onedal3knn12train_result5modelE"></span><span id="onedal::knn::train_result::model__modelCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N6onedal3knn12train_result5modelE" title="onedal::knn::train_result::model">model</a> &amp;<code class="sig-name descname">model</code> = <a class="reference internal" href="#_CPPv4N6onedal3knn12train_result5modelE" title="onedal::knn::train_result::model">model</a>{}<a class="headerlink" href="#_CPPv4N6onedal3knn12train_result5modelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The trained <span class="math notranslate nohighlight">\(k\)</span>-NN model.</p>
+<dl>
+<dt>Getter &amp; Setter</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">model</span> <span class="pre">&amp;</span> <span class="pre">get_model()</span> <span class="pre">const</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="operation">
+<h4>Operation<a class="headerlink" href="#operation" title="Permalink to this headline">¶</a></h4>
+<dl class="cpp function">
+<dt id="_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input">
+<span id="_CPPv3I00EN6onedal3knn5trainERK10descriptorI5Float6MethodERK11train_input"></span><span id="_CPPv2I00EN6onedal3knn5trainERK10descriptorI5Float6MethodERK11train_input"></span>template&lt;typename <code class="sig-name descname">Float</code>, typename <code class="sig-name descname">Method</code>&gt;<br /><a class="reference internal" href="#_CPPv4N6onedal3knn12train_resultE" title="onedal::knn::train_result">train_result</a> <code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4I00EN6onedal3knn10descriptorE" title="onedal::knn::descriptor">descriptor</a>&lt;<a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::Float">Float</a>, <a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::Method">Method</a>&gt; &amp;<em>desc</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4N6onedal3knn11train_inputE" title="onedal::knn::train_input">train_input</a> &amp;<em>input</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Runs the training operation for <span class="math notranslate nohighlight">\(k\)</span>-NN classifier. For more details see <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">onedal</span><span class="pre">::</span><a class="reference internal" href="../clustering/kmeans.html#_CPPv4I0EN6onedal5trainEN6kmeans12train_resultERK10DescriptorRKN6kmeans11train_inputE" title="onedal::train"><span class="pre">train</span></a></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Float</strong> – The floating-point type that the algorithm uses for intermediate computations. Can be <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">float</span></code> or <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">double</span></code>.</p></li>
+<li><p><strong>Method</strong> – Tag-type that specifies an implementation of algorithm. Can be <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">method</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6onedal3knn6method10bruteforceE" title="onedal::knn::method::bruteforce"><span class="pre">bruteforce</span></a></code> or <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">method</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6onedal3knn6method7kd_treeE" title="onedal::knn::method::kd_tree"><span class="pre">kd_tree</span></a></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>desc</strong> – Descriptor of the algorithm.</p></li>
+<li><p><strong>input</strong> – Input data for the training operation.</p></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>Preconditions</dt><dd><div class="line-block">
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">data</span><span class="pre">.</span><span class="pre">has_data</span> <span class="pre">==</span> <span class="pre">true</span></code></div>
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">labels</span><span class="pre">.</span><span class="pre">has_data</span> <span class="pre">==</span> <span class="pre">true</span></code></div>
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">data</span><span class="pre">.</span><span class="pre">rows</span> <span class="pre">==</span> <a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">labels</span><span class="pre">.</span><span class="pre">rows</span></code></div>
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">data</span><span class="pre">.</span><span class="pre">columns</span> <span class="pre">==</span> <span class="pre">1</span></code></div>
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">labels</span><span class="pre">[</span><span class="pre">i</span><span class="pre">]</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code></div>
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">labels</span><span class="pre">[</span><span class="pre">i</span><span class="pre">]</span> <span class="pre">&lt;</span> <a class="reference internal" href="#_CPPv4I00EN6onedal3knn5trainE12train_resultRK10descriptorI5Float6MethodERK11train_input" title="onedal::knn::train::desc"><span class="pre">desc</span></a><span class="pre">.</span><span class="pre">class_count</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="inference-infer">
+<span id="i-api"></span><h3>Inference <code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5inferE12infer_resultRK10descriptorI5Float6MethodERK11infer_input" title="onedal::knn::infer"><span class="pre">infer</span></a><span class="sig-paren">(</span><span class="pre">...</span><span class="sig-paren">)</span></code><a class="headerlink" href="#inference-infer" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="i-api-input">
+<span id="id1"></span><h4>Input<a class="headerlink" href="#i-api-input" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">infer_input</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+   <span class="n">infer_input</span><span class="p">(</span><span class="k">const</span> <span class="n">model</span><span class="o">&amp;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">model</span><span class="p">{},</span>
+               <span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">table</span><span class="p">{});</span>
+
+   <span class="k">const</span> <span class="n">model</span><span class="o">&amp;</span> <span class="n">get_model</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+   <span class="n">infer_input</span><span class="o">&amp;</span> <span class="n">set_model</span><span class="p">(</span><span class="k">const</span> <span class="n">model</span><span class="o">&amp;</span><span class="p">);</span>
+
+   <span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span> <span class="n">get_data</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+   <span class="n">infer_input</span><span class="o">&amp;</span> <span class="n">set_data</span><span class="p">(</span><span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N6onedal3knn11infer_inputE">
+<span id="_CPPv3N6onedal3knn11infer_inputE"></span><span id="_CPPv2N6onedal3knn11infer_inputE"></span><span id="onedal::knn::infer_input"></span><em class="property">class </em><code class="sig-name descname">infer_input</code><a class="headerlink" href="#_CPPv4N6onedal3knn11infer_inputE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Constructors</strong></p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onedal3knn11infer_input11infer_inputERK5modelRK5table">
+<span id="_CPPv3N6onedal3knn11infer_input11infer_inputERK5modelRK5table"></span><span id="_CPPv2N6onedal3knn11infer_input11infer_inputERK5modelRK5table"></span><span id="onedal::knn::infer_input::infer_input__modelCR.tableCR"></span><code class="sig-name descname">infer_input</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N6onedal3knn11infer_input5modelE" title="onedal::knn::infer_input::model">model</a> &amp;<em>m</em> = <a class="reference internal" href="#_CPPv4N6onedal3knn11infer_input5modelE" title="onedal::knn::infer_input::model">model</a>{}, <em class="property">const</em> <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a> &amp;<em>data</em> = <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a>{}<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onedal3knn11infer_input11infer_inputERK5modelRK5table" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p><strong>Properties</strong></p>
+<dl class="cpp member">
+<dt id="_CPPv4N6onedal3knn11infer_input5modelE">
+<span id="_CPPv3N6onedal3knn11infer_input5modelE"></span><span id="_CPPv2N6onedal3knn11infer_input5modelE"></span><span id="onedal::knn::infer_input::model__modelCR"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N6onedal3knn11infer_input5modelE" title="onedal::knn::infer_input::model">model</a> &amp;<code class="sig-name descname">model</code> = <a class="reference internal" href="#_CPPv4N6onedal3knn11infer_input5modelE" title="onedal::knn::infer_input::model">model</a>{}<a class="headerlink" href="#_CPPv4N6onedal3knn11infer_input5modelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The trained <span class="math notranslate nohighlight">\(k\)</span>-NN model.</p>
+<dl>
+<dt>Getter &amp; Setter</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">model</span> <span class="pre">&amp;</span> <span class="pre">get_model()</span> <span class="pre">const</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">infer_input</span> <span class="pre">&amp;</span> <span class="pre">set_model(const</span> <span class="pre">model</span> <span class="pre">&amp;)</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp member">
+<dt id="_CPPv4N6onedal3knn11infer_input4dataE">
+<span id="_CPPv3N6onedal3knn11infer_input4dataE"></span><span id="_CPPv2N6onedal3knn11infer_input4dataE"></span><span id="onedal::knn::infer_input::data__tableCR"></span><em class="property">const</em> <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a> &amp;<code class="sig-name descname">data</code> = <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a>{}<a class="headerlink" href="#_CPPv4N6onedal3knn11infer_input4dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The dataset for inference <span class="math notranslate nohighlight">\(X'\)</span>.</p>
+<dl>
+<dt>Getter &amp; Setter</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">table</span> <span class="pre">&amp;</span> <span class="pre">get_data()</span> <span class="pre">const</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">infer_input</span> <span class="pre">&amp;</span> <span class="pre">set_data(const</span> <span class="pre">table</span> <span class="pre">&amp;)</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="i-api-result">
+<span id="id2"></span><h4>Result<a class="headerlink" href="#i-api-result" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">infer_result</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+   <span class="n">infer_result</span><span class="p">();</span>
+
+   <span class="k">const</span> <span class="n">table</span><span class="o">&amp;</span> <span class="n">get_labels</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N6onedal3knn12infer_resultE">
+<span id="_CPPv3N6onedal3knn12infer_resultE"></span><span id="_CPPv2N6onedal3knn12infer_resultE"></span><span id="onedal::knn::infer_result"></span><em class="property">class </em><code class="sig-name descname">infer_result</code><a class="headerlink" href="#_CPPv4N6onedal3knn12infer_resultE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Constructors</strong></p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onedal3knn12infer_result12infer_resultEv">
+<span id="_CPPv3N6onedal3knn12infer_result12infer_resultEv"></span><span id="_CPPv2N6onedal3knn12infer_result12infer_resultEv"></span><span id="onedal::knn::infer_result::infer_result"></span><code class="sig-name descname">infer_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onedal3knn12infer_result12infer_resultEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p><strong>Properties</strong></p>
+<dl class="cpp member">
+<dt id="_CPPv4N6onedal3knn12infer_result6labelsE">
+<span id="_CPPv3N6onedal3knn12infer_result6labelsE"></span><span id="_CPPv2N6onedal3knn12infer_result6labelsE"></span><span id="onedal::knn::infer_result::labels__tableCR"></span><em class="property">const</em> <a class="reference internal" href="../../data_management/tables.html#_CPPv4N6onedal5tableE" title="onedal::table">table</a> &amp;<code class="sig-name descname">labels</code> = <a class="reference internal" href="#_CPPv4N6onedal3knn5modelE" title="onedal::knn::model">model</a>{}<a class="headerlink" href="#_CPPv4N6onedal3knn12infer_result6labelsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The predicted labels.</p>
+<dl>
+<dt>Getter &amp; Setter</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">table</span> <span class="pre">&amp;</span> <span class="pre">get_labels()</span> <span class="pre">const</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h4>Operation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<dl class="cpp function">
+<dt id="_CPPv4I00EN6onedal3knn5inferE12infer_resultRK10descriptorI5Float6MethodERK11infer_input">
+<span id="_CPPv3I00EN6onedal3knn5inferERK10descriptorI5Float6MethodERK11infer_input"></span><span id="_CPPv2I00EN6onedal3knn5inferERK10descriptorI5Float6MethodERK11infer_input"></span>template&lt;typename <code class="sig-name descname">Float</code>, typename <code class="sig-name descname">Method</code>&gt;<br /><a class="reference internal" href="#_CPPv4N6onedal3knn12infer_resultE" title="onedal::knn::infer_result">infer_result</a> <code class="sig-name descname">infer</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4I00EN6onedal3knn10descriptorE" title="onedal::knn::descriptor">descriptor</a>&lt;<a class="reference internal" href="#_CPPv4I00EN6onedal3knn5inferE12infer_resultRK10descriptorI5Float6MethodERK11infer_input" title="onedal::knn::infer::Float">Float</a>, <a class="reference internal" href="#_CPPv4I00EN6onedal3knn5inferE12infer_resultRK10descriptorI5Float6MethodERK11infer_input" title="onedal::knn::infer::Method">Method</a>&gt; &amp;<em>desc</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4N6onedal3knn11infer_inputE" title="onedal::knn::infer_input">infer_input</a> &amp;<em>input</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EN6onedal3knn5inferE12infer_resultRK10descriptorI5Float6MethodERK11infer_input" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Runs the inference operation for <span class="math notranslate nohighlight">\(k\)</span>-NN classifier. For more details see <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">onedal</span><span class="pre">::</span><a class="reference internal" href="../clustering/kmeans.html#_CPPv4I0EN6onedal5inferEN6kmeans12infer_resultERK10DescriptorRKN6kmeans11infer_inputE" title="onedal::infer"><span class="pre">infer</span></a></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Float</strong> – The floating-point type that the algorithm uses for intermediate computations. Can be <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">float</span></code> or <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">double</span></code>.</p></li>
+<li><p><strong>Method</strong> – Tag-type that specifies an implementation of algorithm. Can be <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">method</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6onedal3knn6method10bruteforceE" title="onedal::knn::method::bruteforce"><span class="pre">bruteforce</span></a></code> or <code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">method</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6onedal3knn6method7kd_treeE" title="onedal::knn::method::kd_tree"><span class="pre">kd_tree</span></a></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>desc</strong> – Descriptor of the algorithm.</p></li>
+<li><p><strong>input</strong> – Input data for the inference operation.</p></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>Preconditions</dt><dd><div class="line-block">
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I00EN6onedal3knn5inferE12infer_resultRK10descriptorI5Float6MethodERK11infer_input" title="onedal::knn::infer::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">data</span><span class="pre">.</span><span class="pre">has_data</span> <span class="pre">==</span> <span class="pre">true</span></code></div>
+</div>
+</dd>
+<dt>Preconditions</dt><dd><div class="line-block">
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">result</span><span class="pre">.</span><span class="pre">labels</span><span class="pre">.</span><span class="pre">rows</span> <span class="pre">==</span> <a class="reference internal" href="#_CPPv4I00EN6onedal3knn5inferE12infer_resultRK10descriptorI5Float6MethodERK11infer_input" title="onedal::knn::infer::input"><span class="pre">input</span></a><span class="pre">.</span><span class="pre">data</span><span class="pre">.</span><span class="pre">rows</span></code></div>
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">result</span><span class="pre">.</span><span class="pre">labels</span><span class="pre">.</span><span class="pre">columns</span> <span class="pre">==</span> <span class="pre">1</span></code></div>
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">result</span><span class="pre">.</span><span class="pre">labels</span><span class="pre">[</span><span class="pre">i</span><span class="pre">]</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code></div>
+<div class="line"><code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">result</span><span class="pre">.</span><span class="pre">labels</span><span class="pre">[</span><span class="pre">i</span><span class="pre">]</span> <span class="pre">&lt;</span> <a class="reference internal" href="#_CPPv4I00EN6onedal3knn5inferE12infer_resultRK10descriptorI5Float6MethodERK11infer_input" title="onedal::knn::infer::desc"><span class="pre">desc</span></a><span class="pre">.</span><span class="pre">class_count</span></code></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../decomposition/index.html" class="btn btn-neutral float-right" title="Decomposition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Nearest Neighbors (kNN)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

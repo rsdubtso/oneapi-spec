@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Workstream Internals &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneVPL/source/VPL_workstreams.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>The <a class="reference internal" href="index.html#_CPPv4N3vpl10WorkstreamE" title="vpl::Workstream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::Workstream</span></code></a> class is the core of the VPL interface.  It represents a
+media building block running decode, frame processing, DL inference and
+encode operations on a single device context. Workstreams can be offloaded to
+different devices. Complex pipelines can be formed from multiple workstreams.</p>
+<p>There are four subclasses of <a class="reference internal" href="index.html#_CPPv4N3vpl10WorkstreamE" title="vpl::Workstream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::Workstream</span></code></a> that perform the following basic operations</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="index.html#_CPPv4N3vpl6DecodeE" title="vpl::Decode"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::Decode</span></code></a>: decode a bitstream to raw frames</p></li>
+<li><p><a class="reference internal" href="index.html#_CPPv4N3vpl12VideoProcessE" title="vpl::VideoProcess"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::VideoProcess</span></code></a>: implement a video processing filter operation with raw frame input and output</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">vpl::Infer</span></code>: invoke a Deep Learning model to infer on a raw frame. Details of this subclass will be provided in a future release.</p></li>
+<li><p><a class="reference internal" href="index.html#_CPPv4N3vpl6EncodeE" title="vpl::Encode"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::Encode</span></code></a>: encode raw frames to a bitstream</p></li>
+</ul>
+<p>In the <a class="reference internal" href="index.html#_CPPv4N3vpl12VideoProcessE" title="vpl::VideoProcess"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::VideoProcess</span></code></a> subclass, a sequence of filters with single input and single output running on the same device context can be fused into a single workstream.
+Operations executing on different device contexts are separated to different workstreams such that each workstream can always be dispatched to a single device.</p>
+<div class="section" id="workstream-internals">
+<h1>Workstream Internals<a class="headerlink" href="#workstream-internals" title="Permalink to this headline">¶</a></h1>
+<p>Each <a class="reference internal" href="index.html#_CPPv4N3vpl10WorkstreamE" title="vpl::Workstream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::Workstream</span></code></a> contains the following members:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="index.html#_CPPv4N3vpl9VplParamsE" title="vpl::VplParams"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::VplParams</span></code></a>: the parameter settings of the workstream, i.e., resolution of the output per session or per frame.</p></li>
+<li><p><a class="reference internal" href="index.html#_CPPv4N3vpl13DeviceContextE" title="vpl::DeviceContext"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::DeviceContext</span></code></a>: the execution device context of the workstream, i.e., VAAPI, DX, OCL, GL contexts for media, compute and rendering operations</p></li>
+</ul>
+<p>Workstream per session configurations are set up during workstream initialization using <a class="reference internal" href="index.html#_CPPv4N3vpl9VplParamsE" title="vpl::VplParams"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::VplParams</span></code></a>. User program can also dynamically modify a workstream’s configuration
+frame level control.</p>
+</div>
+<div class="section" id="initialization-sequence">
+<h1>Initialization Sequence<a class="headerlink" href="#initialization-sequence" title="Permalink to this headline">¶</a></h1>
+<p>The standard sequence to create a workstream consists of the following steps:</p>
+<ol class="arabic simple">
+<li><p>Select a device to execute the workstream</p>
+<ol class="arabic simple">
+<li><p>Create a device context or use an existing device context to execute the workstream</p></li>
+</ol>
+</li>
+<li><p>Get the configuration presets for the selected device</p></li>
+<li><p>Create the workstream with the configuration setting <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::config::VPLParams</span></code> and <a class="reference internal" href="index.html#_CPPv4N3vpl13DeviceContextE" title="vpl::DeviceContext"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::DeviceContext</span></code></a>.</p></li>
+</ol>
+<p>The following transcoding example uses three workstreams: <a class="reference internal" href="index.html#_CPPv4N3vpl6DecodeE" title="vpl::Decode"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::Decode</span></code></a>, <a class="reference internal" href="index.html#_CPPv4N3vpl12VideoProcessE" title="vpl::VideoProcess"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::VideoProcess</span></code></a> and <a class="reference internal" href="index.html#_CPPv4N3vpl6EncodeE" title="vpl::Encode"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::Encode</span></code></a>, and shares a single context to execute them together:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;vpl/vpl.hpp&quot;</span><span class="cp"></span>
+<span class="cp">#define BUFFER_SIZE 1024 * 1024 * 80</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">vpl</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+
+<span class="c1">// Find all the devices in the system and select a preferred device</span>
+<span class="n">DeviceInfo</span> <span class="o">*</span><span class="n">dinfo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DeviceInfo</span><span class="p">();</span>
+<span class="n">DeviceInstance</span> <span class="o">*</span><span class="n">dev</span> <span class="o">=</span> <span class="n">dinfo</span><span class="o">-&gt;</span><span class="n">GetPreferredDevice</span><span class="p">(</span><span class="n">VPL_WORKSTREAM_DECODE</span> <span class="o">|</span> <span class="n">VPL_WORKSTREAM_VIDEOPROC</span><span class="p">,</span> <span class="n">VPL_WORKSTREAM_ENCODE</span><span class="p">);</span>
+
+<span class="c1">// Get decode preset</span>
+<span class="n">config</span><span class="o">::</span><span class="n">VPLParams</span> <span class="o">*</span><span class="n">dconfig</span> <span class="o">=</span> <span class="n">dinfo</span><span class="o">-&gt;</span><span class="n">GetPreset</span><span class="p">(</span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">m_dtype</span><span class="p">,</span> <span class="n">VPL_WORKSTREAM_DECODE</span><span class="p">,</span> <span class="n">dev</span><span class="o">-&gt;</span><span class="n">m_id</span><span class="p">);</span>
+<span class="c1">// Create a Decode workstream and a device context on the device</span>
+<span class="n">Decode</span> <span class="o">*</span><span class="n">decode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Decode</span><span class="p">(</span><span class="n">dconfig</span><span class="p">,</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+
+<span class="c1">// Create a VPP workstream, use the same device context as Decode</span>
+<span class="n">config</span><span class="o">::</span><span class="n">VPLParams</span> <span class="o">*</span><span class="n">pconfig</span> <span class="o">=</span> <span class="n">dinfo</span><span class="o">-&gt;</span><span class="n">GetVideoProcessPreset</span><span class="p">(</span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">m_dtype</span><span class="p">,</span> <span class="n">VPL_WORKSTREAM_VIDEOPROC</span><span class="p">,</span> <span class="n">dev</span><span class="o">-&gt;</span><span class="n">m_id</span><span class="p">);</span>
+<span class="n">VideoProcess</span> <span class="o">*</span><span class="n">proc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Process</span><span class="p">(</span><span class="n">pconfig</span><span class="p">,</span> <span class="n">decode</span><span class="o">-&gt;</span><span class="n">GetContext</span><span class="p">());</span>
+
+<span class="c1">// Create an Encode workstream, use the same device context as Decode</span>
+<span class="n">config</span><span class="o">::</span><span class="n">VPLParams</span> <span class="o">*</span><span class="n">econfig</span> <span class="o">=</span> <span class="n">dinfo</span><span class="o">-&gt;</span><span class="n">GetEncodePreset</span><span class="p">(</span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">m_dtype</span><span class="p">,</span> <span class="n">VPL_WORKSTEAM_ENCODE</span><span class="p">,</span> <span class="n">dev</span><span class="o">-&gt;</span><span class="n">m_id</span><span class="p">);</span>
+<span class="n">Encode</span> <span class="o">*</span><span class="n">encode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encode</span><span class="p">(</span><span class="n">econfig</span><span class="p">,</span> <span class="n">decode</span><span class="o">-&gt;</span><span class="n">GetContext</span><span class="p">());</span>
+
+<span class="kt">uint8_t</span><span class="o">*</span> <span class="n">pbs</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">uint8_t</span><span class="p">[</span><span class="n">BUFFER_SIZE</span><span class="p">];</span>
+<span class="kt">uint8_t</span><span class="o">*</span> <span class="n">pbsout</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">uint8_t</span><span class="p">[</span><span class="n">BUFFER_SIZE</span><span class="p">];</span>
+
+<span class="kt">FILE</span><span class="o">*</span> <span class="n">fInput</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;rb&quot;</span><span class="p">);</span>
+<span class="kt">FILE</span><span class="o">*</span> <span class="n">fOutput</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;out.h264&quot;</span><span class="p">,</span> <span class="s">&quot;wb&quot;</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">frameCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">// Run the pipeline explicitly</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">vplWorkstreamState</span> <span class="n">decode_state</span> <span class="o">=</span> <span class="n">VPL_STATE_READ_INPUT</span><span class="p">;</span>
+      <span class="n">decode_state</span> <span class="o">!=</span> <span class="n">VPL_STATE_END_OF_OPERATION</span> <span class="o">&amp;&amp;</span> <span class="n">decode_state</span> <span class="o">!=</span> <span class="n">VPL_STATE_ERROR</span><span class="p">;</span>
+      <span class="n">decode_state</span> <span class="o">=</span> <span class="n">decode</span><span class="o">-&gt;</span><span class="n">GetState</span><span class="p">())</span> <span class="p">{</span>
+   <span class="n">vplm_mem</span><span class="o">*</span> <span class="n">dec_image</span> <span class="o">=</span>
+      <span class="n">decode</span><span class="o">-&gt;</span><span class="n">DecodeFrame</span><span class="p">(</span><span class="n">pbs</span><span class="p">,</span> <span class="n">fread</span><span class="p">(</span><span class="n">pbs</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">BUFFER_SIZE</span><span class="p">,</span> <span class="n">fInput</span><span class="p">));</span>
+   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">dec_image</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+   <span class="n">frameCount</span><span class="o">++</span><span class="p">;</span>
+
+   <span class="n">vplm_mem</span><span class="o">*</span> <span class="n">vpp_image</span> <span class="o">=</span> <span class="n">proc</span><span class="o">-&gt;</span><span class="n">ProcessFrame</span><span class="p">(</span><span class="n">dec_image</span><span class="p">);</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">vpp_image</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">size_t</span> <span class="n">nbytesout</span> <span class="o">=</span> <span class="n">encode</span><span class="o">-&gt;</span><span class="n">EncodeFrame</span><span class="p">(</span><span class="n">vpp_image</span><span class="p">,</span> <span class="n">pbsout</span><span class="p">);</span>
+      <span class="n">fwrite</span><span class="p">(</span><span class="n">pbsout</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nbytesout</span><span class="p">,</span> <span class="n">fOutput</span><span class="p">);</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\r</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">frameCount</span><span class="p">);</span>
+      <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">done !</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="n">fclose</span><span class="p">(</span><span class="n">fInput</span><span class="p">);</span>
+<span class="n">fclose</span><span class="p">(</span><span class="n">fOutput</span><span class="p">);</span>
+
+<span class="k">delete</span><span class="p">[]</span> <span class="n">pbs</span><span class="p">;</span>
+<span class="k">delete</span><span class="p">[]</span> <span class="n">pbsout</span><span class="p">;</span>
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dynamic-setting-control">
+<h1>Dynamic Setting Control<a class="headerlink" href="#dynamic-setting-control" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="index.html#_CPPv4N3vpl9VplParamsE" title="vpl::VplParams"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vpl::VplParams</span></code></a> defines the workstream settings for the device.
+User program can use its access functions to read and set the parameters for the workstream.
+After modifying configuration settings, a user program needs to call <a class="reference internal" href="index.html#_CPPv4N3vpl10Workstream18UpdateDeviceConfigEv" title="vpl::Workstream::UpdateDeviceConfig"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vpl::Workstream::UpdateDeviceConfig()</span></code></a> function to propagate the setting to the
+device context. Configuration setting change takes effect in the next processing operation.
+The following example changes the output resolution in the middle of a decoding sequence.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Decoding loop</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">decode</span><span class="o">-&gt;</span><span class="n">GetState</span><span class="p">()</span> <span class="o">!=</span> <span class="n">VPL_STATE_END_OF_OPERATION</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">vplm_mem</span> <span class="o">*</span><span class="n">image</span> <span class="o">=</span> <span class="n">decode</span><span class="o">-&gt;</span><span class="n">DecodeFrame</span><span class="p">(</span><span class="o">*</span><span class="n">bs_ptr</span><span class="p">,</span> <span class="n">bs_size</span><span class="p">);</span>
+
+   <span class="c1">// Change output resolution</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">need_resize</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">VplVideoSurfaceResolution</span> <span class="n">resol</span> <span class="o">=</span> <span class="p">{</span><span class="mi">480</span><span class="p">,</span> <span class="mi">780</span><span class="p">};</span>
+      <span class="n">dconfig</span><span class="o">-&gt;</span><span class="n">SetOutputResolution</span><span class="p">(</span><span class="n">resol</span><span class="p">);</span>
+
+      <span class="c1">// propagate the new settings to the driver</span>
+      <span class="n">decode</span><span class="o">-&gt;</span><span class="n">UpdateDeviceConfig</span><span class="p">();</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

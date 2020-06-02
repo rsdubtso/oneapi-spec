@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Software Architecture &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Library Interoperability" href="library-interop.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#oneapi-platform">oneAPI Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-programming-example">API Programming Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#direct-programming-example">Direct Programming Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">oneAPI Specification</a> &raquo;</li>
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/architecture.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="software-architecture">
+<h1>Software Architecture<a class="headerlink" href="#software-architecture" title="Permalink to this headline">¶</a></h1>
+<p>oneAPI provides a common developer interface across a range of data
+parallel accelerators (see the figure below).  Programmers use DPC++
+for both API programming and direct programming.  The capabilities of
+a oneAPI platform are determined by the Level Zero interface, which
+provides system software a common abstraction for a oneAPI device.</p>
+<img alt="_images/oneapi-architecture.png" src="_images/oneapi-architecture.png" />
+<div class="section" id="oneapi-platform">
+<h2>oneAPI Platform<a class="headerlink" href="#oneapi-platform" title="Permalink to this headline">¶</a></h2>
+<p>A oneAPI platform is comprised of a <em>host</em> and a collection of <em>devices</em>.  The host
+is typically a multi-core CPU, and the devices are one or more GPUs,
+FPGAs, and other accelerators.  The processor serving as the host can
+also be targeted as a device by the software.</p>
+<p>Each device has an associated command <em>queue</em>.  A application that employs oneAPI
+runs on the host, following standard C++ execution semantics.  To run
+a <em>function object</em> on a device, the application submits a <em>command
+group</em> containing the function object to the device’s queue.  A
+function object contains a function
+definition together with associated variables. A function object submitted
+to a queue is also referred to as a <em>data parallel kernel</em> or simply a <em>kernel</em>.</p>
+<p>The application running on the host and the functions running on the
+devices communicate through <em>memory</em>.  oneAPI defines several
+mechanisms for sharing memory across the platform, depending on the
+capabilities of the devices:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Memory Sharing Mechanism</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Buffer objects</p></td>
+<td><div class="line-block">
+<div class="line">An application can create <em>buffer objects</em></div>
+<div class="line">to pass data to devices.  A buffer is an</div>
+<div class="line">array of data.  A command group will define</div>
+<div class="line"><em>accessor objects</em> to identify which</div>
+<div class="line">buffers are accessed in this call to the</div>
+<div class="line">device.  The oneAPI runtime will ensure the</div>
+<div class="line">data in the buffer is accessible to the</div>
+<div class="line">function running on the device.  The</div>
+<div class="line">buffer-accessor mechanism is available on</div>
+<div class="line">all oneAPI platforms</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Unified addressing</p></td>
+<td><div class="line-block">
+<div class="line">Unified addressing guarantees that the host and</div>
+<div class="line">all devices will share a unified address space.</div>
+<div class="line">Pointer values in the unified address space will</div>
+<div class="line">always refer to the same location in memory.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Unified shared memory</p></td>
+<td><div class="line-block">
+<div class="line">Unified shared memory enables data to be shared</div>
+<div class="line">through pointers without using buffers and</div>
+<div class="line">accessors. There are several levels of support</div>
+<div class="line">for this feature, depending on the capabilities</div>
+<div class="line">of the underlying device.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <em>scheduler</em> determines when a command group is run on a
+device.  The following mechanisms are used to determine when a command
+group is ready to run.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the buffer-accessor method is used, the command group is ready
+when the buffers are defined and copied to the device as
+necessary.</p></li>
+<li><p>If an ordered queue is used for a device, the command group is
+ready as soon as the prior command groups in the queue are
+finished.</p></li>
+<li><p>If unified shared memory is used, you must specify a set of event
+objects which the command group depends on, and the command group
+is ready when all of the events are completed.</p></li>
+</ul>
+</div></blockquote>
+<p>The application on the host and the functions on the devices can
+<em>synchronize</em> through <em>events</em>, which are objects that can coordinate
+execution.  If the buffer-accessor mechanism
+is used, the application and device can also synchronize through a
+<em>host accessor</em>, through the destruction of a buffer object, or
+through other more advanced mechanisms.</p>
+</div>
+<div class="section" id="api-programming-example">
+<h2>API Programming Example<a class="headerlink" href="#api-programming-example" title="Permalink to this headline">¶</a></h2>
+<p>API programming requires the programmer to specify the target device and the
+memory communication strategy.  In the following example, we call the
+oneMKL matrix multiply routine, GEMM.  We are writing in DPC++ and
+omitting irrelevant details.</p>
+<p>We create a queue initialized with a <em>gpu_selector</em> to specify that we
+want the computation performed on a GPU, and we define buffers to hold the
+arrays allocated on the host.  Compared to a standard C++ GEMM call,
+we add a parameter to specify the queue, and we replace the references
+to the arrays with references to the buffers that contain the arrays.
+Otherwise this is the standard GEMM C++ interface.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">cl</span><span class="o">::</span><span class="n">sycl</span><span class="p">;</span>
+
+<span class="c1">// declare host arrays</span>
+<span class="kt">double</span> <span class="o">*</span><span class="n">A</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">M</span><span class="o">*</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">double</span> <span class="o">*</span><span class="n">B</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">N</span><span class="o">*</span><span class="n">P</span><span class="p">];</span>
+<span class="kt">double</span> <span class="o">*</span><span class="n">C</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">];</span>
+
+<span class="p">{</span>
+    <span class="c1">// Initializing the devices queue with a gpu_selector</span>
+    <span class="n">queue</span> <span class="n">q</span><span class="p">{</span><span class="n">gpu_selector</span><span class="p">()};</span>
+
+    <span class="c1">// Creating 1D buffers for matrices which are bound to host arrays</span>
+    <span class="n">buffer</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">{</span><span class="n">A</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">{</span><span class="n">M</span><span class="o">*</span><span class="n">N</span><span class="p">}};</span>
+    <span class="n">buffer</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">{</span><span class="n">B</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">{</span><span class="n">N</span><span class="o">*</span><span class="n">P</span><span class="p">}};</span>
+    <span class="n">buffer</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">{</span><span class="n">C</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">{</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">}};</span>
+
+    <span class="n">mkl</span><span class="o">::</span><span class="n">transpose</span> <span class="n">nT</span> <span class="o">=</span> <span class="n">mkl</span><span class="o">::</span><span class="n">transpose</span><span class="o">::</span><span class="n">nontrans</span><span class="p">;</span>
+    <span class="c1">// Syntax</span>
+    <span class="c1">//   void gemm(queue &amp;exec_queue, transpose transa, transpose transb,</span>
+    <span class="c1">//             int64_t m, int64_t n, int64_t k, T alpha,</span>
+    <span class="c1">//             buffer&lt;T,1&gt; &amp;a, int64_t lda,</span>
+    <span class="c1">//             buffer&lt;T,1&gt; &amp;b, int64_t ldb, T beta,</span>
+    <span class="c1">//             buffer&lt;T,1&gt; &amp;c, int64_t ldc);</span>
+    <span class="c1">// call gemm</span>
+    <span class="n">mkl</span><span class="o">::</span><span class="n">blas</span><span class="o">::</span><span class="n">gemm</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">nT</span><span class="p">,</span> <span class="n">nT</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">M</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// when we exit the block, the buffer destructor will write result back to C.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="direct-programming-example">
+<h2>Direct Programming Example<a class="headerlink" href="#direct-programming-example" title="Permalink to this headline">¶</a></h2>
+<p>With direct programming, we specify the target device and the memory
+communication strategy, as we do for API programming.  In addition, we
+must define and submit a command group to perform the computation.
+In the following example, we write a simple data parallel matrix
+multiply.  We are writing in DPC++ and omitting irrelevant
+details.</p>
+<p>We create a queue initialized with a <em>gpu_selector</em> to specify that the
+command group should run on the GPU, and we define buffers to hold the
+arrays allocated on the host. We then submit the command group to the
+queue to perform the computation.  The command group defines accessors
+to specify we are reading arrays A and B and writing to C.  We then
+write a C++ lambda to create a function object that computes one
+element of the resulting matrix multiply.  We specify this function
+object as a parameter to a <code class="code docutils literal notranslate"><span class="pre">parallel_for</span></code> which maps the
+function across the arrays <code class="code docutils literal notranslate"><span class="pre">A</span></code> and <code class="code docutils literal notranslate"><span class="pre">B</span></code> in parallel.  When
+we leave the scope, the destructor for the buffer object holding
+<code class="code docutils literal notranslate"><span class="pre">C</span></code> writes the data back to the host array.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">cl</span><span class="o">::</span><span class="n">sycl</span><span class="p">;</span>
+
+<span class="c1">// declare host arrays</span>
+<span class="kt">double</span> <span class="o">*</span><span class="n">Ahost</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">M</span><span class="o">*</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">double</span> <span class="o">*</span><span class="n">Bhost</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">N</span><span class="o">*</span><span class="n">P</span><span class="p">];</span>
+<span class="kt">double</span> <span class="o">*</span><span class="n">Chost</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">];</span>
+
+<span class="p">{</span>
+    <span class="c1">// Initializing the devices queue with a gpu_selector</span>
+    <span class="n">queue</span> <span class="n">q</span><span class="p">{</span><span class="n">gpu_selector</span><span class="p">()};</span>
+
+    <span class="c1">// Creating 2D buffers for matrices which are bound to host arrays</span>
+    <span class="n">buffer</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">{</span><span class="n">Ahost</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">{</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">}};</span>
+    <span class="n">buffer</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">{</span><span class="n">Bhost</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">{</span><span class="n">N</span><span class="p">,</span><span class="n">P</span><span class="p">}};</span>
+    <span class="n">buffer</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">{</span><span class="n">Chost</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">{</span><span class="n">M</span><span class="p">,</span><span class="n">P</span><span class="p">}};</span>
+
+    <span class="c1">// Submitting command group to queue to compute matrix c=a*b</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">submit</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="n">handler</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">){</span>
+        <span class="c1">// Read from a and b, write to c</span>
+        <span class="k">auto</span> <span class="n">A</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">get_access</span><span class="o">&lt;</span><span class="n">access</span><span class="o">::</span><span class="n">mode</span><span class="o">::</span><span class="n">read</span><span class="o">&gt;</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+        <span class="k">auto</span> <span class="n">B</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">get_access</span><span class="o">&lt;</span><span class="n">access</span><span class="o">::</span><span class="n">mode</span><span class="o">::</span><span class="n">read</span><span class="o">&gt;</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+        <span class="k">auto</span> <span class="n">C</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">get_access</span><span class="o">&lt;</span><span class="n">access</span><span class="o">::</span><span class="n">mode</span><span class="o">::</span><span class="n">write</span><span class="o">&gt;</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+
+        <span class="kt">int</span> <span class="n">WidthA</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">get_range</span><span class="p">()[</span><span class="mi">1</span><span class="p">];</span>
+
+        <span class="c1">// Executing kernel</span>
+        <span class="n">h</span><span class="p">.</span><span class="n">parallel_for</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">MatrixMult</span><span class="o">&gt;</span><span class="p">(</span><span class="n">range</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">{</span><span class="n">M</span><span class="p">,</span> <span class="n">P</span><span class="p">},</span> <span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">id</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span> <span class="n">index</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+            <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+            <span class="c1">// Compute the result of one element in c</span>
+            <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">WidthA</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">sum</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">col</span><span class="p">];</span>
+        <span class="p">}</span>
+            <span class="n">C</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+<span class="c1">// when we exit the block, the buffer destructor will write result back to C.</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="library-interop.html" class="btn btn-neutral float-right" title="Library Interoperability" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

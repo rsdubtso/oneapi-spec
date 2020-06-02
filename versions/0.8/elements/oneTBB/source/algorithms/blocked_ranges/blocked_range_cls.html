@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>blocked_range &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="blocked_range2d" href="blocked_range2d_cls.html" />
+    <link rel="prev" title="parallel_sort" href="../functions/parallel_sort_func.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../algorithms.html">Algorithms</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../algorithms.html#parallel-functions">Parallel Functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../algorithms.html#blocked-ranges">Blocked Ranges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../algorithms.html#partitioners">Partitioners</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../algorithms.html#split-tags">Split Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../flow_graph.html">Flow Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/algorithms/blocked_ranges/blocked_range_cls.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="blocked-range">
+<h1>blocked_range<a class="headerlink" href="#blocked-range" title="Permalink to this headline">¶</a></h1>
+<p><strong>[algorithms.blocked_range]</strong></p>
+<p>Class template for a recursively divisible half-open interval.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> represents a half-open range [<em>i</em>,*j*) that can be recursively split.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> meets the <a class="reference internal" href="../../named_requirements/algorithms/range.html"><span class="doc">Range requirements</span></a>.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> specifies a <em>grain size</em> of type <code class="docutils literal notranslate"><span class="pre">size_t</span></code>.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> is splittable into two subranges if the size of the range exceeds its grain size.
+The ideal grain size depends upon the context of the <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code>, which is typically as the range argument
+to the loop templates <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code>, <code class="docutils literal notranslate"><span class="pre">parallel_reduce</span></code>, or <code class="docutils literal notranslate"><span class="pre">parallel_scan</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined in header &lt;tbb/blocked_range.h&gt;</span>
+
+<span class="k">namespace</span> <span class="n">tbb</span> <span class="p">{</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Value</span><span class="o">&gt;</span>
+    <span class="k">class</span> <span class="nc">blocked_range</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="c1">// types</span>
+        <span class="k">using</span> <span class="n">size_type</span> <span class="o">=</span> <span class="kt">size_t</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">const_iterator</span> <span class="o">=</span> <span class="n">Value</span><span class="p">;</span>
+
+        <span class="c1">// constructors</span>
+        <span class="n">blocked_range</span><span class="p">(</span> <span class="n">Value</span> <span class="n">begin</span><span class="p">,</span> <span class="n">Value</span> <span class="n">end</span><span class="p">,</span> <span class="n">size_type</span> <span class="n">grainsize</span><span class="o">=</span><span class="mi">1</span> <span class="p">);</span>
+        <span class="n">blocked_range</span><span class="p">(</span> <span class="n">blocked_range</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">,</span> <span class="n">split</span> <span class="p">);</span>
+        <span class="n">blocked_range</span><span class="p">(</span> <span class="n">blocked_range</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">,</span> <span class="n">proportional_split</span><span class="o">&amp;</span> <span class="n">proportion</span> <span class="p">);</span>
+
+        <span class="c1">// capacity</span>
+        <span class="n">size_type</span> <span class="nf">size</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="nf">empty</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+        <span class="c1">// access</span>
+        <span class="n">size_type</span> <span class="nf">grainsize</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="nf">is_divisible</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+        <span class="c1">// iterators</span>
+        <span class="n">const_iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="n">const_iterator</span> <span class="nf">end</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+   <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Requirements:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Value</span></code> type shall meet the <a class="reference internal" href="../../named_requirements/algorithms/blocked_range_val.html"><span class="doc">BlockedRangeValue requirements</span></a>.</p></li>
+</ul>
+<div class="section" id="member-functions">
+<h2>Member functions<a class="headerlink" href="#member-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp type">
+<dt id="_CPPv49size_type">
+<span id="_CPPv39size_type"></span><span id="_CPPv29size_type"></span><span id="size_type"></span><em class="property">type </em><code class="sig-name descname">size_type</code><a class="headerlink" href="#_CPPv49size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The type for measuring the size of a <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code>. The type is always a <code class="docutils literal notranslate"><span class="pre">size_t</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv414const_iterator">
+<span id="_CPPv314const_iterator"></span><span id="_CPPv214const_iterator"></span><span id="const_iterator"></span><em class="property">type </em><code class="sig-name descname">const_iterator</code><a class="headerlink" href="#_CPPv414const_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The type of a value in the range. Despite its name, the type <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> is not necessarily an STL
+iterator; it merely needs to meet the <a class="reference internal" href="../../named_requirements/algorithms/blocked_range_val.html"><span class="doc">BlockedRangeValue requirements</span></a>.
+However, it is convenient to call it <code class="docutils literal notranslate"><span class="pre">const_iterator</span></code> so that if it is a
+const_iterator, then the <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> behaves like a read-only STL container.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413blocked_range5Value5Value9size_type">
+<span id="_CPPv313blocked_range5Value5Value9size_type"></span><span id="_CPPv213blocked_range5Value5Value9size_type"></span><span id="blocked_range__Value.Value.size_type"></span><code class="sig-name descname">blocked_range</code><span class="sig-paren">(</span>Value <em>begin</em>, Value <em>end</em>, <a class="reference internal" href="#_CPPv49size_type" title="size_type">size_type</a> <em>grainsize</em> = 1<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413blocked_range5Value5Value9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Requirements</strong>: The parameter <code class="docutils literal notranslate"><span class="pre">grainsize</span></code> must be positive.
+The debug version of the library raises an assertion failure if this requirement is not met.</p>
+<p><strong>Effects</strong>: Constructs a <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> representing the half-open interval
+<code class="docutils literal notranslate"><span class="pre">[begin,</span> <span class="pre">end)</span></code> with the given <code class="docutils literal notranslate"><span class="pre">grainsize</span></code>.</p>
+<p><strong>Example</strong>: The statement <code class="docutils literal notranslate"><span class="pre">&quot;blocked_range&lt;int&gt;</span> <span class="pre">r(5,</span> <span class="pre">14,</span> <span class="pre">2);&quot;</span></code> constructs a range of
+<code class="docutils literal notranslate"><span class="pre">int</span></code> that contains the values 5 through 13 inclusive, with the grain size of 2. Afterwards,
+<code class="docutils literal notranslate"><span class="pre">r.begin()==5</span></code> and <code class="docutils literal notranslate"><span class="pre">r.end()==14</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413blocked_rangeR13blocked_range5split">
+<span id="_CPPv313blocked_rangeR13blocked_range5split"></span><span id="_CPPv213blocked_rangeR13blocked_range5split"></span><span id="blocked_range__blocked_rangeR.split"></span><code class="sig-name descname">blocked_range</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv413blocked_rangeR13blocked_range5split" title="blocked_range">blocked_range</a> &amp;<em>range</em>, split<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413blocked_rangeR13blocked_range5split" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Basic splitting constructor.</p>
+<p><strong>Requirements</strong>: <code class="docutils literal notranslate"><span class="pre">is_divisible()</span></code> is true.</p>
+<p><strong>Effects</strong>: Partitions <code class="docutils literal notranslate"><span class="pre">range</span></code> into two subranges. The newly
+constructed <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> is approximately the second
+half of the original <code class="docutils literal notranslate"><span class="pre">range</span></code>, and <code class="docutils literal notranslate"><span class="pre">range</span></code> is updated to be the remainder. Each
+subrange has the same <code class="docutils literal notranslate"><span class="pre">grainsize</span></code> as the original range.</p>
+<p><strong>Example</strong>: Let <code class="docutils literal notranslate"><span class="pre">r</span></code> be a <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> that represents a half-open interval <code class="docutils literal notranslate"><span class="pre">[i,</span> <span class="pre">j)</span></code>
+with a grain size <code class="docutils literal notranslate"><span class="pre">g</span></code>. Running the statement <code class="docutils literal notranslate"><span class="pre">blocked_range&lt;int&gt;</span> <span class="pre">s(r,</span> <span class="pre">split);</span></code>
+subsequently causes r to represent <code class="docutils literal notranslate"><span class="pre">[i,</span> <span class="pre">i+(j-i)/2)</span></code> and <code class="docutils literal notranslate"><span class="pre">s</span></code> to represent
+<code class="docutils literal notranslate"><span class="pre">[i+(j-i)/2,</span> <span class="pre">j)</span></code>, both with grain size <code class="docutils literal notranslate"><span class="pre">g</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413blocked_rangeR13blocked_range18proportional_split">
+<span id="_CPPv313blocked_rangeR13blocked_range18proportional_split"></span><span id="_CPPv213blocked_rangeR13blocked_range18proportional_split"></span><span id="blocked_range__blocked_rangeR.proportional_split"></span><code class="sig-name descname">blocked_range</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv413blocked_rangeR13blocked_range18proportional_split" title="blocked_range">blocked_range</a> &amp;<em>range</em>, <a class="reference internal" href="../split_tags/proportional_split_cls.html#_CPPv418proportional_splitNSt6size_tENSt6size_tE" title="proportional_split">proportional_split</a> <em>proportion</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413blocked_rangeR13blocked_range18proportional_split" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Proportional splitting constructor.</p>
+<p><strong>Requirements</strong>: <code class="docutils literal notranslate"><span class="pre">is_divisible()</span></code> is true.</p>
+<p><strong>Effects</strong>: Partitions <code class="docutils literal notranslate"><span class="pre">range</span></code> into two subranges such that the ratio of their sizes is
+close to the ratio of <code class="docutils literal notranslate"><span class="pre">proportion.left()</span></code> to <code class="docutils literal notranslate"><span class="pre">proportion.right()</span></code>. The newly
+constructed <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> is the subrange at the right, and <code class="docutils literal notranslate"><span class="pre">range</span></code> is
+updated to be the subrange at the left.</p>
+<p><strong>Example</strong>: Let <code class="docutils literal notranslate"><span class="pre">r</span></code> be a <code class="docutils literal notranslate"><span class="pre">blocked_range</span></code> that represents a half-open
+interval <code class="docutils literal notranslate"><span class="pre">[i,</span> <span class="pre">j)</span></code> with a grain size <code class="docutils literal notranslate"><span class="pre">g</span></code>. Running the statement
+<code class="docutils literal notranslate"><span class="pre">blocked_range&lt;int&gt;</span> <span class="pre">s(r,</span> <span class="pre">proportional_split(2,</span> <span class="pre">3));</span></code> subsequently causes
+<code class="docutils literal notranslate"><span class="pre">r</span></code> to represent <code class="docutils literal notranslate"><span class="pre">[i,</span> <span class="pre">i+2*(j-i)/(2+3))</span></code> and <code class="docutils literal notranslate"><span class="pre">s</span></code> to represent
+<code class="docutils literal notranslate"><span class="pre">[i+2*(j-i)/(2+3),</span> <span class="pre">j)</span></code>, both with grain size <code class="docutils literal notranslate"><span class="pre">g</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4sizeEv">
+<span id="_CPPv3NK4sizeEv"></span><span id="_CPPv2NK4sizeEv"></span><span id="sizeC"></span><a class="reference internal" href="#_CPPv49size_type" title="size_type">size_type</a> <code class="sig-name descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Requirements</strong>: <code class="docutils literal notranslate"><span class="pre">end()&lt;begin()</span></code> is false.</p>
+<p><strong>Effects</strong>: Determines size of range.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">end()-begin()</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK5emptyEv">
+<span id="_CPPv3NK5emptyEv"></span><span id="_CPPv2NK5emptyEv"></span><span id="emptyC"></span>bool <code class="sig-name descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK5emptyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Effects</strong>: Determines if range is empty.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">!(begin()&lt;end())</span></code></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9grainsizeEv">
+<span id="_CPPv3NK9grainsizeEv"></span><span id="_CPPv2NK9grainsizeEv"></span><span id="grainsizeC"></span><a class="reference internal" href="#_CPPv49size_type" title="size_type">size_type</a> <code class="sig-name descname">grainsize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK9grainsizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Returns</strong>: Grain size of range.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK12is_divisibleEv">
+<span id="_CPPv3NK12is_divisibleEv"></span><span id="_CPPv2NK12is_divisibleEv"></span><span id="is_divisibleC"></span>bool <code class="sig-name descname">is_divisible</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK12is_divisibleEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Requirements</strong>: <code class="docutils literal notranslate"><span class="pre">end()&lt;begin()</span></code> is false.</p>
+<p><strong>Effects</strong>: Determines if range can be split into subranges.</p>
+<p><strong>Returns</strong>: True if <code class="docutils literal notranslate"><span class="pre">size()&gt;grainsize();</span></code> false otherwise.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK5beginEv">
+<span id="_CPPv3NK5beginEv"></span><span id="_CPPv2NK5beginEv"></span><span id="beginC"></span><a class="reference internal" href="#_CPPv414const_iterator" title="const_iterator">const_iterator</a> <code class="sig-name descname">begin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK5beginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Returns</strong>: Inclusive lower bound on range.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK3endEv">
+<span id="_CPPv3NK3endEv"></span><span id="_CPPv2NK3endEv"></span><span id="endC"></span><a class="reference internal" href="#_CPPv414const_iterator" title="const_iterator">const_iterator</a> <code class="sig-name descname">end</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK3endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><strong>Returns</strong>: Exclusive upper bound on range.</p>
+</dd></dl>
+
+<p>See also:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../functions/parallel_reduce_func.html"><span class="doc">parallel_reduce</span></a></p></li>
+<li><p><a class="reference internal" href="../functions/parallel_for_func.html"><span class="doc">parallel_for</span></a></p></li>
+<li><p><a class="reference internal" href="../functions/parallel_scan_func.html"><span class="doc">parallel_scan</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="blocked_range2d_cls.html" class="btn btn-neutral float-right" title="blocked_range2d" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../functions/parallel_sort_func.html" class="btn btn-neutral float-left" title="parallel_sort" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

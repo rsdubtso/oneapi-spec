@@ -1,0 +1,366 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>filter &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../_static/language_data.js"></script>
+        <script src="../../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="filter_mode" href="filter_mode_enum.html" />
+    <link rel="prev" title="parallel_pipeline" href="../parallel_pipeline_func.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html">Configuration</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../../algorithms.html">Algorithms</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../../../algorithms.html#parallel-functions">Parallel Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../algorithms.html#blocked-ranges">Blocked Ranges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../algorithms.html#partitioners">Partitioners</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../algorithms.html#split-tags">Split Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../flow_graph.html">Flow Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/algorithms/functions/parallel_pipeline_func/filter_cls.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="filter">
+<h1>filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h1>
+<p><strong>[algorithms.parallel_pipeline.filter]</strong></p>
+<p>A <code class="docutils literal notranslate"><span class="pre">filter</span></code> class template represents a filter in a <code class="docutils literal notranslate"><span class="pre">parallel_pipeline</span></code> algorithm.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">filter</span></code> is a strongly-typed filter that specifies its input and output types.
+A <code class="docutils literal notranslate"><span class="pre">filter</span></code> can be constructed from a functor or by composing of two <code class="docutils literal notranslate"><span class="pre">filter</span></code> objects with
+<code class="docutils literal notranslate"><span class="pre">operator&amp;()</span></code>. The same <code class="docutils literal notranslate"><span class="pre">filter</span></code> object can be shared by multiple <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> expressions.</p>
+<p>Class <code class="docutils literal notranslate"><span class="pre">filter</span></code> should only be used in conjunction with <code class="docutils literal notranslate"><span class="pre">parallel_pipeline</span></code> functions.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined in header &lt;tbb/parallel_pipeline.h&gt;</span>
+
+<span class="k">namespace</span> <span class="n">tbb</span> <span class="p">{</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputType</span><span class="p">,</span> <span class="k">typename</span> <span class="n">OutputType</span><span class="o">&gt;</span>
+    <span class="k">class</span> <span class="nc">filter</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">filter</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+        <span class="n">filter</span><span class="p">(</span> <span class="k">const</span> <span class="n">filter</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+        <span class="n">filter</span><span class="p">(</span> <span class="n">filter</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+        <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">filter</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+        <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">filter</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Body</span><span class="o">&gt;</span>
+        <span class="n">filter</span><span class="p">(</span> <span class="n">filter_mode</span> <span class="n">mode</span><span class="p">,</span> <span class="k">const</span> <span class="n">Body</span><span class="o">&amp;</span> <span class="n">body</span> <span class="p">);</span>
+
+        <span class="n">filter</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&amp;=</span><span class="p">(</span> <span class="k">const</span> <span class="n">filter</span><span class="o">&lt;</span><span class="n">OutputType</span><span class="p">,</span><span class="n">OutputType</span><span class="o">&gt;&amp;</span> <span class="n">right</span> <span class="p">);</span>
+
+        <span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Func</span><span class="o">&gt;</span>
+    <span class="n">filter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">U</span><span class="o">&gt;</span> <span class="n">make_filter</span><span class="p">(</span> <span class="n">filter</span><span class="o">::</span><span class="n">mode</span> <span class="n">mode</span><span class="p">,</span> <span class="k">const</span> <span class="n">Func</span><span class="o">&amp;</span> <span class="n">f</span> <span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">V</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span><span class="o">&gt;</span>
+    <span class="n">filter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">U</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">&amp;</span><span class="p">(</span> <span class="k">const</span> <span class="n">filter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;&amp;</span> <span class="n">left</span><span class="p">,</span> <span class="k">const</span> <span class="n">filter</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">U</span><span class="o">&gt;&amp;</span> <span class="n">right</span> <span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Requirements:</p>
+<ul class="simple">
+<li><p>If <cite>InputType</cite> is <code class="docutils literal notranslate"><span class="pre">void</span></code> then <code class="docutils literal notranslate"><span class="pre">Body</span></code> type shall meet the <a class="reference internal" href="../../../named_requirements/algorithms/filter_body.html"><span class="doc">StartFilterBody requirements</span></a>.</p></li>
+<li><p>If <cite>OutputType</cite> is <code class="docutils literal notranslate"><span class="pre">void</span></code> then <code class="docutils literal notranslate"><span class="pre">Body</span></code> type shall meet the <a class="reference internal" href="../../../named_requirements/algorithms/filter_body.html"><span class="doc">OutputFilterBody requirements</span></a>.</p></li>
+<li><p>If <cite>InputType</cite> and <cite>OutputType</cite> are not <code class="docutils literal notranslate"><span class="pre">void</span></code> then <code class="docutils literal notranslate"><span class="pre">Body</span></code> type shall meet the <a class="reference internal" href="../../../named_requirements/algorithms/filter_body.html"><span class="doc">MiddleFilterBody requirements</span></a>.</p></li>
+<li><p>If <cite>InputType</cite> and <cite>OutputType</cite> are <code class="docutils literal notranslate"><span class="pre">void</span></code> then <code class="docutils literal notranslate"><span class="pre">Body</span></code> type shall meet the <a class="reference internal" href="../../../named_requirements/algorithms/filter_body.html"><span class="doc">SingleFilterBody requirements</span></a>.</p></li>
+</ul>
+<div class="section" id="filter-mode-enumeration">
+<h2>filter_mode Enumeration<a class="headerlink" href="#filter-mode-enumeration" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="filter_mode_enum.html">filter_mode</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="member-functions">
+<h2>Member functions<a class="headerlink" href="#member-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp function">
+<dt id="_CPPv46filterv">
+<span id="_CPPv36filterv"></span><span id="_CPPv26filterv"></span><code class="sig-name descname">filter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46filterv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Construct an undefined filter.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The effect of using an undefined filter by <code class="docutils literal notranslate"><span class="pre">operator&amp;()</span></code> or <code class="docutils literal notranslate"><span class="pre">parallel_pipeline</span></code> is undefined.</p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0E6filter11filter_modeRK4Body">
+<span id="_CPPv3I0E6filter11filter_modeRK4Body"></span><span id="_CPPv2I0E6filter11filter_modeRK4Body"></span>template&lt;typename <code class="sig-name descname">Body</code>&gt;<br /><code class="sig-name descname">filter</code><span class="sig-paren">(</span>filter_mode <em>mode</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4I0E6filter11filter_modeRK4Body" title="filter::Body">Body</a> &amp;<em>body</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E6filter11filter_modeRK4Body" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Construct a <code class="docutils literal notranslate"><span class="pre">filter</span></code> that uses a copy of a provided <code class="docutils literal notranslate"><span class="pre">body</span></code> to map an input value
+of type <em>InputType</em> to an output value of type <em>OutputType</em>. Each filter must be specified
+by <code class="docutils literal notranslate"><span class="pre">filter_mode</span></code> value.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv45clearv">
+<span id="_CPPv35clearv"></span><span id="_CPPv25clearv"></span><span id="clear"></span>void <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45clearv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">*this</span></code> to an undefined filter.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="non-member-functions">
+<h2>Non-member functions<a class="headerlink" href="#non-member-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp function">
+<dt id="_CPPv4I000E11make_filter6filterI1T1UEN6filter4modeERK4Func">
+<span id="_CPPv3I000E11make_filterN6filter4modeERK4Func"></span><span id="_CPPv2I000E11make_filterN6filter4modeERK4Func"></span>template&lt;typename <code class="sig-name descname">T</code>, typename <code class="sig-name descname">U</code>, typename <code class="sig-name descname">Func</code>&gt;<br /><a class="reference internal" href="#_CPPv46filterv" title="filter">filter</a>&lt;<a class="reference internal" href="#_CPPv4I000E11make_filter6filterI1T1UEN6filter4modeERK4Func" title="make_filter::T">T</a>, <a class="reference internal" href="#_CPPv4I000E11make_filter6filterI1T1UEN6filter4modeERK4Func" title="make_filter::U">U</a>&gt; <code class="sig-name descname">make_filter</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv46filterv" title="filter">filter</a>::mode <em>mode</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv4I000E11make_filter6filterI1T1UEN6filter4modeERK4Func" title="make_filter::Func">Func</a> &amp;<em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I000E11make_filter6filterI1T1UEN6filter4modeERK4Func" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">filter&lt;T,</span> <span class="pre">U&gt;(mode,</span> <span class="pre">f)</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I000Ean6filterI1T1UERK6filterI1T1VERK6filterI1V1UE">
+<span id="_CPPv3I000EanRK6filterI1T1VERK6filterI1V1UE"></span><span id="_CPPv2I000EanRK6filterI1T1VERK6filterI1V1UE"></span>template&lt;typename <code class="sig-name descname">T</code>, typename <code class="sig-name descname">V</code>, typename <code class="sig-name descname">U</code>&gt;<br /><a class="reference internal" href="#_CPPv46filterv" title="filter">filter</a>&lt;<a class="reference internal" href="#_CPPv4I000Ean6filterI1T1UERK6filterI1T1VERK6filterI1V1UE" title="operator&amp;::T">T</a>, <a class="reference internal" href="#_CPPv4I000Ean6filterI1T1UERK6filterI1T1VERK6filterI1V1UE" title="operator&amp;::U">U</a>&gt; <code class="sig-name descname">operator&amp;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv46filterv" title="filter">filter</a>&lt;<a class="reference internal" href="#_CPPv4I000Ean6filterI1T1UERK6filterI1T1VERK6filterI1V1UE" title="operator&amp;::T">T</a>, <a class="reference internal" href="#_CPPv4I000Ean6filterI1T1UERK6filterI1T1VERK6filterI1V1UE" title="operator&amp;::V">V</a>&gt; &amp;<em>left</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv46filterv" title="filter">filter</a>&lt;<a class="reference internal" href="#_CPPv4I000Ean6filterI1T1UERK6filterI1T1VERK6filterI1V1UE" title="operator&amp;::V">V</a>, <a class="reference internal" href="#_CPPv4I000Ean6filterI1T1UERK6filterI1T1VERK6filterI1V1UE" title="operator&amp;::U">U</a>&gt; &amp;<em>right</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I000Ean6filterI1T1UERK6filterI1T1VERK6filterI1V1UE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a <code class="docutils literal notranslate"><span class="pre">filter</span></code> representing the composition of filters <em>left</em> and <em>right</em>.
+The composition behaves as if the output value of <em>left</em> becomes the input value of <em>right</em>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="deduction-guides">
+<h2>Deduction Guides<a class="headerlink" href="#deduction-guides" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Body</span><span class="o">&gt;</span>
+<span class="n">filter</span><span class="p">(</span><span class="n">filter_mode</span><span class="p">,</span> <span class="n">Body</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">filter</span><span class="o">&lt;</span><span class="n">filter_input</span><span class="o">&lt;</span><span class="n">Body</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">filter_output</span><span class="o">&lt;</span><span class="n">Body</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_input&lt;Body&gt;</span></code> is an alias to <code class="docutils literal notranslate"><span class="pre">Body::operator()</span></code> input parameter type.
+If <code class="docutils literal notranslate"><span class="pre">Body::operator()</span></code> input parameter type is <code class="docutils literal notranslate"><span class="pre">flow_control</span></code> then <code class="docutils literal notranslate"><span class="pre">filter_input&lt;Body&gt;</span></code> is <code class="docutils literal notranslate"><span class="pre">void</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_output&lt;Body&gt;</span></code> is an alias to <code class="docutils literal notranslate"><span class="pre">Body::operator()</span></code> return type.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="filter_mode_enum.html" class="btn btn-neutral float-right" title="filter_mode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../parallel_pipeline_func.html" class="btn btn-neutral float-left" title="parallel_pipeline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

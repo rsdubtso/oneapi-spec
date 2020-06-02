@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Memory &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Memory Formats" href="formats.html" />
+    <link rel="prev" title="Int8" href="../data_types/int8.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">oneDNN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../conventions.html">Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../execution_model/index.html">Execution Model</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Data model</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_types/index.html">Data types</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Memory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="formats.html">Memory Formats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="objects.html">Memory Descriptors and Objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../primitives/index.html">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#id1">Open Source Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#implementation-notes">Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneDNN</a> </li>
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneDNN/source/data_model/memory/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="memory">
+<h1>Memory<a class="headerlink" href="#memory" title="Permalink to this headline">¶</a></h1>
+<p>There are two levels of abstraction for memory in oneDNN.</p>
+<ol class="arabic simple">
+<li><p><em>Memory descriptor</em> – engine-agnostic logical description of data (number
+of dimensions, dimension sizes, <a class="reference internal" href="../data_types/index.html#data-types-label"><span class="std std-ref">data type</span></a>, and
+<a class="reference internal" href="formats.html#memory-formats-label"><span class="std std-ref">format</span></a>.</p></li>
+<li><p><em>Memory object</em> – an engine-specific object combines memory descriptor
+with storage.</p></li>
+</ol>
+<p>oneDNN defines the following convenience aliases to denote tensor dimensions</p>
+<dl class="cpp type">
+<dt id="_CPPv4N4dnnl6memory3dimE">
+<span id="_CPPv3N4dnnl6memory3dimE"></span><span id="_CPPv2N4dnnl6memory3dimE"></span><span class="target" id="structdnnl_1_1memory_1af647d5cd96f05e7876a5826ac83d9bd6"></span><em class="property">using </em><code class="sig-prename descclassname">dnnl::<a class="reference internal" href="objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a><code class="sig-prename descclassname">::</code></code><code class="sig-name descname">dim</code> = int64_t<a class="headerlink" href="#_CPPv4N4dnnl6memory3dimE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Integer type for representing dimension sizes and indices. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N4dnnl6memory4dimsE">
+<span id="_CPPv3N4dnnl6memory4dimsE"></span><span id="_CPPv2N4dnnl6memory4dimsE"></span><span class="target" id="structdnnl_1_1memory_1a7d9f4b6ad8caf3969f436cd9ff27e9bb"></span><em class="property">using </em><code class="sig-prename descclassname">dnnl::<a class="reference internal" href="objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a><code class="sig-prename descclassname">::</code></code><code class="sig-name descname">dims</code> = std::vector&lt;<a class="reference internal" href="#_CPPv4N4dnnl6memory3dimE" title="dnnl::memory::dim">dim</a>&gt;<a class="headerlink" href="#_CPPv4N4dnnl6memory4dimsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Vector of dimensions. Implementations are free to force a limit on the vector’s length. </p>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="formats.html">Memory Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="formats.html#plain-memory-formats">Plain Memory Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formats.html#format-tags">Format Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formats.html#optimized-format-any">Optimized Format ‘any’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formats.html#memory-format-propagation">Memory Format Propagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formats.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Memory Descriptors and Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#descriptors">Descriptors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#objects">Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html#api">API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="formats.html" class="btn btn-neutral float-right" title="Memory Formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../data_types/int8.html" class="btn btn-neutral float-left" title="Int8" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

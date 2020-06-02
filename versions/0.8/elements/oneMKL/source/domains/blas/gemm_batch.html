@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1.2.4.2. gemm_batch &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="2.1.2.4.3. trsm_batch" href="trsm_batch.html" />
+    <link rel="prev" title="2.1.2.4.1. axpy_batch" href="axpy_batch.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneMKL</a> </li>
+          
+        
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneMKL/source/domains/blas/gemm_batch.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gemm-batch">
+<span id="onemkl-blas-gemm-batch"></span><h1><span class="section-number">2.1.2.4.2. </span>gemm_batch<a class="headerlink" href="#gemm-batch" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p>The <code class="docutils literal notranslate"><span class="pre">gemm_batch</span></code> routines are batched versions of <a class="reference external" href="gemm.html">gemm</a>, performing
+multiple <code class="docutils literal notranslate"><span class="pre">gemm</span></code> operations in a single call. Each <code class="docutils literal notranslate"><span class="pre">gemm</span></code>
+operation perform a matrix-matrix product with general matrices.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">gemm_batch</span></code> supports the following precisions.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>T</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;float&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;double&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="gemm-batch-buffer-version">
+<h2><span class="section-number">2.1.2.4.2.1. </span>gemm_batch (Buffer Version)<a class="headerlink" href="#gemm-batch-buffer-version" title="Permalink to this headline">¶</a></h2>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Description</p>
+<p>The buffer version of <code class="docutils literal notranslate"><span class="pre">gemm_batch</span></code> supports only the strided API.</p>
+<p>The strided API operation is defined as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i = 0 … batch_size – 1
+    A, B and C are matrices at offset i * stridea, i * strideb, i * stridec in a, b and c.
+    C := alpha * op(A) * op(B) + beta * C
+end for
+</pre></div>
+</div>
+<p>where:</p>
+<p>op(X) is one of op(X) = X, or op(X) = X<sup>T</sup>, or op(X) = X<sup>H</sup></p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> and <code class="docutils literal notranslate"><span class="pre">beta</span></code> are scalars</p>
+<p><code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, and <code class="docutils literal notranslate"><span class="pre">C</span></code> are matrices</p>
+<p>op(<code class="docutils literal notranslate"><span class="pre">A</span></code>) is <code class="docutils literal notranslate"><span class="pre">m</span></code><code class="docutils literal notranslate"><span class="pre">x</span></code><code class="docutils literal notranslate"><span class="pre">k</span></code>, op(<code class="docutils literal notranslate"><span class="pre">B</span></code>) is
+<code class="docutils literal notranslate"><span class="pre">k</span></code><code class="docutils literal notranslate"><span class="pre">x</span></code><code class="docutils literal notranslate"><span class="pre">n</span></code>, and <code class="docutils literal notranslate"><span class="pre">C</span></code> is <code class="docutils literal notranslate"><span class="pre">m</span></code><code class="docutils literal notranslate"><span class="pre">x</span></code><code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<p>The a, b and c buffers contain all the input matrices. The stride
+between matrices is given by the stride parameter. The total number
+of matrices in a, b and c buffers is given by the <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> parameter.</p>
+<p><strong>Strided API</strong></p>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl4blas10gemm_batchERN4sycl5queueEN6onemkl9transposeEN6onemkl9transposeENSt7int64_tENSt7int64_tENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tENSt7int64_tE">
+<span id="_CPPv3N6onemkl4blas10gemm_batchERN4sycl5queueEN6onemkl9transposeEN6onemkl9transposeENSt7int64_tENSt7int64_tENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tENSt7int64_tE"></span><span id="_CPPv2N6onemkl4blas10gemm_batchERN4sycl5queueEN6onemkl9transposeEN6onemkl9transposeENSt7int64_tENSt7int64_tENSt7int64_tE1TRN4sycl6bufferI1TX1EEENSt7int64_tENSt7int64_tERN4sycl6bufferI1TX1EEENSt7int64_tENSt7int64_tE1TRN4sycl6bufferI1TX1EEENSt7int64_tENSt7int64_tENSt7int64_tE"></span><span id="onemkl::blas::gemm_batch__sycl::queueR.onemkl::transpose.onemkl::transpose.std::int64_t.std::int64_t.std::int64_t.T.sycl::buffer:T.1:R.std::int64_t.std::int64_t.sycl::buffer:T.1:R.std::int64_t.std::int64_t.T.sycl::buffer:T.1:R.std::int64_t.std::int64_t.std::int64_t"></span>void <code class="sig-prename descclassname">onemkl::blas<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">gemm_batch</code><span class="sig-paren">(</span>sycl::queue &amp;<em>queue</em>, onemkl::transpose <em>transa</em>, onemkl::transpose <em>transb</em>, std::int64_t <em>m</em>, std::int64_t <em>n</em>, std::int64_t <em>k</em>, T <em>alpha</em>, sycl::buffer&lt;T, 1&gt; &amp;<em>a</em>, std::int64_t <em>lda</em>, std::int64_t <em>stridea</em>, sycl::buffer&lt;T, 1&gt; &amp;<em>b</em>, std::int64_t <em>ldb</em>, std::int64_t <em>strideb</em>, T <em>beta</em>, sycl::buffer&lt;T, 1&gt; &amp;<em>c</em>, std::int64_t <em>ldc</em>, std::int64_t <em>stridec</em>, std::int64_t <em>batch_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl4blas10gemm_batchERN4sycl5queueEN6onemkl9transposeEN6onemkl9transposeENSt7int64_tENSt7int64_tENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tENSt7int64_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl class="simple">
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>transa</dt><dd><p>Specifies <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> the transposition operation applied to the
+matrices <code class="docutils literal notranslate"><span class="pre">A</span></code>. See <a class="reference internal" href="../../architecture/architecture.html#onemkl-datatypes"><span class="std std-ref">oneMKL defined datatypes</span></a> for more details.</p>
+</dd>
+<dt>transb</dt><dd><p>Specifies <code class="docutils literal notranslate"><span class="pre">op(B)</span></code> the transposition operation applied to the
+matrices <code class="docutils literal notranslate"><span class="pre">B</span></code>. See <a class="reference internal" href="../../architecture/architecture.html#onemkl-datatypes"><span class="std std-ref">oneMKL defined datatypes</span></a> for more details.</p>
+</dd>
+<dt>m</dt><dd><p>Number of rows of <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code>. Must be at least zero.</p>
+</dd>
+<dt>n</dt><dd><p>Number of columns of <code class="docutils literal notranslate"><span class="pre">op(B)</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code>. Must be at least zero.</p>
+</dd>
+<dt>k</dt><dd><p>Number of columns of <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> and rows of <code class="docutils literal notranslate"><span class="pre">op(B)</span></code>. Must be at
+least zero.</p>
+</dd>
+<dt>alpha</dt><dd><p>Scaling factor for the matrix-matrix products.</p>
+</dd>
+<dt>a</dt><dd><p>Buffer holding the input matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> with size <code class="docutils literal notranslate"><span class="pre">stridea*batch_size</span></code>.</p>
+</dd>
+<dt>lda</dt><dd><p>Leading dimension of the matrices <code class="docutils literal notranslate"><span class="pre">A</span></code>. Must be at least <code class="docutils literal notranslate"><span class="pre">m</span></code> if
+the matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> are not transposed, and at least <code class="docutils literal notranslate"><span class="pre">k</span></code> if the
+matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> are transposed. Must be positive.</p>
+</dd>
+<dt>stridea</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">A</span></code> matrices.</p>
+</dd>
+<dt>b</dt><dd><p>Buffer holding the input matrices <code class="docutils literal notranslate"><span class="pre">B</span></code> with size <code class="docutils literal notranslate"><span class="pre">strideb*batch_size</span></code>.</p>
+</dd>
+<dt>ldb</dt><dd><p>Leading dimension of the matrices <code class="docutils literal notranslate"><span class="pre">B</span></code>. Must be at least <code class="docutils literal notranslate"><span class="pre">k</span></code> if
+the matrices <code class="docutils literal notranslate"><span class="pre">B</span></code> are not transposed, and at least <code class="docutils literal notranslate"><span class="pre">n</span></code> if the
+matrices <code class="docutils literal notranslate"><span class="pre">B</span></code> are transposed. Must be positive.</p>
+</dd>
+<dt>strideb</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">B</span></code> matrices.</p>
+</dd>
+<dt>beta</dt><dd><p>Scaling factor for the matrices <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
+</dd>
+<dt>c</dt><dd><p>Buffer holding input/output matrices <code class="docutils literal notranslate"><span class="pre">C</span></code> with size <code class="docutils literal notranslate"><span class="pre">stridec*batch_size</span></code>.</p>
+</dd>
+<dt>ldc</dt><dd><p>Leading dimension of <code class="docutils literal notranslate"><span class="pre">C</span></code>. Must be positive and at least <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p>
+</dd>
+<dt>stridec</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">C</span></code> matrices. Must be at least
+<code class="docutils literal notranslate"><span class="pre">ldc*n</span></code>.</p>
+</dd>
+<dt>batch_size</dt><dd><p>Specifies the number of matrix multiply operations to perform.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl class="simple">
+<dt>c</dt><dd><p>Output buffer, overwritten by <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> matrix multiply
+operations of the form<code class="docutils literal notranslate"><span class="pre">alpha*op(A)*op(B)</span> <span class="pre">+</span> <span class="pre">beta*C</span></code>.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Notes</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">beta</span></code> = 0, matrix <code class="docutils literal notranslate"><span class="pre">C</span></code> does not need to be initialized before
+calling <code class="docutils literal notranslate"><span class="pre">gemm_batch</span></code>.</p>
+</div>
+</div>
+<div class="section" id="gemm-batch-usm-version">
+<h2><span class="section-number">2.1.2.4.2.2. </span>gemm_batch (USM Version)<a class="headerlink" href="#gemm-batch-usm-version" title="Permalink to this headline">¶</a></h2>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Description</p>
+<p>The USM version of <code class="docutils literal notranslate"><span class="pre">gemm_batch</span></code> supports the group API and strided API.</p>
+<p>The group API operation is defined as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>idx = 0
+for i = 0 … group_count – 1
+    for j = 0 … group_size – 1
+        A, B, and C are matrices in a[idx], b[idx] and c[idx]
+        C := alpha[i] * op(A) * op(B) + beta[i] * C
+        idx = idx + 1
+    end for
+end for
+</pre></div>
+</div>
+<p>The strided API operation is defined as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i = 0 … batch_size – 1
+    A, B and C are matrices at offset i * stridea, i * strideb, i * stridec in a, b and c.
+    C := alpha * op(A) * op(B) + beta * C
+end for
+</pre></div>
+</div>
+<p>where:</p>
+<p>op(X) is one of op(X) = X, or op(X) = X<sup>T</sup>, or op(X) = X<sup>H</sup></p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> and <code class="docutils literal notranslate"><span class="pre">beta</span></code> are scalars</p>
+<p><code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, and <code class="docutils literal notranslate"><span class="pre">C</span></code> are matrices</p>
+<p>op(<code class="docutils literal notranslate"><span class="pre">A</span></code>) is <code class="docutils literal notranslate"><span class="pre">m</span></code><code class="docutils literal notranslate"><span class="pre">x</span></code><code class="docutils literal notranslate"><span class="pre">k</span></code>, op(<code class="docutils literal notranslate"><span class="pre">B</span></code>) is <code class="docutils literal notranslate"><span class="pre">k</span></code><code class="docutils literal notranslate"><span class="pre">x</span></code><code class="docutils literal notranslate"><span class="pre">n</span></code>, and <code class="docutils literal notranslate"><span class="pre">C</span></code> is <code class="docutils literal notranslate"><span class="pre">m</span></code><code class="docutils literal notranslate"><span class="pre">x</span></code><code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<p>For group API, a, b and c arrays contain the pointers for all the input matrices.
+The total number of matrices in a, b and c are given by:</p>
+<blockquote>
+<div><p>total_batch_count = sum of all of the group_size entries</p>
+</div></blockquote>
+<p>For strided API, a, b, c arrays contain all the input matrices. The total number of matrices
+in a, b and c are given by the <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> parameter.</p>
+<p><strong>Group API</strong></p>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<div class="dlsyntaxpara docutils container">
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl4blas10gemm_batchERN4sycl5queueEPN6onemkl9transposeEPN6onemkl9transposeEPNSt7int64_tEPNSt7int64_tEPNSt7int64_tEP1TPPK1TPNSt7int64_tEPPK1TPNSt7int64_tEP1TPP1TPNSt7int64_tENSt7int64_tEPNSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE">
+<span id="_CPPv3N6onemkl4blas10gemm_batchERN4sycl5queueEPN6onemkl9transposeEPN6onemkl9transposeEPNSt7int64_tEPNSt7int64_tEPNSt7int64_tEP1TPPK1TPNSt7int64_tEPPK1TPNSt7int64_tEP1TPP1TPNSt7int64_tENSt7int64_tEPNSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="_CPPv2N6onemkl4blas10gemm_batchERN4sycl5queueEPN6onemkl9transposeEPN6onemkl9transposeEPNSt7int64_tEPNSt7int64_tEPNSt7int64_tEP1TPPK1TPNSt7int64_tEPPK1TPNSt7int64_tEP1TPP1TPNSt7int64_tENSt7int64_tEPNSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="onemkl::blas::gemm_batch__sycl::queueR.onemkl::transposeP.onemkl::transposeP.std::int64_tP.std::int64_tP.std::int64_tP.TP.TCPP.std::int64_tP.TCPP.std::int64_tP.TP.TPP.std::int64_tP.std::int64_t.std::int64_tP.sycl::vector_class:sycl::event:CR"></span>sycl::event <code class="sig-prename descclassname">onemkl::blas<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">gemm_batch</code><span class="sig-paren">(</span>sycl::queue &amp;<em>queue</em>, onemkl::transpose *<em>transa</em>, onemkl::transpose *<em>transb</em>, std::int64_t *<em>m</em>, std::int64_t *<em>n</em>, std::int64_t *<em>k</em>, T *<em>alpha</em>, <em class="property">const</em> T **<em>a</em>, std::int64_t *<em>lda</em>, <em class="property">const</em> T **<em>b</em>, std::int64_t *<em>ldb</em>, T *<em>beta</em>, T **<em>c</em>, std::int64_t *<em>ldc</em>, std::int64_t <em>group_count</em>, std::int64_t *<em>group_size</em>, <em class="property">const</em> sycl::vector_class&lt;sycl::event&gt; &amp;<em>dependencies</em> = {}<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl4blas10gemm_batchERN4sycl5queueEPN6onemkl9transposeEPN6onemkl9transposeEPNSt7int64_tEPNSt7int64_tEPNSt7int64_tEP1TPPK1TPNSt7int64_tEPPK1TPNSt7int64_tEP1TPP1TPNSt7int64_tENSt7int64_tEPNSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl>
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>transa</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> <code class="docutils literal notranslate"><span class="pre">onemkl::transpose</span></code> values. <code class="docutils literal notranslate"><span class="pre">transa[i]</span></code> specifies the form of <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> used in
+the matrix multiplication in group <code class="docutils literal notranslate"><span class="pre">i</span></code>. See <a class="reference internal" href="../../architecture/architecture.html#onemkl-datatypes"><span class="std std-ref">oneMKL defined datatypes</span></a> for more details.</p>
+</dd>
+<dt>transb</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> <code class="docutils literal notranslate"><span class="pre">onemkl::transpose</span></code> values. <code class="docutils literal notranslate"><span class="pre">transb[i]</span></code> specifies the form of <code class="docutils literal notranslate"><span class="pre">op(B)</span></code> used in
+the matrix multiplication in group <code class="docutils literal notranslate"><span class="pre">i</span></code>. See <a class="reference internal" href="../../architecture/architecture.html#onemkl-datatypes"><span class="std std-ref">oneMKL defined datatypes</span></a> for more details.</p>
+</dd>
+<dt>m</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">m[i]</span></code> specifies the
+number of rows of <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> for every matrix in group <code class="docutils literal notranslate"><span class="pre">i</span></code>. All entries must be at least zero.</p>
+</dd>
+<dt>n</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">n[i]</span></code> specifies the
+number of columns of <code class="docutils literal notranslate"><span class="pre">op(B)</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> for every matrix in group <code class="docutils literal notranslate"><span class="pre">i</span></code>. All entries must be at least zero.</p>
+</dd>
+<dt>k</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">k[i]</span></code> specifies the
+number of columns of <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> and rows of <code class="docutils literal notranslate"><span class="pre">op(B)</span></code> for every matrix in group <code class="docutils literal notranslate"><span class="pre">i</span></code>. All entries must be at
+least zero.</p>
+</dd>
+<dt>alpha</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> scalar elements. <code class="docutils literal notranslate"><span class="pre">alpha[i]</span></code> specifies the scaling factor for every matrix-matrix
+product in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+</dd>
+<dt>a</dt><dd><p>Array of pointers to input matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> with size <code class="docutils literal notranslate"><span class="pre">total_batch_count</span></code>.</p>
+<p>See <a class="reference external" href="../matrix-storage.html">Matrix Storage</a> for more details.</p>
+</dd>
+<dt>lda</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">lda[i]</span></code> specifies the leading dimension of <code class="docutils literal notranslate"><span class="pre">A</span></code> for every matrix in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.
+All entries must be at least <code class="docutils literal notranslate"><span class="pre">m</span></code>
+if <code class="docutils literal notranslate"><span class="pre">A</span></code> is not transposed, and at least <code class="docutils literal notranslate"><span class="pre">k</span></code> if <code class="docutils literal notranslate"><span class="pre">A</span></code> is
+transposed. All entries must be positive.</p>
+</dd>
+<dt>b</dt><dd><p>Array of pointers to input matrices <code class="docutils literal notranslate"><span class="pre">B</span></code> with size <code class="docutils literal notranslate"><span class="pre">total_batch_count</span></code>.</p>
+<p>See <a class="reference external" href="../matrix-storage.html">Matrix Storage</a> for more details.</p>
+</dd>
+<dt>ldb</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">ldb[i]</span></code> specifies the leading dimension of <code class="docutils literal notranslate"><span class="pre">B</span></code> for every matrix in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.
+All entries must be at least <code class="docutils literal notranslate"><span class="pre">k</span></code>
+if <code class="docutils literal notranslate"><span class="pre">B</span></code> is not transposed, and at least <code class="docutils literal notranslate"><span class="pre">n</span></code> if <code class="docutils literal notranslate"><span class="pre">B</span></code> is
+transposed. All entries must be positive.</p>
+</dd>
+<dt>beta</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> scalar elements. <code class="docutils literal notranslate"><span class="pre">beta[i]</span></code> specifies the scaling factor for matrix <code class="docutils literal notranslate"><span class="pre">C</span></code>
+for every matrix in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+</dd>
+<dt>c</dt><dd><p>Array of pointers to input/output matrices <code class="docutils literal notranslate"><span class="pre">C</span></code> with size <code class="docutils literal notranslate"><span class="pre">total_batch_count</span></code>.</p>
+<p>See <a class="reference external" href="../matrix-storage.html">Matrix Storage</a> for more details.</p>
+</dd>
+<dt>ldc</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">ldc[i]</span></code> specifies the leading dimension of <code class="docutils literal notranslate"><span class="pre">C</span></code> for every matrix in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.
+All entries must be positive and at least <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p>
+</dd>
+<dt>group_count</dt><dd><p>Specifies the number of groups. Must be at least 0.</p>
+</dd>
+<dt>group_size</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">group_size[i]</span></code> specifies the
+number of matrix multiply products in group <code class="docutils literal notranslate"><span class="pre">i</span></code>. All entries must be at least 0.</p>
+</dd>
+<dt>dependencies</dt><dd><p>List of events to wait for before starting computation, if any.
+If omitted, defaults to no dependencies.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl class="simple">
+<dt>c</dt><dd><p>Overwritten by the <code class="docutils literal notranslate"><span class="pre">m[i]</span></code>-by-<code class="docutils literal notranslate"><span class="pre">n[i]</span></code> matrix calculated by
+<code class="docutils literal notranslate"><span class="pre">(alpha[i]*op(A)*op(B)</span> <span class="pre">+</span> <span class="pre">beta[i]*C)</span></code> for group <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+</dd>
+</dl>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Notes</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">beta</span></code> = 0, matrix <code class="docutils literal notranslate"><span class="pre">C</span></code> does not need to be initialized
+before calling <code class="docutils literal notranslate"><span class="pre">gemm_batch</span></code>.</p>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Return Values</p>
+<p>Output event to wait on to ensure computation is complete.</p>
+</div>
+<p><strong>Strided API</strong></p>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<div class="dlsyntaxpara docutils container">
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl4blas10gemm_batchERN4sycl5queueEN6onemkl9transposeEN6onemkl9transposeENSt7int64_tENSt7int64_tENSt7int64_tE1TPK1TNSt7int64_tENSt7int64_tEPK1TNSt7int64_tENSt7int64_tE1TP1TNSt7int64_tENSt7int64_tENSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE">
+<span id="_CPPv3N6onemkl4blas10gemm_batchERN4sycl5queueEN6onemkl9transposeEN6onemkl9transposeENSt7int64_tENSt7int64_tENSt7int64_tE1TPK1TNSt7int64_tENSt7int64_tEPK1TNSt7int64_tENSt7int64_tE1TP1TNSt7int64_tENSt7int64_tENSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="_CPPv2N6onemkl4blas10gemm_batchERN4sycl5queueEN6onemkl9transposeEN6onemkl9transposeENSt7int64_tENSt7int64_tENSt7int64_tE1TPK1TNSt7int64_tENSt7int64_tEPK1TNSt7int64_tENSt7int64_tE1TP1TNSt7int64_tENSt7int64_tENSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="onemkl::blas::gemm_batch__sycl::queueR.onemkl::transpose.onemkl::transpose.std::int64_t.std::int64_t.std::int64_t.T.TCP.std::int64_t.std::int64_t.TCP.std::int64_t.std::int64_t.T.TP.std::int64_t.std::int64_t.std::int64_t.sycl::vector_class:sycl::event:CR"></span>sycl::event <code class="sig-prename descclassname">onemkl::blas<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">gemm_batch</code><span class="sig-paren">(</span>sycl::queue &amp;<em>queue</em>, onemkl::transpose <em>transa</em>, onemkl::transpose <em>transb</em>, std::int64_t <em>m</em>, std::int64_t <em>n</em>, std::int64_t <em>k</em>, T <em>alpha</em>, <em class="property">const</em> T *<em>a</em>, std::int64_t <em>lda</em>, std::int64_t <em>stridea</em>, <em class="property">const</em> T *<em>b</em>, std::int64_t <em>ldb</em>, std::int64_t <em>strideb</em>, T <em>beta</em>, T *<em>c</em>, std::int64_t <em>ldc</em>, std::int64_t <em>stridec</em>, std::int64_t <em>batch_size</em>, <em class="property">const</em> sycl::vector_class&lt;sycl::event&gt; &amp;<em>dependencies</em> = {}<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl4blas10gemm_batchERN4sycl5queueEN6onemkl9transposeEN6onemkl9transposeENSt7int64_tENSt7int64_tENSt7int64_tE1TPK1TNSt7int64_tENSt7int64_tEPK1TNSt7int64_tENSt7int64_tE1TP1TNSt7int64_tENSt7int64_tENSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl class="simple">
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>transa</dt><dd><p>Specifies <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> the transposition operation applied to the
+matrices <code class="docutils literal notranslate"><span class="pre">A</span></code>. See <a class="reference internal" href="../../architecture/architecture.html#onemkl-datatypes"><span class="std std-ref">oneMKL defined datatypes</span></a> for more details.</p>
+</dd>
+<dt>transb</dt><dd><p>Specifies <code class="docutils literal notranslate"><span class="pre">op(B)</span></code> the transposition operation applied to the
+matrices <code class="docutils literal notranslate"><span class="pre">B</span></code>. See <a class="reference internal" href="../../architecture/architecture.html#onemkl-datatypes"><span class="std std-ref">oneMKL defined datatypes</span></a> for more details.</p>
+</dd>
+<dt>m</dt><dd><p>Number of rows of <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code>. Must be at least zero.</p>
+</dd>
+<dt>n</dt><dd><p>Number of columns of <code class="docutils literal notranslate"><span class="pre">op(B)</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code>. Must be at least zero.</p>
+</dd>
+<dt>k</dt><dd><p>Number of columns of <code class="docutils literal notranslate"><span class="pre">op(A)</span></code> and rows of <code class="docutils literal notranslate"><span class="pre">op(B)</span></code>. Must be at
+least zero.</p>
+</dd>
+<dt>alpha</dt><dd><p>Scaling factor for the matrix-matrix products.</p>
+</dd>
+<dt>a</dt><dd><p>Pointer to input matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> with size <code class="docutils literal notranslate"><span class="pre">stridea*batch_size</span></code>.</p>
+</dd>
+<dt>lda</dt><dd><p>Leading dimension of the matrices <code class="docutils literal notranslate"><span class="pre">A</span></code>. Must be at least <code class="docutils literal notranslate"><span class="pre">m</span></code> if
+the matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> are not transposed, and at least <code class="docutils literal notranslate"><span class="pre">k</span></code> if the
+matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> are transposed. Must be positive.</p>
+</dd>
+<dt>stridea</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">A</span></code> matrices.</p>
+</dd>
+<dt>b</dt><dd><p>Pointer to input matrices <code class="docutils literal notranslate"><span class="pre">B</span></code> with size <code class="docutils literal notranslate"><span class="pre">strideb*batch_size</span></code>.</p>
+</dd>
+<dt>ldb</dt><dd><p>Leading dimension of the matrices <code class="docutils literal notranslate"><span class="pre">B</span></code>. Must be at least <code class="docutils literal notranslate"><span class="pre">k</span></code> if
+the matrices <code class="docutils literal notranslate"><span class="pre">B</span></code> are not transposed, and at least <code class="docutils literal notranslate"><span class="pre">n</span></code> if the
+matrices <code class="docutils literal notranslate"><span class="pre">B</span></code> are transposed. Must be positive.</p>
+</dd>
+<dt>strideb</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">B</span></code> matrices.</p>
+</dd>
+<dt>beta</dt><dd><p>Scaling factor for the matrices <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
+</dd>
+<dt>c</dt><dd><p>Pointer to input/output matrices <code class="docutils literal notranslate"><span class="pre">C</span></code> with size <code class="docutils literal notranslate"><span class="pre">stridec*batch_size</span></code>.</p>
+</dd>
+<dt>ldc</dt><dd><p>Leading dimension of <code class="docutils literal notranslate"><span class="pre">C</span></code>. Must be positive and at least <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p>
+</dd>
+<dt>stridec</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">C</span></code> matrices.</p>
+</dd>
+<dt>batch_size</dt><dd><p>Specifies the number of matrix multiply operations to perform.</p>
+</dd>
+<dt>dependencies</dt><dd><p>List of events to wait for before starting computation, if any.
+If omitted, defaults to no dependencies.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl class="simple">
+<dt>c</dt><dd><p>Output matrices, overwritten by <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> matrix multiply
+operations of the form <code class="docutils literal notranslate"><span class="pre">alpha*op(A)*op(B)</span> <span class="pre">+</span> <span class="pre">beta*C</span></code>.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Notes</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">beta</span></code> = 0, matrix <code class="docutils literal notranslate"><span class="pre">C</span></code> does not need to be initialized before
+calling <code class="docutils literal notranslate"><span class="pre">gemm_batch</span></code>.</p>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Return Values</p>
+<p>Output event to wait on to ensure computation is complete.</p>
+</div>
+<div class="familylinks docutils container">
+<div class="parentlink docutils container">
+<p><strong>Parent topic:</strong> <a class="reference internal" href="blas-like-extensions.html#blas-like-extensions"><span class="std std-ref">BLAS-like Extensions</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trsm_batch.html" class="btn btn-neutral float-right" title="2.1.2.4.3. trsm_batch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="axpy_batch.html" class="btn btn-neutral float-left" title="2.1.2.4.1. axpy_batch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

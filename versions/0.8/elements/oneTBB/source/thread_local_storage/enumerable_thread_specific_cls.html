@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>enumerable_thread_specific &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Construction, destruction, copying" href="enumerable_thread_specific_cls/construct_destroy_copy.html" />
+    <link rel="prev" title="combinable" href="combinable_cls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../algorithms.html">Algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flow_graph.html">Flow Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html">Containers</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../thread_local_storage.html">Thread Local Storage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="combinable_cls.html">combinable</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">enumerable_thread_specific</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flattened2d_cls.html">flattened2d</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/thread_local_storage/enumerable_thread_specific_cls.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="enumerable-thread-specific">
+<h1>enumerable_thread_specific<a class="headerlink" href="#enumerable-thread-specific" title="Permalink to this headline">¶</a></h1>
+<p><strong>[tls.enumerable_thread_specific]</strong></p>
+<p>A class template for thread local storage.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined in header &lt;tbb/enumerable_thread_specific.h&gt;</span>
+
+<span class="k">namespace</span> <span class="n">tbb</span> <span class="p">{</span>
+
+    <span class="k">enum</span> <span class="n">ets_key_usage_type</span> <span class="p">{</span>
+        <span class="n">ets_key_per_instance</span><span class="p">,</span>
+        <span class="n">ets_no_key</span><span class="p">,</span>
+        <span class="n">ets_suspend_aware</span>
+    <span class="p">};</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span>
+        <span class="k">typename</span> <span class="n">Allocator</span><span class="o">=</span><span class="n">cache_aligned_allocator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">ets_key_usage_type</span> <span class="n">ETS_key_type</span><span class="o">=</span><span class="n">ets_no_key</span> <span class="o">&gt;</span>
+    <span class="k">class</span> <span class="nc">enumerable_thread_specific</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="c1">// Basic types</span>
+        <span class="k">using</span> <span class="n">value_type</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">T</span><span class="o">&amp;</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">const_reference</span> <span class="o">=</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">pointer</span> <span class="o">=</span> <span class="n">T</span><span class="o">*</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">size_type</span> <span class="o">=</span> <span class="cm">/* implementation-defined */</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">difference_type</span> <span class="o">=</span> <span class="cm">/* implementation-defined */</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">allocator_type</span> <span class="o">=</span> <span class="n">Allocator</span><span class="p">;</span>
+
+        <span class="c1">// Iterator types</span>
+        <span class="k">using</span> <span class="n">iterator</span> <span class="o">=</span> <span class="cm">/* implementation-defined */</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">const_iterator</span> <span class="o">=</span> <span class="cm">/* implementation-defined */</span><span class="p">;</span>
+
+        <span class="c1">// Parallel range types</span>
+        <span class="k">using</span> <span class="n">range_type</span> <span class="o">=</span> <span class="cm">/* implementation-defined */</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">const_range_type</span> <span class="o">=</span> <span class="cm">/* implementation-defined */</span><span class="p">;</span>
+
+        <span class="c1">// Construction</span>
+        <span class="n">enumerable_thread_specific</span><span class="p">();</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Finit</span><span class="o">&gt;</span>
+        <span class="k">explicit</span> <span class="n">enumerable_thread_specific</span><span class="p">(</span> <span class="n">Finit</span> <span class="n">finit</span> <span class="p">);</span>
+        <span class="k">explicit</span> <span class="nf">enumerable_thread_specific</span><span class="p">(</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">exemplar</span> <span class="p">);</span>
+        <span class="k">explicit</span> <span class="nf">enumerable_thread_specific</span><span class="p">(</span> <span class="n">T</span><span class="o">&amp;&amp;</span> <span class="n">exemplar</span> <span class="p">);</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+        <span class="n">enumerable_thread_specific</span><span class="p">(</span> <span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span> <span class="p">);</span>
+
+        <span class="c1">// Destruction</span>
+        <span class="o">~</span><span class="n">enumerable_thread_specific</span><span class="p">();</span>
+
+        <span class="c1">// Copy constructors</span>
+        <span class="n">enumerable_thread_specific</span><span class="p">(</span> <span class="k">const</span> <span class="n">enumerable_thread_specific</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Alloc</span><span class="p">,</span> <span class="n">ets_key_usage_type</span> <span class="n">Cachetype</span><span class="o">&gt;</span>
+        <span class="n">enumerable_thread_specific</span><span class="p">(</span> <span class="k">const</span> <span class="n">enumerable_thread_specific</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Alloc</span><span class="p">,</span> <span class="n">Cachetype</span><span class="o">&gt;&amp;</span> <span class="n">other</span><span class="p">);</span>
+        <span class="c1">// Copy assignments</span>
+        <span class="n">enumerable_thread_specific</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="k">const</span> <span class="n">enumerable_thread_specific</span><span class="o">&amp;</span> <span class="n">other</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Alloc</span><span class="p">,</span> <span class="n">ets_key_usage_type</span> <span class="n">Cachetype</span><span class="o">&gt;</span>
+        <span class="n">enumerable_thread_specific</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="k">const</span> <span class="n">enumerable_thread_specific</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Alloc</span><span class="p">,</span> <span class="n">Cachetype</span><span class="o">&gt;&amp;</span> <span class="n">other</span> <span class="p">);</span>
+
+        <span class="c1">// Move constructors</span>
+        <span class="n">enumerable_thread_specific</span><span class="p">(</span> <span class="n">enumerable_thread_specific</span><span class="o">&amp;&amp;</span> <span class="n">other</span><span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Alloc</span><span class="p">,</span> <span class="n">ets_key_usage_type</span> <span class="n">Cachetype</span><span class="o">&gt;</span>
+        <span class="n">enumerable_thread_specific</span><span class="p">(</span> <span class="n">enumerable_thread_specific</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Alloc</span><span class="p">,</span> <span class="n">Cachetype</span><span class="o">&gt;&amp;&amp;</span> <span class="n">other</span><span class="p">);</span>
+        <span class="c1">// Move assignments</span>
+        <span class="n">enumerable_thread_specific</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">enumerable_thread_specific</span><span class="o">&amp;&amp;</span> <span class="n">other</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Alloc</span><span class="p">,</span> <span class="n">ets_key_usage_type</span> <span class="n">Cachetype</span><span class="o">&gt;</span>
+        <span class="n">enumerable_thread_specific</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">enumerable_thread_specific</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Alloc</span><span class="p">,</span> <span class="n">Cachetype</span><span class="o">&gt;&amp;&amp;</span> <span class="n">other</span> <span class="p">);</span>
+
+        <span class="c1">// Other whole container operations</span>
+        <span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>
+
+        <span class="c1">// Concurrent operations</span>
+        <span class="n">reference</span> <span class="nf">local</span><span class="p">();</span>
+        <span class="n">reference</span> <span class="nf">local</span><span class="p">(</span> <span class="kt">bool</span><span class="o">&amp;</span> <span class="n">exists</span> <span class="p">);</span>
+        <span class="n">size_type</span> <span class="nf">size</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="nf">empty</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+        <span class="c1">// Combining</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">BinaryFunc</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">combine</span><span class="p">(</span> <span class="n">BinaryFunc</span> <span class="n">f</span> <span class="p">);</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">UnaryFunc</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">combine_each</span><span class="p">(</span> <span class="n">UnaryFunc</span> <span class="n">f</span> <span class="p">);</span>
+
+        <span class="c1">// Parallel iteration</span>
+        <span class="n">range_type</span> <span class="nf">range</span><span class="p">(</span> <span class="kt">size_t</span> <span class="n">grainsize</span><span class="o">=</span><span class="mi">1</span> <span class="p">);</span>
+        <span class="n">const_range_type</span> <span class="nf">range</span><span class="p">(</span> <span class="kt">size_t</span> <span class="n">grainsize</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+        <span class="c1">// Iterators</span>
+        <span class="n">iterator</span> <span class="nf">begin</span><span class="p">();</span>
+        <span class="n">iterator</span> <span class="nf">end</span><span class="p">();</span>
+        <span class="n">const_iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="n">const_iterator</span> <span class="nf">end</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="p">};</span>
+
+<span class="p">}</span> <span class="c1">// namespace tbb</span>
+</pre></div>
+</div>
+<p>A class template <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> provides thread local storage (TLS) for elements of type <code class="docutils literal notranslate"><span class="pre">T</span></code>.
+A class template <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> acts as a container by providing iterators and ranges across all of the thread-local elements.</p>
+<p>The thread-local elements are created lazily. A freshly constructed <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> has no elements.
+When a thread requests access to an <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code>, it creates an element corresponding to that thread.
+The number of elements is equal to the number of distinct threads that have accessed the <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code>
+and not necessarily the number of threads in use by the application. Clearing an <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> removes all its elements.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ETS_key_usage_type</span></code> parameter type can be used to select an underlying implementation.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> uses the OS-specific value returned by <code class="docutils literal notranslate"><span class="pre">std::this_thread::get_id()</span></code> to identify threads.
+This value is not guaranteed to be unique except for the life of the thread.
+A newly created thread may get an OS-specific ID equal to that of an already destroyed thread.
+The number of elements of the <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> may therefore be less than the number of actual distinct threads
+that have called <code class="docutils literal notranslate"><span class="pre">local()</span></code>, and the element returned by the first reference
+by a thread to the <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> may not be newly-constructed.</p>
+</div>
+<div class="section" id="member-functions">
+<h2>Member functions<a class="headerlink" href="#member-functions" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enumerable_thread_specific_cls/construct_destroy_copy.html">Construction, destruction, copying</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enumerable_thread_specific_cls/safe_modifiers.html">Concurrently safe modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enumerable_thread_specific_cls/unsafe_modifiers.html">Concurrently unsafe modifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enumerable_thread_specific_cls/size_and_capacity.html">Size and capacity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enumerable_thread_specific_cls/iteration.html">Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enumerable_thread_specific_cls/combining.html">Combining</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="non-member-types-and-constants">
+<h2>Non-member types and constants<a class="headerlink" href="#non-member-types-and-constants" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp enum">
+<dt id="_CPPv4N18ets_key_usage_type20ets_key_per_instanceE">
+<span id="_CPPv3N18ets_key_usage_type20ets_key_per_instanceE"></span><span id="_CPPv2N18ets_key_usage_type20ets_key_per_instanceE"></span><em class="property">enum </em><code class="sig-prename descclassname">ets_key_usage_type<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">ets_key_per_instance</code><a class="headerlink" href="#_CPPv4N18ets_key_usage_type20ets_key_per_instanceE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>Enumeration parameter type used to select an implementation that consumes 1 native TLS key per <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> instance.
+The number of native TLS keys may be limited and can be fairly small.</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N18ets_key_usage_type10ets_no_keyE">
+<span id="_CPPv3N18ets_key_usage_type10ets_no_keyE"></span><span id="_CPPv2N18ets_key_usage_type10ets_no_keyE"></span><em class="property">enum </em><code class="sig-prename descclassname">ets_key_usage_type<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">ets_no_key</code><a class="headerlink" href="#_CPPv4N18ets_key_usage_type10ets_no_keyE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>Enumeration parameter type used to select an implementation that consumes no native TLS keys.
+If no <code class="docutils literal notranslate"><span class="pre">ETS_key_usage_type</span></code> parameter type is provided, <code class="docutils literal notranslate"><span class="pre">ets_no_key</span></code> is used by default.</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N18ets_key_usage_type17ets_suspend_awareE">
+<span id="_CPPv3N18ets_key_usage_type17ets_suspend_awareE"></span><span id="_CPPv2N18ets_key_usage_type17ets_suspend_awareE"></span><em class="property">enum </em><code class="sig-prename descclassname">ets_key_usage_type<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">ets_suspend_aware</code><a class="headerlink" href="#_CPPv4N18ets_key_usage_type17ets_suspend_awareE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p><code class="docutils literal notranslate"><span class="pre">tbb::task::suspend</span></code> function can change the value of <code class="docutils literal notranslate"><span class="pre">enumerable_thread_specific</span></code> object. In order to avoid this problem,
+<code class="docutils literal notranslate"><span class="pre">ets_suspend_aware</span></code> enumeration parameter type should be used.
+The <code class="docutils literal notranslate"><span class="pre">local()</span></code> value can be the same for different threads, but no two distinct threads can access the same value simultaneously.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="enumerable_thread_specific_cls/construct_destroy_copy.html" class="btn btn-neutral float-right" title="Construction, destruction, copying" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="combinable_cls.html" class="btn btn-neutral float-left" title="combinable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

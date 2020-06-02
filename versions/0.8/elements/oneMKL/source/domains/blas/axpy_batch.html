@@ -1,0 +1,474 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1.2.4.1. axpy_batch &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="2.1.2.4.2. gemm_batch" href="gemm_batch.html" />
+    <link rel="prev" title="2.1.2.4. BLAS-like Extensions" href="blas-like-extensions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneMKL</a> </li>
+          
+        
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneMKL/source/domains/blas/axpy_batch.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="axpy-batch">
+<span id="onemkl-blas-axpy-batch"></span><h1><span class="section-number">2.1.2.4.1. </span>axpy_batch<a class="headerlink" href="#axpy-batch" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p>The <code class="docutils literal notranslate"><span class="pre">axpy_batch</span></code> routines are batched versions of <a class="reference external" href="axpy.html">axpy</a>, performing
+multiple <code class="docutils literal notranslate"><span class="pre">axpy</span></code> operations in a single call. Each <code class="docutils literal notranslate"><span class="pre">axpy</span></code>
+operation adds a scalar-vector product to a vector.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">axpy_batch</span></code> supports the following precisions.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>T</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;float&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;double&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="axpy-batch-buffer-version">
+<h2><span class="section-number">2.1.2.4.1.1. </span>axpy_batch (Buffer Version)<a class="headerlink" href="#axpy-batch-buffer-version" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<p class="sectiontitle rubric">Description</p>
+<p>The buffer version of <code class="docutils literal notranslate"><span class="pre">axpy_batch</span></code> supports only the strided API.</p>
+<p>The strided API operation is defined as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i = 0 … batch_size – 1
+   X and Y are vectors at offset i * stridex, i * stridey in x and y
+   Y := alpha * X + Y
+end for
+</pre></div>
+</div>
+<p>where:</p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> is scalar</p>
+<p><code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code> are vectors.</p>
+<p><strong>Strided API</strong></p>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<div class="dlsyntaxpara docutils container">
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl4blas10axpy_batchERN4sycl5queueENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tENSt7int64_tE">
+<span id="_CPPv3N6onemkl4blas10axpy_batchERN4sycl5queueENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tENSt7int64_tE"></span><span id="_CPPv2N6onemkl4blas10axpy_batchERN4sycl5queueENSt7int64_tE1TRN4sycl6bufferI1TX1EEENSt7int64_tENSt7int64_tERN4sycl6bufferI1TX1EEENSt7int64_tENSt7int64_tENSt7int64_tE"></span><span id="onemkl::blas::axpy_batch__sycl::queueR.std::int64_t.T.sycl::buffer:T.1:R.std::int64_t.std::int64_t.sycl::buffer:T.1:R.std::int64_t.std::int64_t.std::int64_t"></span>void <code class="sig-prename descclassname">onemkl::blas<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">axpy_batch</code><span class="sig-paren">(</span>sycl::queue &amp;<em>queue</em>, std::int64_t <em>n</em>, T <em>alpha</em>, sycl::buffer&lt;T, 1&gt; &amp;<em>x</em>, std::int64_t <em>incx</em>, std::int64_t <em>stridex</em>, sycl::buffer&lt;T, 1&gt; &amp;<em>y</em>, std::int64_t <em>incy</em>, std::int64_t <em>stridey</em>, std::int64_t <em>batch_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl4blas10axpy_batchERN4sycl5queueENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tENSt7int64_tENSt7int64_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl class="simple">
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>n</dt><dd><p>Number of elements in <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code>.</p>
+</dd>
+<dt>alpha</dt><dd><p>Specifies the scalar <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.</p>
+</dd>
+<dt>x</dt><dd><p>Buffer holding input vectors <code class="docutils literal notranslate"><span class="pre">X</span></code> with size <code class="docutils literal notranslate"><span class="pre">stridex*batch_size</span></code>.</p>
+</dd>
+<dt>incx</dt><dd><p>Stride of vector <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+</dd>
+<dt>stridex</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">X</span></code> vectors.</p>
+</dd>
+<dt>y</dt><dd><p>Buffer holding input/output vectors <code class="docutils literal notranslate"><span class="pre">Y</span></code> with size <code class="docutils literal notranslate"><span class="pre">stridey*batch_size</span></code>.</p>
+</dd>
+<dt>incy</dt><dd><p>Stride of vector <code class="docutils literal notranslate"><span class="pre">Y</span></code>.</p>
+</dd>
+<dt>stridey</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">Y</span></code> vectors.</p>
+</dd>
+<dt>batch_size</dt><dd><p>Specifies the number of <code class="docutils literal notranslate"><span class="pre">axpy</span></code> operations to perform.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl class="simple">
+<dt>y</dt><dd><p>Output buffer, overwritten by <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> <code class="docutils literal notranslate"><span class="pre">axpy</span></code> operations of the form
+<code class="docutils literal notranslate"><span class="pre">alpha*X</span> <span class="pre">+</span> <span class="pre">Y</span></code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="axpy-batch-usm-version">
+<h2><span class="section-number">2.1.2.4.1.2. </span>axpy_batch (USM Version)<a class="headerlink" href="#axpy-batch-usm-version" title="Permalink to this headline">¶</a></h2>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Description</p>
+<p>The USM version of <code class="docutils literal notranslate"><span class="pre">axpy_batch</span></code> supports the group API and strided API.</p>
+<p>The group API operation is defined as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>idx = 0
+for i = 0 … group_count – 1
+    for j = 0 … group_size – 1
+        X and Y are vectors in x[idx] and y[idx]
+        Y := alpha[i] * X + Y
+        idx := idx + 1
+    end for
+end for
+</pre></div>
+</div>
+<p>The strided API operation is defined as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i = 0 … batch_size – 1
+   X and Y are vectors at offset i * stridex, i * stridey in x and y
+   Y := alpha * X + Y
+end for
+</pre></div>
+</div>
+<p>where:</p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> is scalar</p>
+<p><code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code> are vectors.</p>
+<p>For group API, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> arrays contain the pointers for all the input vectors.
+The total number of vectors in <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are given by:</p>
+<blockquote>
+<div><p>total_batch_count = sum of all of the group_size entries</p>
+</div></blockquote>
+<p>For strided API, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> arrays contain all the input vectors.
+The total number of vectors in <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are given by the <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> parameter.</p>
+<p><strong>Group API</strong></p>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<div class="dlsyntaxpara docutils container">
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl4blas10axpy_batchERN4sycl5queueEPNSt7int64_tEP1TPPK1TPNSt7int64_tEPP1TPNSt7int64_tENSt7int64_tEPNSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE">
+<span id="_CPPv3N6onemkl4blas10axpy_batchERN4sycl5queueEPNSt7int64_tEP1TPPK1TPNSt7int64_tEPP1TPNSt7int64_tENSt7int64_tEPNSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="_CPPv2N6onemkl4blas10axpy_batchERN4sycl5queueEPNSt7int64_tEP1TPPK1TPNSt7int64_tEPP1TPNSt7int64_tENSt7int64_tEPNSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="onemkl::blas::axpy_batch__sycl::queueR.std::int64_tP.TP.TCPP.std::int64_tP.TPP.std::int64_tP.std::int64_t.std::int64_tP.sycl::vector_class:sycl::event:CR"></span>sycl::event <code class="sig-prename descclassname">onemkl::blas<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">axpy_batch</code><span class="sig-paren">(</span>sycl::queue &amp;<em>queue</em>, std::int64_t *<em>n</em>, T *<em>alpha</em>, <em class="property">const</em> T **<em>x</em>, std::int64_t *<em>incx</em>, T **<em>y</em>, std::int64_t *<em>incy</em>, std::int64_t <em>group_count</em>, std::int64_t *<em>group_size</em>, <em class="property">const</em> sycl::vector_class&lt;sycl::event&gt; &amp;<em>dependencies</em> = {}<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl4blas10axpy_batchERN4sycl5queueEPNSt7int64_tEP1TPPK1TPNSt7int64_tEPP1TPNSt7int64_tENSt7int64_tEPNSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl class="simple">
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>n</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">n[i]</span></code> specifies the number of elements in vectors <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code> for every vector in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+</dd>
+<dt>alpha</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> scalar elements. <code class="docutils literal notranslate"><span class="pre">alpha[i]</span></code> specifies the scaling factor for vector <code class="docutils literal notranslate"><span class="pre">X</span></code> in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+</dd>
+<dt>x</dt><dd><p>Array of pointers to input vectors <code class="docutils literal notranslate"><span class="pre">X</span></code> with size <code class="docutils literal notranslate"><span class="pre">total_batch_count</span></code>.
+The size of array allocated for the <code class="docutils literal notranslate"><span class="pre">X</span></code> vector of the group <code class="docutils literal notranslate"><span class="pre">i</span></code> must be at least <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">(n[i]</span> <span class="pre">–</span> <span class="pre">1)*abs(incx[i]))</span></code>.
+See <a class="reference external" href="../matrix-storage.html">Matrix and Vector Storage</a> for more details.</p>
+</dd>
+<dt>incx</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">incx[i]</span></code> specifies the stride of vector <code class="docutils literal notranslate"><span class="pre">X</span></code> in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+</dd>
+<dt>y</dt><dd><p>Array of pointers to input/output vectors <code class="docutils literal notranslate"><span class="pre">Y</span></code> with size <code class="docutils literal notranslate"><span class="pre">total_batch_count</span></code>.
+The size of array allocated for the <code class="docutils literal notranslate"><span class="pre">Y</span></code> vector of the group <code class="docutils literal notranslate"><span class="pre">i</span></code> must be at least <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">(n[i]</span> <span class="pre">–</span> <span class="pre">1)*abs(incy[i]))</span></code>.
+See <a class="reference external" href="../matrix-storage.html">Matrix and Vector Storage</a> for more details.</p>
+</dd>
+<dt>incy</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">incy[i]</span></code> specifies the stride of vector <code class="docutils literal notranslate"><span class="pre">Y</span></code> in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+</dd>
+<dt>group_count</dt><dd><p>Number of groups. Must be at least 0.</p>
+</dd>
+<dt>group_size</dt><dd><p>Array of <code class="docutils literal notranslate"><span class="pre">group_count</span></code> integers. <code class="docutils literal notranslate"><span class="pre">group_size[i]</span></code> specifies the number of <code class="docutils literal notranslate"><span class="pre">axpy</span></code> operations in group <code class="docutils literal notranslate"><span class="pre">i</span></code>.
+Each element in <code class="docutils literal notranslate"><span class="pre">group_size</span></code> must be at least 0.</p>
+</dd>
+<dt>dependencies</dt><dd><p>List of events to wait for before starting computation, if any.
+If omitted, defaults to no dependencies.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl class="simple">
+<dt>y</dt><dd><p>Array of pointers holding the <code class="docutils literal notranslate"><span class="pre">Y</span></code> vectors, overwritten by <code class="docutils literal notranslate"><span class="pre">total_batch_count</span></code> <code class="docutils literal notranslate"><span class="pre">axpy</span></code> operations of the form
+<code class="docutils literal notranslate"><span class="pre">alpha*X</span> <span class="pre">+</span> <span class="pre">Y</span></code>.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Return Values</p>
+<p>Output event to wait on to ensure computation is complete.</p>
+<p><strong>Strided API</strong></p>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<div class="dlsyntaxpara docutils container">
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl4blas10axpy_batchERN4sycl5queueENSt7int64_tE1TPK1TNSt7int64_tENSt7int64_tEP1TNSt7int64_tENSt7int64_tENSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE">
+<span id="_CPPv3N6onemkl4blas10axpy_batchERN4sycl5queueENSt7int64_tE1TPK1TNSt7int64_tENSt7int64_tEP1TNSt7int64_tENSt7int64_tENSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="_CPPv2N6onemkl4blas10axpy_batchERN4sycl5queueENSt7int64_tE1TPK1TNSt7int64_tENSt7int64_tEP1TNSt7int64_tENSt7int64_tENSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="onemkl::blas::axpy_batch__sycl::queueR.std::int64_t.T.TCP.std::int64_t.std::int64_t.TP.std::int64_t.std::int64_t.std::int64_t.sycl::vector_class:sycl::event:CR"></span>sycl::event <code class="sig-prename descclassname">onemkl::blas<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">axpy_batch</code><span class="sig-paren">(</span>sycl::queue &amp;<em>queue</em>, std::int64_t <em>n</em>, T <em>alpha</em>, <em class="property">const</em> T *<em>x</em>, std::int64_t <em>incx</em>, std::int64_t <em>stridex</em>, T *<em>y</em>, std::int64_t <em>incy</em>, std::int64_t <em>stridey</em>, std::int64_t <em>batch_size</em>, <em class="property">const</em> sycl::vector_class&lt;sycl::event&gt; &amp;<em>dependencies</em> = {}<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl4blas10axpy_batchERN4sycl5queueENSt7int64_tE1TPK1TNSt7int64_tENSt7int64_tEP1TNSt7int64_tENSt7int64_tENSt7int64_tERKN4sycl12vector_classIN4sycl5eventEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl class="simple">
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>n</dt><dd><p>Number of elements in <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code>.</p>
+</dd>
+<dt>alpha</dt><dd><p>Specifies the scalar <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.</p>
+</dd>
+<dt>x</dt><dd><p>Pointer to input vectors <code class="docutils literal notranslate"><span class="pre">X</span></code> with size <code class="docutils literal notranslate"><span class="pre">stridex*batch_size</span></code>.</p>
+</dd>
+<dt>incx</dt><dd><p>Stride of vector <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+</dd>
+<dt>stridex</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">X</span></code> vectors.</p>
+</dd>
+<dt>y</dt><dd><p>Pointer to input/output vectors <code class="docutils literal notranslate"><span class="pre">Y</span></code> with size <code class="docutils literal notranslate"><span class="pre">stridey*batch_size</span></code>.</p>
+</dd>
+<dt>incy</dt><dd><p>Stride of vector <code class="docutils literal notranslate"><span class="pre">Y</span></code>.</p>
+</dd>
+<dt>stridey</dt><dd><p>Stride between different <code class="docutils literal notranslate"><span class="pre">Y</span></code> vectors.</p>
+</dd>
+<dt>batch_size</dt><dd><p>Specifies the number of <code class="docutils literal notranslate"><span class="pre">axpy</span></code> operations to perform.</p>
+</dd>
+<dt>dependencies</dt><dd><p>List of events to wait for before starting computation, if any.
+If omitted, defaults to no dependencies.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl class="simple">
+<dt>y</dt><dd><p>Output vectors, overwritten by <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> <code class="docutils literal notranslate"><span class="pre">axpy</span></code> operations of the form
+<code class="docutils literal notranslate"><span class="pre">alpha*X</span> <span class="pre">+</span> <span class="pre">Y</span></code>.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Return Values</p>
+<p>Output event to wait on to ensure computation is complete.</p>
+</div>
+<div class="familylinks docutils container">
+<div class="parentlink docutils container">
+<p><strong>Parent topic:</strong><a class="reference internal" href="blas-like-extensions.html#blas-like-extensions"><span class="std std-ref">BLAS-like Extensions</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gemm_batch.html" class="btn btn-neutral float-right" title="2.1.2.4.2. gemm_batch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="blas-like-extensions.html" class="btn btn-neutral float-left" title="2.1.2.4. BLAS-like Extensions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

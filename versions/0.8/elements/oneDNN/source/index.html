@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>oneDNN &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Introduction" href="introduction.html" />
+    <link rel="prev" title="Specific API of oneDPL" href="../../oneDPL/source/extensions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">oneDNN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution_model/index.html">Execution Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model/index.html">Data model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primitives/index.html">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Open Source Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-notes">Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneDNN/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="onednn">
+<span id="onednn-section"></span><h1>oneDNN<a class="headerlink" href="#onednn" title="Permalink to this headline">¶</a></h1>
+<p>oneAPI Deep Neural Network Library (oneDNN) is a performance library containing building blocks
+for for deep learning applications and frameworks. oneDNN supports:</p>
+<ul class="simple">
+<li><p>CNN primitives (Convolutions, Inner product, Pooling, etc.)</p></li>
+<li><p>RNN primitives (LSTM, Vanilla, RNN, GRU)</p></li>
+<li><p>Normalizations (LRN, Batch, Layer)</p></li>
+<li><p>Elementwise operations (ReLU, Tanh, ELU, Abs, etc.)</p></li>
+<li><p>Softmax, Sum, Concat, Shuffle</p></li>
+<li><p>Reorders from/to optimized data layouts</p></li>
+<li><p>8-bit integer, 16-, 32-bit, and bfloat16 floating point data types</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Tensor dimensions</span>
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">;</span>
+
+<span class="c1">// User-owned DPC++ objects</span>
+<span class="n">sycl</span><span class="o">::</span><span class="n">device</span> <span class="n">dev</span><span class="p">;</span> <span class="c1">// Device</span>
+<span class="n">sycl</span><span class="o">::</span><span class="n">context</span> <span class="n">ctx</span><span class="p">;</span> <span class="c1">// Context</span>
+<span class="n">sycl</span><span class="o">::</span><span class="n">queue</span> <span class="n">queue</span><span class="p">;</span> <span class="c1">// Queue</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">sycl</span><span class="o">::</span><span class="n">event</span><span class="o">&gt;</span> <span class="n">dependencies</span><span class="p">;</span> <span class="c1">// Input events dependencies</span>
+<span class="n">sycl</span><span class="o">::</span><span class="n">buffer</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">buf_src</span> <span class="p">{</span><span class="n">sycl</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span> <span class="p">{</span><span class="n">N</span> <span class="o">*</span> <span class="n">C</span> <span class="o">*</span> <span class="n">H</span> <span class="o">*</span> <span class="n">W</span><span class="p">}};</span> <span class="c1">// Source</span>
+<span class="n">sycl</span><span class="o">::</span><span class="n">buffer</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">buf_dst</span> <span class="p">{</span><span class="n">sycl</span><span class="o">::</span><span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span> <span class="p">{</span><span class="n">N</span> <span class="o">*</span> <span class="n">C</span> <span class="o">*</span> <span class="n">H</span> <span class="o">*</span> <span class="n">W</span><span class="p">}};</span> <span class="c1">// Results</span>
+
+<span class="c1">// Create an engine encapsulating users&#39; DPC++ GPU device and context</span>
+<span class="n">dnnl</span><span class="o">::</span><span class="n">engine</span> <span class="n">engine</span> <span class="p">{</span><span class="n">dnnl</span><span class="o">::</span><span class="n">engine</span><span class="o">::</span><span class="n">kind</span><span class="o">::</span><span class="n">gpu</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">ctx</span><span class="p">};</span>
+<span class="c1">// Create a stream encapsulating users&#39; DPC++ GPU queue</span>
+<span class="n">dnnl</span><span class="o">::</span><span class="n">stream</span> <span class="n">stream</span> <span class="p">{</span><span class="n">engine</span><span class="p">,</span> <span class="n">queue</span><span class="p">};</span>
+<span class="c1">// Create memory objects that use buf_src and buf_dst as the underlying storage</span>
+<span class="n">dnnl</span><span class="o">::</span><span class="n">memory</span> <span class="n">mem_src</span> <span class="p">{{{</span><span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">},</span> <span class="n">dnnl</span><span class="o">::</span><span class="n">memory</span><span class="o">::</span><span class="n">data_type</span><span class="o">::</span><span class="n">f32</span><span class="p">,</span>
+                              <span class="n">dnnl</span><span class="o">::</span><span class="n">memory</span><span class="o">::</span><span class="n">format_tag</span><span class="o">::</span><span class="n">nhwc</span><span class="p">},</span>
+        <span class="n">engine</span><span class="p">,</span> <span class="n">buf_src</span><span class="p">};</span>
+<span class="n">dnnl</span><span class="o">::</span><span class="n">memory</span> <span class="n">mem_dst</span> <span class="p">{{{</span><span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">},</span> <span class="n">dnnl</span><span class="o">::</span><span class="n">memory</span><span class="o">::</span><span class="n">data_type</span><span class="o">::</span><span class="n">f32</span><span class="p">,</span>
+                              <span class="n">dnnl</span><span class="o">::</span><span class="n">memory</span><span class="o">::</span><span class="n">format_tag</span><span class="o">::</span><span class="n">nhwc</span><span class="p">},</span>
+        <span class="n">engine</span><span class="p">,</span> <span class="n">buf_dst</span><span class="p">};</span>
+<span class="c1">// Create a ReLU elementwise primitive</span>
+<span class="n">dnnl</span><span class="o">::</span><span class="n">eltwise_forward</span> <span class="n">relu</span> <span class="p">{</span>
+        <span class="p">{{</span><span class="n">dnnl</span><span class="o">::</span><span class="n">prop_kind</span><span class="o">::</span><span class="n">forward_inference</span><span class="p">,</span> <span class="n">dnnl</span><span class="o">::</span><span class="n">algorithm</span><span class="o">::</span><span class="n">eltwise_relu</span><span class="p">,</span>
+                 <span class="n">mem_src</span><span class="p">.</span><span class="n">get_desc</span><span class="p">(),</span> <span class="mf">0.f</span><span class="p">,</span> <span class="mf">0.f</span><span class="p">},</span>
+                <span class="n">engine</span><span class="p">}};</span>
+<span class="c1">// Execute the ReLU primitive in the stream passing input dependencies and</span>
+<span class="c1">// retrieving the output dependency</span>
+<span class="n">sycl</span><span class="o">::</span><span class="n">event</span> <span class="n">event</span> <span class="o">=</span> <span class="n">relu</span><span class="p">.</span><span class="n">execute_sycl</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span>
+        <span class="p">{{</span><span class="n">DNNL_ARG_SRC</span><span class="p">,</span> <span class="n">mem_src</span><span class="p">},</span> <span class="p">{</span><span class="n">DNNL_ARG_DST</span><span class="p">,</span> <span class="n">mem_dst</span><span class="p">}},</span> <span class="n">dependencies</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="execution_model/index.html">Execution Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_model/index.html">Data model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primitives/index.html">Primitives</a></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Open Source Implementation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Intel has published an <a class="reference external" href="https://github.com/oneapi-src/oneDNN/tree/dev-v2">open source implementation</a> with the Apache
+license.</p>
+</div>
+<div class="section" id="implementation-notes">
+<h2>Implementation Notes<a class="headerlink" href="#implementation-notes" title="Permalink to this headline">¶</a></h2>
+<p>This specification provides high-level descriptions for oneDNN operations and
+does not cover all the implementation-specific details of the <a class="reference external" href="https://github.com/oneapi-src/oneDNN/tree/dev-v2">open source
+implementation</a>.  Specifically, it does not cover highly-optimized memory
+formats and integration with profiling tools, etc. This is done intentionally
+to improve specification portability. Code that uses API defined in this
+specification is expected to be portable across open source implementation and
+any potential other implementations of this specification to a reasonable
+extent.</p>
+<p>In the future this section will be extended with more details on how different
+implementations of this specification should cooperate and co-exist.</p>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Intel’s binary distribution of oneDNN contains example code that you
+can be used to test library functionality.</p>
+<p>The <a class="reference external" href="https://github.com/oneapi-src/oneDNN/tree/dev-v2">open source implementation</a> includes a comprehensive test suite.
+Consult the <a class="reference external" href="https://github.com/oneapi-src/oneDNN/blob/dev-v2/README.md">README</a> for directions.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../oneDPL/source/extensions.html" class="btn btn-neutral float-left" title="Specific API of oneDPL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

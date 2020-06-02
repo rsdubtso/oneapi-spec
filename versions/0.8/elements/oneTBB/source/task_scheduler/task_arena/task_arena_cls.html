@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>task_arena &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="this_task_arena" href="this_task_arena_ns.html" />
+    <link rel="prev" title="task_group_status" href="../task_group/task_group_status_enum.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../algorithms.html">Algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flow_graph.html">Flow Graph</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../task_scheduler.html">Task Scheduler</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../task_scheduler.html#scheduling-controls">Scheduling controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../task_scheduler.html#task-group">Task Group</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../task_scheduler.html#task-arena">Task Arena</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/task_scheduler/task_arena/task_arena_cls.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="task-arena">
+<h1>task_arena<a class="headerlink" href="#task-arena" title="Permalink to this headline">¶</a></h1>
+<p><strong>[scheduler.task_arena]</strong></p>
+<p>A class that represents an explicit, user-managed task scheduler arena.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined in header &lt;tbb/task_arena.h&gt;</span>
+
+<span class="k">namespace</span> <span class="n">tbb</span> <span class="p">{</span>
+
+    <span class="k">class</span> <span class="nc">task_arena</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">automatic</span> <span class="o">=</span> <span class="cm">/* implementation-defined */</span><span class="p">;</span>
+        <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">not_initialized</span> <span class="o">=</span> <span class="cm">/* implementation-defined */</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">attach</span> <span class="p">{};</span>
+
+        <span class="n">task_arena</span><span class="p">(</span><span class="kt">int</span> <span class="n">max_concurrency</span> <span class="o">=</span> <span class="n">automatic</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">reserved_for_masters</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">task_arena</span><span class="p">(</span><span class="k">const</span> <span class="n">task_arena</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+        <span class="k">explicit</span> <span class="nf">task_arena</span><span class="p">(</span><span class="n">task_arena</span><span class="o">::</span><span class="n">attach</span><span class="p">);</span>
+        <span class="o">~</span><span class="n">task_arena</span><span class="p">();</span>
+
+        <span class="kt">void</span> <span class="nf">initialize</span><span class="p">();</span>
+        <span class="kt">void</span> <span class="nf">initialize</span><span class="p">(</span><span class="kt">int</span> <span class="n">max_concurrency</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">reserved_for_masters</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="kt">void</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">task_arena</span><span class="o">::</span><span class="n">attach</span><span class="p">);</span>
+        <span class="kt">void</span> <span class="nf">terminate</span><span class="p">();</span>
+
+        <span class="kt">bool</span> <span class="nf">is_active</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="nf">max_concurrency</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">F</span><span class="o">&gt;</span> <span class="k">auto</span> <span class="n">execute</span><span class="p">(</span><span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">decltype</span><span class="p">(</span><span class="n">f</span><span class="p">());</span>
+        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">F</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">enqueue</span><span class="p">(</span><span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span><span class="p">);</span>
+    <span class="p">};</span>
+
+<span class="p">}</span> <span class="c1">// namespace tbb</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> class represents a place where threads may share and execute tasks.</p>
+<p>The number of threads that may simultaneously execute tasks in a <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> is limited by its concurrency level.</p>
+<p>Each user thread that invokes any parallel construction outside an explicit <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> uses an implicit
+task arena representation object assosiated with the calling thread.</p>
+<p>The tasks spawned or enqueued into one arena cannot be executed in another arena.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> constructors do not create an internal task arena representation object.
+It may already exist in case of the “attaching” constructor, otherwise it is created
+by explicit call to <code class="docutils literal notranslate"><span class="pre">task_arena::initialize</span></code> or lazily on first use.</p>
+</div>
+<div class="section" id="member-types-and-constants">
+<h2>Member types and constants<a class="headerlink" href="#member-types-and-constants" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp member">
+<dt id="_CPPv49automatic">
+<span id="_CPPv39automatic"></span><span id="_CPPv29automatic"></span><span id="automatic__iC"></span><em class="property">static</em> <em class="property">const</em> int <code class="sig-name descname">automatic</code><a class="headerlink" href="#_CPPv49automatic" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>When passed as <code class="docutils literal notranslate"><span class="pre">max_concurrency</span></code> to the specific constructor, arena
+concurrency will be automatically set based on the hardware configuration.</p>
+</dd></dl>
+
+<dl class="cpp member">
+<dt id="_CPPv415not_initialized">
+<span id="_CPPv315not_initialized"></span><span id="_CPPv215not_initialized"></span><span id="not_initialized__iC"></span><em class="property">static</em> <em class="property">const</em> int <code class="sig-name descname">not_initialized</code><a class="headerlink" href="#_CPPv415not_initialized" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>When returned by a method or function, indicates that there is no active <code class="docutils literal notranslate"><span class="pre">task_arena</span></code>
+or that the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> object has not yet been initialized.</p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv46attach">
+<span id="_CPPv36attach"></span><span id="_CPPv26attach"></span><span id="attach"></span><em class="property">struct </em><code class="sig-name descname">attach</code><a class="headerlink" href="#_CPPv46attach" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A tag for constructing a <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> with attach.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="member-functions">
+<h2>Member functions<a class="headerlink" href="#member-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp function">
+<dt id="_CPPv410task_arenaij">
+<span id="_CPPv310task_arenaij"></span><span id="_CPPv210task_arenaij"></span><span id="task_arena__i.unsigned"></span><code class="sig-name descname">task_arena</code><span class="sig-paren">(</span>int <em>max_concurrency</em> = <a class="reference internal" href="#_CPPv49automatic" title="automatic">automatic</a>, unsigned <em>reserved_for_masters</em> = 1<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410task_arenaij" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> with a certain concurrency limit (<code class="docutils literal notranslate"><span class="pre">max_concurrency</span></code>).
+Some portion of the limit can be reserved for application threads with <code class="docutils literal notranslate"><span class="pre">reserved_for_masters</span></code>.
+The amount for reservation cannot exceed the limit.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">max_concurrency</span></code> and <code class="docutils literal notranslate"><span class="pre">reserved_for_masters</span></code> are
+explicitly set to be equal and greater than 1, oneTBB worker threads will never
+join the arena. As a result, the execution guarantee for enqueued tasks is not valid
+in such arena. Do not use <code class="docutils literal notranslate"><span class="pre">task_arena::enqueue()</span></code> with an arena set to have no worker threads.</p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410task_arenaRK10task_arena">
+<span id="_CPPv310task_arenaRK10task_arena"></span><span id="_CPPv210task_arenaRK10task_arena"></span><span id="task_arena__task_arenaCR"></span><code class="sig-name descname">task_arena</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv410task_arenaRK10task_arena" title="task_arena">task_arena</a>&amp;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410task_arenaRK10task_arena" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copies settings from another <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> instance.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410task_arenaN10task_arena6attachE">
+<span id="_CPPv310task_arenaN10task_arena6attachE"></span><span id="_CPPv210task_arenaN10task_arena6attachE"></span><span id="task_arena__task_arena::attach"></span><em class="property">explicit</em> <code class="sig-name descname">task_arena</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410task_arenaN10task_arena6attachE" title="task_arena">task_arena</a>::attach<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410task_arenaN10task_arena6attachE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates an instance of <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> that is connected to the internal task arena representation currently used by the calling thread.
+If no such arena exists yet, creates a <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> with default parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike other constructors, this one automatically initializes
+the new <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> when connecting to an already existing arena.</p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4D0v">
+<span id="_CPPv3D0v"></span><span id="_CPPv2D0v"></span><span id="~task_arena"></span><code class="sig-name descname">~task_arena</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4D0v" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Destroys the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> instance, but the destruction may not be synchronized with any task execution inside this <code class="docutils literal notranslate"><span class="pre">task_arena</span></code>.
+Which means that an internal task arena representation associated with this <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> instance can be destroyed later.
+Not thread safe w.r.t. concurrent invocations of other methods.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410initializev">
+<span id="_CPPv310initializev"></span><span id="_CPPv210initializev"></span><span id="initialize"></span>void <code class="sig-name descname">initialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410initializev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Performs actual initialization of internal task arena representation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After the call to <code class="docutils literal notranslate"><span class="pre">initialize</span></code>, the arena parameters are fixed and cannot be changed.</p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410initializeij">
+<span id="_CPPv310initializeij"></span><span id="_CPPv210initializeij"></span><span id="initialize__i.unsigned"></span>void <code class="sig-name descname">initialize</code><span class="sig-paren">(</span>int <em>max_concurrency</em>, unsigned <em>reserved_for_masters</em> = 1<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410initializeij" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as above, but overrides previous arena parameters.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410initializeN10task_arena6attachE">
+<span id="_CPPv310initializeN10task_arena6attachE"></span><span id="_CPPv210initializeN10task_arena6attachE"></span><span id="initialize__task_arena::attach"></span>void <code class="sig-name descname">initialize</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410task_arenaij" title="task_arena">task_arena</a>::attach<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410initializeN10task_arena6attachE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>If an instance of class <code class="docutils literal notranslate"><span class="pre">task_arena::attach</span></code> is specified as the argument, and there exists
+an internal task arena representation currently used by the calling thread, the method ignores arena
+parameters and connects <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> to that internal task arena representation.
+The method has no effect when called for an already initialized <code class="docutils literal notranslate"><span class="pre">task_arena</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv49terminatev">
+<span id="_CPPv39terminatev"></span><span id="_CPPv29terminatev"></span><span id="terminate"></span>void <code class="sig-name descname">terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49terminatev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Removes the reference to the internal task arena representation without destroying the
+task_arena object, which can then be re-used. Not thread safe w.r.t. concurrent invocations of other methods.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9is_activeEv">
+<span id="_CPPv3NK9is_activeEv"></span><span id="_CPPv2NK9is_activeEv"></span><span id="is_activeC"></span>bool <code class="sig-name descname">is_active</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK9is_activeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> has been initialized, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK15max_concurrencyEv">
+<span id="_CPPv3NK15max_concurrencyEv"></span><span id="_CPPv2NK15max_concurrencyEv"></span><span id="max_concurrencyC"></span>int <code class="sig-name descname">max_concurrency</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK15max_concurrencyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the concurrency level of the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code>.
+Does not require the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> to be initialized and does not perform initialization.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I_1FE7enqueuevRR1F">
+<span id="_CPPv3I_1FE7enqueueRR1F"></span><span id="_CPPv2I_1FE7enqueueRR1F"></span>template&lt;F&gt;<br />void <code class="sig-name descname">enqueue</code><span class="sig-paren">(</span>F &amp;&amp;<em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_1FE7enqueuevRR1F" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enqueues a task into the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> to process the specified functor and immediately returns.
+The <code class="docutils literal notranslate"><span class="pre">F</span></code> type shall meet the <cite>Function Objects</cite> requirements from [function.objects] ISO C++ Standard section.
+The task is scheduled for eventual execution by a worker thread even if no thread ever explicitly waits for the task to complete.
+If the total number of worker threads is zero, a special additional worker thread is created to execute enqueued tasks.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The method does not require the calling thread to join the arena; i.e. any number
+of threads outside of the arena can submit work to it without blocking.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>There is no guarantee that tasks enqueued into an arena execute concurrently with
+respect to any other tasks there.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>An exception thrown and not caught in the functor results in undefined behavior.</p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<code class="sig-name descname">template&lt;F&gt; auto execute(F&amp;&amp; f) -&gt; decltype(f())</code></dt>
+<dd><p>Executes the specified functor in the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> and returns the value returned by the functor.
+The <code class="docutils literal notranslate"><span class="pre">F</span></code> type shall meet the <cite>Function Objects</cite> requirements from [function.objects] ISO C++ Standard section.</p>
+<p>The calling thread joins the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> if possible, and executes the functor.
+Upon return it restores the previous task scheduler state and floating-point settings.</p>
+<p>If joining the <code class="docutils literal notranslate"><span class="pre">task_arena</span></code> is not possible, the call wraps the functor into a task,
+enqueues it into the arena, waits using an OS kernel synchronization object
+for another opportunity to join, and finishes after the task completion.</p>
+<p>An exception thrown in the functor will be captured and re-thrown from <code class="docutils literal notranslate"><span class="pre">execute</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any number of threads outside of the arena can submit work to the arena and be blocked.
+However, only the maximal number of threads specified for the arena can participate in executing the work.</p>
+</div>
+</dd></dl>
+
+<p>See also:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../task_group/task_group_cls.html"><span class="doc">task_group</span></a></p></li>
+<li><p><a class="reference internal" href="task_scheduler_observer_cls.html"><span class="doc">task_scheduler_observer</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="this_task_arena_ns.html" class="btn btn-neutral float-right" title="this_task_arena" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../task_group/task_group_status_enum.html" class="btn btn-neutral float-left" title="task_group_status" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

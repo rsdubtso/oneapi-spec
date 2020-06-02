@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CPU support &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Level Zero" href="../../../l0/source/index.html" />
+    <link rel="prev" title="GPU support" href="gpu_support.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">oneCCL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../definitions.html">Definitions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../programming_model.html">Programming Model</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="generic_workflow.html">Generic Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu_support.html">GPU support</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CPU support</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../index.html">oneCCL</a> </li>
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneCCL/source/spec/cpu_support.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cpu-support">
+<h1>CPU support<a class="headerlink" href="#cpu-support" title="Permalink to this headline">¶</a></h1>
+<p>The choice between CPU and GPU backends is performed by specifying <code class="docutils literal notranslate"><span class="pre">ccl_stream_type</span></code> value at the moment of creating ccl stream object.</p>
+<ul class="simple">
+<li><p>For CPU backend one should specify <code class="docutils literal notranslate"><span class="pre">ccl_stream_cpu</span></code> there.</p></li>
+<li><p>For collective operations performed using CPU stream, oneCCL expects communication buffers to reside in the host memory.</p></li>
+</ul>
+<p>The example below demonstrates these concepts.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Consider simple <code class="docutils literal notranslate"><span class="pre">allreduce</span></code> example for CPU.</p>
+<ol class="arabic">
+<li><p>Create CPU ccl stream object:</p>
+<blockquote>
+<div><p><strong>C version of oncCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">For</span> <span class="n">CPU</span> <span class="n">stream</span><span class="p">,</span> <span class="n">NULL</span> <span class="ow">is</span> <span class="n">passed</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">native</span> <span class="n">stream</span> <span class="n">pointer</span> <span class="o">*/</span>
+<span class="n">ccl_stream_create</span><span class="p">(</span><span class="n">ccl_stream_cpu</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>C++ version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">For</span> <span class="n">CPU</span><span class="p">,</span> <span class="n">NULL</span> <span class="ow">is</span> <span class="n">passed</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">native</span> <span class="n">stream</span> <span class="n">pointer</span> <span class="o">*/</span>
+<span class="n">ccl</span><span class="p">::</span><span class="n">stream_t</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">ccl</span><span class="p">::</span><span class="n">environment</span><span class="p">::</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">create_stream</span><span class="p">(</span><span class="n">cc</span><span class="p">::</span><span class="n">stream_type</span><span class="p">::</span><span class="n">cpu</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>or just</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl</span><span class="p">::</span><span class="n">stream</span> <span class="n">stream</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>To illustrate the <code class="docutils literal notranslate"><span class="pre">ccl_allreduce</span></code> execution, initialize <code class="docutils literal notranslate"><span class="pre">sendbuf</span></code> (in real scenario it is supplied by application):</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">initialize</span> <span class="n">sendbuf</span> <span class="o">*/</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">COUNT</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sendbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rank</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ccl_allreduce</span></code> invocation performs reduction of values from all processes and then distributes the result to all processes.
+In this case, the result is an array with the size equal to the number of processes (<span class="math notranslate nohighlight">\(p\)</span>),
+where all elements are equal to the sum of arithmetical progression:</p>
+<div class="math notranslate nohighlight">
+\[p \cdot (p - 1) / 2\]</div>
+<p><strong>C version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl_allreduce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendbuf</span><span class="p">,</span>
+            <span class="o">&amp;</span><span class="n">recvbuf</span><span class="p">,</span>
+            <span class="n">COUNT</span><span class="p">,</span>
+            <span class="n">ccl_dtype_int</span><span class="p">,</span>
+            <span class="n">ccl_reduction_sum</span><span class="p">,</span>
+            <span class="n">NULL</span><span class="p">,</span> <span class="o">/*</span> <span class="n">attr</span> <span class="o">*/</span>
+            <span class="n">NULL</span><span class="p">,</span> <span class="o">/*</span> <span class="n">comm</span> <span class="o">*/</span>
+            <span class="n">stream</span><span class="p">,</span>
+            <span class="o">&amp;</span><span class="n">request</span><span class="p">);</span>
+<span class="n">ccl_wait</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>C++ version of oneCCL API:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">comm</span><span class="o">.</span><span class="n">allreduce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendbuf</span><span class="p">,</span>
+            <span class="o">&amp;</span><span class="n">recvbuf</span><span class="p">,</span>
+            <span class="n">COUNT</span><span class="p">,</span>
+            <span class="n">ccl</span><span class="p">::</span><span class="n">reduction</span><span class="p">::</span><span class="nb">sum</span><span class="p">,</span>
+            <span class="n">nullptr</span><span class="p">,</span> <span class="o">/*</span> <span class="n">attr</span> <span class="o">*/</span>
+            <span class="n">stream</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">wait</span><span class="p">();</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using C version of oneCCL API, it is required to explicitly free ccl stream object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccl_stream_free</span><span class="p">(</span><span class="n">stream</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For C++ version of oneCCL API this is performed implicitly.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../../l0/source/index.html" class="btn btn-neutral float-right" title="Level Zero" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gpu_support.html" class="btn btn-neutral float-left" title="GPU support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

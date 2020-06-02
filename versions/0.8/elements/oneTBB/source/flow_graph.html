@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Flow Graph &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="graph" href="flow_graph/graph_cls.html" />
+    <link rel="prev" title="split" href="algorithms/split_tags/split_cls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="algorithms.html">Algorithms</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Flow Graph</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#graph-class">Graph Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ports-and-edges">Ports and Edges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special-messages-types">Special Messages Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/flow_graph.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flow-graph">
+<h1>Flow Graph<a class="headerlink" href="#flow-graph" title="Permalink to this headline">¶</a></h1>
+<p><strong>[flow_graph]</strong></p>
+<p>In addition to loop parallelism, the oneAPI Threading Building Blocks library also supports graph
+parallelism. It’s possible to create graphs that are highly scalable, but it is also possible to
+create graphs that are completely sequential.</p>
+<p>There are 3 types of components used to implement a graph:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">graph</span></code> class instance</p></li>
+<li><p>Nodes</p></li>
+<li><p>Ports and edges</p></li>
+</ul>
+<div class="section" id="graph-class">
+<h2>Graph Class<a class="headerlink" href="#graph-class" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">graph</span></code> class instance is the owner of the tasks created on behalf of the flow graph. Users can wait
+on the <code class="docutils literal notranslate"><span class="pre">graph</span></code> if they need to wait for the completion of all of the tasks related to the flow
+graph execution. One can also register external interactions with the <code class="docutils literal notranslate"><span class="pre">graph</span></code> and run tasks under
+the ownership of the flow graph.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/graph_cls.html">graph</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flow_graph/reset_flags_enum.html">reset_flags Enumeration</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="nodes">
+<h2>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="abstract-interfaces">
+<h3>Abstract Interfaces<a class="headerlink" href="#abstract-interfaces" title="Permalink to this headline">¶</a></h3>
+<p>In order to be used as a graph node type, a class needs to inherit certain abstract types and implement the
+corresponding interfaces. <code class="docutils literal notranslate"><span class="pre">graph_node</span></code> is the base class for any other node type; its interfaces
+always have to be implemented. If a node sends messages to other nodes, it has to implement the <code class="docutils literal notranslate"><span class="pre">sender</span></code>
+interface, while with <code class="docutils literal notranslate"><span class="pre">receiver</span></code> interface the node may accept messages. For nodes that have multiple
+inputs and/or outputs, each input port is a <code class="docutils literal notranslate"><span class="pre">receiver</span></code> and each output port is a <code class="docutils literal notranslate"><span class="pre">sender</span></code>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/graph_node_cls.html">graph_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/sender.html">sender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/receiver.html">receiver</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<p>Every node in flow graph has its own properties.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/forwarding_and_buffering.html">Forwarding and Buffering</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="functional-nodes">
+<h3>Functional Nodes<a class="headerlink" href="#functional-nodes" title="Permalink to this headline">¶</a></h3>
+<p>Functional nodes do computations in response to input messages (if any), and send the result or a
+signal to their successors.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/continue_node_cls.html">continue_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/func_node_cls.html">function_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/input_node_cls.html">input_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/multifunc_node_cls.html">multifunction_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/async_node_cls.html">async_node</a></li>
+</ul>
+</div>
+<p><strong>Auxiliary</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/functional_node_policies.html">Function Nodes Policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/node_priorities.html">Nodes Priorities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/predefined_concurrency_limits.html">Predefined Concurrency Limits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/copy_body_func.html">copy_body</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="buffering-nodes">
+<h3>Buffering Nodes<a class="headerlink" href="#buffering-nodes" title="Permalink to this headline">¶</a></h3>
+<p>Buffering nodes are designed to accumulate input messages and pass them to successors in a predefined order, depending on the node type.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/overwrite_node_cls.html">overwrite_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/write_once_node_cls.html">write_once_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/buffer_node_cls.html">buffer_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/queue_node_cls.html">queue_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/priority_queue_node_cls.html">priority_queue_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/sequencer_node_cls.html">sequencer_node</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="service-nodes">
+<h3>Service Nodes<a class="headerlink" href="#service-nodes" title="Permalink to this headline">¶</a></h3>
+<p>These nodes are designed for advanced control of the message flow, such as combining
+messages from different paths in a graph or limiting the number of simultaneously processed
+messages, as well as for creating reusable custom nodes.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/limiter_node_cls.html">limiter_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/broadcast_node_cls.html">broadcast_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/join_node_cls.html">join_node</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flow_graph/join_node_policies.html">join_node Policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/split_node_cls.html">split_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/indexer_node_cls.html">indexer_node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/composite_node_cls.html">composite_node</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="ports-and-edges">
+<h2>Ports and Edges<a class="headerlink" href="#ports-and-edges" title="Permalink to this headline">¶</a></h2>
+<p>Flow Graph provides an API to manage connections between the nodes.
+For nodes that have more than one input or output port (ex. <code class="docutils literal notranslate"><span class="pre">join_node</span></code>),
+making a connection requires to specify a certain port by using special helper functions.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/input_port_func.html">input_port</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/output_port_func.html">output_port</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/make_edge_func.html">make_edge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/remove_edge_func.html">remove_edge</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="special-messages-types">
+<h2>Special Messages Types<a class="headerlink" href="#special-messages-types" title="Permalink to this headline">¶</a></h2>
+<p>Flow Graph supports a set of specific message types.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/continue_msg_cls.html">continue_msg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/tagged_msg_cls.html">tagged_msg</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/dependency_flow_graph_example.html">Dependency Flow Graph Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flow_graph/message_flow_graph_example.html">Message Flow Graph Example</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flow_graph/graph_cls.html" class="btn btn-neutral float-right" title="graph" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="algorithms/split_tags/split_cls.html" class="btn btn-neutral float-left" title="split" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

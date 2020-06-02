@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>parallel_reduce &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="parallel_deterministic_reduce" href="parallel_deterministic_reduce_func.html" />
+    <link rel="prev" title="parallel_for" href="parallel_for_func.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../algorithms.html">Algorithms</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../../algorithms.html#parallel-functions">Parallel Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../algorithms.html#blocked-ranges">Blocked Ranges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../algorithms.html#partitioners">Partitioners</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../algorithms.html#split-tags">Split Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../flow_graph.html">Flow Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/algorithms/functions/parallel_reduce_func.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parallel-reduce">
+<h1>parallel_reduce<a class="headerlink" href="#parallel-reduce" title="Permalink to this headline">¶</a></h1>
+<p><strong>[algorithms.parallel_reduce]</strong></p>
+<p>Function template that computes reduction over a range.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined in header &lt;tbb/parallel_reduce.h&gt;</span>
+
+<span class="k">namespace</span> <span class="n">tbb</span> <span class="p">{</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Range</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Value</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Func</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Reduction</span><span class="o">&gt;</span>
+    <span class="n">Value</span> <span class="n">parallel_reduce</span><span class="p">(</span><span class="k">const</span> <span class="n">Range</span><span class="o">&amp;</span> <span class="n">range</span><span class="p">,</span> <span class="k">const</span> <span class="n">Value</span><span class="o">&amp;</span> <span class="n">identity</span><span class="p">,</span> <span class="k">const</span> <span class="n">Func</span><span class="o">&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="k">const</span> <span class="n">Reduction</span><span class="o">&amp;</span> <span class="n">reduction</span><span class="p">,</span> <span class="cm">/* see-below */</span> <span class="n">partitioner</span><span class="p">,</span> <span class="n">task_group_context</span><span class="o">&amp;</span> <span class="n">group</span><span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Range</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Value</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Func</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Reduction</span><span class="o">&gt;</span>
+    <span class="n">Value</span> <span class="n">parallel_reduce</span><span class="p">(</span><span class="k">const</span> <span class="n">Range</span><span class="o">&amp;</span> <span class="n">range</span><span class="p">,</span> <span class="k">const</span> <span class="n">Value</span><span class="o">&amp;</span> <span class="n">identity</span><span class="p">,</span> <span class="k">const</span> <span class="n">Func</span><span class="o">&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="k">const</span> <span class="n">Reduction</span><span class="o">&amp;</span> <span class="n">reduction</span><span class="p">,</span> <span class="cm">/* see-below */</span> <span class="n">partitioner</span><span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Range</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Value</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Func</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Reduction</span><span class="o">&gt;</span>
+    <span class="n">Value</span> <span class="n">parallel_reduce</span><span class="p">(</span><span class="k">const</span> <span class="n">Range</span><span class="o">&amp;</span> <span class="n">range</span><span class="p">,</span> <span class="k">const</span> <span class="n">Value</span><span class="o">&amp;</span> <span class="n">identity</span><span class="p">,</span> <span class="k">const</span> <span class="n">Func</span><span class="o">&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="k">const</span> <span class="n">Reduction</span><span class="o">&amp;</span> <span class="n">reduction</span><span class="p">,</span> <span class="n">task_group_context</span><span class="o">&amp;</span> <span class="n">group</span><span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Range</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Value</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Func</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Reduction</span><span class="o">&gt;</span>
+    <span class="n">Value</span> <span class="n">parallel_reduce</span><span class="p">(</span><span class="k">const</span> <span class="n">Range</span><span class="o">&amp;</span> <span class="n">range</span><span class="p">,</span> <span class="k">const</span> <span class="n">Value</span><span class="o">&amp;</span> <span class="n">identity</span><span class="p">,</span> <span class="k">const</span> <span class="n">Func</span><span class="o">&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="k">const</span> <span class="n">Reduction</span><span class="o">&amp;</span> <span class="n">reduction</span><span class="p">);</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Range</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Body</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">parallel_reduce</span><span class="p">(</span><span class="k">const</span> <span class="n">Range</span><span class="o">&amp;</span> <span class="n">range</span><span class="p">,</span> <span class="n">Body</span><span class="o">&amp;</span> <span class="n">body</span><span class="p">,</span> <span class="cm">/* see-below */</span> <span class="n">partitioner</span><span class="p">,</span> <span class="n">task_group_context</span><span class="o">&amp;</span> <span class="n">group</span><span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Range</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Body</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">parallel_reduce</span><span class="p">(</span><span class="k">const</span> <span class="n">Range</span><span class="o">&amp;</span> <span class="n">range</span><span class="p">,</span> <span class="n">Body</span><span class="o">&amp;</span> <span class="n">body</span><span class="p">,</span> <span class="cm">/* see-below */</span> <span class="n">partitioner</span><span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Range</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Body</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">parallel_reduce</span><span class="p">(</span><span class="k">const</span> <span class="n">Range</span><span class="o">&amp;</span> <span class="n">range</span><span class="p">,</span> <span class="n">Body</span><span class="o">&amp;</span> <span class="n">body</span><span class="p">,</span> <span class="n">task_group_context</span><span class="o">&amp;</span> <span class="n">group</span><span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Range</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Body</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">parallel_reduce</span><span class="p">(</span><span class="k">const</span> <span class="n">Range</span><span class="o">&amp;</span> <span class="n">range</span><span class="p">,</span> <span class="n">Body</span><span class="o">&amp;</span> <span class="n">body</span><span class="p">);</span>
+
+<span class="p">}</span> <span class="c1">// namespace tbb</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">partitioner</span></code> type may be one of the following entities:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">auto_partitioner&amp;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">simple_partitioner&amp;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">static_partitioner&amp;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">affinity_partitioner&amp;</span></code></p></li>
+</ul>
+<p id="par-reduce-requirements">Requirements:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Range</span></code> type shall meet the <a class="reference internal" href="../../named_requirements/algorithms/range.html"><span class="doc">Range requirements</span></a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Body</span></code> type shall meet the <a class="reference internal" href="../../named_requirements/algorithms/par_reduce_body.html"><span class="doc">ParallelReduceBody requirements</span></a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Func</span></code> type shall meet the <a class="reference internal" href="../../named_requirements/algorithms/par_reduce_func.html"><span class="doc">ParallelReduceFunc requirements</span></a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Reduction</span></code> types shall meet :<a class="reference internal" href="../../named_requirements/algorithms/par_reduce_func.html"><span class="doc">ParallelReduceReduction requirements</span></a>.</p></li>
+</ul>
+<p>The function template <code class="docutils literal notranslate"><span class="pre">parallel_reduce</span></code> has two forms.
+The functional form is designed to be easy to use in conjunction with lambda expressions.
+The imperative form is designed to minimize copying of data.</p>
+<p>The functional form <code class="docutils literal notranslate"><span class="pre">parallel_reduce(range,</span> <span class="pre">identity,</span> <span class="pre">func,</span> <span class="pre">reduction)</span></code> performs a parallel reduction by applying <em>func</em> to
+subranges in range and reducing the results using binary operator <em>reduction</em>.
+It returns the result of the reduction. Parameter <em>identity</em> specifies the left identity element for <em>func</em>’s <code class="docutils literal notranslate"><span class="pre">operator()</span></code>.
+Parameter <em>func</em> and <em>reduction</em> can be lambda expressions.</p>
+<p>The imperative form <code class="docutils literal notranslate"><span class="pre">parallel_reduce(range,body)</span></code> performs parallel reduction of <em>body</em> over each value in <em>range</em>.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">parallel_reduce</span></code> recursively splits the range into subranges to the point such that <code class="docutils literal notranslate"><span class="pre">is_divisible()</span></code> is false for each subrange.
+A <code class="docutils literal notranslate"><span class="pre">parallel_reduce</span></code> uses the splitting constructor to make one or more copies of the body for each thread.
+It may copy a body while the body’s <code class="docutils literal notranslate"><span class="pre">operator()</span></code> or method <code class="docutils literal notranslate"><span class="pre">join</span></code> runs concurrently.
+You are responsible for ensuring the safety of such concurrency. In typical usage, the safety requires no extra effort.</p>
+<p><code class="docutils literal notranslate"><span class="pre">parallel_reduce</span></code> may invoke the splitting constructor for the body.
+For each such split of the body, it invokes method <code class="docutils literal notranslate"><span class="pre">join</span></code> in order to merge the results from the bodies.
+Define <code class="docutils literal notranslate"><span class="pre">join</span></code> to update this to represent the accumulated result for this and rhs.
+The reduction operation should be associative, but does not have to be commutative.
+For a noncommutative operation <em>op</em>, <code class="docutils literal notranslate"><span class="pre">left.join(right)</span></code> should update <em>left</em> to be the result of <em>left op right</em>.</p>
+<p>A body is split only if the range is split, but the converse is not necessarily so.
+You must neither rely on a particular choice of body splitting nor on the subranges processed by a
+given body object being consecutive. <code class="docutils literal notranslate"><span class="pre">parallel_reduce</span></code> makes the choice of body splitting nondeterministically.</p>
+<p>When executed serially <code class="docutils literal notranslate"><span class="pre">parallel_reduce</span></code> run sequentially from left to right in the same sense as for <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code>.
+Sequential execution never invokes the splitting constructor or method join.</p>
+<p>All overloads can accept a <a class="reference internal" href="../../task_scheduler/scheduling_controls/task_group_context_cls.html"><span class="doc">task_group_context</span></a> object
+so that the algorithm’s tasks are executed in this group. By default the algorithm is executed in a bound group of its own.</p>
+<p><strong>Complexity</strong></p>
+<p>If the range and body take <em>O(1)</em> space, and the range splits into nearly equal pieces,
+then the space complexity is <em>O(P×log(N))</em>, where <em>N</em> is the size of the range and <em>P</em> is the number of threads.</p>
+<div class="section" id="example-imperative-form">
+<h2>Example (Imperative Form)<a class="headerlink" href="#example-imperative-form" title="Permalink to this headline">¶</a></h2>
+<p>The following code sums the values in an array.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;tbb/parallel_reduce.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;tbb/blocked_range.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">tbb</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Sum</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">value</span><span class="p">;</span>
+    <span class="n">Sum</span><span class="p">()</span> <span class="o">:</span> <span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">Sum</span><span class="p">(</span> <span class="n">Sum</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="n">split</span> <span class="p">)</span> <span class="p">{</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span> <span class="k">const</span> <span class="n">blocked_range</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">*&gt;&amp;</span> <span class="n">r</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kt">float</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span> <span class="kt">float</span><span class="o">*</span> <span class="n">a</span><span class="o">=</span><span class="n">r</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">a</span><span class="o">!=</span><span class="n">r</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">temp</span> <span class="o">+=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">join</span><span class="p">(</span> <span class="n">Sum</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="p">{</span><span class="n">value</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">value</span><span class="p">;}</span>
+<span class="p">};</span>
+
+<span class="kt">float</span> <span class="nf">ParallelSum</span><span class="p">(</span> <span class="kt">float</span> <span class="n">array</span><span class="p">[],</span> <span class="kt">size_t</span> <span class="n">n</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">Sum</span> <span class="n">total</span><span class="p">;</span>
+    <span class="n">parallel_reduce</span><span class="p">(</span> <span class="n">blocked_range</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">array</span><span class="p">,</span> <span class="n">array</span><span class="o">+</span><span class="n">n</span> <span class="p">),</span> <span class="n">total</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The example generalizes to reduction for any associative operation <em>op</em> as follows:</p>
+<ul class="simple">
+<li><p>Replace occurrences of 0 with the identity element for <em>op</em></p></li>
+<li><p>Replace occurrences of += with <em>op</em>= or its logical equivalent.</p></li>
+<li><p>Change the name <code class="docutils literal notranslate"><span class="pre">Sum</span></code> to something more appropriate for <em>op</em>.</p></li>
+</ul>
+<p>The operation may be noncommutative. For example, <em>op</em> could be matrix multiplication.</p>
+</div>
+<div class="section" id="example-with-lambda-expressions">
+<h2>Example with Lambda Expressions<a class="headerlink" href="#example-with-lambda-expressions" title="Permalink to this headline">¶</a></h2>
+<p>The following is analogous to the previous example, but written using lambda
+expressions and the functional form of <code class="docutils literal notranslate"><span class="pre">parallel_reduce</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;tbb/parallel_reduce.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;tbb/blocked_range.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">tbb</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="nf">ParallelSum</span><span class="p">(</span> <span class="kt">float</span> <span class="n">array</span><span class="p">[],</span> <span class="kt">size_t</span> <span class="n">n</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">parallel_reduce</span><span class="p">(</span>
+        <span class="n">blocked_range</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">*&gt;</span><span class="p">(</span> <span class="n">array</span><span class="p">,</span> <span class="n">array</span><span class="o">+</span><span class="n">n</span> <span class="p">),</span>
+        <span class="mf">0.f</span><span class="p">,</span>
+        <span class="p">[](</span><span class="k">const</span> <span class="n">blocked_range</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">*&gt;&amp;</span> <span class="n">r</span><span class="p">,</span> <span class="kt">float</span> <span class="n">init</span><span class="p">)</span><span class="o">-&gt;</span><span class="kt">float</span> <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span> <span class="kt">float</span><span class="o">*</span> <span class="n">a</span><span class="o">=</span><span class="n">r</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">a</span><span class="o">!=</span><span class="n">r</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">a</span> <span class="p">)</span>
+                <span class="n">init</span> <span class="o">+=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">init</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="p">[](</span> <span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y</span> <span class="p">)</span><span class="o">-&gt;</span><span class="kt">float</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>See also:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../algorithms.html#partitioners"><span class="std std-ref">Partitioners</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="parallel_deterministic_reduce_func.html" class="btn btn-neutral float-right" title="parallel_deterministic_reduce" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="parallel_for_func.html" class="btn btn-neutral float-left" title="parallel_for" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

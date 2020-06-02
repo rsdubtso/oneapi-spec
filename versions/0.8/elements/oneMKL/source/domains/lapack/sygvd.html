@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1.3.2.19. onemkl::lapack::sygvd &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="2.1.3.2.20. onemkl::lapack::sygvd_scratchpad_size" href="sygvd_scratchpad_size.html" />
+    <link rel="prev" title="2.1.3.2.18. onemkl::lapack::syevd_scratchpad_size" href="syevd_scratchpad_size.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneMKL</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneMKL/source/domains/lapack/sygvd.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="onemkl-lapack-sygvd">
+<span id="id1"></span><h1><span class="section-number">2.1.3.2.19. </span>onemkl::lapack::sygvd<a class="headerlink" href="#onemkl-lapack-sygvd" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p>Computes all eigenvalues and, optionally, eigenvectors of a real
+generalized symmetric definite eigenproblem using a divide and
+conquer method.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">sygvd</span></code> supports the following precisions.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>T</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Description</p>
+<p>The routine computes all the eigenvalues, and optionally, the
+eigenvectors of a real generalized symmetric-definite eigenproblem,
+of the form</p>
+<p><code class="docutils literal notranslate"><span class="pre">A*x</span> <span class="pre">=</span> <span class="pre">λ*B*x</span></code>, <code class="docutils literal notranslate"><span class="pre">A*B*x</span> <span class="pre">=</span> <span class="pre">λ*x</span></code>, or <code class="docutils literal notranslate"><span class="pre">B*A*x</span> <span class="pre">=</span> <span class="pre">λ*x</span></code> .</p>
+<p>Here <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> are assumed to be symmetric and <code class="docutils literal notranslate"><span class="pre">B</span></code> is also
+positive definite.</p>
+<p>It uses a divide and conquer algorithm.</p>
+</div>
+<div class="section" id="onemkl-lapack-sygvd-buffer-version">
+<h2><span class="section-number">2.1.3.2.19.1. </span>onemkl::lapack::sygvd (BUFFER Version)<a class="headerlink" href="#onemkl-lapack-sygvd-buffer-version" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl6lapack5sygvdERN2cl4sycl5queueENSt7int64_tEN6onemkl3jobEN6onemkl4uploENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tE">
+<span id="_CPPv3N6onemkl6lapack5sygvdERN2cl4sycl5queueENSt7int64_tEN6onemkl3jobEN6onemkl4uploENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tE"></span><span id="_CPPv2N6onemkl6lapack5sygvdERN2cl4sycl5queueENSt7int64_tEN6onemkl3jobEN6onemkl4uploENSt7int64_tERN2cl4sycl6bufferI1TX1EEENSt7int64_tERN2cl4sycl6bufferI1TX1EEENSt7int64_tERN2cl4sycl6bufferI1TX1EEERN2cl4sycl6bufferI1TX1EEENSt7int64_tE"></span><span id="onemkl::lapack::sygvd__cl::sycl::queueR.std::int64_t.onemkl::job.onemkl::uplo.std::int64_t.cl::sycl::buffer:T.1:R.std::int64_t.cl::sycl::buffer:T.1:R.std::int64_t.cl::sycl::buffer:T.1:R.cl::sycl::buffer:T.1:R.std::int64_t"></span>void <code class="sig-prename descclassname">onemkl::lapack<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">sygvd</code><span class="sig-paren">(</span>cl::sycl::queue &amp;<em>queue</em>, std::int64_t <em>itype</em>, onemkl::job <em>jobz</em>, onemkl::uplo <em>upper_lower</em>, std::int64_t <em>n</em>, cl::sycl::buffer&lt;T, 1&gt; &amp;<em>a</em>, std::int64_t <em>lda</em>, cl::sycl::buffer&lt;T, 1&gt; &amp;<em>b</em>, std::int64_t <em>ldb</em>, cl::sycl::buffer&lt;T, 1&gt; &amp;<em>w</em>, cl::sycl::buffer&lt;T, 1&gt; &amp;<em>scratchpad</em>, std::int64_t <em>scratchpad_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl6lapack5sygvdERN2cl4sycl5queueENSt7int64_tEN6onemkl3jobEN6onemkl4uploENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tERN2cl4sycl6bufferI1TXL1EEEERN2cl4sycl6bufferI1TXL1EEEENSt7int64_tE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl>
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>itype</dt><dd><p>Must be 1 or 2 or 3. Specifies the problem type to be solved:</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">1</span></code>, the problem type is <code class="docutils literal notranslate"><span class="pre">A*x</span> <span class="pre">=</span> <span class="pre">lambda*B*x</span></code>;</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">2</span></code>, the problem type is <code class="docutils literal notranslate"><span class="pre">A*B*x</span> <span class="pre">=</span> <span class="pre">lambda*x</span></code>;</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">3</span></code>, the problem type is <code class="docutils literal notranslate"><span class="pre">B*A*x</span> <span class="pre">=</span> <span class="pre">lambda*x</span></code>.</p>
+</dd>
+<dt>jobz</dt><dd><p>Must be <code class="docutils literal notranslate"><span class="pre">job::novec</span></code> or <code class="docutils literal notranslate"><span class="pre">job::vec</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">job::novec</span></code>, then only eigenvalues are computed.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">job::vec</span></code>, then eigenvalues and eigenvectors are
+computed.</p>
+</dd>
+<dt>upper_lower</dt><dd><p>Must be <code class="docutils literal notranslate"><span class="pre">uplo::upper</span></code> or <code class="docutils literal notranslate"><span class="pre">uplo::lower</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=</span> <span class="pre">job::upper</span></code>, a and b store the upper
+triangular part of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=</span> <span class="pre">job::lower</span></code>, a and b stores the lower
+triangular part of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+</dd>
+<dt>n</dt><dd><p>The order of the matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code><code class="docutils literal notranslate"><span class="pre">(0≤n)</span></code>.</p>
+</dd>
+<dt>a</dt><dd><p>Buffer, size a<code class="docutils literal notranslate"><span class="pre">(lda,*)</span></code> contains the upper or lower triangle
+of the symmetric matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>, as specified by upper_lower. The
+second dimension of a must be at least <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">n)</span></code>.</p>
+</dd>
+<dt>lda</dt><dd><p>The leading dimension of a; at least <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">n)</span></code>.</p>
+</dd>
+<dt>b</dt><dd><p>Buffer, size b<code class="docutils literal notranslate"><span class="pre">(ldb,*)</span></code> contains the upper or lower triangle
+of the symmetric matrix <code class="docutils literal notranslate"><span class="pre">B</span></code>, as specified by upper_lower. The
+second dimension of b must be at least <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">n)</span></code>.</p>
+</dd>
+<dt>ldb</dt><dd><p>The leading dimension of b; at least <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">n)</span></code>.</p>
+</dd>
+<dt>scratchpad_size</dt><dd><p>Size of scratchpad memory as a number of floating point elements of type T.
+Size should not be less than the value returned by <a class="reference internal" href="sygvd_scratchpad_size.html#onemkl-lapack-sygvd-scratchpad-size"><span class="std std-ref">onemkl::lapack::sygvd_scratchpad_size</span></a> function.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl>
+<dt>a</dt><dd><p>On exit, if <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">job::vec</span></code>, then if <code class="docutils literal notranslate"><span class="pre">info</span> <span class="pre">=</span> <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code>
+contains the matrix <code class="docutils literal notranslate"><span class="pre">Z</span></code> of eigenvectors. The eigenvectors are
+normalized as follows:</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">1</span></code>or <code class="docutils literal notranslate"><span class="pre">2</span></code> , <code class="docutils literal notranslate"><span class="pre">Z</span></code><sup>T</sup><code class="docutils literal notranslate"><span class="pre">*B*Z</span> <span class="pre">=</span> <span class="pre">I</span></code>;</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">3</span></code> , <code class="docutils literal notranslate"><span class="pre">Z</span></code><sup>T</sup><code class="docutils literal notranslate"><span class="pre">*inv(B)*Z</span> <span class="pre">=</span> <span class="pre">I</span></code>;</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">job::novec</span></code>, then on exit the upper triangle (if
+<code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=</span> <span class="pre">uplo::upper</span></code>) or the lower triangle (if
+<code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=</span> <span class="pre">uplo::lower</span></code>) of <code class="docutils literal notranslate"><span class="pre">A</span></code>, including the diagonal,
+is destroyed.</p>
+</dd>
+<dt>b</dt><dd><p>On exit, if <code class="docutils literal notranslate"><span class="pre">info≤n</span></code>, the part of b containing the matrix is
+overwritten by the triangular factor <code class="docutils literal notranslate"><span class="pre">U</span></code> or <code class="docutils literal notranslate"><span class="pre">L</span></code> from the
+Cholesky factorization <code class="docutils literal notranslate"><span class="pre">B</span></code> = <code class="docutils literal notranslate"><span class="pre">U</span></code><sup>T</sup><code class="docutils literal notranslate"><span class="pre">*U</span></code> or
+<code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">L*L</span></code><sup>T</sup>.</p>
+</dd>
+<dt>w</dt><dd><p>Buffer, size at least <code class="docutils literal notranslate"><span class="pre">n</span></code>. If <code class="docutils literal notranslate"><span class="pre">info</span> <span class="pre">=</span> <span class="pre">0</span></code>, contains the
+eigenvalues of the matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> in ascending order.</p>
+</dd>
+<dt>scratchpad</dt><dd><p>Buffer holding scratchpad memory to be used by routine for storing intermediate results.</p>
+</dd>
+</dl>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Throws</p>
+<dl>
+<dt>onemkl::lapack::exception</dt><dd><p>Exception is thrown in case of problems happened during calculations. The <code class="docutils literal notranslate"><span class="pre">info</span></code> code of the problem can be obtained by <cite>get_info()</cite> method of exception object:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">info=-i</span></code>, the <code class="docutils literal notranslate"><span class="pre">i</span></code>-th parameter had an illegal value.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">info≤n</span></code>:</p>
+<blockquote>
+<div><p>If <code class="docutils literal notranslate"><span class="pre">info=i</span></code>, and <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">onemkl::job::novec</span></code>, then the algorithm
+failed to converge; <code class="docutils literal notranslate"><span class="pre">i</span></code> indicates the number of off-diagonal
+elements of an intermediate tridiagonal form which did not
+converge to zero.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">info=i</span></code>, and <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">onemkl::job::vec</span></code>, then the algorithm
+failed to compute an eigenvalue while working on the submatrix
+lying in rows and columns <code class="docutils literal notranslate"><span class="pre">info/(n+1)</span></code> through
+<code class="docutils literal notranslate"><span class="pre">mod(info,n+1)</span></code>.</p>
+</div></blockquote>
+<p>For <code class="docutils literal notranslate"><span class="pre">info&gt;n</span></code>:</p>
+<blockquote>
+<div><p>If <code class="docutils literal notranslate"><span class="pre">info=n+i</span></code>, for <code class="docutils literal notranslate"><span class="pre">1≤i≤n</span></code>, then the leading minor of
+order <code class="docutils literal notranslate"><span class="pre">i</span></code> of <code class="docutils literal notranslate"><span class="pre">B</span></code> is not positive-definite. The
+factorization of <code class="docutils literal notranslate"><span class="pre">B</span></code> could not be completed and no
+eigenvalues or eigenvectors were computed.</p>
+</div></blockquote>
+<p>If <code class="docutils literal notranslate"><span class="pre">info</span></code> equals to value passed as scratchpad size, and <code class="docutils literal notranslate"><span class="pre">get_detail()</span></code> returns non zero, then passed scratchpad is of insufficient size, and required size should not be less than value return by <code class="docutils literal notranslate"><span class="pre">get_detail()</span></code> method of exception object.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" id="onemkl-lapack-sygvd-usm-version">
+<h2><span class="section-number">2.1.3.2.19.2. </span>onemkl::lapack::sygvd (USM Version)<a class="headerlink" href="#onemkl-lapack-sygvd-usm-version" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl6lapack5sygvdERN2cl4sycl5queueENSt7int64_tEN6onemkl3jobEN6onemkl4uploENSt7int64_tEP1TNSt7int64_tEP1TNSt7int64_tEP1TP1TNSt7int64_tERKN2cl4sycl12vector_classIN2cl4sycl5eventEEE">
+<span id="_CPPv3N6onemkl6lapack5sygvdERN2cl4sycl5queueENSt7int64_tEN6onemkl3jobEN6onemkl4uploENSt7int64_tEP1TNSt7int64_tEP1TNSt7int64_tEP1TP1TNSt7int64_tERKN2cl4sycl12vector_classIN2cl4sycl5eventEEE"></span><span id="_CPPv2N6onemkl6lapack5sygvdERN2cl4sycl5queueENSt7int64_tEN6onemkl3jobEN6onemkl4uploENSt7int64_tEP1TNSt7int64_tEP1TNSt7int64_tEP1TP1TNSt7int64_tERKN2cl4sycl12vector_classIN2cl4sycl5eventEEE"></span><span id="onemkl::lapack::sygvd__cl::sycl::queueR.std::int64_t.onemkl::job.onemkl::uplo.std::int64_t.TP.std::int64_t.TP.std::int64_t.TP.TP.std::int64_t.cl::sycl::vector_class:cl::sycl::event:CR"></span>cl::sycl::event <code class="sig-prename descclassname">onemkl::lapack<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">sygvd</code><span class="sig-paren">(</span>cl::sycl::queue &amp;<em>queue</em>, std::int64_t <em>itype</em>, onemkl::job <em>jobz</em>, onemkl::uplo <em>upper_lower</em>, std::int64_t <em>n</em>, T *<em>a</em>, std::int64_t <em>lda</em>, T *<em>b</em>, std::int64_t <em>ldb</em>, T *<em>w</em>, T *<em>scratchpad</em>, std::int64_t <em>scratchpad_size</em>, <em class="property">const</em> cl::sycl::vector_class&lt;cl::sycl::event&gt; &amp;<em>events</em> = {}<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl6lapack5sygvdERN2cl4sycl5queueENSt7int64_tEN6onemkl3jobEN6onemkl4uploENSt7int64_tEP1TNSt7int64_tEP1TNSt7int64_tEP1TP1TNSt7int64_tERKN2cl4sycl12vector_classIN2cl4sycl5eventEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl>
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>itype</dt><dd><p>Must be 1 or 2 or 3. Specifies the problem type to be solved:</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">1</span></code>, the problem type is <code class="docutils literal notranslate"><span class="pre">A*x</span> <span class="pre">=</span> <span class="pre">lambda*B*x</span></code>;</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">2</span></code>, the problem type is <code class="docutils literal notranslate"><span class="pre">A*B*x</span> <span class="pre">=</span> <span class="pre">lambda*x</span></code>;</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">3</span></code>, the problem type is <code class="docutils literal notranslate"><span class="pre">B*A*x</span> <span class="pre">=</span> <span class="pre">lambda*x</span></code>.</p>
+</dd>
+<dt>jobz</dt><dd><p>Must be <code class="docutils literal notranslate"><span class="pre">job::novec</span></code> or <code class="docutils literal notranslate"><span class="pre">job::vec</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">job::novec</span></code>, then only eigenvalues are computed.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">job::vec</span></code>, then eigenvalues and eigenvectors are
+computed.</p>
+</dd>
+<dt>upper_lower</dt><dd><p>Must be <code class="docutils literal notranslate"><span class="pre">uplo::upper</span></code> or <code class="docutils literal notranslate"><span class="pre">uplo::lower</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=</span> <span class="pre">job::upper</span></code>, a and b store the upper
+triangular part of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=</span> <span class="pre">job::lower</span></code>, a and b stores the lower
+triangular part of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+</dd>
+<dt>n</dt><dd><p>The order of the matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code><code class="docutils literal notranslate"><span class="pre">(0≤n)</span></code>.</p>
+</dd>
+<dt>a</dt><dd><p>Pointer to array of size a<code class="docutils literal notranslate"><span class="pre">(lda,*)</span></code> containing the upper or lower triangle
+of the symmetric matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>, as specified by upper_lower. The
+second dimension of a must be at least <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">n)</span></code>.</p>
+</dd>
+<dt>lda</dt><dd><p>The leading dimension of a; at least <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">n)</span></code>.</p>
+</dd>
+<dt>b</dt><dd><p>Pointer to array of size b<code class="docutils literal notranslate"><span class="pre">(ldb,*)</span></code> contains the upper or lower triangle
+of the symmetric matrix <code class="docutils literal notranslate"><span class="pre">B</span></code>, as specified by upper_lower. The
+second dimension of b must be at least <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">n)</span></code>.</p>
+</dd>
+<dt>ldb</dt><dd><p>The leading dimension of b; at least <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">n)</span></code>.</p>
+</dd>
+<dt>scratchpad_size</dt><dd><p>Size of scratchpad memory as a number of floating point elements of type T.
+Size should not be less than the value returned by <a class="reference internal" href="sygvd_scratchpad_size.html#onemkl-lapack-sygvd-scratchpad-size"><span class="std std-ref">onemkl::lapack::sygvd_scratchpad_size</span></a> function.</p>
+</dd>
+<dt>events</dt><dd><p>List of events to wait for before starting computation. Defaults to empty list.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl>
+<dt>a</dt><dd><p>On exit, if <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">job::vec</span></code>, then if <code class="docutils literal notranslate"><span class="pre">info</span> <span class="pre">=</span> <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code>
+contains the matrix <code class="docutils literal notranslate"><span class="pre">Z</span></code> of eigenvectors. The eigenvectors are
+normalized as follows:</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">1</span></code>or <code class="docutils literal notranslate"><span class="pre">2</span></code> , <code class="docutils literal notranslate"><span class="pre">Z</span></code><sup>T</sup><code class="docutils literal notranslate"><span class="pre">*B*Z</span> <span class="pre">=</span> <span class="pre">I</span></code>;</p>
+<p>if itype<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">3</span></code> , <code class="docutils literal notranslate"><span class="pre">Z</span></code><sup>T</sup><code class="docutils literal notranslate"><span class="pre">*inv(B)*Z</span> <span class="pre">=</span> <span class="pre">I</span></code>;</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">job::novec</span></code>, then on exit the upper triangle (if
+<code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=</span> <span class="pre">uplo::upper</span></code>) or the lower triangle (if
+<code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=</span> <span class="pre">uplo::lower</span></code>) of <code class="docutils literal notranslate"><span class="pre">A</span></code>, including the diagonal,
+is destroyed.</p>
+</dd>
+<dt>b</dt><dd><p>On exit, if <code class="docutils literal notranslate"><span class="pre">info≤n</span></code>, the part of b containing the matrix is
+overwritten by the triangular factor <code class="docutils literal notranslate"><span class="pre">U</span></code> or <code class="docutils literal notranslate"><span class="pre">L</span></code> from the
+Cholesky factorization <code class="docutils literal notranslate"><span class="pre">B</span></code> = <code class="docutils literal notranslate"><span class="pre">U</span></code><sup>T</sup><code class="docutils literal notranslate"><span class="pre">*U</span></code> or
+<code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">L*L</span></code><sup>T</sup>.</p>
+</dd>
+<dt>w</dt><dd><p>Pointer to array of size at least <code class="docutils literal notranslate"><span class="pre">n</span></code>. If <code class="docutils literal notranslate"><span class="pre">info</span> <span class="pre">=</span> <span class="pre">0</span></code>, contains the
+eigenvalues of the matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> in ascending order.</p>
+</dd>
+<dt>scratchpad</dt><dd><p>Pointer to scratchpad memory to be used by routine for storing intermediate results.</p>
+</dd>
+</dl>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Throws</p>
+<dl>
+<dt>onemkl::lapack::exception</dt><dd><p>Exception is thrown in case of problems happened during calculations. The <code class="docutils literal notranslate"><span class="pre">info</span></code> code of the problem can be obtained by <cite>get_info()</cite> method of exception object:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">info=-i</span></code>, the <code class="docutils literal notranslate"><span class="pre">i</span></code>-th parameter had an illegal value.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">info≤n</span></code>:</p>
+<blockquote>
+<div><p>If <code class="docutils literal notranslate"><span class="pre">info=i</span></code>, and <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">onemkl::job::novec</span></code>, then the algorithm
+failed to converge; <code class="docutils literal notranslate"><span class="pre">i</span></code> indicates the number of off-diagonal
+elements of an intermediate tridiagonal form which did not
+converge to zero.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">info=i</span></code>, and <code class="docutils literal notranslate"><span class="pre">jobz</span> <span class="pre">=</span> <span class="pre">onemkl::job::vec</span></code>, then the algorithm
+failed to compute an eigenvalue while working on the submatrix
+lying in rows and columns <code class="docutils literal notranslate"><span class="pre">info/(n+1)</span></code> through
+<code class="docutils literal notranslate"><span class="pre">mod(info,n+1)</span></code>.</p>
+</div></blockquote>
+<p>For <code class="docutils literal notranslate"><span class="pre">info&gt;n</span></code>:</p>
+<blockquote>
+<div><p>If <code class="docutils literal notranslate"><span class="pre">info=n+i</span></code>, for <code class="docutils literal notranslate"><span class="pre">1≤i≤n</span></code>, then the leading minor of
+order <code class="docutils literal notranslate"><span class="pre">i</span></code> of <code class="docutils literal notranslate"><span class="pre">B</span></code> is not positive-definite. The
+factorization of <code class="docutils literal notranslate"><span class="pre">B</span></code> could not be completed and no
+eigenvalues or eigenvectors were computed.</p>
+</div></blockquote>
+<p>If <code class="docutils literal notranslate"><span class="pre">info</span></code> equals to value passed as scratchpad size, and <code class="docutils literal notranslate"><span class="pre">get_detail()</span></code> returns non zero, then passed scratchpad is of insufficient size, and required size should not be less than value return by <code class="docutils literal notranslate"><span class="pre">get_detail()</span></code> method of exception object.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Return Values</p>
+<p>Output event to wait on to ensure computation is complete.</p>
+</div>
+</div>
+<div class="familylinks docutils container">
+<div class="parentlink docutils container">
+<p><strong>Parent topic:</strong> <a class="reference internal" href="lapack.html#onemkl-lapack-singular-value-eigenvalue-routines"><span class="std std-ref">LAPACK Singular Value and Eigenvalue Problem Routines</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sygvd_scratchpad_size.html" class="btn btn-neutral float-right" title="2.1.3.2.20. onemkl::lapack::sygvd_scratchpad_size" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="syevd_scratchpad_size.html" class="btn btn-neutral float-left" title="2.1.3.2.18. onemkl::lapack::syevd_scratchpad_size" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

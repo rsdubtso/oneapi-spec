@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bfloat16 &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Int8" href="int8.html" />
+    <link rel="prev" title="Data types" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">oneDNN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../conventions.html">Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../execution_model/index.html">Execution Model</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Data model</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Data types</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bfloat16</a></li>
+<li class="toctree-l4"><a class="reference internal" href="int8.html">Int8</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../memory/index.html">Memory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../primitives/index.html">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#id1">Open Source Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#implementation-notes">Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneDNN</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneDNN/source/data_model/data_types/bfloat16.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bfloat16">
+<h1>Bfloat16<a class="headerlink" href="#bfloat16" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this section we abbreviate data types names for readability. For
+example, <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::memory::data_type::f32</span></code></a> is abbreviated to <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a>.</p>
+</div>
+<p>Bfloat16 (<a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a>) is a 16-bit floating point data type based on the IEEE
+32-bit single-precision floating point data type (<a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a>).</p>
+<p>Both <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> and <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a> have an 8-bit exponent. However, while
+<a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a> has a 23-bit mantissa, <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> has only a 7-bit one, keeping
+only the most significant bits. As a result, while these data types support a
+very close numerical range of values, <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> has a significantly reduced
+precision. Therefore, <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> occupies a spot between <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a> and the
+IEEE 16-bit half-precision floating point data type, <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f16E" title="dnnl::memory::data_type::f16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f16</span></code></a>.  Compared
+directly to <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f16E" title="dnnl::memory::data_type::f16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f16</span></code></a>, which has a 5-bit exponent and a 10-bit mantissa,
+<a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> trades increased range for reduced precision.</p>
+<a class="reference internal image-reference" href="../../../../../_images/img_bf16_diagram.png"><img alt="Diagram depicting the bit-wise layout of f32, bf16, and f16 floating point data types" src="../../../../../_images/img_bf16_diagram.png" style="width: 600px;" /></a>
+<p>More details of the bfloat16 data type can be found <a class="reference external" href="https://en.wikipedia.org/wiki/Bfloat16_floating-point_format">here</a>.</p>
+<p>One of the advantages of using <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> versus <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a> is reduced memory
+footprint and, hence, increased memory access throughput.</p>
+<div class="section" id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
+<p>The main difference between implementing training with the <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a> data
+type and with the <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> data type is the way the weights updates are
+treated. With the <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a> data type, the weights gradients have the same
+data type as the weights themselves. This is not necessarily the case with the
+<a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> data type as oneDNN allows some flexibility here. For example, one
+could maintain a master copy of all the weights, computing weights gradients
+in <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a> and converting the result to <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> afterwards.</p>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>Most of the primitives can support the <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> data type for source and
+weights tensors. Destination tensors can be specified to have either the
+<a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type4bf16E" title="dnnl::memory::data_type::bf16"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">bf16</span></code></a> or <a class="reference internal" href="index.html#_CPPv4N4dnnl6memory9data_type3f32E" title="dnnl::memory::data_type::f32"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">f32</span></code></a> data type. The latter is intended for cases in which
+the output is to be fed to operations that do not support bfloat16 or require
+better precision.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="int8.html" class="btn btn-neutral float-right" title="Int8" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Data types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

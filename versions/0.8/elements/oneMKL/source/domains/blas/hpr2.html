@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1.2.2.12. hpr2 &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="2.1.2.2.13. sbmv" href="sbmv.html" />
+    <link rel="prev" title="2.1.2.2.11. hpr" href="hpr.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneMKL</a> </li>
+          
+        
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneMKL/source/domains/blas/hpr2.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hpr2">
+<span id="onemkl-blas-hpr2"></span><h1><span class="section-number">2.1.2.2.12. </span>hpr2<a class="headerlink" href="#hpr2" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p>Performs a rank-2 update of a Hermitian packed matrix.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">hpr2</span></code> supports the following precisions.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>T</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;float&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;double&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Description</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">hpr2</span></code> routines compute two scalar-vector-vector products and add
+them to a Hermitian packed matrix. The operation is defined as</p>
+<blockquote>
+<div><p>A &lt;- alpha*x*y <sup>H</sup> + conjg(alpha)*y*x <sup>H</sup> + A</p>
+</div></blockquote>
+<p>where:</p>
+<p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> is a scalar,</p>
+<p><code class="docutils literal notranslate"><span class="pre">A</span></code> is an <code class="docutils literal notranslate"><span class="pre">n</span></code>-by-<code class="docutils literal notranslate"><span class="pre">n</span></code> Hermitian matrix, supplied in packed form,</p>
+<p><code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are vectors of length <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+</div>
+<div class="section" id="hpr2-buffer-version">
+<h2><span class="section-number">2.1.2.2.12.1. </span>hpr2 (Buffer Version)<a class="headerlink" href="#hpr2-buffer-version" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl4blas4hpr2ERN4sycl5queueEN6onemkl4uploENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tERN4sycl6bufferI1TXL1EEEE">
+<span id="_CPPv3N6onemkl4blas4hpr2ERN4sycl5queueEN6onemkl4uploENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tERN4sycl6bufferI1TXL1EEEE"></span><span id="_CPPv2N6onemkl4blas4hpr2ERN4sycl5queueEN6onemkl4uploENSt7int64_tE1TRN4sycl6bufferI1TX1EEENSt7int64_tERN4sycl6bufferI1TX1EEENSt7int64_tERN4sycl6bufferI1TX1EEE"></span><span id="onemkl::blas::hpr2__sycl::queueR.onemkl::uplo.std::int64_t.T.sycl::buffer:T.1:R.std::int64_t.sycl::buffer:T.1:R.std::int64_t.sycl::buffer:T.1:R"></span>void <code class="sig-prename descclassname">onemkl::blas<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">hpr2</code><span class="sig-paren">(</span>sycl::queue &amp;<em>queue</em>, onemkl::uplo <em>upper_lower</em>, std::int64_t <em>n</em>, T <em>alpha</em>, sycl::buffer&lt;T, 1&gt; &amp;<em>x</em>, std::int64_t <em>incx</em>, sycl::buffer&lt;T, 1&gt; &amp;<em>y</em>, std::int64_t <em>incy</em>, sycl::buffer&lt;T, 1&gt; &amp;<em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl4blas4hpr2ERN4sycl5queueEN6onemkl4uploENSt7int64_tE1TRN4sycl6bufferI1TXL1EEEENSt7int64_tERN4sycl6bufferI1TXL1EEEENSt7int64_tERN4sycl6bufferI1TXL1EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl>
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>upper_lower</dt><dd><p>Specifies whether <code class="docutils literal notranslate"><span class="pre">A</span></code> is upper or lower triangular. See <a class="reference internal" href="../../architecture/architecture.html#onemkl-datatypes"><span class="std std-ref">oneMKL defined datatypes</span></a> for more details.</p>
+</dd>
+<dt>n</dt><dd><p>Number of rows and columns of <code class="docutils literal notranslate"><span class="pre">A</span></code>. Must be at least zero.</p>
+</dd>
+<dt>alpha</dt><dd><p>Scaling factor for the matrix-vector product.</p>
+</dd>
+<dt>x</dt><dd><p>Buffer holding input vector <code class="docutils literal notranslate"><span class="pre">x</span></code>. The buffer must be of size at
+least (1 + (<code class="docutils literal notranslate"><span class="pre">n</span></code> - 1)*abs(<code class="docutils literal notranslate"><span class="pre">incx</span></code>)). See <a class="reference external" href="../matrix-storage.html">Matrix and Vector
+Storage</a> for
+more details.</p>
+</dd>
+<dt>incx</dt><dd><p>Stride of vector <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+<dt>y</dt><dd><p>Buffer holding input/output vector <code class="docutils literal notranslate"><span class="pre">y</span></code>. The buffer must be of
+size at least (1 + (<code class="docutils literal notranslate"><span class="pre">n</span></code> - 1)*abs(<code class="docutils literal notranslate"><span class="pre">incy</span></code>)). See <a class="reference external" href="../matrix-storage.html">Matrix and
+Vector Storage</a>
+for more details.</p>
+</dd>
+<dt>incy</dt><dd><p>Stride of vector <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</dd>
+<dt>a</dt><dd><p>Buffer holding input matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>. Must have size at least
+(<code class="docutils literal notranslate"><span class="pre">n</span></code>*(<code class="docutils literal notranslate"><span class="pre">n</span></code>-1))/2. See <a class="reference external" href="../matrix-storage.html">Matrix and Vector
+Storage</a> for
+more details.</p>
+<p>The imaginary parts of the diagonal elements need not be set and
+are assumed to be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl>
+<dt>a</dt><dd><p>Buffer holding the updated upper triangular part of the Hermitian
+matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> if <code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=upper</span></code>, or the updated lower
+triangular part of the Hermitian matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> if
+<code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=lower</span></code>.</p>
+<p>The imaginary parts of the diagonal elements are set to zero.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="hpr2-usm-version">
+<h2><span class="section-number">2.1.2.2.12.2. </span>hpr2 (USM Version)<a class="headerlink" href="#hpr2-usm-version" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<div class="section docutils container">
+<p class="sectiontitle rubric">Syntax</p>
+<div class="dlsyntaxpara docutils container">
+<dl class="cpp function">
+<dt id="_CPPv4N6onemkl4blas4hpr2ERN4sycl5queueEN6onemkl4uploENSt7int64_tE1TPK1TNSt7int64_tEPK1TNSt7int64_tEP1TRKN4sycl12vector_classIN4sycl5eventEEE">
+<span id="_CPPv3N6onemkl4blas4hpr2ERN4sycl5queueEN6onemkl4uploENSt7int64_tE1TPK1TNSt7int64_tEPK1TNSt7int64_tEP1TRKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="_CPPv2N6onemkl4blas4hpr2ERN4sycl5queueEN6onemkl4uploENSt7int64_tE1TPK1TNSt7int64_tEPK1TNSt7int64_tEP1TRKN4sycl12vector_classIN4sycl5eventEEE"></span><span id="onemkl::blas::hpr2__sycl::queueR.onemkl::uplo.std::int64_t.T.TCP.std::int64_t.TCP.std::int64_t.TP.sycl::vector_class:sycl::event:CR"></span>sycl::event <code class="sig-prename descclassname">onemkl::blas<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">hpr2</code><span class="sig-paren">(</span>sycl::queue &amp;<em>queue</em>, onemkl::uplo <em>upper_lower</em>, std::int64_t <em>n</em>, T <em>alpha</em>, <em class="property">const</em> T *<em>x</em>, std::int64_t <em>incx</em>, <em class="property">const</em> T *<em>y</em>, std::int64_t <em>incy</em>, T *<em>a</em>, <em class="property">const</em> sycl::vector_class&lt;sycl::event&gt; &amp;<em>dependencies</em> = {}<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6onemkl4blas4hpr2ERN4sycl5queueEN6onemkl4uploENSt7int64_tE1TPK1TNSt7int64_tEPK1TNSt7int64_tEP1TRKN4sycl12vector_classIN4sycl5eventEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Input Parameters</p>
+<dl>
+<dt>queue</dt><dd><p>The queue where the routine should be executed.</p>
+</dd>
+<dt>upper_lower</dt><dd><p>Specifies whether <code class="docutils literal notranslate"><span class="pre">A</span></code> is upper or lower triangular. See <a class="reference internal" href="../../architecture/architecture.html#onemkl-datatypes"><span class="std std-ref">oneMKL defined datatypes</span></a> for more details.</p>
+</dd>
+<dt>n</dt><dd><p>Number of rows and columns of <code class="docutils literal notranslate"><span class="pre">A</span></code>. Must be at least zero.</p>
+</dd>
+<dt>alpha</dt><dd><p>Scaling factor for the matrix-vector product.</p>
+</dd>
+<dt>x</dt><dd><p>Pointer to input vector <code class="docutils literal notranslate"><span class="pre">x</span></code>. The array holding input vector
+<code class="docutils literal notranslate"><span class="pre">x</span></code> must be of size at least (1 + (<code class="docutils literal notranslate"><span class="pre">n</span></code> - 1)*abs(<code class="docutils literal notranslate"><span class="pre">incx</span></code>)).
+See <a class="reference external" href="../matrix-storage.html">Matrix and Vector
+Storage</a> for
+more details.</p>
+</dd>
+<dt>incx</dt><dd><p>Stride of vector <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+<dt>y</dt><dd><p>Pointer to input/output vector <code class="docutils literal notranslate"><span class="pre">y</span></code>. The array holding
+input/output vector <code class="docutils literal notranslate"><span class="pre">y</span></code> must be of size at least (1 + (<code class="docutils literal notranslate"><span class="pre">n</span></code>
+- 1)*abs(<code class="docutils literal notranslate"><span class="pre">incy</span></code>)). See <a class="reference external" href="../matrix-storage.html">Matrix and Vector
+Storage</a> for
+more details.</p>
+</dd>
+<dt>incy</dt><dd><p>Stride of vector <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</dd>
+<dt>a</dt><dd><p>Pointer to input matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>. The array holding input matrix
+<code class="docutils literal notranslate"><span class="pre">A</span></code> must have size at least (<code class="docutils literal notranslate"><span class="pre">n</span></code>*(<code class="docutils literal notranslate"><span class="pre">n</span></code>-1))/2. See
+<a class="reference external" href="../matrix-storage.html">Matrix and Vector
+Storage</a> for
+more details.</p>
+<p>The imaginary parts of the diagonal elements need not be set
+and are assumed to be zero.</p>
+</dd>
+<dt>dependencies</dt><dd><p>List of events to wait for before starting computation, if any.
+If omitted, defaults to no dependencies.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Output Parameters</p>
+<dl>
+<dt>a</dt><dd><p>Pointer to the updated upper triangular part of the Hermitian
+matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> if <code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=upper</span></code>, or the updated lower
+triangular part of the Hermitian matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> if
+<code class="docutils literal notranslate"><span class="pre">upper_lower</span> <span class="pre">=lower</span></code>.</p>
+<p>The imaginary parts of the diagonal elements are set to zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section docutils container">
+<p class="sectiontitle rubric">Return Values</p>
+<p>Output event to wait on to ensure computation is complete.</p>
+</div>
+</div>
+<div class="familylinks docutils container">
+<div class="parentlink docutils container">
+<p><strong>Parent topic:</strong> <a class="reference internal" href="blas-level-2-routines.html#blas-level-2-routines"><span class="std std-ref">BLAS Level 2 Routines</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sbmv.html" class="btn btn-neutral float-right" title="2.1.2.2.13. sbmv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hpr.html" class="btn btn-neutral float-left" title="2.1.2.2.11. hpr" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.4.3. Engines (Basic Random Number Generators) &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="2.4.3.1. onemkl::rng::mrg32k3a" href="mkl-rng-mrg32k3a.html" />
+    <link rel="prev" title="2.4.2.1. onemkl::rng::generate" href="mkl-rng-generate.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneMKL</a> </li>
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneMKL/source/domains/rng/engines-basic-random-number-generators.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="engines-basic-random-number-generators">
+<span id="id1"></span><h1><span class="section-number">2.4.3. </span>Engines (Basic Random Number Generators)<a class="headerlink" href="#engines-basic-random-number-generators" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p>oneMKL RNG provides pseudorandom, quasi-random, and non-deterministic
+random number generators for Data Parallel C++:</p>
+<div class="tablenoborder docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Routine</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="mkl-rng-mrg32k3a.html">onemkl::rng::mrg32k3a</a></p></td>
+<td><p>The combined multiple recursive pseudorandom number       generator      <code class="docutils literal notranslate"><span class="pre">MRG32k3a</span></code><a class="reference external" href="bibliography.html">[L’Ecuyer99a]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="mkl-rng-philox4x32x10.html">onemkl::rng::philox4x32x10</a></p></td>
+<td><p>Philox4x32-10 counter-based pseudorandom number       generator with a period of      2<sup>128</sup><code class="docutils literal notranslate"><span class="pre">PHILOX4X32X10</span></code><a class="reference external" href="bibliography.html">[Salmon11]</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="mkl-rng-mcg31m1.html">onemkl::rng::mcg31m1</a></p></td>
+<td><p>The 31-bit multiplicative congruential pseudorandom       number generator MCG(1132489760, 231 -1)      <a class="reference external" href="bibliography.html">[L’Ecuyer99]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="mkl-rng-r250.html">onemkl::rng::r250</a></p></td>
+<td><p>The 32-bit generalized feedback shift register       pseudorandom number generator      <code class="docutils literal notranslate"><span class="pre">GFSR(250,103)</span></code><a class="reference external" href="bibliography.html">[Kirkpatrick81]</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="mkl-rng-mcg59.html">onemkl::rng::mcg59</a></p></td>
+<td><p>The 59-bit multiplicative congruential pseudorandom       number generator <code class="docutils literal notranslate"><span class="pre">MCG(13</span></code><sup>13</sup><code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">2</span></code><sup>59</sup>) from      NAG Numerical Libraries      <a class="reference external" href="bibliography.html">[NAG]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="mkl-rng-wichmann_hill.html">onemkl::rng::wichmann_hill</a></p></td>
+<td><p>Wichmann-Hill pseudorandom number generator (a set of       273 basic generators) from NAG Numerical Libraries      <a class="reference external" href="bibliography.html">[NAG]</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="mkl-rng-mt19937.html">onemkl::rng::mt19937</a></p></td>
+<td><p>Mersenne Twister pseudorandom number generator       <code class="docutils literal notranslate"><span class="pre">MT19937</span></code><a class="reference external" href="bibliography.html">[Matsumoto98]</a>      with period length 2<sup>19937</sup>-1 of the produced sequence</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="mkl-rng-mt2203.html">onemkl::rng::mt2203</a></p></td>
+<td><p>Set of 6024 Mersenne Twister pseudorandom number       generators      <code class="docutils literal notranslate"><span class="pre">MT2203</span></code><a class="reference external" href="bibliography.html">[Matsumoto98]</a>,      <a class="reference external" href="bibliography.html">[Matsumoto00]</a>.      Each of them generates a sequence of period length equal to      2<sup>2203</sup>-1. Parameters of the generators provide mutual      independence of the corresponding sequences.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="mkl-rng-sfmt19937.html">onemkl::rng::sfmt19937</a></p></td>
+<td><p>SIMD-oriented Fast Mersenne Twister pseudorandom       number generator      <code class="docutils literal notranslate"><span class="pre">SFMT19937</span></code><a class="reference external" href="bibliography.html">[Saito08]</a>      with a period length equal to 2<sup>19937</sup>-1 of the produced      sequence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="mkl-rng-sobol.html">onemkl::rng::sobol</a></p></td>
+<td><p>Sobol quasi-random number generator       <a class="reference external" href="bibliography.html">[Sobol76]</a>,      <a class="reference external" href="bibliography.html">[Bratley88]</a>,      which works in arbitrary dimension.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="mkl-rng-niederreiter.html">onemkl::rng::niederreiter</a></p></td>
+<td><p>Niederreiter quasi-random number generator       <a class="reference external" href="bibliography.html">[Bratley92]</a>,      which works in arbitrary dimension.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="mkl-rng-ars5.html">onemkl::rng::ars5</a></p></td>
+<td><p>ARS-5 counter-based pseudorandom number generator with       a period of 2<sup>128</sup>, which uses instructions from the AES-NI      set      <code class="docutils literal notranslate"><span class="pre">ARS5</span></code><a class="reference external" href="bibliography.html">[Salmon11]</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="mkl-rng-nondeterministic.html">onemkl::rng::nondeterministic</a></p></td>
+<td><p>Non-deterministic random number generator       (RDRAND-based)      <a class="reference external" href="bibliography.html">[AVX]</a><a class="reference external" href="bibliography.html">[IntelSWMan]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For some basic generators, oneMKL RNG provides two methods of
+creating independent states in multiprocessor computations, which are
+the leapfrog method and the block-splitting method. These sequence
+splitting methods are also useful in sequential Monte Carlo. The
+description of these functions can be found in the <a class="reference external" href="service-routines.html">Service
+Routines</a> section.</p>
+<p>In addition, MT2203 pseudorandom number generator is a set of 6024
+generators designed to create up to 6024 independent random
+sequences, which might be used in parallel Monte Carlo simulations.
+Another generator that has the same feature is Wichmann-Hill. It
+allows creating up to 273 independent random streams. The properties
+of the generators designed for parallel computations are discussed in
+detail in
+[<a class="reference external" href="bibliography.html">Coddington94</a>].</p>
+<p>See <a class="reference external" href="bibliography.html">VS Notes</a> for
+the detailed description.</p>
+<p><strong>Parent topic:</strong> <a class="reference internal" href="../domains.html#onemkl-rng"><span class="std std-ref">Random Number Generators</span></a></p>
+</div>
+<div class="docutils container">
+<ul class="simple">
+<li><p><a class="reference external" href="mkl-rng-mrg32k3a.html">onemkl::rng::mrg32k3a</a>
+The combined multiple recursive pseudorandom number generator
+MRG32k3a [ L’Ecuyer99a]</p></li>
+<li><p><a class="reference external" href="mkl-rng-philox4x32x10.html">onemkl::rng::philox4x32x10</a>
+A Philox4x32-10 counter-based pseudorandom number generator.
+[Salmon11].</p></li>
+<li><p><a class="reference external" href="mkl-rng-mcg31m1.html">onemkl::rng::mcg31m1</a>
+The 31-bit multiplicative congruential pseudorandom number
+generator MCG(1132489760, 231 -1) [L’Ecuyer99]</p></li>
+<li><p><a class="reference external" href="mkl-rng-mcg59.html">onemkl::rng::mcg59</a>
+The 59-bit multiplicative congruential pseudorandom number
+generator MCG(1313, 259) from NAG Numerical Libraries [NAG].</p></li>
+<li><p><a class="reference external" href="mkl-rng-r250.html">onemkl::rng::r250</a>
+The 32-bit generalized feedback shift register pseudorandom number
+generator GFSR(250,103)[Kirkpatrick81].</p></li>
+<li><p><a class="reference external" href="mkl-rng-wichmann_hill.html">onemkl::rng::wichmann_hill</a>
+Wichmann-Hill pseudorandom number generator (a set of 273 basic
+generators) from NAG Numerical Libraries [NAG].</p></li>
+<li><p><a class="reference external" href="mkl-rng-mt19937.html">onemkl::rng::mt19937</a>
+Mersenne Twister pseudorandom number generator MT19937
+[Matsumoto98] with period length 2<sup>19937</sup>-1 of the produced
+sequence.</p></li>
+<li><p><a class="reference external" href="mkl-rng-sfmt19937.html">onemkl::rng::sfmt19937</a>
+SIMD-oriented Fast Mersenne Twister pseudorandom number generator
+SFMT19937 [Saito08] with a period length equal to
+2<sup>19937</sup>-1 of the produced sequence.</p></li>
+<li><p><a class="reference external" href="mkl-rng-mt2203.html">onemkl::rng::mt2203</a>
+Set of 6024 Mersenne Twister pseudorandom number generators MT2203
+[Matsumoto98], [Matsumoto00]. Each of them generates a sequence of
+period length equal to 2<sup>2203</sup>-1. Parameters of the
+generators provide mutual independence of the corresponding
+sequences..</p></li>
+<li><p><a class="reference external" href="mkl-rng-ars5.html">onemkl::rng::ars5</a>
+ARS-5 counter-based pseudorandom number generator with a period of
+2<sup>128</sup>, which uses instructions from the AES-NI set
+ARS5[Salmon11].</p></li>
+<li><p><a class="reference external" href="mkl-rng-sobol.html">onemkl::rng::sobol</a>
+Sobol quasi-random number generator [Sobol76], [Bratley88], which
+works in arbitrary dimension.</p></li>
+<li><p><a class="reference external" href="mkl-rng-niederreiter.html">onemkl::rng::niederreiter</a>
+Niederreiter quasi-random number generator [Bratley92], which
+works in arbitrary dimension.</p></li>
+<li><p><a class="reference external" href="mkl-rng-nondeterministic.html">onemkl::rng::nondeterministic</a>
+Non-deterministic random number generator (RDRAND-based)
+[AVX][IntelSWMan].</p></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mkl-rng-mrg32k3a.html" class="btn btn-neutral float-right" title="2.4.3.1. onemkl::rng::mrg32k3a" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mkl-rng-generate.html" class="btn btn-neutral float-left" title="2.4.2.1. onemkl::rng::generate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

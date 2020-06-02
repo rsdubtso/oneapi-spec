@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1.3. LAPACK Routines &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="2.1.3.1.1. onemkl::lapack::geqrf" href="geqrf.html" />
+    <link rel="prev" title="2.1.2.4.5. gemm_ext" href="../blas/gemm_ext.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneMKL</a> </li>
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneMKL/source/domains/lapack/lapack.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lapack-routines">
+<span id="onemkl-lapack"></span><h1><span class="section-number">2.1.3. </span>LAPACK Routines<a class="headerlink" href="#lapack-routines" title="Permalink to this headline">¶</a></h1>
+<p>oneMKL provides a DPC++ interface to select routines from the Linear Algebra PACKage (LAPACK), as well as several LAPACK-like extension routines.</p>
+<div class="section" id="lapack-linear-equation-routines">
+<span id="onemkl-lapack-linear-equation-routines"></span><h2><span class="section-number">2.1.3.1. </span>LAPACK Linear Equation Routines<a class="headerlink" href="#lapack-linear-equation-routines" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<p>LAPACK Linear Equation routines are used for factoring a matrix,
+solving a system of linear equations, solving linear least squares problems,
+and inverting a matrix. The following table lists the LAPACK Linear Equation
+routine groups.</p>
+<div class="tablenoborder docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Routines</p></th>
+<th class="head"><p>Scratchpad Size Routines</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="geqrf.html#onemkl-lapack-geqrf"><span class="std std-ref">onemkl::lapack::geqrf</span></a></p></td>
+<td><p><a class="reference internal" href="geqrf_scratchpad_size.html#onemkl-lapack-geqrf-scratchpad-size"><span class="std std-ref">onemkl::lapack::geqrf_scratchpad_size</span></a></p></td>
+<td><p>Computes the QR factorization of a general m-by-n matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="getrf.html#onemkl-lapack-getrf"><span class="std std-ref">onemkl::lapack::getrf</span></a></p></td>
+<td><p><a class="reference internal" href="getrf_scratchpad_size.html#onemkl-lapack-getrf-scratchpad-size"><span class="std std-ref">onemkl::lapack::getrf_scratchpad_size</span></a></p></td>
+<td><p>Computes the LU factorization of a general m-by-n matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="getri.html#onemkl-lapack-getri"><span class="std std-ref">onemkl::lapack::getri</span></a></p></td>
+<td><p><a class="reference internal" href="getri_scratchpad_size.html#onemkl-lapack-getri-scratchpad-size"><span class="std std-ref">onemkl::lapack::getri_scratchpad_size</span></a></p></td>
+<td><p>Computes the inverse of an LU-factored general matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="getrs.html#onemkl-lapack-getrs"><span class="std std-ref">onemkl::lapack::getrs</span></a></p></td>
+<td><p><a class="reference internal" href="getrs_scratchpad_size.html#onemkl-lapack-getrs-scratchpad-size"><span class="std std-ref">onemkl::lapack::getrs_scratchpad_size</span></a></p></td>
+<td><p>Solves a system of linear equations with an LU-factored square coefficient matrix, with multiple right-hand sides.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="orgqr.html#onemkl-lapack-orgqr"><span class="std std-ref">onemkl::lapack::orgqr</span></a></p></td>
+<td><p><a class="reference internal" href="orgqr_scratchpad_size.html#onemkl-lapack-orgqr-scratchpad-size"><span class="std std-ref">onemkl::lapack::orgqr_scratchpad_size</span></a></p></td>
+<td><p>Generates the real orthogonal matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> of the QR factorization formed by geqrf.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ormqr.html#onemkl-lapack-ormqr"><span class="std std-ref">onemkl::lapack::ormqr</span></a></p></td>
+<td><p><a class="reference internal" href="ormqr_scratchpad_size.html#onemkl-lapack-ormqr-scratchpad-size"><span class="std std-ref">onemkl::lapack::ormqr_scratchpad_size</span></a></p></td>
+<td><p>Multiplies a real matrix by the orthogonal matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> of the QR factorization formed by geqrf.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="potrf.html#onemkl-lapack-potrf"><span class="std std-ref">onemkl::lapack::potrf</span></a></p></td>
+<td><p><a class="reference internal" href="potrf_scratchpad_size.html#onemkl-lapack-potrf-scratchpad-size"><span class="std std-ref">onemkl::lapack::potrf_scratchpad_size</span></a></p></td>
+<td><p>Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="potri.html#onemkl-lapack-potri"><span class="std std-ref">onemkl::lapack::potri</span></a></p></td>
+<td><p><a class="reference internal" href="potri_scratchpad_size.html#onemkl-lapack-potri-scratchpad-size"><span class="std std-ref">onemkl::lapack::potri_scratchpad_size</span></a></p></td>
+<td><p>Computes the inverse of a Cholesky-factored symmetric (Hermitian) positive-definite matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="potrs.html#onemkl-lapack-potrs"><span class="std std-ref">onemkl::lapack::potrs</span></a></p></td>
+<td><p><a class="reference internal" href="potrs_scratchpad_size.html#onemkl-lapack-potrs-scratchpad-size"><span class="std std-ref">onemkl::lapack::potrs_scratchpad_size</span></a></p></td>
+<td><p>Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite coefficient matrix, with multiple right-hand sides.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="sytrf.html#onemkl-lapack-sytrf"><span class="std std-ref">onemkl::lapack::sytrf</span></a></p></td>
+<td><p><a class="reference internal" href="sytrf_scratchpad_size.html#onemkl-lapack-sytrf-scratchpad-size"><span class="std std-ref">onemkl::lapack::sytrf_scratchpad_size</span></a></p></td>
+<td><p>Computes the Bunch-Kaufman factorization of a symmetric matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="trtrs.html#onemkl-lapack-trtrs"><span class="std std-ref">onemkl::lapack::trtrs</span></a></p></td>
+<td><p><a class="reference internal" href="trtrs_scratchpad_size.html#onemkl-lapack-trtrs-scratchpad-size"><span class="std std-ref">onemkl::lapack::trtrs_scratchpad_size</span></a></p></td>
+<td><p>Solves a system of linear equations with a triangular coefficient matrix, with multiple right-hand sides.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ungqr.html#onemkl-lapack-ungqr"><span class="std std-ref">onemkl::lapack::ungqr</span></a></p></td>
+<td><p><a class="reference internal" href="ungqr_scratchpad_size.html#onemkl-lapack-ungqr-scratchpad-size"><span class="std std-ref">onemkl::lapack::ungqr_scratchpad_size</span></a></p></td>
+<td><p>Generates the complex unitary matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> of the QR factorization formed by geqrf.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="unmqr.html#onemkl-lapack-unmqr"><span class="std std-ref">onemkl::lapack::unmqr</span></a></p></td>
+<td><p><a class="reference internal" href="unmqr_scratchpad_size.html#onemkl-lapack-unmqr-scratchpad-size"><span class="std std-ref">onemkl::lapack::unmqr_scratchpad_size</span></a></p></td>
+<td><p>Multiplies a complex matrix by the unitary matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> of the QR factorization formed by geqrf.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="lapack-singular-value-and-eigenvalue-problem-routines">
+<span id="onemkl-lapack-singular-value-eigenvalue-routines"></span><h2><span class="section-number">2.1.3.2. </span>LAPACK Singular Value and Eigenvalue Problem Routines<a class="headerlink" href="#lapack-singular-value-and-eigenvalue-problem-routines" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<p>LAPACK Singular Value and Eigenvalue Problem routines are used for
+singular value and eigenvalue problems, and for performing a number of related
+computational tasks. The following table lists the LAPACK Singular Value and
+Eigenvalue Problem routine groups.</p>
+<div class="tablenoborder docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Routines</p></th>
+<th class="head"><p>Scratchpad Size Routines</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="gebrd.html#onemkl-lapack-gebrd"><span class="std std-ref">onemkl::lapack::gebrd</span></a></p></td>
+<td><p><a class="reference internal" href="gebrd_scratchpad_size.html#onemkl-lapack-gebrd-scratchpad-size"><span class="std std-ref">onemkl::lapack::gebrd_scratchpad_size</span></a></p></td>
+<td><p>Reduces a general matrix to bidiagonal form.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="gesvd.html#onemkl-lapack-gesvd"><span class="std std-ref">onemkl::lapack::gesvd</span></a></p></td>
+<td><p><a class="reference internal" href="gesvd_scratchpad_size.html#onemkl-lapack-gesvd-scratchpad-size"><span class="std std-ref">onemkl::lapack::gesvd_scratchpad_size</span></a></p></td>
+<td><p>Computes the singular value decomposition of a general rectangular matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="heevd.html#onemkl-lapack-heevd"><span class="std std-ref">onemkl::lapack::heevd</span></a></p></td>
+<td><p><a class="reference internal" href="heevd_scratchpad_size.html#onemkl-lapack-heevd-scratchpad-size"><span class="std std-ref">onemkl::lapack::heevd_scratchpad_size</span></a></p></td>
+<td><p>Computes all eigenvalues and, optionally, all eigenvectors of a complex Hermitian matrix using divide and conquer algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="hegvd.html#onemkl-lapack-hegvd"><span class="std std-ref">onemkl::lapack::hegvd</span></a></p></td>
+<td><p><a class="reference internal" href="hegvd_scratchpad_size.html#onemkl-lapack-hegvd-scratchpad-size"><span class="std std-ref">onemkl::lapack::hegvd_scratchpad_size</span></a></p></td>
+<td><p>Computes all eigenvalues and, optionally, all eigenvectors of a complex generalized Hermitian definite eigenproblem using divide and conquer algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="hetrd.html#onemkl-lapack-hetrd"><span class="std std-ref">onemkl::lapack::hetrd</span></a></p></td>
+<td><p><a class="reference internal" href="hetrd_scratchpad_size.html#onemkl-lapack-hetrd-scratchpad-size"><span class="std std-ref">onemkl::lapack::hetrd_scratchpad_size</span></a></p></td>
+<td><p>Reduces a complex Hermitian matrix to tridiagonal form.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="orgbr.html#onemkl-lapack-orgbr"><span class="std std-ref">onemkl::lapack::orgbr</span></a></p></td>
+<td><p><a class="reference internal" href="orgbr_scratchpad_size.html#onemkl-lapack-orgbr-scratchpad-size"><span class="std std-ref">onemkl::lapack::orgbr_scratchpad_size</span></a></p></td>
+<td><p>Generates the real orthogonal matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> or <code class="docutils literal notranslate"><span class="pre">P</span></code><sup>T</sup> determined by gebrd.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="orgtr.html#onemkl-lapack-orgtr"><span class="std std-ref">onemkl::lapack::orgtr</span></a></p></td>
+<td><p><a class="reference internal" href="orgtr_scratchpad_size.html#onemkl-lapack-orgtr-scratchpad-size"><span class="std std-ref">onemkl::lapack::orgtr_scratchpad_size</span></a></p></td>
+<td><p>Generates the real orthogonal matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> determined by sytrd.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ormtr.html#onemkl-lapack-ormtr"><span class="std std-ref">onemkl::lapack::ormtr</span></a></p></td>
+<td><p><a class="reference internal" href="ormtr_scratchpad_size.html#onemkl-lapack-ormtr-scratchpad-size"><span class="std std-ref">onemkl::lapack::ormtr_scratchpad_size</span></a></p></td>
+<td><p>Multiplies a real matrix by the orthogonal matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> determined by sytrd.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="syevd.html#onemkl-lapack-syevd"><span class="std std-ref">onemkl::lapack::syevd</span></a></p></td>
+<td><p><a class="reference internal" href="syevd_scratchpad_size.html#onemkl-lapack-syevd-scratchpad-size"><span class="std std-ref">onemkl::lapack::syevd_scratchpad_size</span></a></p></td>
+<td><p>Computes all eigenvalues and, optionally, all eigenvectors of a real symmetric matrix using divide and conquer algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="sygvd.html#onemkl-lapack-sygvd"><span class="std std-ref">onemkl::lapack::sygvd</span></a></p></td>
+<td><p><a class="reference internal" href="sygvd_scratchpad_size.html#onemkl-lapack-sygvd-scratchpad-size"><span class="std std-ref">onemkl::lapack::sygvd_scratchpad_size</span></a></p></td>
+<td><p>Computes all eigenvalues and, optionally, all eigenvectors of a real generalized symmetric definite eigenproblem using divide and conquer algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="sytrd.html#onemkl-lapack-sytrd"><span class="std std-ref">onemkl::lapack::sytrd</span></a></p></td>
+<td><p><a class="reference internal" href="sytrd_scratchpad_size.html#onemkl-lapack-sytrd-scratchpad-size"><span class="std std-ref">onemkl::lapack::sytrd_scratchpad_size</span></a></p></td>
+<td><p>Reduces a real symmetric matrix to tridiagonal form.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ungbr.html#onemkl-lapack-ungbr"><span class="std std-ref">onemkl::lapack::ungbr</span></a></p></td>
+<td><p><a class="reference internal" href="ungbr_scratchpad_size.html#onemkl-lapack-ungbr-scratchpad-size"><span class="std std-ref">onemkl::lapack::ungbr_scratchpad_size</span></a></p></td>
+<td><p>Generates the complex unitary matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> or <code class="docutils literal notranslate"><span class="pre">P</span></code><sup>T</sup> determined by gebrd.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ungtr.html#onemkl-lapack-ungtr"><span class="std std-ref">onemkl::lapack::ungtr</span></a></p></td>
+<td><p><a class="reference internal" href="ungtr_scratchpad_size.html#onemkl-lapack-ungtr-scratchpad-size"><span class="std std-ref">onemkl::lapack::ungtr_scratchpad_size</span></a></p></td>
+<td><p>Generates the complex unitary matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> determined by hetrd.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="unmtr.html#onemkl-lapack-unmtr"><span class="std std-ref">onemkl::lapack::unmtr</span></a></p></td>
+<td><p><a class="reference internal" href="unmtr_scratchpad_size.html#onemkl-lapack-unmtr-scratchpad-size"><span class="std std-ref">onemkl::lapack::unmtr_scratchpad_size</span></a></p></td>
+<td><p>Multiplies a complex matrix by the unitary matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> determined by hetrd.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="lapack-like-extensions-routines">
+<span id="onemkl-lapack-like-extensions-routines"></span><h2><span class="section-number">2.1.3.3. </span>LAPACK-like Extensions Routines<a class="headerlink" href="#lapack-like-extensions-routines" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<p>oneAPI Math Kernel Library DPC++ provides additional routines to
+extend the functionality of the LAPACK routines. These include routines
+to compute many independent factorizations, linear equation solutions, and similar.
+The following table lists the LAPACK-like Extensions routine groups.</p>
+<div class="tablenoborder docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Routines</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="geqrf_batch.html#onemkl-lapack-geqrf-batch"><span class="std std-ref">onemkl::lapack::geqrf_batch</span></a></p></td>
+<td><p>Computes the QR factorizations of a batch of general matrices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="getrf_batch.html#onemkl-lapack-getrf-batch"><span class="std std-ref">onemkl::lapack::getrf_batch</span></a></p></td>
+<td><p>Computes the LU factorizations of a batch of general matrices.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="getri_batch.html#onemkl-lapack-getri-batch"><span class="std std-ref">onemkl::lapack::getri_batch</span></a></p></td>
+<td><p>Computes the inverses of a batch of LU-factored general matrices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="getrs_batch.html#onemkl-lapack-getrs-batch"><span class="std std-ref">onemkl::lapack::getrs_batch</span></a></p></td>
+<td><p>Solves systems of linear equations with a batch of LU-factored square coefficient matrices, with multiple right-hand sides.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="orgqr_batch.html#onemkl-lapack-orgqr-batch"><span class="std std-ref">onemkl::lapack::orgqr_batch</span></a></p></td>
+<td><p>Generates the real orthogonal/complex unitary matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code><sub>i</sub> of the QR factorization formed by geqrf_batch.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="potrf_batch.html#onemkl-lapack-potrf-batch"><span class="std std-ref">onemkl::lapack::potrf_batch</span></a></p></td>
+<td><p>Computes the Cholesky factorization of a batch of symmetric (Hermitian) positive-definite matrices.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="potrs_batch.html#onemkl-lapack-potrs-batch"><span class="std std-ref">onemkl::lapack::potrs_batch</span></a></p></td>
+<td><p>Solves systems of linear equations with a batch of Cholesky-factored symmetric (Hermitian) positive-definite coefficient matrices, with multiple right-hand sides.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="docutils container">
+<div class="note docutils container">
+<p class="notetiphead rubric">Note</p>
+<p>Different arrays used as parameters to oneMKL LAPACK routines must
+not overlap.</p>
+</div>
+<div class="note docutils container">
+<p class="notetiphead rubric" id="warning">Warning</p>
+<p>LAPACK routines assume that input matrices do not contain IEEE 754
+special values such as INF or NaN values. Using these special
+values may cause LAPACK to return unexpected results or become
+unstable.</p>
+</div>
+</div>
+<p><strong>Parent topic:</strong> <a class="reference internal" href="../domains.html#onemkl-dense-linear-algebra"><span class="std std-ref">Dense Linear Algebra</span></a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="geqrf.html" class="btn btn-neutral float-right" title="2.1.3.1.1. onemkl::lapack::geqrf" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../blas/gemm_ext.html" class="btn btn-neutral float-left" title="2.1.2.4.5. gemm_ext" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

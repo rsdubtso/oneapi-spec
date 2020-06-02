@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.4.6. Bibliography &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="2.5.1. Special Value Notations" href="../vm/special-value-notations.html" />
+    <link rel="prev" title="2.4.5.24. onemkl::rng::multinomial" href="mkl-rng-multinomial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneMKL</a> </li>
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneMKL/source/domains/rng/bibliography.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bibliography">
+<span id="rng-bibliography"></span><h1><span class="section-number">2.4.6. </span>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h1>
+<div class="docutils container">
+<p>For more information about the VS RNG functionality, refer to the
+following publications:</p>
+<ul>
+<li><div class="docutils container" id="li-837eec245e0748298c1df57c504b7e49">
+<p><strong>VS RNG</strong></p>
+<dl>
+<dt>[AVX]</dt><dd><p>Intel. <em>Intel® Advanced Vector Extensions Programming
+Reference</em>. (<a class="reference external" href="http://software.intel.com/file/36945">http://software.intel.com/file/36945</a>)</p>
+</dd>
+<dt>[Bratley88]</dt><dd><p>Bratley P. and Fox B.L. <em>Implementing Sobol’s Quasirandom
+Sequence Generator</em>, ACM Transactions on Mathematical
+Software, Vol. 14, No. 1, Pages 88-100, March 1988.</p>
+</dd>
+<dt>[Bratley92]</dt><dd><p>Bratley P., Fox B.L., and Niederreiter H. <em>Implementation
+and Tests of Low-Discrepancy Sequences</em>, ACM Transactions on
+Modeling and Computer Simulation, Vol. 2, No. 3, Pages
+195-213, July 1992.</p>
+</dd>
+<dt>[Coddington94]</dt><dd><p>Coddington, P. D. <em>Analysis of Random Number Generators
+Using Monte Carlo Simulation</em>. Int. J. Mod. Phys. C-5, 547,
+1994.</p>
+</dd>
+<dt>[IntelSWMan]</dt><dd><p>Intel. <em>Intel® 64 and IA-32 Architectures Software
+Developer’s Manual</em>. 3 vols.
+(<a class="reference external" href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html">http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html</a>)</p>
+</dd>
+<dt>[L’Ecuyer99]</dt><dd><p>L’Ecuyer, Pierre. <em>Tables of Linear Congruential Generators
+of Different Sizes and Good Lattice Structure</em>. Mathematics
+of Computation, 68, 225, 249-260, 1999.</p>
+</dd>
+<dt>[L’Ecuyer99a]</dt><dd><p>L’Ecuyer, Pierre. <em>Good Parameter Sets for Combined Multiple
+Recursive Random Number Generators</em>. Operations Research,
+47, 1, 159-164, 1999.</p>
+</dd>
+<dt>[Kirkpatrick81]</dt><dd><p>Kirkpatrick, S., and Stoll, E. <em>A Very Fast Shift-Register
+Sequence Random Number Generator</em>. Journal of Computational
+Physics, V. 40. 517-526, 1981.</p>
+</dd>
+<dt>[Matsumoto98]</dt><dd><p>Matsumoto, M., and Nishimura, T. <em>Mersenne Twister: A
+623-Dimensionally Equidistributed Uniform Pseudo-Random
+Number Generator</em>, ACM Transactions on Modeling and Computer
+Simulation, Vol. 8, No. 1, Pages 3-30, January 1998.</p>
+</dd>
+<dt>[Matsumoto00]</dt><dd><p>Matsumoto, M., and Nishimura, T. <em>Dynamic Creation of
+Pseudorandom Number Generators</em>, 56-69, in: Monte Carlo and
+Quasi-Monte Carlo Methods 1998, Ed. Niederreiter, H. and
+Spanier, J., Springer 2000,
+<a class="reference external" href="http://www.math.sci.hiroshima-u.ac.jp/%7Em-mat/MT/DC/dc.html">http://www.math.sci.hiroshima-u.ac.jp/%7Em-mat/MT/DC/dc.html</a>.</p>
+</dd>
+<dt>[NAG]</dt><dd><p>NAG Numerical Libraries.
+<a class="reference external" href="http://www.nag.co.uk/numeric/numerical_libraries.asp">http://www.nag.co.uk/numeric/numerical_libraries.asp</a></p>
+</dd>
+<dt>[Saito08]</dt><dd><p>Saito, M., and Matsumoto, M. <em>SIMD-oriented Fast Mersenne
+Twister: a 128-bit Pseudorandom Number Generator</em>. Monte
+Carlo and Quasi-Monte Carlo Methods 2006, Springer, Pages
+607 – 622, 2008.</p>
+<p><a class="reference external" href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/ARTICLES/earticles.html">http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/ARTICLES/earticles.html</a></p>
+</dd>
+<dt>[Salmon11]</dt><dd><p>Salmon, John K., Morales, Mark A., Dror, Ron O., and Shaw,
+David E., <em>Parallel Random Numbers: As Easy as 1, 2, 3</em>. SC
+‘11 Proceedings of 2011 International Conference for High
+Performance Computing, Networking, Storage and Analysis,
+2011.</p>
+</dd>
+<dt>[Sobol76]</dt><dd><p>Sobol, I.M., and Levitan, Yu.L. <em>The production of points
+uniformly distributed in a multidimensional cube</em>. Preprint
+40, Institute of Applied Mathematics, USSR Academy of
+Sciences, 1976 (In Russian).</p>
+</dd>
+<dt>[VS Notes]</dt><dd><p><em>oneMKL Vector Statistics Notes</em>, a document present on the
+oneMKL product at
+<a class="reference external" href="http://software.intel.com/en-us/articles/intel-math-kernel-library-documentation/">http://software.intel.com/en-us/articles/intel-math-kernel-library-documentation/</a></p>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../vm/special-value-notations.html" class="btn btn-neutral float-right" title="2.5.1. Special Value Notations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mkl-rng-multinomial.html" class="btn btn-neutral float-left" title="2.4.5.24. onemkl::rng::multinomial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

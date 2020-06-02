@@ -1,0 +1,1219 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Post-ops &mdash; oneAPI Specification 0.85 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+        <script src="../../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Batch Normalization" href="../batch_normalization.html" />
+    <link rel="prev" title="Attributes" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.85
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../introduction.html#target-audience">Target Audience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../introduction.html#goals-of-the-specification">Goals of the Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../introduction.html#definitions">Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../introduction.html#contribution-guidelines">Contribution Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../introduction.html#sign-your-work">Sign your work</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../architecture.html">Software Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../architecture.html#oneapi-platform">oneAPI Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../architecture.html#api-programming-example">API Programming Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../architecture.html#direct-programming-example">Direct Programming Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../library-interop.html">Library Interoperability</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../library-interop.html#queueing">Queueing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../library-interop.html#api-arguments">API Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../library-interop.html#asynchronous-apis">Asynchronous APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../library-interop.html#exceptions">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dpcpp/source/index.html">DPC++</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dpcpp/source/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dpcpp/source/index.html#detailed-api-and-language-descriptions">Detailed API and Language Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dpcpp/source/index.html#open-source-implementation">Open Source Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dpcpp/source/index.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDPL/source/index.html">oneDPL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDPL/source/index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDPL/source/index.html#supported-c-standard-library-apis-and-algorithms">Supported C++ Standard Library APIs and Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDPL/source/pstl.html">Extensions to Parallel STL</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDPL/source/pstl.html#dpc-execution-policy">DPC++ Execution Policy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDPL/source/pstl.html#wrappers-for-sycl-buffers">Wrappers for SYCL Buffers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDPL/source/extensions.html">Specific API of oneDPL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">oneDNN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html#general-api-notes">General API notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../conventions.html">Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../conventions.html#variable-tensor-names">Variable (Tensor) Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../conventions.html#rnn-specific-notation">RNN-Specific Notation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../execution_model/index.html">Execution Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../execution_model/index.html#engine">Engine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../execution_model/index.html#stream">Stream</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_model/index.html">Data model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../data_model/data_types/index.html">Data types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../data_model/data_types/bfloat16.html">Bfloat16</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data_model/data_types/int8.html">Int8</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_model/memory/index.html">Memory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../data_model/memory/formats.html">Memory Formats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data_model/memory/objects.html">Memory Descriptors and Objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Primitives</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../general.html">Common Definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../general.html#base-class-for-primitives">Base Class for Primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../general.html#base-class-for-primitives-descriptors">Base Class for Primitives Descriptors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../general.html#common-enumerations">Common Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../general.html#normalization-primitives-flags">Normalization Primitives Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../general.html#execution-argument-indices">Execution argument indices</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Attributes</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Post-ops</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#scratchpad-mode">Scratchpad Mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#quantization">Quantization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#attribute-related-error-handling">Attribute Related Error Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../batch_normalization.html">Batch Normalization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../batch_normalization.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../batch_normalization.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../batch_normalization.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../batch_normalization.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../batch_normalization.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../batch_normalization.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../batch_normalization.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../batch_normalization.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../binary.html">Binary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../binary.html#forward-and-backward">Forward and Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../binary.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../binary.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../binary.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../binary.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../binary.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../binary.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../concat.html">Concat</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../concat.html#forward-and-backward">Forward and Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../concat.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../concat.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../concat.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../concat.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../concat.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../concat.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution.html">Convolution and Deconvolution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#algorithms">Algorithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../convolution.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../eltwise.html">Elementwise</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#difference-between-forward-training-and-forward-inference">Difference Between Forward Training and Forward Inference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#data-type-support">Data Type Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../eltwise.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../inner-product.html">Inner Product</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inner-product.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inner-product.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inner-product.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inner-product.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inner-product.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inner-product.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inner-product.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../layer_normalization.html">Layer normalization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../layer_normalization.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../layer_normalization.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../layer_normalization.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../layer_normalization.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../layer_normalization.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../layer_normalization.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../layer_normalization.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../logsoftmax.html">LogSoftmax</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../logsoftmax.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../logsoftmax.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../logsoftmax.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../logsoftmax.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../logsoftmax.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../logsoftmax.html#data-type-support">Data Type Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../logsoftmax.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../logsoftmax.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lrn.html">Local Response Normalization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lrn.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lrn.html#backward">Backward</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../matmul.html">Matrix Multiplication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../matmul.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../matmul.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../matmul.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../matmul.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../matmul.html#attributes-and-post-ops">Attributes and Post-ops</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../matmul.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../pooling.html">Pooling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../pooling.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pooling.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pooling.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pooling.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pooling.html#data-type-support">Data Type Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pooling.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pooling.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pooling.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../reorder.html">Reorder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reorder.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reorder.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reorder.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reorder.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reorder.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reorder.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../resampling.html">Resampling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../resampling.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resampling.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resampling.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resampling.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resampling.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resampling.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../resampling.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../rnn.html">RNN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../rnn.html#cell-functions">Cell Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rnn.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rnn.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rnn.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rnn.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../shuffle.html">Shuffle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../shuffle.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shuffle.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shuffle.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shuffle.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shuffle.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shuffle.html#data-layouts">Data Layouts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shuffle.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../shuffle.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../softmax.html">Softmax</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../softmax.html#forward">Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../softmax.html#backward">Backward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../softmax.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../softmax.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../softmax.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../softmax.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../softmax.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../softmax.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sum.html">Sum</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sum.html#execution-arguments">Execution Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sum.html#operation-details">Operation Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sum.html#post-ops-and-attributes">Post-ops and Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sum.html#data-types-support">Data Types Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sum.html#data-representation">Data Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sum.html#api">API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#id1">Open Source Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#implementation-notes">Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneCCL/source/index.html">oneCCL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneCCL/source/introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneCCL/source/definitions.html">Definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneCCL/source/spec/main_objects.html">oneCCL Concepts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/main_objects.html#oneccl-environment">oneCCL Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/main_objects.html#oneccl-stream">oneCCL Stream</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/main_objects.html#oneccl-communicator">oneCCL Communicator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneCCL/source/spec/collective_communication.html">oneCCL Collective Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/communication_primitives.html">Collective Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/ccl_datatypes.html">Data Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/collective_call_attributes.html">Collective Call Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/completion.html">Track Communication Progress</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneCCL/source/spec/error_handling.html">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneCCL/source/programming_model.html">Programming Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneCCL/source/spec/generic_workflow.html">Generic Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneCCL/source/spec/gpu_support.html">GPU support</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/gpu_support.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneCCL/source/spec/cpu_support.html">CPU support</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneCCL/source/spec/cpu_support.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../l0/source/index.html">Level Zero</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../l0/source/index.html#detailed-api-descriptions">Detailed API Descriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneDAL/source/index.html">oneDAL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/glossary.html">Glossary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/glossary.html#machine-learning-terms">Machine learning terms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/glossary.html#dal-short-name-terms">oneDAL terms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/glossary.html#common-oneapi-terms">Common oneAPI terms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/notations.html">Mathematical Notations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/programming_model/index.html">Programming model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/programming_model/basic_usage_scenario.html">Basic usage scenario</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/programming_model/memory_objects.html">Memory objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/programming_model/algorithm_anatomy.html">Algorithm Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/programming_model/algorithm_anatomy.html#descriptors">Descriptors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/programming_model/algorithm_anatomy.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/programming_model/managing_execution_context.html">Managing execution context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/programming_model/computational_modes.html">Computational modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/programming_model/computational_modes.html#batch">Batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/programming_model/computational_modes.html#online">Online</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/programming_model/computational_modes.html#distributed">Distributed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/common_interface/index.html">Common Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/common_interface/header_files_and_namespaces.html">Header files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/common_interface/header_files_and_namespaces.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/common_interface/managing_object_lifetimes.html">Managing object lifetimes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/common_interface/error_handling.html">Error handling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/common_interface/error_handling.html#exception-classification">Exception classification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html">Data management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#key-concepts">Key concepts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#dataset">Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#data-source">Data source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#table">Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#metadata">Metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#table-builder">Table builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#accessor">Accessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#use-case-example-for-table-accessor-and-table-builder">Use-case example for table, accessor and table builder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/data_management/index.html#details">Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/data_sources.html">Data Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/tables.html">Tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/table_builders.html">Table Builders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/data_management/accessors.html">Accessors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/algorithms/index.html">Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/algorithms/clustering/index.html">Clustering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/algorithms/clustering/kmeans.html">K-Means</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/algorithms/nearest_neighbors/index.html">Nearest Neighbors (kNN)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/algorithms/nearest_neighbors/knn_classification.html">k-Nearest Neighbors Classification (k-NN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/algorithms/decomposition/index.html">Decomposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/algorithms/decomposition/pca.html">Principal Components Analysis (PCA)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/appendix/index.html">Appendix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneDAL/source/appendix/kd_tree.html">k-d Tree</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneDAL/source/appendix/kd_tree.html#related-terms">Related terms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneDAL/source/bibliography.html">Bibliography</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneTBB/source/nested-index.html">oneTBB</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneTBB/source/nested-gen-info.html">General Information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/intro.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/notation.html">Notational Conventions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/identifiers.html">Identifiers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/identifiers.html#case">Case</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/identifiers.html#reserved-identifier-prefixes">Reserved Identifier Prefixes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/named_requirements.html">Named Requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/named_requirements.html#algorithms">Algorithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/named_requirements.html#mutexes">Mutexes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/named_requirements.html#containers">Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/named_requirements.html#task-scheduler">Task scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/named_requirements.html#flow-graph">Flow Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/thread_safety.html">Thread Safety</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneTBB/source/nested-interfaces.html">oneTBB Interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/configuration/namespaces.html">Namespaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/configuration/version_information.html">Version Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/configuration/enabling_debugging_features.html">Enabling Debugging Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/configuration/feature_macros.html">Feature Macros</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/algorithms.html">Algorithms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/algorithms.html#parallel-functions">Parallel Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/algorithms.html#blocked-ranges">Blocked Ranges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/algorithms.html#partitioners">Partitioners</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/algorithms.html#split-tags">Split Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/flow_graph.html">Flow Graph</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/flow_graph.html#graph-class">Graph Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/flow_graph.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/flow_graph.html#ports-and-edges">Ports and Edges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/flow_graph.html#special-messages-types">Special Messages Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/flow_graph.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/task_scheduler.html">Task Scheduler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/task_scheduler.html#scheduling-controls">Scheduling controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/task_scheduler.html#task-group">Task Group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/task_scheduler.html#task-arena">Task Arena</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/containers.html">Containers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/containers.html#sequences">Sequences</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/containers.html#queues">Queues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/containers.html#unordered-associative-containers">Unordered associative containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/containers.html#ordered-associative-containers">Ordered associative containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/containers.html#auxiliary-classes">Auxiliary classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/thread_local_storage.html">Thread Local Storage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/thread_local_storage/combinable_cls.html">combinable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/thread_local_storage/enumerable_thread_specific_cls.html">enumerable_thread_specific</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/thread_local_storage/flattened2d_cls.html">flattened2d</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneTBB/source/nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/memory_allocation.html">Memory Allocation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/memory_allocation.html#allocators">Allocators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/memory_allocation.html#memory-resources">Memory Resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/memory_allocation.html#library-functions">Library Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/mutual_exclusion.html">Mutual Exclusion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/mutual_exclusion.html#mutex-classes">Mutex Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneTBB/source/timing.html">Timing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/timing.html#syntax">Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneTBB/source/timing.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneVPL/source/index.html">oneVPL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneVPL/source/index.html#onevpl-for-msdk-full-name-users">oneVPL for Intel<sup>®</sup> Media Software Development Kit Users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#onevpl-usability-enhancements">oneVPL Usability Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#obsolete-msdk-features-omitted-from-onevpl">Obsolete MSDK Features omitted from oneVPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#msdk-api-s-not-present-in-onevpl">MSDK API’s not present in oneVPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#onevpl-api-s-not-present-in-msdk">oneVPL API’s not present in MSDK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneVPL/source/index.html#onevpl-api-versioning">oneVPL API versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneVPL/source/index.html#acronyms-and-abbreviations">Acronyms and Abbreviations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneVPL/source/index.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#video-decoding">Video Decoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#video-encoding">Video Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#video-processing">Video Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneVPL/source/index.html#programming-guide">Programming Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#status-codes">Status Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#sdk-session">SDK Session</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#media-sdk-dispatcher-legacy">Media SDK dispatcher (legacy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#onevpl-diapatcher">oneVPL diapatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#multiple-sessions">Multiple Sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#frame-and-fields">Frame and Fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#frame-surface-locking">Frame Surface Locking</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#decoding-procedures">Decoding Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#bitstream-repositioning">Bitstream Repositioning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#broken-streams-handling">Broken Streams Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#vp8-specific-details">VP8 Specific Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#jpeg">JPEG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#multi-view-video-decoding">Multi-view video decoding</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#encoding-procedures">Encoding Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#encoding-procedure">Encoding procedure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#configuration-change">Configuration Change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#external-bit-rate-control">External Bit Rate Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#id4">JPEG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#multi-view-video-encoding">Multi-view video encoding</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#video-processing-procedures">Video Processing Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#region-of-interest">Region of Interest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#multi-view-video-processing">Multi-view video processing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#transcoding-procedures">Transcoding Procedures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#asynchronous-pipeline">Asynchronous Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#surface-pool-allocation">Surface Pool Allocation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#pipeline-error-reporting">Pipeline Error Reporting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#working-with-hardware-acceleration">Working with hardware acceleration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#working-with-multiple-intel-media-devices">Working with multiple Intel media devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#working-with-video-memory">Working with video memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#working-with-microsoft-directx-applications">Working with Microsoft* DirectX* Applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#working-with-va-api-applications">Working with VA API Applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#memory-allocation-and-external-allocators">Memory Allocation and External Allocators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#external-memory-managment">External memory managment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#internal-memory-managment">Internal memory managment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxframesurfaceinterface">mfxFrameSurfaceInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#hardware-device-error-handling">Hardware Device Error Handling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneVPL/source/index.html#summary-tables">Summary Tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#mandatory-api-reference">Mandatory API reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#functions-per-api-version">Functions per API Version</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneVPL/source/index.html#appendicies">Appendicies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#configuration-parameter-constraints">Configuration Parameter Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#multiple-segment-encoding">Multiple-Segment Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#streaming-and-video-conferencing-features">Streaming and Video Conferencing Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#dynamic-bitrate-change">Dynamic Bitrate Change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#dynamic-resolution-change">Dynamic Resolution Change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#dynamic-reference-frame-scaling">Dynamic reference frame scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#forced-key-frame-generation">Forced Key Frame Generation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#reference-list-selection">Reference List Selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#low-latency-encoding-and-decoding">Low Latency Encoding and Decoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#reference-picture-marking-repetition-sei-message">Reference Picture Marking Repetition SEI message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#long-term-reference-frame">Long-term Reference frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#temporal-scalability">Temporal scalability</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#switchable-graphics-and-multiple-monitors">Switchable Graphics and Multiple Monitors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#switchable-graphics">Switchable Graphics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#multiple-monitors">Multiple Monitors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#working-directly-with-va-api-for-linux">Working directly with VA API for Linux*</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#cqp-hrd-mode-encoding">CQP HRD mode encoding</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneVPL/source/index.html#onevpl-api-reference">oneVPL API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#basic-types">Basic Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#onevpl-dispatcher-api">oneVPL Dispatcher API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#defines">Defines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#structures">Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxvariant">mfxVariant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxdecoderdescription">mfxDecoderDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxencoderdescription">mfxEncoderDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxvppdescription">mfxVPPDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfximpldescription">mfxImplDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxstatus">mfxStatus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfximpl">mfxIMPL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfximplcapsdeliveryformat">mfxImplCapsDeliveryFormat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxpriority">mfxPriority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#gpucopy">GPUCopy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#platformcodename">PlatformCodeName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxmediaadaptertype">mfxMediaAdapterType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxmemoryflags">mfxMemoryFlags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxresourcetype">mfxResourceType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#colorfourcc">ColorFourCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#chromaformatidc">ChromaFormatIdc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#picstruct">PicStruct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#frame-data-flags">Frame Data Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#corruption">Corruption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#timestampcalc">TimeStampCalc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#iopattern">IOPattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#codecformatfourcc">CodecFormatFourCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#codecprofile">CodecProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#codeclevel">CodecLevel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#hevc-tiers">HEVC Tiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#gopoptflag">GopOptFlag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#targetusage">TargetUsage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#ratecontrolmethod">RateControlMethod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#trelliscontrol">TrellisControl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#brefcontrol">BRefControl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#lookaheaddownsampling">LookAheadDownSampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#bpseicontrol">BPSEIControl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#skipframe">SkipFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#intrarefreshtypes">IntraRefreshTypes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#weightedpred">WeightedPred</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#preftype">PRefType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#scenarioinfo">ScenarioInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#contentinfo">ContentInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#intrapredblocksize-interpredblocksize">IntraPredBlockSize/InterPredBlockSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mvprecision">MVPrecision</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#codingoptionvalue">CodingOptionValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#bitstreamdataflag">BitstreamDataFlag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#extendedbufferid">ExtendedBufferID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#payloadctrlflags">PayloadCtrlFlags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#extmemframetype">ExtMemFrameType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#frametype">FrameType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxnalunittype">MfxNalUnitType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxhandletype">mfxHandleType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxskipmode">mfxSkipMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#frcalgm">FrcAlgm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#imagestabmode">ImageStabMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#inserthdrpayload">InsertHDRPayload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#longtermidx">LongTermIdx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#transfermatrix">TransferMatrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#nominalrange">NominalRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#roimode">ROImode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#deinterlacingmode">DeinterlacingMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#telecinepattern">TelecinePattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#vppfieldprocessingmode">VPPFieldProcessingMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#pictype">PicType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mbqpmode">MBQPMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#generalconstraintflags">GeneralConstraintFlags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#sampleadaptiveoffset">SampleAdaptiveOffset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#errortypes">ErrorTypes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#hevcregiontype">HEVCRegionType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#hevcregionencoding">HEVCRegionEncoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#angle">Angle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#scalingmode">ScalingMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#interpolationmode">InterpolationMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mirroringtype">MirroringType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#chromasiting">ChromaSiting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#vp9referenceframe">VP9ReferenceFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#segmentidblocksize">SegmentIdBlockSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#segmentfeature">SegmentFeature</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mctftemporalmode">MCTFTemporalMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxcomponenttype">mfxComponentType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#partialbitstreamoutput">PartialBitstreamOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#brcstatus">BRCStatus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#rotation">Rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#jpegcolorformat">JPEGColorFormat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#jpegscantype">JPEGScanType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#protected">Protected</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#structs">Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxrange32u">mfxRange32U</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxi16pair">mfxI16Pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxhdlpair">mfxHDLPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxversion">mfxVersion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxstructversion">mfxStructVersion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxplatform">mfxPlatform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxinitparam">mfxInitParam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxinfomfx">mfxInfoMFX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxframeinfo">mfxFrameInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxvideoparam">mfxVideoParam</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxframedata">mfxFrameData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#id7">mfxFrameSurfaceInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxframesurface1">mfxFrameSurface1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxbitstream">mfxBitstream</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxencodestat">mfxEncodeStat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxdecodestat">mfxDecodeStat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxpayload">mfxPayload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxencodectrl">mfxEncodeCtrl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxframeallocrequest">mfxFrameAllocRequest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxframeallocresponse">mfxFrameAllocResponse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxframeallocator">mfxFrameAllocator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxcomponentinfo">mfxComponentInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxadapterinfo">mfxAdapterInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxadaptersinfo">mfxAdaptersInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxqpandmode">mfxQPandMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#vpp-structures">VPP Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#extension-buffers-structures">Extension buffers structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#vpp-extention-buffers">VPP Extention buffers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mfxextvppdenoise">mfxExtVPPDenoise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#bit-rate-control-extension-buffers">Bit Rate Control Extension Buffers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#vp8-extenrion-buffers">VP8 Extenrion Buffers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#jpeg-extension-buffers">JPEG Extension Buffers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#mvc-extension-buffers">MVC Extension Buffers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#pcp-extension-buffers">PCP Extension Buffers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneVPL/source/index.html#id8">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#implementation-capabilities">Implementation Capabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#session-management">Session Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#videocore">VideoCORE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#memory">Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#videoencode">VideoENCODE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#videodecode">VideoDECODE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneVPL/source/index.html#videovpp">VideoVPP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../oneMKL/source/index.html">oneMKL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html">oneMKL Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#execution-model">Execution Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#use-of-queues">Use of Queues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#device-usage">Device Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#asynchronous-execution">Asynchronous Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#host-thread-safety">Host Thread Safety</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#memory-model">Memory Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#the-buffer-memory-model">The Buffer Memory Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#unified-shared-memory-model">Unified Shared Memory Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#api-design">API Design</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#onemkl-namespaces">oneMKL namespaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#standard-c-datatype-usage">Standard C++ datatype usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#dpc-datatype-usage">DPC++ datatype usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#onemkl-defined-datatypes">oneMKL defined datatypes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#exceptions-and-error-handling">Exceptions and Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#other-features">Other Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#onemkl-specification-versioning-strategy">oneMKL Specification Versioning Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#current-version-of-this-onemkl-specification">Current Version of this oneMKL Specification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../oneMKL/source/architecture/architecture.html#pre-post-condition-checking">Pre/Post Condition Checking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../oneMKL/source/domains/domains.html">oneMKL Domains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/domains/domains.html#dense-linear-algebra">Dense Linear Algebra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/domains/domains.html#sparse-linear-algebra">Sparse Linear Algebra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/domains/domains.html#discrete-fourier-transforms">Discrete Fourier Transforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/domains/domains.html#random-number-generators">Random Number Generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../oneMKL/source/domains/domains.html#vector-math">Vector Math</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../versions.html">HTML and PDF Versions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../versions.html#release-notes">Release Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../versions.html#id1">0.85</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../versions.html#id2">0.8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../versions.html#id3">0.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../versions.html#id4">0.5</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../../index.html">oneDNN</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneDNN/source/primitives/attributes/post-ops.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="post-ops">
+<span id="post-ops-label"></span><h1>Post-ops<a class="headerlink" href="#post-ops" title="Permalink to this headline">¶</a></h1>
+<p><em>Post-ops</em> are operations that are appended after a primitive.  They are
+implemented using the <a class="reference internal" href="index.html#attributes-link"><span class="std std-ref">Attributes</span></a> mechanism. If there are multiple
+post-ops, the are executed in the order they have been appended.</p>
+<p>The post-ops are represented by <a class="reference internal" href="#_CPPv4N4dnnl8post_opsE" title="dnnl::post_ops"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::post_ops</span></code></a> which is copied once it
+is attached to the attributes using <a class="reference internal" href="index.html#_CPPv4N4dnnl14primitive_attr12set_post_opsEK8post_ops" title="dnnl::primitive_attr::set_post_ops"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::primitive_attr::set_post_ops()</span></code></a>
+function. The attributes then need to be passed to a primitive descriptor
+creation function to take effect. Below is a simple sketch:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">dnnl</span><span class="o">::</span><span class="n">post_ops</span> <span class="n">po</span><span class="p">;</span> <span class="c1">// default empty post-ops</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">po</span><span class="p">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// no post-ops attached</span>
+
+<span class="n">po</span><span class="p">.</span><span class="n">append_SOMETHING</span><span class="p">(</span><span class="n">params</span><span class="p">);</span> <span class="c1">// append some particular post-op</span>
+<span class="n">po</span><span class="p">.</span><span class="n">append_SOMETHING_ELSE</span><span class="p">(</span><span class="n">other_params</span><span class="p">);</span> <span class="c1">// append one more post-op</span>
+
+<span class="c1">// (!) Note that the order in which post-ops are appended matters!</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">po</span><span class="p">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="n">dnnl</span><span class="o">::</span><span class="n">primitive_attr</span> <span class="n">attr</span><span class="p">;</span> <span class="c1">// default attributes</span>
+<span class="n">attr</span><span class="p">.</span><span class="n">set_post_ops</span><span class="p">(</span><span class="n">po</span><span class="p">);</span> <span class="c1">// attach the post-ops to the attr</span>
+<span class="c1">// any changes to po after this point don&#39;t affect the value stored in attr</span>
+
+<span class="n">primitive</span><span class="o">::</span><span class="n">primitive_desc</span> <span class="n">op_pd</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">attr</span><span class="p">);</span> <span class="c1">// create a pd with the attr</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Different primitives may have different post-ops support.  Moreover, the
+support might also depend on the actual implementation of a primitive. So
+robust code should be able to handle errors accordingly. See the
+<a class="reference internal" href="index.html#attributes-error-handling-link"><span class="std std-ref">Attribute Related Error Handling</span></a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Post-ops do not change memory format of the operation destination memory
+object.</p>
+</div>
+<p>The post-op objects can be inspected using the <a class="reference internal" href="#_CPPv4NK4dnnl8post_ops4kindEi" title="dnnl::post_ops::kind"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::post_ops::kind()</span></code></a>
+function that takes an index of the post-op to inspect (that must be less than
+the value returned by <a class="reference internal" href="#_CPPv4NK4dnnl8post_ops3lenEv" title="dnnl::post_ops::len"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::post_ops::len()</span></code></a>), and returns its kind.</p>
+<div class="section" id="supported-post-ops">
+<h2>Supported Post-ops<a class="headerlink" href="#supported-post-ops" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="eltwise-post-op">
+<span id="post-ops-eltwise-label"></span><h3>Eltwise Post-op<a class="headerlink" href="#eltwise-post-op" title="Permalink to this headline">¶</a></h3>
+<p>The eltwise post-op is appended using <a class="reference internal" href="#_CPPv4N4dnnl8post_ops14append_eltwiseEf9algorithmff" title="dnnl::post_ops::append_eltwise"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::post_ops::append_eltwise()</span></code></a>
+function. The <a class="reference internal" href="#_CPPv4NK4dnnl8post_ops4kindEi" title="dnnl::post_ops::kind"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::post_ops::kind()</span></code></a> returns
+<a class="reference internal" href="../general.html#_CPPv4N4dnnl9primitive4kind7eltwiseE" title="dnnl::primitive::kind::eltwise"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::primitive::kind::eltwise</span></code></a> for such a post-op.</p>
+<p>The eltwise post-op replaces:</p>
+<div class="math notranslate nohighlight">
+\[\dst[:] = \operatorname{Op}(...)\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\dst[:] = scale \cdot \operatorname{eltwise}(\operatorname{Op}(...))\]</div>
+<p>The intermediate result of the <span class="math notranslate nohighlight">\(\operatorname{Op}(...)\)</span> is not
+preserved.</p>
+<p>The <span class="math notranslate nohighlight">\(scale\)</span> factor is supported in <a class="reference internal" href="index.html#attributes-quantization-label"><span class="std std-ref">int8</span></a> inference only. For all other cases the scale
+must be <cite>1.0</cite>.</p>
+</div>
+<div class="section" id="sum-post-op">
+<span id="post-ops-sum-label"></span><h3>Sum Post-op<a class="headerlink" href="#sum-post-op" title="Permalink to this headline">¶</a></h3>
+<p>The sum post-op accumulates the result of a primitive with the existing data
+and is appended using <a class="reference internal" href="#_CPPv4N4dnnl8post_ops10append_sumEfN6memory9data_typeE" title="dnnl::post_ops::append_sum"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::post_ops::append_sum()</span></code></a> function. The
+<a class="reference internal" href="#_CPPv4NK4dnnl8post_ops4kindEi" title="dnnl::post_ops::kind"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::post_ops::kind()</span></code></a> returns <a class="reference internal" href="../general.html#_CPPv4N4dnnl9primitive4kind3sumE" title="dnnl::primitive::kind::sum"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::primitive::kind::sum</span></code></a> for such
+a post-op.</p>
+<p>Prior to accumulating the result, the existing value us multiplied by scale.
+The scale parameter can be used in The <span class="math notranslate nohighlight">\(scale\)</span> factor is supported in
+<a class="reference internal" href="index.html#attributes-quantization-label"><span class="std std-ref">int8</span></a> inference only and should be used
+only when the result and the existing data have different magnitudes.  For all
+other cases the scale must be <cite>1.0</cite>.</p>
+<p>Additionally, the sum post-op can reinterpret the destination values as a
+different data type of the same size. This may be used to, for example,
+reinterpret 8-bit signed data as unsigned or vice versa (which requires that
+values fall within a common range to work).</p>
+<p>The sum post-op replaces</p>
+<div class="math notranslate nohighlight">
+\[\dst[:] = \operatorname{Op}(...)\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\dst[:] = scale \cdot as_data_type(\dst[:]) + \operatorname{Op}(...)\]</div>
+</div>
+<div class="section" id="examples-of-chained-post-ops">
+<h3>Examples of Chained Post-ops<a class="headerlink" href="#examples-of-chained-post-ops" title="Permalink to this headline">¶</a></h3>
+<p>Post-ops can be chained together by appending one after another. Note that the
+order matters: the post-ops are executed in the order they have been appended.</p>
+<div class="section" id="sum-relu">
+<span id="post-ops-sum-relu-label"></span><h4>Sum -&gt; ReLU<a class="headerlink" href="#sum-relu" title="Permalink to this headline">¶</a></h4>
+<p>This pattern is pretty common for the CNN topologies of the ResNet family.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">dnnl</span><span class="o">::</span><span class="n">post_ops</span> <span class="n">po</span><span class="p">;</span>
+<span class="n">po</span><span class="p">.</span><span class="n">append_sum</span><span class="p">(</span>
+        <span class="cm">/* scale = */</span> <span class="mf">1.f</span><span class="p">);</span>
+<span class="n">po</span><span class="p">.</span><span class="n">append_eltwise</span><span class="p">(</span>
+        <span class="cm">/* scale     = */</span> <span class="mf">1.f</span><span class="p">,</span>
+        <span class="cm">/* algorithm = */</span> <span class="n">dnnl</span><span class="o">::</span><span class="n">algorithm</span><span class="o">::</span><span class="n">eltwise_relu</span><span class="p">,</span>
+        <span class="cm">/* neg slope = */</span> <span class="mf">0.f</span><span class="p">,</span>
+        <span class="cm">/* unused for ReLU */</span> <span class="mf">0.f</span><span class="p">);</span>
+
+<span class="n">dnnl</span><span class="o">::</span><span class="n">primitive_attr</span> <span class="n">attr</span><span class="p">;</span>
+<span class="n">attr</span><span class="p">.</span><span class="n">set_post_ops</span><span class="p">(</span><span class="n">po</span><span class="p">);</span>
+
+<span class="n">convolution_forward</span><span class="o">::</span><span class="n">primitive_desc</span><span class="p">(</span><span class="n">conv_d</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">engine</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This will lead to the following computations:</p>
+<div class="math notranslate nohighlight">
+\[\dst[:] = \operatorname{ReLU}(\dst[:] + \operatorname{conv}(\src[:], \weights[:])\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp struct">
+<dt id="_CPPv4N4dnnl8post_opsE">
+<span id="_CPPv3N4dnnl8post_opsE"></span><span id="_CPPv2N4dnnl8post_opsE"></span><span id="dnnl::post_ops"></span><span class="target" id="structdnnl_1_1post__ops"></span><em class="property">struct </em><code class="sig-prename descclassname">dnnl<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">post_ops</code><a class="headerlink" href="#_CPPv4N4dnnl8post_opsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Post-ops.</p>
+<p>Post-ops are computations executed after the main primitive computations and are attached to the primitive via primitive attributes. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl8post_ops8post_opsEv">
+<span id="_CPPv3N4dnnl8post_ops8post_opsEv"></span><span id="_CPPv2N4dnnl8post_ops8post_opsEv"></span><span id="dnnl::post_ops::post_ops"></span><span class="target" id="structdnnl_1_1post__ops_1a8e1d47722db8f53b3689468788ec2c01"></span><code class="sig-name descname">post_ops</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl8post_ops8post_opsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs an empty sequence of post-ops. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl8post_ops3lenEv">
+<span id="_CPPv3NK4dnnl8post_ops3lenEv"></span><span id="_CPPv2NK4dnnl8post_ops3lenEv"></span><span id="dnnl::post_ops::lenC"></span><span class="target" id="structdnnl_1_1post__ops_1a84653b68d83c2d84d3ac432a8dc1f5fd"></span>int <code class="sig-name descname">len</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl8post_ops3lenEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of post-ops entries. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl8post_ops4kindEi">
+<span id="_CPPv3NK4dnnl8post_ops4kindEi"></span><span id="_CPPv2NK4dnnl8post_ops4kindEi"></span><span id="dnnl::post_ops::kind__iC"></span><span class="target" id="structdnnl_1_1post__ops_1a454acad1a18f2763f07b42912778c0f8"></span><a class="reference internal" href="../general.html#_CPPv4N4dnnl9primitiveE" title="dnnl::primitive">primitive</a>::<a class="reference internal" href="../general.html#_CPPv4N4dnnl9primitive4kindE" title="dnnl::primitive::kind">kind</a> <code class="sig-name descname">kind</code><span class="sig-paren">(</span>int <em>index</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl8post_ops4kindEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the primitive kind of post-op at entry with a certain index. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Primitive kind of the post-op at the specified index. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Index of the post-op to return the kind for. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl8post_ops10append_sumEfN6memory9data_typeE">
+<span id="_CPPv3N4dnnl8post_ops10append_sumEfN6memory9data_typeE"></span><span id="_CPPv2N4dnnl8post_ops10append_sumEfN6memory9data_typeE"></span><span id="dnnl::post_ops::append_sum__float.memory::data_type"></span><span class="target" id="structdnnl_1_1post__ops_1ab8e3832e8600216a3646e9050d3bc1f3"></span>void <code class="sig-name descname">append_sum</code><span class="sig-paren">(</span>float <em>scale</em> = 1.f, <a class="reference internal" href="../../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../../data_model/data_types/index.html#_CPPv4N4dnnl6memory9data_typeE" title="dnnl::memory::data_type">data_type</a> <em>data_type</em> = <a class="reference internal" href="../../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../../data_model/data_types/index.html#_CPPv4N4dnnl6memory9data_typeE" title="dnnl::memory::data_type">data_type</a>::<a class="reference internal" href="../../data_model/data_types/index.html#_CPPv4N4dnnl6memory9data_type5undefE" title="dnnl::memory::data_type::undef">undef</a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl8post_ops10append_sumEfN6memory9data_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends an accumulation (sum) post-op. Prior to accumulating the result, the previous value would be multiplied by a scaling factor <code class="docutils literal notranslate"><span class="pre">scale</span></code>.</p>
+<p>The kind of this post-op is <a class="reference internal" href="../general.html#structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a1d623b89683f9ce4e074de1676d12416"><span class="std std-ref">dnnl::primitive::kind::sum</span></a>.</p>
+<p>This feature may improve performance for cases like residual learning blocks, where the result of convolution is accumulated to the previously computed activations. The parameter <code class="docutils literal notranslate"><span class="pre">scale</span></code> may be used for the integer-based computations when the result and previous activations have different logical scaling factors.</p>
+<p>In the simplest case when the accumulation is the only post-op, the computations would be <code class="docutils literal notranslate"><span class="pre">dst[:]</span> <span class="pre">:=</span> <span class="pre">scale</span> <span class="pre">*</span> <span class="pre">dst[:]</span> <span class="pre">+</span> <span class="pre">op(...)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">dst[:]</span> <span class="pre">:=</span> <span class="pre">op(...)</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">data_type</span></code> is specified, the original dst tensor will be reinterpreted as a tensor with the provided data type. Because it is a reinterpretation, data_type and dst data type should have the same size. As a result, computations would be <code class="docutils literal notranslate"><span class="pre">dst[:]</span> <span class="pre">&lt;-</span> <span class="pre">scale</span> <span class="pre">*</span> <span class="pre">as_data_type(dst[:])</span> <span class="pre">+</span> <span class="pre">op(...)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">dst[:]</span> <span class="pre">&lt;-</span> <span class="pre">op(...)</span></code>.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This post-op executes in-place and does not change the destination layout.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: Scaling factor. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>: Data type. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl8post_ops14get_params_sumEiRf">
+<span id="_CPPv3NK4dnnl8post_ops14get_params_sumEiRf"></span><span id="_CPPv2NK4dnnl8post_ops14get_params_sumEiRf"></span><span id="dnnl::post_ops::get_params_sum__i.floatRC"></span><span class="target" id="structdnnl_1_1post__ops_1aaeb404084e7f9c65e8e266acca2ea6ac"></span>void <code class="sig-name descname">get_params_sum</code><span class="sig-paren">(</span>int <em>index</em>, float &amp;<em>scale</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl8post_ops14get_params_sumEiRf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the parameters of an accumulation (sum) post-op.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Index of the sum post-op. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: Scaling factor of the sum post-op. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl8post_ops14get_params_sumEiRfRN6memory9data_typeE">
+<span id="_CPPv3NK4dnnl8post_ops14get_params_sumEiRfRN6memory9data_typeE"></span><span id="_CPPv2NK4dnnl8post_ops14get_params_sumEiRfRN6memory9data_typeE"></span><span id="dnnl::post_ops::get_params_sum__i.floatR.memory::data_typeRC"></span><span class="target" id="structdnnl_1_1post__ops_1a19a49b0e1c5b2ce4f38d7774a50b0824"></span>void <code class="sig-name descname">get_params_sum</code><span class="sig-paren">(</span>int <em>index</em>, float &amp;<em>scale</em>, <a class="reference internal" href="../../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../../data_model/data_types/index.html#_CPPv4N4dnnl6memory9data_typeE" title="dnnl::memory::data_type">data_type</a> &amp;<em>data_type</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl8post_ops14get_params_sumEiRfRN6memory9data_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the parameters of an accumulation (sum) post-op.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Index of the sum post-op. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: Scaling factor of the sum post-op. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>: Data type of the sum post-op. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl8post_ops14append_eltwiseEf9algorithmff">
+<span id="_CPPv3N4dnnl8post_ops14append_eltwiseEf9algorithmff"></span><span id="_CPPv2N4dnnl8post_ops14append_eltwiseEf9algorithmff"></span><span id="dnnl::post_ops::append_eltwise__float.algorithm.float.float"></span><span class="target" id="structdnnl_1_1post__ops_1a28460923ad579c780e4027a6256fe207"></span>void <code class="sig-name descname">append_eltwise</code><span class="sig-paren">(</span>float <em>scale</em>, <a class="reference internal" href="../general.html#_CPPv4N4dnnl9algorithmE" title="dnnl::algorithm">algorithm</a> <em>aalgorithm</em>, float <em>alpha</em>, float <em>beta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl8post_ops14append_eltwiseEf9algorithmff" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends an elementwise post-op.</p>
+<p>The kind of this post-op is <a class="reference internal" href="../general.html#structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a98b908c7d0339bb6a4832db44fc2c8da"><span class="std std-ref">dnnl::primitive::kind::eltwise</span></a>.</p>
+<p>In the simplest case when the elementwise is the only post-op, the computations would be <code class="docutils literal notranslate"><span class="pre">dst[:]</span> <span class="pre">:=</span> <span class="pre">scale</span> <span class="pre">*</span> <span class="pre">eltwise_op</span> <span class="pre">(op(...))</span></code> instead of <code class="docutils literal notranslate"><span class="pre">dst[:]</span> <span class="pre">&lt;-</span> <span class="pre">op(...)</span></code>, where eltwise_op is configured with the given parameters.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: Scaling factor. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aalgorithm</span></code>: Elementwise algorithm. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: Alpha parameter for the elementwise algorithm. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code>: Beta parameter for the elementwise algorithm. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl8post_ops18get_params_eltwiseEiRfR9algorithmRfRf">
+<span id="_CPPv3NK4dnnl8post_ops18get_params_eltwiseEiRfR9algorithmRfRf"></span><span id="_CPPv2NK4dnnl8post_ops18get_params_eltwiseEiRfR9algorithmRfRf"></span><span id="dnnl::post_ops::get_params_eltwise__i.floatR.algorithmR.floatR.floatRC"></span><span class="target" id="structdnnl_1_1post__ops_1aacdd5699855516a79903e4fb416e0710"></span>void <code class="sig-name descname">get_params_eltwise</code><span class="sig-paren">(</span>int <em>index</em>, float &amp;<em>scale</em>, <a class="reference internal" href="../general.html#_CPPv4N4dnnl9algorithmE" title="dnnl::algorithm">algorithm</a> &amp;<em>aalgorithm</em>, float &amp;<em>alpha</em>, float &amp;<em>beta</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl8post_ops18get_params_eltwiseEiRfR9algorithmRfRf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns parameters of an elementwise post-up.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Index of the post-op. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: Output scaling factor. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aalgorithm</span></code>: Output elementwise algorithm kind. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: Output alpha parameter for the elementwise algorithm. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code>: Output beta parameter for the elementwise algorithm. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../batch_normalization.html" class="btn btn-neutral float-right" title="Batch Normalization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Attributes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

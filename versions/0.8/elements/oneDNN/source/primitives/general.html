@@ -1,0 +1,1741 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Common Definitions &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Attributes" href="attributes/index.html" />
+    <link rel="prev" title="Primitives" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">oneDNN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../execution_model/index.html">Execution Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_model/index.html">Data model</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Primitives</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Common Definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#base-class-for-primitives">Base Class for Primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#base-class-for-primitives-descriptors">Base Class for Primitives Descriptors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-enumerations">Common Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#normalization-primitives-flags">Normalization Primitives Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#execution-argument-indices">Execution argument indices</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="attributes/index.html">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="batch_normalization.html">Batch Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary.html">Binary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="concat.html">Concat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="convolution.html">Convolution and Deconvolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eltwise.html">Elementwise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inner-product.html">Inner Product</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layer_normalization.html">Layer normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logsoftmax.html">LogSoftmax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lrn.html">Local Response Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matmul.html">Matrix Multiplication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pooling.html">Pooling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reorder.html">Reorder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resampling.html">Resampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rnn.html">RNN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shuffle.html">Shuffle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softmax.html">Softmax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sum.html">Sum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#id1">Open Source Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#implementation-notes">Implementation Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../index.html">oneDNN</a> </li>
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneDNN/source/primitives/general.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="common-definitions">
+<h1>Common Definitions<a class="headerlink" href="#common-definitions" title="Permalink to this headline">¶</a></h1>
+<p>This section lists common types and definitions used by all or multiple
+primitives.</p>
+<div class="section" id="base-class-for-primitives">
+<h2>Base Class for Primitives<a class="headerlink" href="#base-class-for-primitives" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp struct">
+<dt id="_CPPv4N4dnnl9primitiveE">
+<span id="_CPPv3N4dnnl9primitiveE"></span><span id="_CPPv2N4dnnl9primitiveE"></span><span id="dnnl::primitive"></span><span class="target" id="structdnnl_1_1primitive"></span><em class="property">struct </em><code class="sig-prename descclassname">dnnl<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">primitive</code><a class="headerlink" href="#_CPPv4N4dnnl9primitiveE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Base class for all computational primitives. </p>
+<p>Subclassed by <a class="reference internal" href="batch_normalization.html#structdnnl_1_1batch__normalization__backward"><span class="std std-ref">dnnl::batch_normalization_backward</span></a>, <a class="reference internal" href="batch_normalization.html#structdnnl_1_1batch__normalization__forward"><span class="std std-ref">dnnl::batch_normalization_forward</span></a>, <a class="reference internal" href="binary.html#structdnnl_1_1binary"><span class="std std-ref">dnnl::binary</span></a>, <a class="reference internal" href="concat.html#structdnnl_1_1concat"><span class="std std-ref">dnnl::concat</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1convolution__backward__data"><span class="std std-ref">dnnl::convolution_backward_data</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1convolution__backward__weights"><span class="std std-ref">dnnl::convolution_backward_weights</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1convolution__forward"><span class="std std-ref">dnnl::convolution_forward</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1deconvolution__backward__data"><span class="std std-ref">dnnl::deconvolution_backward_data</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1deconvolution__backward__weights"><span class="std std-ref">dnnl::deconvolution_backward_weights</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1deconvolution__forward"><span class="std std-ref">dnnl::deconvolution_forward</span></a>, <a class="reference internal" href="eltwise.html#structdnnl_1_1eltwise__backward"><span class="std std-ref">dnnl::eltwise_backward</span></a>, <a class="reference internal" href="eltwise.html#structdnnl_1_1eltwise__forward"><span class="std std-ref">dnnl::eltwise_forward</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1gru__backward"><span class="std std-ref">dnnl::gru_backward</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1gru__forward"><span class="std std-ref">dnnl::gru_forward</span></a>, <a class="reference internal" href="inner-product.html#structdnnl_1_1inner__product__backward__data"><span class="std std-ref">dnnl::inner_product_backward_data</span></a>, <a class="reference internal" href="inner-product.html#structdnnl_1_1inner__product__backward__weights"><span class="std std-ref">dnnl::inner_product_backward_weights</span></a>, <a class="reference internal" href="inner-product.html#structdnnl_1_1inner__product__forward"><span class="std std-ref">dnnl::inner_product_forward</span></a>, <a class="reference internal" href="layer_normalization.html#structdnnl_1_1layer__normalization__backward"><span class="std std-ref">dnnl::layer_normalization_backward</span></a>, <a class="reference internal" href="layer_normalization.html#structdnnl_1_1layer__normalization__forward"><span class="std std-ref">dnnl::layer_normalization_forward</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1lbr__gru__backward"><span class="std std-ref">dnnl::lbr_gru_backward</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1lbr__gru__forward"><span class="std std-ref">dnnl::lbr_gru_forward</span></a>, <a class="reference internal" href="logsoftmax.html#structdnnl_1_1logsoftmax__backward"><span class="std std-ref">dnnl::logsoftmax_backward</span></a>, <a class="reference internal" href="logsoftmax.html#structdnnl_1_1logsoftmax__forward"><span class="std std-ref">dnnl::logsoftmax_forward</span></a>, <a class="reference internal" href="lrn.html#structdnnl_1_1lrn__backward"><span class="std std-ref">dnnl::lrn_backward</span></a>, <a class="reference internal" href="lrn.html#structdnnl_1_1lrn__forward"><span class="std std-ref">dnnl::lrn_forward</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1lstm__backward"><span class="std std-ref">dnnl::lstm_backward</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1lstm__forward"><span class="std std-ref">dnnl::lstm_forward</span></a>, <a class="reference internal" href="matmul.html#structdnnl_1_1matmul"><span class="std std-ref">dnnl::matmul</span></a>, <a class="reference internal" href="pooling.html#structdnnl_1_1pooling__backward"><span class="std std-ref">dnnl::pooling_backward</span></a>, <a class="reference internal" href="pooling.html#structdnnl_1_1pooling__forward"><span class="std std-ref">dnnl::pooling_forward</span></a>, <a class="reference internal" href="reorder.html#structdnnl_1_1reorder"><span class="std std-ref">dnnl::reorder</span></a>, <a class="reference internal" href="resampling.html#structdnnl_1_1resampling__backward"><span class="std std-ref">dnnl::resampling_backward</span></a>, <a class="reference internal" href="resampling.html#structdnnl_1_1resampling__forward"><span class="std std-ref">dnnl::resampling_forward</span></a>, <a class="reference internal" href="shuffle.html#structdnnl_1_1shuffle__backward"><span class="std std-ref">dnnl::shuffle_backward</span></a>, <a class="reference internal" href="shuffle.html#structdnnl_1_1shuffle__forward"><span class="std std-ref">dnnl::shuffle_forward</span></a>, <a class="reference internal" href="softmax.html#structdnnl_1_1softmax__backward"><span class="std std-ref">dnnl::softmax_backward</span></a>, <a class="reference internal" href="softmax.html#structdnnl_1_1softmax__forward"><span class="std std-ref">dnnl::softmax_forward</span></a>, <a class="reference internal" href="sum.html#structdnnl_1_1sum"><span class="std std-ref">dnnl::sum</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1vanilla__rnn__backward"><span class="std std-ref">dnnl::vanilla_rnn_backward</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1vanilla__rnn__forward"><span class="std std-ref">dnnl::vanilla_rnn_forward</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N4dnnl9primitive4kindE">
+<span id="_CPPv3N4dnnl9primitive4kindE"></span><span id="_CPPv2N4dnnl9primitive4kindE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169"></span><em class="property">enum </em><code class="sig-name descname">kind</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kindE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Kinds of primitives supported by the library. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind5undefE">
+<span id="_CPPv3N4dnnl9primitive4kind5undefE"></span><span id="_CPPv2N4dnnl9primitive4kind5undefE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169af31ee5e3824f1f5e5d206bdf3029f22b"></span><em class="property">enumerator </em><code class="sig-name descname">undef</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind5undefE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Undefined primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind7reorderE">
+<span id="_CPPv3N4dnnl9primitive4kind7reorderE"></span><span id="_CPPv2N4dnnl9primitive4kind7reorderE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a8dbc5523c131d7900138d32d1dcbf093"></span><em class="property">enumerator </em><code class="sig-name descname">reorder</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind7reorderE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A reorder primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind7shuffleE">
+<span id="_CPPv3N4dnnl9primitive4kind7shuffleE"></span><span id="_CPPv2N4dnnl9primitive4kind7shuffleE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a644c45fc2b003bf415a3fb655412508d"></span><em class="property">enumerator </em><code class="sig-name descname">shuffle</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind7shuffleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A shuffle primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind6concatE">
+<span id="_CPPv3N4dnnl9primitive4kind6concatE"></span><span id="_CPPv2N4dnnl9primitive4kind6concatE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a414e7c8ede73a0c2c3d17699134f4080"></span><em class="property">enumerator </em><code class="sig-name descname">concat</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind6concatE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A (out-of-place) tensor concatenation primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind3sumE">
+<span id="_CPPv3N4dnnl9primitive4kind3sumE"></span><span id="_CPPv2N4dnnl9primitive4kind3sumE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a1d623b89683f9ce4e074de1676d12416"></span><em class="property">enumerator </em><code class="sig-name descname">sum</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind3sumE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A summation primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind11convolutionE">
+<span id="_CPPv3N4dnnl9primitive4kind11convolutionE"></span><span id="_CPPv2N4dnnl9primitive4kind11convolutionE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169aa9595c1c24c33b16056d2ad07e71682d"></span><em class="property">enumerator </em><code class="sig-name descname">convolution</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind11convolutionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A convolution primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind13deconvolutionE">
+<span id="_CPPv3N4dnnl9primitive4kind13deconvolutionE"></span><span id="_CPPv2N4dnnl9primitive4kind13deconvolutionE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a2294014fceafa2f8ca8d16ad35f25875"></span><em class="property">enumerator </em><code class="sig-name descname">deconvolution</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind13deconvolutionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A deconvolution primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind7eltwiseE">
+<span id="_CPPv3N4dnnl9primitive4kind7eltwiseE"></span><span id="_CPPv2N4dnnl9primitive4kind7eltwiseE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a98b908c7d0339bb6a4832db44fc2c8da"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind7eltwiseE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An element-wise primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind7softmaxE">
+<span id="_CPPv3N4dnnl9primitive4kind7softmaxE"></span><span id="_CPPv2N4dnnl9primitive4kind7softmaxE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169ace2f1fbd249d24aabc07ac4488ab5b8c"></span><em class="property">enumerator </em><code class="sig-name descname">softmax</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind7softmaxE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A softmax primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind7poolingE">
+<span id="_CPPv3N4dnnl9primitive4kind7poolingE"></span><span id="_CPPv2N4dnnl9primitive4kind7poolingE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a4abcef116566139e94c82bb1bb37583f"></span><em class="property">enumerator </em><code class="sig-name descname">pooling</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind7poolingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A pooling primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind3lrnE">
+<span id="_CPPv3N4dnnl9primitive4kind3lrnE"></span><span id="_CPPv2N4dnnl9primitive4kind3lrnE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a7d9c7d1747abfac2c3c3ff337712f575"></span><em class="property">enumerator </em><code class="sig-name descname">lrn</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind3lrnE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An LRN primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind19batch_normalizationE">
+<span id="_CPPv3N4dnnl9primitive4kind19batch_normalizationE"></span><span id="_CPPv2N4dnnl9primitive4kind19batch_normalizationE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a780789647a31acedb6477412a99154bb"></span><em class="property">enumerator </em><code class="sig-name descname">batch_normalization</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind19batch_normalizationE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A batch normalization primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind19layer_normalizationE">
+<span id="_CPPv3N4dnnl9primitive4kind19layer_normalizationE"></span><span id="_CPPv2N4dnnl9primitive4kind19layer_normalizationE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a40f3d68401fd64071877b5263c3d8706"></span><em class="property">enumerator </em><code class="sig-name descname">layer_normalization</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind19layer_normalizationE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A layer normalization primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind13inner_productE">
+<span id="_CPPv3N4dnnl9primitive4kind13inner_productE"></span><span id="_CPPv2N4dnnl9primitive4kind13inner_productE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a30813812e3beef3eefcc2b97dc2e0783"></span><em class="property">enumerator </em><code class="sig-name descname">inner_product</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind13inner_productE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An inner product primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind3rnnE">
+<span id="_CPPv3N4dnnl9primitive4kind3rnnE"></span><span id="_CPPv2N4dnnl9primitive4kind3rnnE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a6eed45b9327120cabad6916919a9a600"></span><em class="property">enumerator </em><code class="sig-name descname">rnn</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind3rnnE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An RNN primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind6binaryE">
+<span id="_CPPv3N4dnnl9primitive4kind6binaryE"></span><span id="_CPPv2N4dnnl9primitive4kind6binaryE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a9d7183f16acce70658f686ae7f1a4d20"></span><em class="property">enumerator </em><code class="sig-name descname">binary</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind6binaryE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A binary primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind10logsoftmaxE">
+<span id="_CPPv3N4dnnl9primitive4kind10logsoftmaxE"></span><span id="_CPPv2N4dnnl9primitive4kind10logsoftmaxE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a3e392964a863f0168f631708934c2acf"></span><em class="property">enumerator </em><code class="sig-name descname">logsoftmax</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind10logsoftmaxE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A logsoftmax primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind6matmulE">
+<span id="_CPPv3N4dnnl9primitive4kind6matmulE"></span><span id="_CPPv2N4dnnl9primitive4kind6matmulE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a0f2e1c85f0064ca22d3ac468c44b0327"></span><em class="property">enumerator </em><code class="sig-name descname">matmul</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind6matmulE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A matmul (matrix multiplication) primitive. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9primitive4kind10resamplingE">
+<span id="_CPPv3N4dnnl9primitive4kind10resamplingE"></span><span id="_CPPv2N4dnnl9primitive4kind10resamplingE"></span><span class="target" id="structdnnl_1_1primitive_1ad1ec93215a0cf3aa0a32bae0c2cd9169a4f9776b23053c32400f732de532df397"></span><em class="property">enumerator </em><code class="sig-name descname">resampling</code><a class="headerlink" href="#_CPPv4N4dnnl9primitive4kind10resamplingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A resampling primitive. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl9primitive9primitiveEv">
+<span id="_CPPv3N4dnnl9primitive9primitiveEv"></span><span id="_CPPv2N4dnnl9primitive9primitiveEv"></span><span id="dnnl::primitive::primitive"></span><span class="target" id="structdnnl_1_1primitive_1a621390063073910b5a1bf8c25e30bc18"></span><code class="sig-name descname">primitive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl9primitive9primitiveEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default constructor. Constructs an empty object. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl9primitive9primitiveERK19primitive_desc_base">
+<span id="_CPPv3N4dnnl9primitive9primitiveERK19primitive_desc_base"></span><span id="_CPPv2N4dnnl9primitive9primitiveERK19primitive_desc_base"></span><span id="dnnl::primitive::primitive__primitive_desc_baseCR"></span><span class="target" id="structdnnl_1_1primitive_1a5c62a7df729fe0c22b5deb9afdbc337f"></span><code class="sig-name descname">primitive</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N4dnnl19primitive_desc_baseE" title="dnnl::primitive_desc_base">primitive_desc_base</a> &amp;<em>pd</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl9primitive9primitiveERK19primitive_desc_base" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs a primitive from a primitive descriptor.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pd</span></code>: Primitive descriptor. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl9primitive8get_kindEv">
+<span id="_CPPv3NK4dnnl9primitive8get_kindEv"></span><span id="_CPPv2NK4dnnl9primitive8get_kindEv"></span><span id="dnnl::primitive::get_kindC"></span><span class="target" id="structdnnl_1_1primitive_1af2fbde28f5dfa02647c1d78b02f9cab7"></span><a class="reference internal" href="#_CPPv4N4dnnl9primitive4kindE" title="dnnl::primitive::kind">kind</a> <code class="sig-name descname">get_kind</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl9primitive8get_kindEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the kind of the primitive.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The primitive kind. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl9primitive7executeERK6streamRKNSt13unordered_mapIi6memoryEE">
+<span id="_CPPv3NK4dnnl9primitive7executeERK6streamRKNSt13unordered_mapIi6memoryEE"></span><span id="_CPPv2NK4dnnl9primitive7executeERK6streamRKNSt13unordered_mapIi6memoryEE"></span><span id="dnnl::primitive::execute__streamCR.std::unordered_map:i.memory:CRC"></span><span class="target" id="structdnnl_1_1primitive_1a2c112f2449a18a87310dee2ecd8c64eb"></span>void <code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../execution_model/index.html#_CPPv4N4dnnl6streamE" title="dnnl::stream">stream</a> &amp;<em>astream</em>, <em class="property">const</em> std::unordered_map&lt;int, <a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>&gt; &amp;<em>args</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl9primitive7executeERK6streamRKNSt13unordered_mapIi6memoryEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Executes computations specified by the primitive in a specified stream.</p>
+<p>Arguments are passed via an arguments map containing &lt;index, memory object&gt; pairs. The index must be one of the <code class="docutils literal notranslate"><span class="pre">DNNL_ARG_*</span></code> values such as <code class="docutils literal notranslate"><span class="pre">DNNL_ARG_SRC</span></code>, and the memory must have a memory descriptor matching the one returned by <a class="reference internal" href="#structdnnl_1_1primitive__desc__base_1a35d24b553ba6aa807516e9470fdd7d16"><span class="std std-ref">dnnl::primitive_desc_base::query_md</span></a>(query::exec_arg_md, index) unless using dynamic shapes (see <a class="reference internal" href="#dnnl__types_8h_1aa596c5a6102df77a550bad98f0d5cc12"><span class="std std-ref">DNNL_RUNTIME_DIM_VAL</span></a>).</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">astream</span></code>: Stream object. The stream must belong to the same engine as the primitive. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code>: Arguments map. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl9primitive12execute_syclERK6streamRKNSt13unordered_mapIi6memoryEERKNSt6vectorIN2cl4sycl5eventEEE">
+<span id="_CPPv3NK4dnnl9primitive12execute_syclERK6streamRKNSt13unordered_mapIi6memoryEERKNSt6vectorIN2cl4sycl5eventEEE"></span><span id="_CPPv2NK4dnnl9primitive12execute_syclERK6streamRKNSt13unordered_mapIi6memoryEERKNSt6vectorIN2cl4sycl5eventEEE"></span><span id="dnnl::primitive::execute_sycl__streamCR.std::unordered_map:i.memory:CR.std::vector:cl::sycl::event:CRC"></span><span class="target" id="structdnnl_1_1primitive_1aab15084dd1b5984df0a15ac1651aeeb3"></span>cl::sycl::event <code class="sig-name descname">execute_sycl</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="../execution_model/index.html#_CPPv4N4dnnl6streamE" title="dnnl::stream">stream</a> &amp;<em>astream</em>, <em class="property">const</em> std::unordered_map&lt;int, <a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>&gt; &amp;<em>args</em>, <em class="property">const</em> std::vector&lt;cl::sycl::event&gt; &amp;<em>deps</em> = {}<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl9primitive12execute_syclERK6streamRKNSt13unordered_mapIi6memoryEERKNSt6vectorIN2cl4sycl5eventEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Executes computations specified by the primitive in a specified stream.</p>
+<p>Arguments are passed via an arguments map containing &lt;index, memory object&gt; pairs. The index must be one of the <code class="docutils literal notranslate"><span class="pre">DNNL_ARG_*</span></code> values such as <code class="docutils literal notranslate"><span class="pre">DNNL_ARG_SRC</span></code>, and the memory must have a memory descriptor matching the one returned by <a class="reference internal" href="#structdnnl_1_1primitive__desc__base_1a35d24b553ba6aa807516e9470fdd7d16"><span class="std std-ref">dnnl::primitive_desc::query_md</span></a>(query::exec_arg_md, index) unless using dynamic shapes (see <a class="reference internal" href="#dnnl__types_8h_1aa596c5a6102df77a550bad98f0d5cc12"><span class="std std-ref">DNNL_RUNTIME_DIM_VAL</span></a>).</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">astream</span></code>: Stream object. The stream must belong to the same engine as the primitive. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code>: Arguments map. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deps</span></code>: Optional vector with <code class="docutils literal notranslate"><span class="pre">cl::sycl::event</span></code> dependencies. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl9primitiveaSERK9primitive">
+<span id="_CPPv3N4dnnl9primitiveaSERK9primitive"></span><span id="_CPPv2N4dnnl9primitiveaSERK9primitive"></span><span id="dnnl::primitive::assign-operator__primitiveCR"></span><span class="target" id="structdnnl_1_1primitive_1ab9f980d33289778feed22fa599700858"></span><a class="reference internal" href="#_CPPv4N4dnnl9primitiveE" title="dnnl::primitive">primitive</a> &amp;<code class="sig-name descname">operator=</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv4N4dnnl9primitiveE" title="dnnl::primitive">primitive</a> &amp;<em>rhs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl9primitiveaSERK9primitive" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assignment operator. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="base-class-for-primitives-descriptors">
+<h2>Base Class for Primitives Descriptors<a class="headerlink" href="#base-class-for-primitives-descriptors" title="Permalink to this headline">¶</a></h2>
+<p>There is no common base class for operation descriptors because they are very
+different between different primitives. However, there is a common base class
+for primitive descriptors.</p>
+<dl class="cpp struct">
+<dt id="_CPPv4N4dnnl19primitive_desc_baseE">
+<span id="_CPPv3N4dnnl19primitive_desc_baseE"></span><span id="_CPPv2N4dnnl19primitive_desc_baseE"></span><span id="dnnl::primitive_desc_base"></span><span class="target" id="structdnnl_1_1primitive__desc__base"></span><em class="property">struct </em><code class="sig-prename descclassname">dnnl<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">primitive_desc_base</code><a class="headerlink" href="#_CPPv4N4dnnl19primitive_desc_baseE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Base class for all primitive descriptors. </p>
+<p>Subclassed by <a class="reference internal" href="concat.html#structdnnl_1_1concat_1_1primitive__desc"><span class="std std-ref">dnnl::concat::primitive_desc</span></a>, <a class="reference internal" href="#structdnnl_1_1primitive__desc"><span class="std std-ref">dnnl::primitive_desc</span></a>, <a class="reference internal" href="reorder.html#structdnnl_1_1reorder_1_1primitive__desc"><span class="std std-ref">dnnl::reorder::primitive_desc</span></a>, <a class="reference internal" href="sum.html#structdnnl_1_1sum_1_1primitive__desc"><span class="std std-ref">dnnl::sum::primitive_desc</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl19primitive_desc_base19primitive_desc_baseEv">
+<span id="_CPPv3N4dnnl19primitive_desc_base19primitive_desc_baseEv"></span><span id="_CPPv2N4dnnl19primitive_desc_base19primitive_desc_baseEv"></span><span id="dnnl::primitive_desc_base::primitive_desc_base"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1abaec6897940cf14b0b3113a593ec5dbf"></span><code class="sig-name descname">primitive_desc_base</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl19primitive_desc_base19primitive_desc_baseEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default constructor. Produces an empty object. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base10get_engineEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base10get_engineEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base10get_engineEv"></span><span id="dnnl::primitive_desc_base::get_engineC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a32f7477c79e715a341bb9127df521fbc"></span><a class="reference internal" href="../execution_model/index.html#_CPPv4N4dnnl6engineE" title="dnnl::engine">engine</a> <code class="sig-name descname">get_engine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base10get_engineEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the engine of the primitive descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The engine of the primitive descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base13impl_info_strEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base13impl_info_strEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base13impl_info_strEv"></span><span id="dnnl::primitive_desc_base::impl_info_strC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1ae680492d4e4b16a938cfc051e5c906be"></span><em class="property">const</em> char *<code class="sig-name descname">impl_info_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base13impl_info_strEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns implementation name. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The implementation name. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base9query_s64E5query">
+<span id="_CPPv3NK4dnnl19primitive_desc_base9query_s64E5query"></span><span id="_CPPv2NK4dnnl19primitive_desc_base9query_s64E5query"></span><span id="dnnl::primitive_desc_base::query_s64__queryC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1acbedc4257eaa26f868356f9f594a856a"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/index.html#_CPPv4N4dnnl6memory3dimE" title="dnnl::memory::dim">dim</a> <code class="sig-name descname">query_s64</code><span class="sig-paren">(</span>query <em>what</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base9query_s64E5query" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a <a class="reference internal" href="../data_model/memory/index.html#structdnnl_1_1memory_1af647d5cd96f05e7876a5826ac83d9bd6"><span class="std std-ref">memory::dim</span></a> value (same as int64_t). <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The result of the query. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">what</span></code>: The value to query. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base8query_mdE5queryi">
+<span id="_CPPv3NK4dnnl19primitive_desc_base8query_mdE5queryi"></span><span id="_CPPv2NK4dnnl19primitive_desc_base8query_mdE5queryi"></span><span id="dnnl::primitive_desc_base::query_md__query.iC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a35d24b553ba6aa807516e9470fdd7d16"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">query_md</code><span class="sig-paren">(</span>query <em>what</em>, int <em>idx</em> = 0<span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base8query_mdE5queryi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a memory descriptor.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>There are also convenience methods <a class="reference internal" href="#structdnnl_1_1primitive__desc__base_1af42e791f493e636c086e13c6d4c06b43"><span class="std std-ref">dnnl::primitive_desc_base::src_desc()</span></a>, <a class="reference internal" href="#structdnnl_1_1primitive__desc__base_1a495ee7c8e1ec3eab35f6329fdcd352bb"><span class="std std-ref">dnnl::primitive_desc_base::dst_desc()</span></a>, and others.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>The requested memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a parameter of the specified kind or index. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">what</span></code>: The kind of parameter to query; can be dnnl::query::src_md, dnnl::query::dst_md, etc. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Index of the parameter. For example, convolution bias can be queried with what = dnnl::query::weights_md and idx = 1. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base8src_descEi">
+<span id="_CPPv3NK4dnnl19primitive_desc_base8src_descEi"></span><span id="_CPPv2NK4dnnl19primitive_desc_base8src_descEi"></span><span id="dnnl::primitive_desc_base::src_desc__iC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1af42e791f493e636c086e13c6d4c06b43"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">src_desc</code><span class="sig-paren">(</span>int <em>idx</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base8src_descEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a source memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Source memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a source parameter with index <code class="docutils literal notranslate"><span class="pre">pdx</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Source index. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base8dst_descEi">
+<span id="_CPPv3NK4dnnl19primitive_desc_base8dst_descEi"></span><span id="_CPPv2NK4dnnl19primitive_desc_base8dst_descEi"></span><span id="dnnl::primitive_desc_base::dst_desc__iC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a495ee7c8e1ec3eab35f6329fdcd352bb"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">dst_desc</code><span class="sig-paren">(</span>int <em>idx</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base8dst_descEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a destination memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Destination memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a destination parameter with index <code class="docutils literal notranslate"><span class="pre">pdx</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Destination index. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base12weights_descEi">
+<span id="_CPPv3NK4dnnl19primitive_desc_base12weights_descEi"></span><span id="_CPPv2NK4dnnl19primitive_desc_base12weights_descEi"></span><span id="dnnl::primitive_desc_base::weights_desc__iC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1acb13d08987cca8d8f05ec4858fa61fb4"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">weights_desc</code><span class="sig-paren">(</span>int <em>idx</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base12weights_descEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a weights memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Weights memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a weights parameter with index <code class="docutils literal notranslate"><span class="pre">pdx</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Weights index. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base13diff_src_descEi">
+<span id="_CPPv3NK4dnnl19primitive_desc_base13diff_src_descEi"></span><span id="_CPPv2NK4dnnl19primitive_desc_base13diff_src_descEi"></span><span id="dnnl::primitive_desc_base::diff_src_desc__iC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a733e6ff4e78a758e69ae6232e8955871"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_src_desc</code><span class="sig-paren">(</span>int <em>idx</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base13diff_src_descEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a diff source memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff source memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff source parameter with index <code class="docutils literal notranslate"><span class="pre">pdx</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Diff source index. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base13diff_dst_descEi">
+<span id="_CPPv3NK4dnnl19primitive_desc_base13diff_dst_descEi"></span><span id="_CPPv2NK4dnnl19primitive_desc_base13diff_dst_descEi"></span><span id="dnnl::primitive_desc_base::diff_dst_desc__iC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a60f17d04c493c42e4a50ad5feff5c8ca"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_dst_desc</code><span class="sig-paren">(</span>int <em>idx</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base13diff_dst_descEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a diff destination memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff destination memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff destination parameter with index <code class="docutils literal notranslate"><span class="pre">pdx</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Diff destination index. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base17diff_weights_descEi">
+<span id="_CPPv3NK4dnnl19primitive_desc_base17diff_weights_descEi"></span><span id="_CPPv2NK4dnnl19primitive_desc_base17diff_weights_descEi"></span><span id="dnnl::primitive_desc_base::diff_weights_desc__iC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a192f7b334efac9a5ac20344a76d4d552"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_weights_desc</code><span class="sig-paren">(</span>int <em>idx</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base17diff_weights_descEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a diff weights memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff weights memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff weights parameter with index <code class="docutils literal notranslate"><span class="pre">pdx</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Diff weights index. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base8src_descEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base8src_descEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base8src_descEv"></span><span id="dnnl::primitive_desc_base::src_descC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1af48dcff294cadb2916fd784b8474d221"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">src_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base8src_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a source memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Source memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a source parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base8dst_descEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base8dst_descEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base8dst_descEv"></span><span id="dnnl::primitive_desc_base::dst_descC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1addbec977643a7900f4156f7aab3fb4db"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">dst_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base8dst_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a destination memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Destination memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a destination parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base12weights_descEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base12weights_descEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base12weights_descEv"></span><span id="dnnl::primitive_desc_base::weights_descC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a93f0904566b399874c47b3b1ad3d1495"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">weights_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base12weights_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a weights memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Weights memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a weights parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base13diff_src_descEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base13diff_src_descEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base13diff_src_descEv"></span><span id="dnnl::primitive_desc_base::diff_src_descC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1ab4268c6bb70dd6c22de43141cc301b77"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_src_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base13diff_src_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a diff source memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff source memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff source memory with. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base13diff_dst_descEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base13diff_dst_descEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base13diff_dst_descEv"></span><span id="dnnl::primitive_desc_base::diff_dst_descC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a6b9fb7da987329256c04db6ecbb9dc36"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_dst_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base13diff_dst_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a diff destination memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff destination memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff destination parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base17diff_weights_descEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base17diff_weights_descEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base17diff_weights_descEv"></span><span id="dnnl::primitive_desc_base::diff_weights_descC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1af51378982968e2b4f7abb6a32acfb0af"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_weights_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base17diff_weights_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a diff weights memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff weights memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff weights parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base14workspace_descEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base14workspace_descEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base14workspace_descEv"></span><span id="dnnl::primitive_desc_base::workspace_descC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1ad26f416a149cb44cc5cfc130012c614e"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">workspace_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base14workspace_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the workspace memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Workspace memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not require workspace parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base15scratchpad_descEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base15scratchpad_descEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base15scratchpad_descEv"></span><span id="dnnl::primitive_desc_base::scratchpad_descC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a6238358ec03afd57fb20dffa65b48d2f"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">scratchpad_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base15scratchpad_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the scratchpad memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>scratchpad memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not require scratchpad parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base17scratchpad_engineEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base17scratchpad_engineEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base17scratchpad_engineEv"></span><span id="dnnl::primitive_desc_base::scratchpad_engineC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1ad4079e0891373bd2dc841f3f94cf47ed"></span><a class="reference internal" href="../execution_model/index.html#_CPPv4N4dnnl6engineE" title="dnnl::engine">engine</a> <code class="sig-name descname">scratchpad_engine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base17scratchpad_engineEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the engine on which the scratchpad memory is located. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The engine on which the scratchpad memory is located. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base18get_primitive_attrEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base18get_primitive_attrEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base18get_primitive_attrEv"></span><span id="dnnl::primitive_desc_base::get_primitive_attrC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a0ef600ea3666f0fd93c9c5d112aaf05c"></span><a class="reference internal" href="attributes/index.html#_CPPv4N4dnnl14primitive_attrE" title="dnnl::primitive_attr">primitive_attr</a> <code class="sig-name descname">get_primitive_attr</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base18get_primitive_attrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the primitive attributes. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The primitive attributes. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl19primitive_desc_base8get_kindEv">
+<span id="_CPPv3NK4dnnl19primitive_desc_base8get_kindEv"></span><span id="_CPPv2NK4dnnl19primitive_desc_base8get_kindEv"></span><span id="dnnl::primitive_desc_base::get_kindC"></span><span class="target" id="structdnnl_1_1primitive__desc__base_1a663f3511855bfc2625476019321c909d"></span>dnnl::<a class="reference internal" href="#_CPPv4N4dnnl9primitiveE" title="dnnl::primitive">primitive</a>::<a class="reference internal" href="#_CPPv4N4dnnl9primitive4kindE" title="dnnl::primitive::kind">kind</a> <code class="sig-name descname">get_kind</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl19primitive_desc_base8get_kindEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the kind of the primitive descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The kind of the primitive descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>It is further derived from to provide base class for all primitives that have
+operation descriptors.</p>
+<dl class="cpp struct">
+<dt id="_CPPv4N4dnnl14primitive_descE">
+<span id="_CPPv3N4dnnl14primitive_descE"></span><span id="_CPPv2N4dnnl14primitive_descE"></span><span id="dnnl::primitive_desc"></span><span class="target" id="structdnnl_1_1primitive__desc"></span><em class="property">struct </em><code class="sig-prename descclassname">dnnl<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">primitive_desc</code> : <em class="property">public</em> dnnl::<a class="reference internal" href="#_CPPv4N4dnnl19primitive_desc_baseE" title="dnnl::primitive_desc_base">primitive_desc_base</a><a class="headerlink" href="#_CPPv4N4dnnl14primitive_descE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A base class for descriptors of all primitives that have an operation descriptor and that support iteration over multiple implementations. </p>
+<p>Subclassed by <a class="reference internal" href="batch_normalization.html#structdnnl_1_1batch__normalization__backward_1_1primitive__desc"><span class="std std-ref">dnnl::batch_normalization_backward::primitive_desc</span></a>, <a class="reference internal" href="batch_normalization.html#structdnnl_1_1batch__normalization__forward_1_1primitive__desc"><span class="std std-ref">dnnl::batch_normalization_forward::primitive_desc</span></a>, <a class="reference internal" href="binary.html#structdnnl_1_1binary_1_1primitive__desc"><span class="std std-ref">dnnl::binary::primitive_desc</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1convolution__backward__data_1_1primitive__desc"><span class="std std-ref">dnnl::convolution_backward_data::primitive_desc</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1convolution__backward__weights_1_1primitive__desc"><span class="std std-ref">dnnl::convolution_backward_weights::primitive_desc</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1convolution__forward_1_1primitive__desc"><span class="std std-ref">dnnl::convolution_forward::primitive_desc</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1deconvolution__backward__data_1_1primitive__desc"><span class="std std-ref">dnnl::deconvolution_backward_data::primitive_desc</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1deconvolution__backward__weights_1_1primitive__desc"><span class="std std-ref">dnnl::deconvolution_backward_weights::primitive_desc</span></a>, <a class="reference internal" href="convolution.html#structdnnl_1_1deconvolution__forward_1_1primitive__desc"><span class="std std-ref">dnnl::deconvolution_forward::primitive_desc</span></a>, <a class="reference internal" href="eltwise.html#structdnnl_1_1eltwise__backward_1_1primitive__desc"><span class="std std-ref">dnnl::eltwise_backward::primitive_desc</span></a>, <a class="reference internal" href="eltwise.html#structdnnl_1_1eltwise__forward_1_1primitive__desc"><span class="std std-ref">dnnl::eltwise_forward::primitive_desc</span></a>, <a class="reference internal" href="inner-product.html#structdnnl_1_1inner__product__backward__data_1_1primitive__desc"><span class="std std-ref">dnnl::inner_product_backward_data::primitive_desc</span></a>, <a class="reference internal" href="inner-product.html#structdnnl_1_1inner__product__backward__weights_1_1primitive__desc"><span class="std std-ref">dnnl::inner_product_backward_weights::primitive_desc</span></a>, <a class="reference internal" href="inner-product.html#structdnnl_1_1inner__product__forward_1_1primitive__desc"><span class="std std-ref">dnnl::inner_product_forward::primitive_desc</span></a>, <a class="reference internal" href="layer_normalization.html#structdnnl_1_1layer__normalization__backward_1_1primitive__desc"><span class="std std-ref">dnnl::layer_normalization_backward::primitive_desc</span></a>, <a class="reference internal" href="layer_normalization.html#structdnnl_1_1layer__normalization__forward_1_1primitive__desc"><span class="std std-ref">dnnl::layer_normalization_forward::primitive_desc</span></a>, <a class="reference internal" href="logsoftmax.html#structdnnl_1_1logsoftmax__backward_1_1primitive__desc"><span class="std std-ref">dnnl::logsoftmax_backward::primitive_desc</span></a>, <a class="reference internal" href="logsoftmax.html#structdnnl_1_1logsoftmax__forward_1_1primitive__desc"><span class="std std-ref">dnnl::logsoftmax_forward::primitive_desc</span></a>, <a class="reference internal" href="lrn.html#structdnnl_1_1lrn__backward_1_1primitive__desc"><span class="std std-ref">dnnl::lrn_backward::primitive_desc</span></a>, <a class="reference internal" href="lrn.html#structdnnl_1_1lrn__forward_1_1primitive__desc"><span class="std std-ref">dnnl::lrn_forward::primitive_desc</span></a>, <a class="reference internal" href="matmul.html#structdnnl_1_1matmul_1_1primitive__desc"><span class="std std-ref">dnnl::matmul::primitive_desc</span></a>, <a class="reference internal" href="pooling.html#structdnnl_1_1pooling__backward_1_1primitive__desc"><span class="std std-ref">dnnl::pooling_backward::primitive_desc</span></a>, <a class="reference internal" href="pooling.html#structdnnl_1_1pooling__forward_1_1primitive__desc"><span class="std std-ref">dnnl::pooling_forward::primitive_desc</span></a>, <a class="reference internal" href="resampling.html#structdnnl_1_1resampling__backward_1_1primitive__desc"><span class="std std-ref">dnnl::resampling_backward::primitive_desc</span></a>, <a class="reference internal" href="resampling.html#structdnnl_1_1resampling__forward_1_1primitive__desc"><span class="std std-ref">dnnl::resampling_forward::primitive_desc</span></a>, <a class="reference internal" href="#structdnnl_1_1rnn__primitive__desc__base"><span class="std std-ref">dnnl::rnn_primitive_desc_base</span></a>, <a class="reference internal" href="shuffle.html#structdnnl_1_1shuffle__backward_1_1primitive__desc"><span class="std std-ref">dnnl::shuffle_backward::primitive_desc</span></a>, <a class="reference internal" href="shuffle.html#structdnnl_1_1shuffle__forward_1_1primitive__desc"><span class="std std-ref">dnnl::shuffle_forward::primitive_desc</span></a>, <a class="reference internal" href="softmax.html#structdnnl_1_1softmax__backward_1_1primitive__desc"><span class="std std-ref">dnnl::softmax_backward::primitive_desc</span></a>, <a class="reference internal" href="softmax.html#structdnnl_1_1softmax__forward_1_1primitive__desc"><span class="std std-ref">dnnl::softmax_forward::primitive_desc</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl14primitive_desc14primitive_descEv">
+<span id="_CPPv3N4dnnl14primitive_desc14primitive_descEv"></span><span id="_CPPv2N4dnnl14primitive_desc14primitive_descEv"></span><span id="dnnl::primitive_desc::primitive_desc"></span><span class="target" id="structdnnl_1_1primitive__desc_1a29956aba7ec69edaa60ddd1cd333bf13"></span><code class="sig-name descname">primitive_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl14primitive_desc14primitive_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default constructor. Produces an empty object. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl14primitive_desc9next_implEv">
+<span id="_CPPv3N4dnnl14primitive_desc9next_implEv"></span><span id="_CPPv2N4dnnl14primitive_desc9next_implEv"></span><span id="dnnl::primitive_desc::next_impl"></span><span class="target" id="structdnnl_1_1primitive__desc_1a841df469ca54c3de2d233e46f48322b2"></span>bool <code class="sig-name descname">next_impl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl14primitive_desc9next_implEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Advances the primitive descriptor iterator to the next implementation.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> on success, and <code class="docutils literal notranslate"><span class="pre">false</span></code> if the last implementation reached, in which case primitive descriptor is not modified. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The <a class="reference internal" href="reorder.html#_CPPv4N4dnnl7reorderE" title="dnnl::reorder"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::reorder</span></code></a>, <a class="reference internal" href="sum.html#_CPPv4N4dnnl3sumE" title="dnnl::sum"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::sum</span></code></a> and <a class="reference internal" href="concat.html#_CPPv4N4dnnl6concatE" title="dnnl::concat"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::concat</span></code></a> primitives
+also subclass <a class="reference internal" href="#_CPPv4N4dnnl14primitive_descE" title="dnnl::primitive_desc"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::primitive_desc</span></code></a> to implement their primitive
+descriptors.</p>
+<p>RNN primitives further subclass the <a class="reference internal" href="#_CPPv4N4dnnl19primitive_desc_baseE" title="dnnl::primitive_desc_base"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">dnnl::primitive_desc_base</span></code></a> to
+provide utility functions for frequently queried memory descriptors.</p>
+<dl class="cpp struct">
+<dt id="_CPPv4N4dnnl23rnn_primitive_desc_baseE">
+<span id="_CPPv3N4dnnl23rnn_primitive_desc_baseE"></span><span id="_CPPv2N4dnnl23rnn_primitive_desc_baseE"></span><span id="dnnl::rnn_primitive_desc_base"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base"></span><em class="property">struct </em><code class="sig-prename descclassname">dnnl<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">rnn_primitive_desc_base</code> : <em class="property">public</em> dnnl::<a class="reference internal" href="#_CPPv4N4dnnl14primitive_descE" title="dnnl::primitive_desc">primitive_desc</a><a class="headerlink" href="#_CPPv4N4dnnl23rnn_primitive_desc_baseE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Base class for primitive descriptors for RNN primitives. </p>
+<p>Subclassed by <a class="reference internal" href="rnn.html#structdnnl_1_1gru__backward_1_1primitive__desc"><span class="std std-ref">dnnl::gru_backward::primitive_desc</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1gru__forward_1_1primitive__desc"><span class="std std-ref">dnnl::gru_forward::primitive_desc</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1lbr__gru__backward_1_1primitive__desc"><span class="std std-ref">dnnl::lbr_gru_backward::primitive_desc</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1lbr__gru__forward_1_1primitive__desc"><span class="std std-ref">dnnl::lbr_gru_forward::primitive_desc</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1lstm__backward_1_1primitive__desc"><span class="std std-ref">dnnl::lstm_backward::primitive_desc</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1lstm__forward_1_1primitive__desc"><span class="std std-ref">dnnl::lstm_forward::primitive_desc</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1vanilla__rnn__backward_1_1primitive__desc"><span class="std std-ref">dnnl::vanilla_rnn_backward::primitive_desc</span></a>, <a class="reference internal" href="rnn.html#structdnnl_1_1vanilla__rnn__forward_1_1primitive__desc"><span class="std std-ref">dnnl::vanilla_rnn_forward::primitive_desc</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N4dnnl23rnn_primitive_desc_base23rnn_primitive_desc_baseEv">
+<span id="_CPPv3N4dnnl23rnn_primitive_desc_base23rnn_primitive_desc_baseEv"></span><span id="_CPPv2N4dnnl23rnn_primitive_desc_base23rnn_primitive_desc_baseEv"></span><span id="dnnl::rnn_primitive_desc_base::rnn_primitive_desc_base"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a8ecd7977ed8cf79c9e131139a034c2e1"></span><code class="sig-name descname">rnn_primitive_desc_base</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4dnnl23rnn_primitive_desc_base23rnn_primitive_desc_baseEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default constructor. Produces an empty object. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base14src_layer_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base14src_layer_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base14src_layer_descEv"></span><span id="dnnl::rnn_primitive_desc_base::src_layer_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1ae49709b806f2cb108affe1ec5aebb504"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">src_layer_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base14src_layer_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns source layer memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Source layer memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base13src_iter_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base13src_iter_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base13src_iter_descEv"></span><span id="dnnl::rnn_primitive_desc_base::src_iter_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1ab73a02922a9a7d2f0d6066572d5c6a09"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">src_iter_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base13src_iter_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns source iteration memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Source iteration memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a source iteration parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base15src_iter_c_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base15src_iter_c_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base15src_iter_c_descEv"></span><span id="dnnl::rnn_primitive_desc_base::src_iter_c_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1ab37877634785901c8d8850d1a928c9b2"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">src_iter_c_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base15src_iter_c_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns source recurrent cell state memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Source recurrent cell state memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base18weights_layer_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base18weights_layer_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base18weights_layer_descEv"></span><span id="dnnl::rnn_primitive_desc_base::weights_layer_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a20737480e3672640657a34afd631f11f"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">weights_layer_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base18weights_layer_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns weights layer memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Weights layer memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base17weights_iter_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base17weights_iter_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base17weights_iter_descEv"></span><span id="dnnl::rnn_primitive_desc_base::weights_iter_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a2464426ea23b9d026fd5d2c8d92c942a"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">weights_iter_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base17weights_iter_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns weights iteration memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Weights iteration memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base9bias_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base9bias_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base9bias_descEv"></span><span id="dnnl::rnn_primitive_desc_base::bias_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1ac2045ddda996b5e3ac2c0974ca70bfa1"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">bias_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base9bias_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns bias memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Bias memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a bias parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base14dst_layer_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base14dst_layer_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base14dst_layer_descEv"></span><span id="dnnl::rnn_primitive_desc_base::dst_layer_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1aa9a4652f8f5c8d1b32d2f26deac70f92"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">dst_layer_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base14dst_layer_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns destination layer memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Destination layer memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base13dst_iter_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base13dst_iter_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base13dst_iter_descEv"></span><span id="dnnl::rnn_primitive_desc_base::dst_iter_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1af82a946c412df434d8842292d77a496c"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">dst_iter_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base13dst_iter_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns destination iteration memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Destination iteration memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a destination iteration parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base15dst_iter_c_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base15dst_iter_c_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base15dst_iter_c_descEv"></span><span id="dnnl::rnn_primitive_desc_base::dst_iter_c_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a1d56829ac12568aea3a7203631e7c202"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">dst_iter_c_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base15dst_iter_c_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns destination recurrent cell state memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Destination recurrent cell state memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base19diff_src_layer_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base19diff_src_layer_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base19diff_src_layer_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_src_layer_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1afbf93e3cf53b5ef7d04a0b2fcb41f77b"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_src_layer_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base19diff_src_layer_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff source layer memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff source layer memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base18diff_src_iter_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base18diff_src_iter_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base18diff_src_iter_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_src_iter_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a248bcc0f5bec8d76eda24ad391693fa2"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_src_iter_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base18diff_src_iter_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff source iteration memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff source iteration memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff source iteration parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base20diff_src_iter_c_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base20diff_src_iter_c_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base20diff_src_iter_c_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_src_iter_c_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a6f3d6865c312c3231ff7dec8df561ecb"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_src_iter_c_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base20diff_src_iter_c_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff source recurrent cell state memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff source recurrent cell state memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base23diff_weights_layer_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base23diff_weights_layer_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base23diff_weights_layer_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_weights_layer_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a1df1f7cb00c68c73bc4320d7b5fda7bb"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_weights_layer_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base23diff_weights_layer_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff weights layer memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff weights layer memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base22diff_weights_iter_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base22diff_weights_iter_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base22diff_weights_iter_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_weights_iter_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a4243bb55a8d07fa66a3c44633996e73b"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_weights_iter_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base22diff_weights_iter_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff weights iteration memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff weights iteration memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base14diff_bias_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base14diff_bias_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base14diff_bias_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_bias_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1aa81c0dbda6447fe83d1d37122fdc708c"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_bias_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base14diff_bias_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff bias memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff bias memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff bias parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base19diff_dst_layer_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base19diff_dst_layer_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base19diff_dst_layer_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_dst_layer_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1aeb8d331bd2bcb80bd06ec729175e4314"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_dst_layer_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base19diff_dst_layer_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff destination layer memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff destination layer memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base18diff_dst_iter_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base18diff_dst_iter_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base18diff_dst_iter_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_dst_iter_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a4a5eceabe7b1ffd9f181376192f5d397"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_dst_iter_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base18diff_dst_iter_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff destination iteration memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff destination iteration memory descriptor. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>A zero memory descriptor if the primitive does not have a diff destination iteration parameter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK4dnnl23rnn_primitive_desc_base20diff_dst_iter_c_descEv">
+<span id="_CPPv3NK4dnnl23rnn_primitive_desc_base20diff_dst_iter_c_descEv"></span><span id="_CPPv2NK4dnnl23rnn_primitive_desc_base20diff_dst_iter_c_descEv"></span><span id="dnnl::rnn_primitive_desc_base::diff_dst_iter_c_descC"></span><span class="target" id="structdnnl_1_1rnn__primitive__desc__base_1a33e735717f2dffa22cc28e90e20bd344"></span><a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memoryE" title="dnnl::memory">memory</a>::<a class="reference internal" href="../data_model/memory/objects.html#_CPPv4N4dnnl6memory4descE" title="dnnl::memory::desc">desc</a> <code class="sig-name descname">diff_dst_iter_c_desc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK4dnnl23rnn_primitive_desc_base20diff_dst_iter_c_descEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns diff destination recurrent cell state memory descriptor. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Diff destination recurrent cell state memory descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="common-enumerations">
+<h2>Common Enumerations<a class="headerlink" href="#common-enumerations" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp enum">
+<dt id="_CPPv4N4dnnl9prop_kindE">
+<span id="_CPPv3N4dnnl9prop_kindE"></span><span id="_CPPv2N4dnnl9prop_kindE"></span><span class="target" id="group__dnnl__api__attributes_1gac7db48f6583aa9903e54c2a39d65438f"></span><em class="property">enum </em><code class="sig-prename descclassname">dnnl<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">prop_kind</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kindE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Propagation kind. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind5undefE">
+<span id="_CPPv3N4dnnl9prop_kind5undefE"></span><span id="_CPPv2N4dnnl9prop_kind5undefE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438faf31ee5e3824f1f5e5d206bdf3029f22b"></span><em class="property">enumerator </em><code class="sig-name descname">undef</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind5undefE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Undefined propagation kind. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind16forward_trainingE">
+<span id="_CPPv3N4dnnl9prop_kind16forward_trainingE"></span><span id="_CPPv2N4dnnl9prop_kind16forward_trainingE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa24775787fab8f13aa4809e1ce8f82aeb"></span><em class="property">enumerator </em><code class="sig-name descname">forward_training</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind16forward_trainingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forward data propagation (training mode). In this mode, primitives perform computations necessary for subsequent backward propagation. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind17forward_inferenceE">
+<span id="_CPPv3N4dnnl9prop_kind17forward_inferenceE"></span><span id="_CPPv2N4dnnl9prop_kind17forward_inferenceE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa3b9fad4f80d45368f856b5403198ac4c"></span><em class="property">enumerator </em><code class="sig-name descname">forward_inference</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind17forward_inferenceE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forward data propagation (inference mode). In this mode, primitives perform only computations that are necessary for inference and omit computations that are necessary only for backward propagation. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind15forward_scoringE">
+<span id="_CPPv3N4dnnl9prop_kind15forward_scoringE"></span><span id="_CPPv2N4dnnl9prop_kind15forward_scoringE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa4f2df7bab0115f1ddbe25392e3a71542"></span><em class="property">enumerator </em><code class="sig-name descname">forward_scoring</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind15forward_scoringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forward data propagation, alias for <a class="reference internal" href="#group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa3b9fad4f80d45368f856b5403198ac4c"><span class="std std-ref">dnnl::prop_kind::forward_inference</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind7forwardE">
+<span id="_CPPv3N4dnnl9prop_kind7forwardE"></span><span id="_CPPv2N4dnnl9prop_kind7forwardE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa965dbaac085fc891bfbbd4f9d145bbc8"></span><em class="property">enumerator </em><code class="sig-name descname">forward</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind7forwardE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forward data propagation, alias for <a class="reference internal" href="#group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa24775787fab8f13aa4809e1ce8f82aeb"><span class="std std-ref">dnnl::prop_kind::forward_training</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind8backwardE">
+<span id="_CPPv3N4dnnl9prop_kind8backwardE"></span><span id="_CPPv2N4dnnl9prop_kind8backwardE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa195fe59b6f103787a914aead0f3db502"></span><em class="property">enumerator </em><code class="sig-name descname">backward</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind8backwardE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backward propagation (with respect to all parameters). </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind13backward_dataE">
+<span id="_CPPv3N4dnnl9prop_kind13backward_dataE"></span><span id="_CPPv2N4dnnl9prop_kind13backward_dataE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438faa12627cacf73ecb7ef088beedd650e96"></span><em class="property">enumerator </em><code class="sig-name descname">backward_data</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind13backward_dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backward data propagation. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind16backward_weightsE">
+<span id="_CPPv3N4dnnl9prop_kind16backward_weightsE"></span><span id="_CPPv2N4dnnl9prop_kind16backward_weightsE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa1a002980f340e61153a9f7de4f794cf6"></span><em class="property">enumerator </em><code class="sig-name descname">backward_weights</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind16backward_weightsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backward weights propagation. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9prop_kind13backward_biasE">
+<span id="_CPPv3N4dnnl9prop_kind13backward_biasE"></span><span id="_CPPv2N4dnnl9prop_kind13backward_biasE"></span><span class="target" id="group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fab6b02795407dc7897e390e48f1d0ea02"></span><em class="property">enumerator </em><code class="sig-name descname">backward_bias</code><a class="headerlink" href="#_CPPv4N4dnnl9prop_kind13backward_biasE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backward bias propagation. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv4N4dnnl9algorithmE">
+<span id="_CPPv3N4dnnl9algorithmE"></span><span id="_CPPv2N4dnnl9algorithmE"></span><span class="target" id="group__dnnl__api__attributes_1ga00377dd4982333e42e8ae1d09a309640"></span><em class="property">enum </em><code class="sig-prename descclassname">dnnl<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">algorithm</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithmE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Kinds of algorithms. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm5undefE">
+<span id="_CPPv3N4dnnl9algorithm5undefE"></span><span id="_CPPv2N4dnnl9algorithm5undefE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640af31ee5e3824f1f5e5d206bdf3029f22b"></span><em class="property">enumerator </em><code class="sig-name descname">undef</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm5undefE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Undefined algorithm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm16convolution_autoE">
+<span id="_CPPv3N4dnnl9algorithm16convolution_autoE"></span><span id="_CPPv2N4dnnl9algorithm16convolution_autoE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640acfdececd63a8bc0cfe1021ad614e2ded"></span><em class="property">enumerator </em><code class="sig-name descname">convolution_auto</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm16convolution_autoE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convolution algorithm that is chosen to be either direct or Winograd automatically </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm18convolution_directE">
+<span id="_CPPv3N4dnnl9algorithm18convolution_directE"></span><span id="_CPPv2N4dnnl9algorithm18convolution_directE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a5028ad8f818a45333a8a0eefad35c5c0"></span><em class="property">enumerator </em><code class="sig-name descname">convolution_direct</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm18convolution_directE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Direct convolution. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm20convolution_winogradE">
+<span id="_CPPv3N4dnnl9algorithm20convolution_winogradE"></span><span id="_CPPv2N4dnnl9algorithm20convolution_winogradE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a6a73ed41c67672f76f53a69e96c31ed4"></span><em class="property">enumerator </em><code class="sig-name descname">convolution_winograd</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm20convolution_winogradE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Winograd convolution. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm20deconvolution_directE">
+<span id="_CPPv3N4dnnl9algorithm20deconvolution_directE"></span><span id="_CPPv2N4dnnl9algorithm20deconvolution_directE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a73f81608d2b7315f04c438fb8be5f99c"></span><em class="property">enumerator </em><code class="sig-name descname">deconvolution_direct</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm20deconvolution_directE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Direct deconvolution. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm22deconvolution_winogradE">
+<span id="_CPPv3N4dnnl9algorithm22deconvolution_winogradE"></span><span id="_CPPv2N4dnnl9algorithm22deconvolution_winogradE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640aeb5da82914413424bf941fa04eb065aa"></span><em class="property">enumerator </em><code class="sig-name descname">deconvolution_winograd</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm22deconvolution_winogradE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Winograd deconvolution. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm12eltwise_reluE">
+<span id="_CPPv3N4dnnl9algorithm12eltwise_reluE"></span><span id="_CPPv2N4dnnl9algorithm12eltwise_reluE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640aba09bebb742494255b90b43871c01c69"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_relu</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm12eltwise_reluE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: rectified linear unit (ReLU) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm12eltwise_tanhE">
+<span id="_CPPv3N4dnnl9algorithm12eltwise_tanhE"></span><span id="_CPPv2N4dnnl9algorithm12eltwise_tanhE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a38dd7159307eab45742c78e72f06abb0"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_tanh</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm12eltwise_tanhE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: hyperbolic tangent non-linearity (tanh) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11eltwise_eluE">
+<span id="_CPPv3N4dnnl9algorithm11eltwise_eluE"></span><span id="_CPPv2N4dnnl9algorithm11eltwise_eluE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a690376cad4a7f001e967a6a40d04da3a"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_elu</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11eltwise_eluE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: exponential linear unit (ELU) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm14eltwise_squareE">
+<span id="_CPPv3N4dnnl9algorithm14eltwise_squareE"></span><span id="_CPPv2N4dnnl9algorithm14eltwise_squareE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a448fc250a28e651c02966142f7f66cce"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_square</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm14eltwise_squareE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: square. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11eltwise_absE">
+<span id="_CPPv3N4dnnl9algorithm11eltwise_absE"></span><span id="_CPPv2N4dnnl9algorithm11eltwise_absE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a30046c43b9399a7aaa4281da7cff2d5c"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_abs</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11eltwise_absE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: abs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm12eltwise_sqrtE">
+<span id="_CPPv3N4dnnl9algorithm12eltwise_sqrtE"></span><span id="_CPPv2N4dnnl9algorithm12eltwise_sqrtE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a83b978b280304349860c7cdc3519865f"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_sqrt</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm12eltwise_sqrtE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: square root. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm13eltwise_swishE">
+<span id="_CPPv3N4dnnl9algorithm13eltwise_swishE"></span><span id="_CPPv2N4dnnl9algorithm13eltwise_swishE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a97395201ce1744f18c19d243d24fbd13"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_swish</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm13eltwise_swishE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: swish ( <span class="math notranslate nohighlight">\(x \cdot sigmoid(a \cdot x)\)</span>) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm14eltwise_linearE">
+<span id="_CPPv3N4dnnl9algorithm14eltwise_linearE"></span><span id="_CPPv2N4dnnl9algorithm14eltwise_linearE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a21aba6844d2de47b92ab1d110f561945"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_linear</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm14eltwise_linearE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: linear. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm20eltwise_bounded_reluE">
+<span id="_CPPv3N4dnnl9algorithm20eltwise_bounded_reluE"></span><span id="_CPPv2N4dnnl9algorithm20eltwise_bounded_reluE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a4142c71f159526fef4c85b8c5ae78a72"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_bounded_relu</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm20eltwise_bounded_reluE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: bounded_relu. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm17eltwise_soft_reluE">
+<span id="_CPPv3N4dnnl9algorithm17eltwise_soft_reluE"></span><span id="_CPPv2N4dnnl9algorithm17eltwise_soft_reluE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a23175afeee905a4de38e5a24b46cb6e2"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_soft_relu</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm17eltwise_soft_reluE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: soft_relu. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm16eltwise_logisticE">
+<span id="_CPPv3N4dnnl9algorithm16eltwise_logisticE"></span><span id="_CPPv2N4dnnl9algorithm16eltwise_logisticE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a282836cce833348ee509b0ecd764d217"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_logistic</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm16eltwise_logisticE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: logistic. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11eltwise_expE">
+<span id="_CPPv3N4dnnl9algorithm11eltwise_expE"></span><span id="_CPPv2N4dnnl9algorithm11eltwise_expE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a6506e1f0284a4bb8cb999b49c6142599"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_exp</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11eltwise_expE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: exponent. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm12eltwise_geluE">
+<span id="_CPPv3N4dnnl9algorithm12eltwise_geluE"></span><span id="_CPPv2N4dnnl9algorithm12eltwise_geluE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a8320b34de5fed32c795cd92a7fbf4749"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_gelu</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm12eltwise_geluE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: gelu alias for <a class="reference internal" href="#group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640abab46bda36dbfea612e68c5345351194"><span class="std std-ref">dnnl::algorithm::eltwise_gelu_tanh</span></a> </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm17eltwise_gelu_tanhE">
+<span id="_CPPv3N4dnnl9algorithm17eltwise_gelu_tanhE"></span><span id="_CPPv2N4dnnl9algorithm17eltwise_gelu_tanhE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640abab46bda36dbfea612e68c5345351194"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_gelu_tanh</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm17eltwise_gelu_tanhE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: tanh-based gelu. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm16eltwise_gelu_erfE">
+<span id="_CPPv3N4dnnl9algorithm16eltwise_gelu_erfE"></span><span id="_CPPv2N4dnnl9algorithm16eltwise_gelu_erfE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a8fd73f441d3ef70416c010f6aea56d5b"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_gelu_erf</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm16eltwise_gelu_erfE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: erf-based gelu. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11eltwise_logE">
+<span id="_CPPv3N4dnnl9algorithm11eltwise_logE"></span><span id="_CPPv2N4dnnl9algorithm11eltwise_logE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640af2a460e3ec273e904c6f6b39baa5e477"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_log</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11eltwise_logE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: natural logarithm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm12eltwise_clipE">
+<span id="_CPPv3N4dnnl9algorithm12eltwise_clipE"></span><span id="_CPPv2N4dnnl9algorithm12eltwise_clipE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a2aa1edfbe21c6770d63301058ec753ed"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_clip</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm12eltwise_clipE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: clip. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11eltwise_powE">
+<span id="_CPPv3N4dnnl9algorithm11eltwise_powE"></span><span id="_CPPv2N4dnnl9algorithm11eltwise_powE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a30977b2a33c3a2bd6a5d71a352fa4bcc"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_pow</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11eltwise_powE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: pow. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm28eltwise_relu_use_dst_for_bwdE">
+<span id="_CPPv3N4dnnl9algorithm28eltwise_relu_use_dst_for_bwdE"></span><span id="_CPPv2N4dnnl9algorithm28eltwise_relu_use_dst_for_bwdE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ac227b99192be41d4060b700d1e788fd6"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_relu_use_dst_for_bwd</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm28eltwise_relu_use_dst_for_bwdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: rectified linar unit (ReLU) (dst for backward) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm28eltwise_tanh_use_dst_for_bwdE">
+<span id="_CPPv3N4dnnl9algorithm28eltwise_tanh_use_dst_for_bwdE"></span><span id="_CPPv2N4dnnl9algorithm28eltwise_tanh_use_dst_for_bwdE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a0be1df5ff86383197efdfeb01b10e046"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_tanh_use_dst_for_bwd</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm28eltwise_tanh_use_dst_for_bwdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: hyperbolic tangent non-linearity (tanh) (dst for backward) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm27eltwise_elu_use_dst_for_bwdE">
+<span id="_CPPv3N4dnnl9algorithm27eltwise_elu_use_dst_for_bwdE"></span><span id="_CPPv2N4dnnl9algorithm27eltwise_elu_use_dst_for_bwdE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a09b26fc530b10556b14bc8e9b2d29d35"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_elu_use_dst_for_bwd</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm27eltwise_elu_use_dst_for_bwdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: exponential linear unit (ELU) (dst for backward) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm28eltwise_sqrt_use_dst_for_bwdE">
+<span id="_CPPv3N4dnnl9algorithm28eltwise_sqrt_use_dst_for_bwdE"></span><span id="_CPPv2N4dnnl9algorithm28eltwise_sqrt_use_dst_for_bwdE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ad5704aaf680703d473f983e3f19b8d4d"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_sqrt_use_dst_for_bwd</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm28eltwise_sqrt_use_dst_for_bwdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: square root (dst for backward) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm32eltwise_logistic_use_dst_for_bwdE">
+<span id="_CPPv3N4dnnl9algorithm32eltwise_logistic_use_dst_for_bwdE"></span><span id="_CPPv2N4dnnl9algorithm32eltwise_logistic_use_dst_for_bwdE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a40f1d6681d0ad7bf3e9313641e03ae14"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_logistic_use_dst_for_bwd</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm32eltwise_logistic_use_dst_for_bwdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: logistic (dst for backward) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm27eltwise_exp_use_dst_for_bwdE">
+<span id="_CPPv3N4dnnl9algorithm27eltwise_exp_use_dst_for_bwdE"></span><span id="_CPPv2N4dnnl9algorithm27eltwise_exp_use_dst_for_bwdE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ad10dade245ba1cbe70859fcbdad27637"></span><em class="property">enumerator </em><code class="sig-name descname">eltwise_exp_use_dst_for_bwd</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm27eltwise_exp_use_dst_for_bwdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Elementwise: exponent (dst for backward) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm19lrn_across_channelsE">
+<span id="_CPPv3N4dnnl9algorithm19lrn_across_channelsE"></span><span id="_CPPv2N4dnnl9algorithm19lrn_across_channelsE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ab9e2d858b551792385a4b5b86672b24b"></span><em class="property">enumerator </em><code class="sig-name descname">lrn_across_channels</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm19lrn_across_channelsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Local response normalization (LRN) across multiple channels. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm18lrn_within_channelE">
+<span id="_CPPv3N4dnnl9algorithm18lrn_within_channelE"></span><span id="_CPPv2N4dnnl9algorithm18lrn_within_channelE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640aa25c4ccc5c7c9bd3a977a2089189a494"></span><em class="property">enumerator </em><code class="sig-name descname">lrn_within_channel</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm18lrn_within_channelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LRN within a single channel. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11pooling_maxE">
+<span id="_CPPv3N4dnnl9algorithm11pooling_maxE"></span><span id="_CPPv2N4dnnl9algorithm11pooling_maxE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a8c73d4bb88a0497586a74256bb338e88"></span><em class="property">enumerator </em><code class="sig-name descname">pooling_max</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11pooling_maxE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Max pooling. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11pooling_avgE">
+<span id="_CPPv3N4dnnl9algorithm11pooling_avgE"></span><span id="_CPPv2N4dnnl9algorithm11pooling_avgE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a7702ff2872aa0321d96ea7134bad855a"></span><em class="property">enumerator </em><code class="sig-name descname">pooling_avg</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11pooling_avgE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Average pooling exclude padding, alias for <a class="reference internal" href="#group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ad62617dd43972a6bbff8d263a5c4462c"><span class="std std-ref">dnnl::algorithm::pooling_avg_include_padding</span></a> </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm27pooling_avg_include_paddingE">
+<span id="_CPPv3N4dnnl9algorithm27pooling_avg_include_paddingE"></span><span id="_CPPv2N4dnnl9algorithm27pooling_avg_include_paddingE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ad62617dd43972a6bbff8d263a5c4462c"></span><em class="property">enumerator </em><code class="sig-name descname">pooling_avg_include_padding</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm27pooling_avg_include_paddingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Average pooling include padding. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm27pooling_avg_exclude_paddingE">
+<span id="_CPPv3N4dnnl9algorithm27pooling_avg_exclude_paddingE"></span><span id="_CPPv2N4dnnl9algorithm27pooling_avg_exclude_paddingE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a7ed10af2056450d8f6ac7277b48fc6a8"></span><em class="property">enumerator </em><code class="sig-name descname">pooling_avg_exclude_padding</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm27pooling_avg_exclude_paddingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Average pooling exclude padding. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11vanilla_rnnE">
+<span id="_CPPv3N4dnnl9algorithm11vanilla_rnnE"></span><span id="_CPPv2N4dnnl9algorithm11vanilla_rnnE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ab2b3bfcaad515fd1bf0245e8ae6bd407"></span><em class="property">enumerator </em><code class="sig-name descname">vanilla_rnn</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11vanilla_rnnE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>RNN cell. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm12vanilla_lstmE">
+<span id="_CPPv3N4dnnl9algorithm12vanilla_lstmE"></span><span id="_CPPv2N4dnnl9algorithm12vanilla_lstmE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a716a71a7a6ec13785b552dc2412380ce"></span><em class="property">enumerator </em><code class="sig-name descname">vanilla_lstm</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm12vanilla_lstmE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LSTM cell. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm11vanilla_gruE">
+<span id="_CPPv3N4dnnl9algorithm11vanilla_gruE"></span><span id="_CPPv2N4dnnl9algorithm11vanilla_gruE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a272fa682d36b810a24ec89202b7a31f7"></span><em class="property">enumerator </em><code class="sig-name descname">vanilla_gru</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm11vanilla_gruE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GRU cell. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm7lbr_gruE">
+<span id="_CPPv3N4dnnl9algorithm7lbr_gruE"></span><span id="_CPPv2N4dnnl9algorithm7lbr_gruE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a792e966b14bd4e16625ee4df357a0723"></span><em class="property">enumerator </em><code class="sig-name descname">lbr_gru</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm7lbr_gruE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GRU cell with linear before reset. Differs from original GRU in how the new memory gate is calculated: <span class="math notranslate nohighlight">\(c_t = tanh(W_c*x_t + b_{c_x} + r_t*(U_c*h_{t-1}+b_{c_h})) \)</span> LRB GRU expects 4 bias tensors on input: <span class="math notranslate nohighlight">\([b_{u}, b_{r}, b_{c_x}, b_{c_h}]\)</span> </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm10binary_addE">
+<span id="_CPPv3N4dnnl9algorithm10binary_addE"></span><span id="_CPPv2N4dnnl9algorithm10binary_addE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ab2c3faf084cf82b5603946995f637b35"></span><em class="property">enumerator </em><code class="sig-name descname">binary_add</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm10binary_addE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Binary add. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm10binary_mulE">
+<span id="_CPPv3N4dnnl9algorithm10binary_mulE"></span><span id="_CPPv2N4dnnl9algorithm10binary_mulE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a0905fc5c22e79a8eed0988681eb6a0ae"></span><em class="property">enumerator </em><code class="sig-name descname">binary_mul</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm10binary_mulE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Binary mul. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm10binary_maxE">
+<span id="_CPPv3N4dnnl9algorithm10binary_maxE"></span><span id="_CPPv2N4dnnl9algorithm10binary_maxE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a4ae0aa1c0bf5bd1bf54564a2485618be"></span><em class="property">enumerator </em><code class="sig-name descname">binary_max</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm10binary_maxE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Binary max. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm10binary_minE">
+<span id="_CPPv3N4dnnl9algorithm10binary_minE"></span><span id="_CPPv2N4dnnl9algorithm10binary_minE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640ad096699e4ea7ada3d71428484e6119d8"></span><em class="property">enumerator </em><code class="sig-name descname">binary_min</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm10binary_minE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Binary min. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm18resampling_nearestE">
+<span id="_CPPv3N4dnnl9algorithm18resampling_nearestE"></span><span id="_CPPv2N4dnnl9algorithm18resampling_nearestE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a091b262cfae5e610fcad1490bfb79431"></span><em class="property">enumerator </em><code class="sig-name descname">resampling_nearest</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm18resampling_nearestE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Nearest Neighbor resampling method. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl9algorithm17resampling_linearE">
+<span id="_CPPv3N4dnnl9algorithm17resampling_linearE"></span><span id="_CPPv2N4dnnl9algorithm17resampling_linearE"></span><span class="target" id="group__dnnl__api__attributes_1gga00377dd4982333e42e8ae1d09a309640a05731680a83c6dccd19a758b72a4ecbd"></span><em class="property">enumerator </em><code class="sig-name descname">resampling_linear</code><a class="headerlink" href="#_CPPv4N4dnnl9algorithm17resampling_linearE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Linear (Bilinear, Trilinear) resampling method. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="normalization-primitives-flags">
+<h2>Normalization Primitives Flags<a class="headerlink" href="#normalization-primitives-flags" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp enum">
+<dt id="_CPPv4N4dnnl19normalization_flagsE">
+<span id="_CPPv3N4dnnl19normalization_flagsE"></span><span id="_CPPv2N4dnnl19normalization_flagsE"></span><span class="target" id="group__dnnl__api__primitives__common_1gad8ef0fcbb7b10cae3d67dd46892002be"></span><em class="property">enum </em><code class="sig-prename descclassname">dnnl<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">normalization_flags</code><a class="headerlink" href="#_CPPv4N4dnnl19normalization_flagsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Flags for normalization primitives (can be combined via ‘|’) </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl19normalization_flags4noneE">
+<span id="_CPPv3N4dnnl19normalization_flags4noneE"></span><span id="_CPPv2N4dnnl19normalization_flags4noneE"></span><span class="target" id="group__dnnl__api__primitives__common_1ggad8ef0fcbb7b10cae3d67dd46892002bea334c4a4c42fdb79d7ebc3e73b517e6f8"></span><em class="property">enumerator </em><code class="sig-name descname">none</code><a class="headerlink" href="#_CPPv4N4dnnl19normalization_flags4noneE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use no normalization flags. If specified, the library computes mean and variance on forward propagation for training and inference, outputs them on forward propagation for training, and computes the respective derivatives on backward propagation. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl19normalization_flags16use_global_statsE">
+<span id="_CPPv3N4dnnl19normalization_flags16use_global_statsE"></span><span id="_CPPv2N4dnnl19normalization_flags16use_global_statsE"></span><span class="target" id="group__dnnl__api__primitives__common_1ggad8ef0fcbb7b10cae3d67dd46892002bea95768ff8afb8ee75dc24be0d307627f8"></span><em class="property">enumerator </em><code class="sig-name descname">use_global_stats</code> = 0x1u<a class="headerlink" href="#_CPPv4N4dnnl19normalization_flags16use_global_statsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use global statistics. If specified, the library uses mean and variance provided by the user as an input on forward propagation and does not compute their derivatives on backward propagation. Otherwise, the library computes mean and variance on forward propagation for training and inference, outputs them on forward propagation for training, and computes the respective derivatives on backward propagation. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl19normalization_flags15use_scale_shiftE">
+<span id="_CPPv3N4dnnl19normalization_flags15use_scale_shiftE"></span><span id="_CPPv2N4dnnl19normalization_flags15use_scale_shiftE"></span><span class="target" id="group__dnnl__api__primitives__common_1ggad8ef0fcbb7b10cae3d67dd46892002bea0cbad8a346551ec47da7ff1afb1e1f76"></span><em class="property">enumerator </em><code class="sig-name descname">use_scale_shift</code> = 0x2u<a class="headerlink" href="#_CPPv4N4dnnl19normalization_flags15use_scale_shiftE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use scale and shift parameters. If specified, the user is expected to pass scale and shift as inputs on forward propagation. On backward propagation of type <a class="reference internal" href="#group__dnnl__api__attributes_1ggac7db48f6583aa9903e54c2a39d65438fa195fe59b6f103787a914aead0f3db502"><span class="std std-ref">dnnl::prop_kind::backward</span></a>, the library computes their derivatives. If not specified, the scale and shift parameters are not used by the library in any way. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N4dnnl19normalization_flags14fuse_norm_reluE">
+<span id="_CPPv3N4dnnl19normalization_flags14fuse_norm_reluE"></span><span id="_CPPv2N4dnnl19normalization_flags14fuse_norm_reluE"></span><span class="target" id="group__dnnl__api__primitives__common_1ggad8ef0fcbb7b10cae3d67dd46892002bea898ce555425ee54271096bc9c8e0400c"></span><em class="property">enumerator </em><code class="sig-name descname">fuse_norm_relu</code> = 0x4u<a class="headerlink" href="#_CPPv4N4dnnl19normalization_flags14fuse_norm_reluE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Fuse normalization with ReLU. On training, normalization will require the workspace to implement backward propagation. On inference, the workspace is not required and behavior is the same as when normalization is fused with ReLU using the post-ops API. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="execution-argument-indices">
+<h2>Execution argument indices<a class="headerlink" href="#execution-argument-indices" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SRC_0">
+<span class="target" id="dnnl__types_8h_1a53dc83e64489cd69bd82c1c2025eb5bd"></span><code class="sig-name descname">DNNL_ARG_SRC_0</code><a class="headerlink" href="#c.DNNL_ARG_SRC_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Source argument #0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SRC">
+<span class="target" id="dnnl__types_8h_1ac37ad67b48edeb9e742af0e50b70fe09"></span><code class="sig-name descname">DNNL_ARG_SRC</code><a class="headerlink" href="#c.DNNL_ARG_SRC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for source argument for primitives that have a single source. An alias for <a class="reference internal" href="#dnnl__types_8h_1a53dc83e64489cd69bd82c1c2025eb5bd"><span class="std std-ref">DNNL_ARG_SRC_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SRC_LAYER">
+<span class="target" id="dnnl__types_8h_1ab91ce4d04cf4e98e3a407daa0676764f"></span><code class="sig-name descname">DNNL_ARG_SRC_LAYER</code><a class="headerlink" href="#c.DNNL_ARG_SRC_LAYER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for RNN input vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1a53dc83e64489cd69bd82c1c2025eb5bd"><span class="std std-ref">DNNL_ARG_SRC_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_FROM">
+<span class="target" id="dnnl__types_8h_1a953b34f004a8222b04e21851487c611a"></span><code class="sig-name descname">DNNL_ARG_FROM</code><a class="headerlink" href="#c.DNNL_ARG_FROM" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for reorder source argument. An alias for <a class="reference internal" href="#dnnl__types_8h_1a53dc83e64489cd69bd82c1c2025eb5bd"><span class="std std-ref">DNNL_ARG_SRC_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SRC_1">
+<span class="target" id="dnnl__types_8h_1adc5a5761633c05f4378780d23b7c9692"></span><code class="sig-name descname">DNNL_ARG_SRC_1</code><a class="headerlink" href="#c.DNNL_ARG_SRC_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Source argument #1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SRC_ITER">
+<span class="target" id="dnnl__types_8h_1af35f4f604284f1b00bb35bffd0f7a143"></span><code class="sig-name descname">DNNL_ARG_SRC_ITER</code><a class="headerlink" href="#c.DNNL_ARG_SRC_ITER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for RNN input recurrent hidden state vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1adc5a5761633c05f4378780d23b7c9692"><span class="std std-ref">DNNL_ARG_SRC_1</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SRC_2">
+<span class="target" id="dnnl__types_8h_1a2ad44d7072cc1c13f0d2eeb3f5f59a24"></span><code class="sig-name descname">DNNL_ARG_SRC_2</code><a class="headerlink" href="#c.DNNL_ARG_SRC_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Source argument #2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SRC_ITER_C">
+<span class="target" id="dnnl__types_8h_1a8ef6969516e717208a33766542410410"></span><code class="sig-name descname">DNNL_ARG_SRC_ITER_C</code><a class="headerlink" href="#c.DNNL_ARG_SRC_ITER_C" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for RNN input recurrent cell state vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1a2ad44d7072cc1c13f0d2eeb3f5f59a24"><span class="std std-ref">DNNL_ARG_SRC_2</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DST_0">
+<span class="target" id="dnnl__types_8h_1a7ba773575a68b592f3ef0fa885d87c20"></span><code class="sig-name descname">DNNL_ARG_DST_0</code><a class="headerlink" href="#c.DNNL_ARG_DST_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Destination argument #0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DST">
+<span class="target" id="dnnl__types_8h_1a3ca217e4a06d42a0ede3c018383c388f"></span><code class="sig-name descname">DNNL_ARG_DST</code><a class="headerlink" href="#c.DNNL_ARG_DST" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for destination argument for primitives that have a single destination. An alias for <a class="reference internal" href="#dnnl__types_8h_1a7ba773575a68b592f3ef0fa885d87c20"><span class="std std-ref">DNNL_ARG_DST_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_TO">
+<span class="target" id="dnnl__types_8h_1af700c3396987b450413c8df5d78bafd9"></span><code class="sig-name descname">DNNL_ARG_TO</code><a class="headerlink" href="#c.DNNL_ARG_TO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for reorder destination argument. An alias for <a class="reference internal" href="#dnnl__types_8h_1a7ba773575a68b592f3ef0fa885d87c20"><span class="std std-ref">DNNL_ARG_DST_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DST_LAYER">
+<span class="target" id="dnnl__types_8h_1acfc123a6a4ff3b4af4cd27ed66fb8528"></span><code class="sig-name descname">DNNL_ARG_DST_LAYER</code><a class="headerlink" href="#c.DNNL_ARG_DST_LAYER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for RNN output vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1a7ba773575a68b592f3ef0fa885d87c20"><span class="std std-ref">DNNL_ARG_DST_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DST_1">
+<span class="target" id="dnnl__types_8h_1ae4215f24ddcf9e4b20b246e10a992687"></span><code class="sig-name descname">DNNL_ARG_DST_1</code><a class="headerlink" href="#c.DNNL_ARG_DST_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Destination argument #1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DST_ITER">
+<span class="target" id="dnnl__types_8h_1a13b91cbd3f531d9c90227895a275d5a6"></span><code class="sig-name descname">DNNL_ARG_DST_ITER</code><a class="headerlink" href="#c.DNNL_ARG_DST_ITER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for RNN input recurrent hidden state vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1ae4215f24ddcf9e4b20b246e10a992687"><span class="std std-ref">DNNL_ARG_DST_1</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DST_2">
+<span class="target" id="dnnl__types_8h_1abec2200437d5553747fe56a15548a9b1"></span><code class="sig-name descname">DNNL_ARG_DST_2</code><a class="headerlink" href="#c.DNNL_ARG_DST_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Destination argument #2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DST_ITER_C">
+<span class="target" id="dnnl__types_8h_1a8b77d8716fc0ab9923d6cb409dbdf900"></span><code class="sig-name descname">DNNL_ARG_DST_ITER_C</code><a class="headerlink" href="#c.DNNL_ARG_DST_ITER_C" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for LSTM output recurrent cell state vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1abec2200437d5553747fe56a15548a9b1"><span class="std std-ref">DNNL_ARG_DST_2</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_WEIGHTS_0">
+<span class="target" id="dnnl__types_8h_1a12d6c5c4ea17c90ade1e324d47756c3f"></span><code class="sig-name descname">DNNL_ARG_WEIGHTS_0</code><a class="headerlink" href="#c.DNNL_ARG_WEIGHTS_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Weights argument #0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_WEIGHTS">
+<span class="target" id="dnnl__types_8h_1af279f28c59a807e71a70c719db56c5b3"></span><code class="sig-name descname">DNNL_ARG_WEIGHTS</code><a class="headerlink" href="#c.DNNL_ARG_WEIGHTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for primitives that have a single weights argument. Alias for <a class="reference internal" href="#dnnl__types_8h_1a12d6c5c4ea17c90ade1e324d47756c3f"><span class="std std-ref">DNNL_ARG_WEIGHTS_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SCALE_SHIFT">
+<span class="target" id="dnnl__types_8h_1a6d529c1a672c080d4b13f6929e915de4"></span><code class="sig-name descname">DNNL_ARG_SCALE_SHIFT</code><a class="headerlink" href="#c.DNNL_ARG_SCALE_SHIFT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for scale and shift argument of normalization primitives. Alias for <a class="reference internal" href="#dnnl__types_8h_1a12d6c5c4ea17c90ade1e324d47756c3f"><span class="std std-ref">DNNL_ARG_WEIGHTS_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_WEIGHTS_LAYER">
+<span class="target" id="dnnl__types_8h_1a1ac9e1f1327be3902b488b64bae1b4c5"></span><code class="sig-name descname">DNNL_ARG_WEIGHTS_LAYER</code><a class="headerlink" href="#c.DNNL_ARG_WEIGHTS_LAYER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for RNN weights applied to the layer input. An alias for <a class="reference internal" href="#dnnl__types_8h_1a12d6c5c4ea17c90ade1e324d47756c3f"><span class="std std-ref">DNNL_ARG_WEIGHTS_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_WEIGHTS_1">
+<span class="target" id="dnnl__types_8h_1a6daaa6a32731e2a670821f95f8e353fd"></span><code class="sig-name descname">DNNL_ARG_WEIGHTS_1</code><a class="headerlink" href="#c.DNNL_ARG_WEIGHTS_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Weights argument #1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_WEIGHTS_ITER">
+<span class="target" id="dnnl__types_8h_1a5a9c39486c01ad263e29677a32735af8"></span><code class="sig-name descname">DNNL_ARG_WEIGHTS_ITER</code><a class="headerlink" href="#c.DNNL_ARG_WEIGHTS_ITER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for RNN weights applied to the recurrent input. An alias for <a class="reference internal" href="#dnnl__types_8h_1a6daaa6a32731e2a670821f95f8e353fd"><span class="std std-ref">DNNL_ARG_WEIGHTS_1</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_BIAS">
+<span class="target" id="dnnl__types_8h_1ad0cbc09942aba93fbe3c0c2e09166f0d"></span><code class="sig-name descname">DNNL_ARG_BIAS</code><a class="headerlink" href="#c.DNNL_ARG_BIAS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Bias tensor argument. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_MEAN">
+<span class="target" id="dnnl__types_8h_1a9bcff7f442a5d6a0ac1183533e721066"></span><code class="sig-name descname">DNNL_ARG_MEAN</code><a class="headerlink" href="#c.DNNL_ARG_MEAN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mean values tensor argument. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_VARIANCE">
+<span class="target" id="dnnl__types_8h_1aa0e60e8d129936ba29555e17efb82581"></span><code class="sig-name descname">DNNL_ARG_VARIANCE</code><a class="headerlink" href="#c.DNNL_ARG_VARIANCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Variance values tensor argument. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_WORKSPACE">
+<span class="target" id="dnnl__types_8h_1a550c80e1b9ba4f541202a7ac98be117f"></span><code class="sig-name descname">DNNL_ARG_WORKSPACE</code><a class="headerlink" href="#c.DNNL_ARG_WORKSPACE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Workspace tensor argument. Workspace is used to pass information from forward propagation to backward propagation computations. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_SCRATCHPAD">
+<span class="target" id="dnnl__types_8h_1a81836a4db2cb1c4a14d959e304d3f63d"></span><code class="sig-name descname">DNNL_ARG_SCRATCHPAD</code><a class="headerlink" href="#c.DNNL_ARG_SCRATCHPAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scratchpad (temporary storage) tensor argument. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_SRC_0">
+<span class="target" id="dnnl__types_8h_1a5d7ebcd603a037e0cd53a22377d1addf"></span><code class="sig-name descname">DNNL_ARG_DIFF_SRC_0</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_SRC_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the source argument #0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_SRC">
+<span class="target" id="dnnl__types_8h_1a18ee0e360399cfe9d3b58a13dfcb9333"></span><code class="sig-name descname">DNNL_ARG_DIFF_SRC</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_SRC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for primitives that have a single diff source argument. An alias for <a class="reference internal" href="#dnnl__types_8h_1a5d7ebcd603a037e0cd53a22377d1addf"><span class="std std-ref">DNNL_ARG_DIFF_SRC_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_SRC_LAYER">
+<span class="target" id="dnnl__types_8h_1a24709fa44c67cf453facbc1c52b0d598"></span><code class="sig-name descname">DNNL_ARG_DIFF_SRC_LAYER</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_SRC_LAYER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for gradient (diff) of RNN input vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1a5d7ebcd603a037e0cd53a22377d1addf"><span class="std std-ref">DNNL_ARG_DIFF_SRC_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_SRC_1">
+<span class="target" id="dnnl__types_8h_1a79861408c787de29acec450006dace7f"></span><code class="sig-name descname">DNNL_ARG_DIFF_SRC_1</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_SRC_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the source argument #1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_SRC_ITER">
+<span class="target" id="dnnl__types_8h_1a4f7ed97882e020a1cbaa891bbe0da45b"></span><code class="sig-name descname">DNNL_ARG_DIFF_SRC_ITER</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_SRC_ITER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for gradient (diff) of RNN input recurrent hidden state vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1a79861408c787de29acec450006dace7f"><span class="std std-ref">DNNL_ARG_DIFF_SRC_1</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_SRC_2">
+<span class="target" id="dnnl__types_8h_1ae5520b100e7e94e218ccda5697d720bf"></span><code class="sig-name descname">DNNL_ARG_DIFF_SRC_2</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_SRC_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the source argument #2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_SRC_ITER_C">
+<span class="target" id="dnnl__types_8h_1a1d8616925684111f3a1b6d8116ab0077"></span><code class="sig-name descname">DNNL_ARG_DIFF_SRC_ITER_C</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_SRC_ITER_C" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for gradient (diff) of RNN input recurrent cell state vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1a79861408c787de29acec450006dace7f"><span class="std std-ref">DNNL_ARG_DIFF_SRC_1</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_DST_0">
+<span class="target" id="dnnl__types_8h_1a5cf662f6dc742a3500ec4f54290b86da"></span><code class="sig-name descname">DNNL_ARG_DIFF_DST_0</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_DST_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the destination argument #0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_DST">
+<span class="target" id="dnnl__types_8h_1ac9302f4cbd2668bf9a98ba99d752b971"></span><code class="sig-name descname">DNNL_ARG_DIFF_DST</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_DST" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for primitives that have a single diff destination argument. An alias for <a class="reference internal" href="#dnnl__types_8h_1a5cf662f6dc742a3500ec4f54290b86da"><span class="std std-ref">DNNL_ARG_DIFF_DST_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_DST_LAYER">
+<span class="target" id="dnnl__types_8h_1afc6053e276352b05b3b526141586e0ac"></span><code class="sig-name descname">DNNL_ARG_DIFF_DST_LAYER</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_DST_LAYER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for gradient (diff) of RNN output vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1a5cf662f6dc742a3500ec4f54290b86da"><span class="std std-ref">DNNL_ARG_DIFF_DST_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_DST_1">
+<span class="target" id="dnnl__types_8h_1a87fad7b00d52b6bff673fca344d0f96d"></span><code class="sig-name descname">DNNL_ARG_DIFF_DST_1</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_DST_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the destination argument #1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_DST_ITER">
+<span class="target" id="dnnl__types_8h_1ad9c83f558d1b229b4185ccbf939590a3"></span><code class="sig-name descname">DNNL_ARG_DIFF_DST_ITER</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_DST_ITER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for gradient (diff) of RNN input recurrent hidden state vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1a87fad7b00d52b6bff673fca344d0f96d"><span class="std std-ref">DNNL_ARG_DIFF_DST_1</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_DST_2">
+<span class="target" id="dnnl__types_8h_1af6ae542064ad032e7c335f3701398034"></span><code class="sig-name descname">DNNL_ARG_DIFF_DST_2</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_DST_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the destination argument #2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_DST_ITER_C">
+<span class="target" id="dnnl__types_8h_1a5524b26b690b9b4b81f0c7f3f9ac3b62"></span><code class="sig-name descname">DNNL_ARG_DIFF_DST_ITER_C</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_DST_ITER_C" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for gradient (diff) of RNN input recurrent cell state vector. An alias for <a class="reference internal" href="#dnnl__types_8h_1af6ae542064ad032e7c335f3701398034"><span class="std std-ref">DNNL_ARG_DIFF_DST_2</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_WEIGHTS_0">
+<span class="target" id="dnnl__types_8h_1aece55926acecbbf375cd4fb06c5786ab"></span><code class="sig-name descname">DNNL_ARG_DIFF_WEIGHTS_0</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_WEIGHTS_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the weights argument #0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_WEIGHTS">
+<span class="target" id="dnnl__types_8h_1a3324092ef421f77aebee83b0117cac60"></span><code class="sig-name descname">DNNL_ARG_DIFF_WEIGHTS</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_WEIGHTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for primitives that have a single diff weights argument. Alias for <a class="reference internal" href="#dnnl__types_8h_1aece55926acecbbf375cd4fb06c5786ab"><span class="std std-ref">DNNL_ARG_DIFF_WEIGHTS_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_SCALE_SHIFT">
+<span class="target" id="dnnl__types_8h_1a5ba61ea97841abbbc18babb9a439c5c4"></span><code class="sig-name descname">DNNL_ARG_DIFF_SCALE_SHIFT</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_SCALE_SHIFT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for diff of scale and shift argument of normalization primitives. Alias for <a class="reference internal" href="#dnnl__types_8h_1aece55926acecbbf375cd4fb06c5786ab"><span class="std std-ref">DNNL_ARG_DIFF_WEIGHTS_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_WEIGHTS_LAYER">
+<span class="target" id="dnnl__types_8h_1ac0bd0c223011ee2fbbc3c430c047c756"></span><code class="sig-name descname">DNNL_ARG_DIFF_WEIGHTS_LAYER</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_WEIGHTS_LAYER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for diff of RNN weights applied to the layer input. An alias for <a class="reference internal" href="#dnnl__types_8h_1aece55926acecbbf375cd4fb06c5786ab"><span class="std std-ref">DNNL_ARG_DIFF_WEIGHTS_0</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_WEIGHTS_1">
+<span class="target" id="dnnl__types_8h_1a789a5f68ece3af7f3c86217a4a5dab7e"></span><code class="sig-name descname">DNNL_ARG_DIFF_WEIGHTS_1</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_WEIGHTS_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the weights argument #1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_WEIGHTS_ITER">
+<span class="target" id="dnnl__types_8h_1a4a8e5f32de3856588b2976a766d0af0f"></span><code class="sig-name descname">DNNL_ARG_DIFF_WEIGHTS_ITER</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_WEIGHTS_ITER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A special mnemonic for diff of RNN weights applied to the recurrent input. An alias for <a class="reference internal" href="#dnnl__types_8h_1a789a5f68ece3af7f3c86217a4a5dab7e"><span class="std std-ref">DNNL_ARG_DIFF_WEIGHTS_1</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_DIFF_BIAS">
+<span class="target" id="dnnl__types_8h_1a1cd79979dda6df65ec45eef32a839901"></span><code class="sig-name descname">DNNL_ARG_DIFF_BIAS</code><a class="headerlink" href="#c.DNNL_ARG_DIFF_BIAS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gradient (diff) of the bias tensor argument. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_ATTR_OUTPUT_SCALES">
+<span class="target" id="dnnl__types_8h_1a0afb48b0c2b8f3ee30609aaa47aa29db"></span><code class="sig-name descname">DNNL_ARG_ATTR_OUTPUT_SCALES</code><a class="headerlink" href="#c.DNNL_ARG_ATTR_OUTPUT_SCALES" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output scaling factors provided at execution time. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_MULTIPLE_SRC">
+<span class="target" id="dnnl__types_8h_1a1f0da423df3fb6853ddcbe6ffe964267"></span><code class="sig-name descname">DNNL_ARG_MULTIPLE_SRC</code><a class="headerlink" href="#c.DNNL_ARG_MULTIPLE_SRC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starting index for source arguments for primitives that take a variable number of source arguments. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_MULTIPLE_DST">
+<span class="target" id="dnnl__types_8h_1aa4183403de9fac3efd3f32c7a975580b"></span><code class="sig-name descname">DNNL_ARG_MULTIPLE_DST</code><a class="headerlink" href="#c.DNNL_ARG_MULTIPLE_DST" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starting index for destination arguments for primitives that produce a variable number of destination arguments. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_ARG_ATTR_ZERO_POINTS">
+<span class="target" id="dnnl__types_8h_1af8d879adfe2baa2f9f2a5143a0f274b6"></span><code class="sig-name descname">DNNL_ARG_ATTR_ZERO_POINTS</code><a class="headerlink" href="#c.DNNL_ARG_ATTR_ZERO_POINTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Zero points provided at execution time. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_RUNTIME_DIM_VAL">
+<span class="target" id="dnnl__types_8h_1aa596c5a6102df77a550bad98f0d5cc12"></span><code class="sig-name descname">DNNL_RUNTIME_DIM_VAL</code><a class="headerlink" href="#c.DNNL_RUNTIME_DIM_VAL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A wildcard value for dimensions that are unknown at a primitive creation time. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_RUNTIME_SIZE_VAL">
+<span class="target" id="dnnl__types_8h_1a61466fbd352b6c94b6541977fbe199b8"></span><code class="sig-name descname">DNNL_RUNTIME_SIZE_VAL</code><a class="headerlink" href="#c.DNNL_RUNTIME_SIZE_VAL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A <code class="docutils literal notranslate"><span class="pre">size_t</span></code> counterpart of the <a class="reference internal" href="#dnnl__types_8h_1aa596c5a6102df77a550bad98f0d5cc12"><span class="std std-ref">DNNL_RUNTIME_DIM_VAL</span></a>. For instance, this value is returned by <a class="reference internal" href="../data_model/memory/objects.html#structdnnl_1_1memory_1_1desc_1ac20108bc192912382aa4a95ae27df804"><span class="std std-ref">dnnl::memory::desc::get_size()</span></a> if either of the dimensions or strides equal to <a class="reference internal" href="#dnnl__types_8h_1aa596c5a6102df77a550bad98f0d5cc12"><span class="std std-ref">DNNL_RUNTIME_DIM_VAL</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_RUNTIME_F32_VAL">
+<span class="target" id="dnnl__types_8h_1ab16365c11b4dc88fbb453edb51f1979f"></span><code class="sig-name descname">DNNL_RUNTIME_F32_VAL</code><a class="headerlink" href="#c.DNNL_RUNTIME_F32_VAL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A wildcard value for floating point values that are unknown at a primitive creation time. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DNNL_RUNTIME_S32_VAL">
+<span class="target" id="dnnl__types_8h_1a30139d5110e9e895ccd93fe503ca4c35"></span><code class="sig-name descname">DNNL_RUNTIME_S32_VAL</code><a class="headerlink" href="#c.DNNL_RUNTIME_S32_VAL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A wildcard value for int32_t values that are unknown at a primitive creation time. </p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="attributes/index.html" class="btn btn-neutral float-right" title="Attributes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Primitives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

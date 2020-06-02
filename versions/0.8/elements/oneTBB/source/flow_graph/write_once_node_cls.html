@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>write_once_node &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="buffer_node" href="buffer_node_cls.html" />
+    <link rel="prev" title="overwrite_node" href="overwrite_node_cls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../nested-index.html">oneTBB</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../nested-gen-info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../nested-interfaces.html">oneTBB Interfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../algorithms.html">Algorithms</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flow_graph.html">Flow Graph</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#graph-class">Graph Class</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../flow_graph.html#nodes">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#ports-and-edges">Ports and Edges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#special-messages-types">Special Messages Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../flow_graph.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../task_scheduler.html">Task Scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thread_local_storage.html">Thread Local Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../nested-aux-interfaces.html">oneTBB Auxiliary Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../nested-index.html">oneTBB</a> </li>
+          
+        
+          
+        
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneTBB/source/flow_graph/write_once_node_cls.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="write-once-node">
+<h1>write_once_node<a class="headerlink" href="#write-once-node" title="Permalink to this headline">¶</a></h1>
+<p><strong>[flow_graph.write_once_node]</strong></p>
+<p>A node that is a buffer of a single item that cannot be over-written.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Defined in header &lt;tbb/flow_graph.h&gt;</span>
+
+<span class="k">namespace</span> <span class="n">tbb</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">flow</span> <span class="p">{</span>
+
+    <span class="k">template</span><span class="o">&lt;</span> <span class="k">typename</span> <span class="n">T</span> <span class="o">&gt;</span>
+    <span class="k">class</span> <span class="nc">write_once_node</span> <span class="o">:</span> <span class="k">public</span> <span class="n">graph_node</span><span class="p">,</span> <span class="k">public</span> <span class="n">receiver</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">public</span> <span class="n">sender</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">explicit</span> <span class="n">write_once_node</span><span class="p">(</span> <span class="n">graph</span> <span class="o">&amp;</span><span class="n">g</span> <span class="p">);</span>
+        <span class="n">write_once_node</span><span class="p">(</span> <span class="k">const</span> <span class="n">write_once_node</span> <span class="o">&amp;</span><span class="n">src</span> <span class="p">);</span>
+        <span class="o">~</span><span class="n">write_once_node</span><span class="p">();</span>
+
+        <span class="kt">bool</span> <span class="nf">try_put</span><span class="p">(</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">v</span> <span class="p">);</span>
+        <span class="kt">bool</span> <span class="nf">try_get</span><span class="p">(</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">v</span> <span class="p">);</span>
+
+        <span class="kt">bool</span> <span class="nf">is_valid</span><span class="p">(</span> <span class="p">);</span>
+        <span class="kt">void</span> <span class="nf">clear</span><span class="p">(</span> <span class="p">);</span>
+    <span class="p">};</span>
+
+<span class="p">}</span> <span class="c1">// namespace flow</span>
+<span class="p">}</span> <span class="c1">// namespace tbb</span>
+</pre></div>
+</div>
+<p>Requirements:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">T</span></code> type shall meet the <cite>CopyConstructible</cite> requirements from [copyconstructible] and
+<cite>CopyAssignable</cite>  requirements from [copyassignable] ISO C++ Standard sections.</p></li>
+</ul>
+<p>This type of node buffers a single item of type <code class="docutils literal notranslate"><span class="pre">T</span></code>. The value is initially invalid. Gets from the node
+are non-destructive.</p>
+<p><code class="docutils literal notranslate"><span class="pre">write_once_node</span></code> is a <code class="docutils literal notranslate"><span class="pre">graph_node</span></code>, <code class="docutils literal notranslate"><span class="pre">receiver&lt;T&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">sender&lt;T&gt;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">write_once_node</span></code> has a <cite>buffering</cite> and <cite>broadcast-push</cite> <a class="reference internal" href="forwarding_and_buffering.html"><span class="doc">properties</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">write_once_node</span></code> does not allow overwriting its single item buffer.</p>
+<div class="section" id="member-functions">
+<h2>Member functions<a class="headerlink" href="#member-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp function">
+<dt id="_CPPv415write_once_nodeR5graph">
+<span id="_CPPv315write_once_nodeR5graph"></span><span id="_CPPv215write_once_nodeR5graph"></span><span id="write_once_node__graphR"></span><em class="property">explicit</em> <code class="sig-name descname">write_once_node</code><span class="sig-paren">(</span><a class="reference internal" href="graph_cls.html#_CPPv45graphR18task_group_context" title="graph">graph</a> &amp;<em>g</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415write_once_nodeR5graph" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs an object of type <code class="docutils literal notranslate"><span class="pre">write_once_node</span></code> that belongs to the graph <code class="docutils literal notranslate"><span class="pre">g</span></code>, with an
+invalid internal buffer item.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415write_once_nodeRK15write_once_node">
+<span id="_CPPv315write_once_nodeRK15write_once_node"></span><span id="_CPPv215write_once_nodeRK15write_once_node"></span><span id="write_once_node__write_once_nodeCR"></span><code class="sig-name descname">write_once_node</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv415write_once_nodeRK15write_once_node" title="write_once_node">write_once_node</a> &amp;<em>src</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415write_once_nodeRK15write_once_node" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs an object of type <code class="docutils literal notranslate"><span class="pre">write_once_node</span></code> with an invalid internal buffer item. The
+buffered value and list of successors is not copied from <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4D0v">
+<span id="_CPPv3D0v"></span><span id="_CPPv2D0v"></span><span id="~write_once_node"></span><code class="sig-name descname">~write_once_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4D0v" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Destroys the <code class="docutils literal notranslate"><span class="pre">write_once_node</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv47try_putRK1T">
+<span id="_CPPv37try_putRK1T"></span><span id="_CPPv27try_putRK1T"></span><span id="try_put__TCR"></span>bool <code class="sig-name descname">try_put</code><span class="sig-paren">(</span><em class="property">const</em> T &amp;<em>v</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Stores <code class="docutils literal notranslate"><span class="pre">v</span></code> in the internal single item buffer if it does not contain a valid value already.
+If a new value is set, the node broadcast it to all successors.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">true</span></code> for the first time after construction or a call to <code class="docutils literal notranslate"><span class="pre">clear()</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code>
+otherwise.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv47try_getR1T">
+<span id="_CPPv37try_getR1T"></span><span id="_CPPv27try_getR1T"></span><span id="try_get__TR"></span>bool <code class="sig-name descname">try_get</code><span class="sig-paren">(</span>T &amp;<em>v</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>If the internal buffer is valid, assigns the value to <code class="docutils literal notranslate"><span class="pre">v</span></code>.</p>
+<p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">true</span></code> if <code class="docutils literal notranslate"><span class="pre">v</span></code> is assigned to. <code class="docutils literal notranslate"><span class="pre">false</span></code> if <code class="docutils literal notranslate"><span class="pre">v</span></code> is not assigned to.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv48is_validv">
+<span id="_CPPv38is_validv"></span><span id="_CPPv28is_validv"></span><span id="is_valid"></span>bool <code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p><strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">true</span></code> if the buffer holds a valid value, otherwise returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv45clearv">
+<span id="_CPPv35clearv"></span><span id="_CPPv25clearv"></span><span id="clear"></span>void <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Invalidates the value held in the buffer.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Usage scenario is similar to <a class="reference internal" href="overwrite_node_cls.html"><span class="doc">overwrite_node</span></a> but an internal buffer can
+be updated only after <code class="docutils literal notranslate"><span class="pre">clear()</span></code> call. The following example shows the possibility to connect the
+node to a reserving <code class="docutils literal notranslate"><span class="pre">join_node</span></code>, avoiding direct calls to the <code class="docutils literal notranslate"><span class="pre">try_get()</span></code> method from the body
+of the successor node.</p>
+<div class="code cpp highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &quot;tbb/flow_graph.h&quot;</span>
+
+<span class="n">typedef</span> <span class="nb">int</span> <span class="n">data_type</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">using</span> <span class="n">namespace</span> <span class="n">tbb</span><span class="p">::</span><span class="n">flow</span><span class="p">;</span>
+
+    <span class="n">graph</span> <span class="n">g</span><span class="p">;</span>
+
+    <span class="n">function_node</span><span class="o">&lt;</span><span class="n">data_type</span><span class="p">,</span> <span class="n">data_type</span><span class="o">&gt;</span> <span class="n">static_result_computer_n</span><span class="p">(</span>
+        <span class="n">g</span><span class="p">,</span> <span class="n">serial</span><span class="p">,</span>
+        <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">const</span> <span class="n">data_type</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="n">compute</span> <span class="n">the</span> <span class="n">result</span> <span class="n">using</span> <span class="n">incoming</span> <span class="n">message</span> <span class="ow">and</span> <span class="k">pass</span> <span class="n">it</span> <span class="n">further</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">:</span>
+            <span class="n">data_type</span> <span class="n">result</span> <span class="o">=</span> <span class="n">data_type</span><span class="p">((</span><span class="n">msg</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="n">write_once_node</span><span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="n">write_once_n</span><span class="p">(</span><span class="n">g</span><span class="p">);</span> <span class="o">//</span> <span class="k">for</span> <span class="n">buffering</span> <span class="n">once</span> <span class="n">computed</span> <span class="n">value</span>
+
+    <span class="n">buffer_node</span><span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="n">buffer_n</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+    <span class="n">join_node</span><span class="o">&lt;</span><span class="nb">tuple</span><span class="o">&lt;</span><span class="n">data_type</span><span class="p">,</span> <span class="n">data_type</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">reserving</span><span class="o">&gt;</span> <span class="n">join_n</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+
+    <span class="n">function_node</span><span class="o">&lt;</span><span class="nb">tuple</span><span class="o">&lt;</span><span class="n">data_type</span><span class="p">,</span> <span class="n">data_type</span><span class="o">&gt;&gt;</span> <span class="n">consumer_n</span><span class="p">(</span>
+        <span class="n">g</span><span class="p">,</span> <span class="n">unlimited</span><span class="p">,</span>
+        <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">const</span> <span class="nb">tuple</span><span class="o">&lt;</span><span class="n">data_type</span><span class="p">,</span> <span class="n">data_type</span><span class="o">&gt;&amp;</span> <span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">precomputed</span> <span class="n">static</span> <span class="n">result</span> <span class="n">along</span> <span class="k">with</span> <span class="n">dynamic</span> <span class="n">data</span>
+            <span class="n">data_type</span> <span class="n">precomputed_result</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">arg</span><span class="p">);</span>
+            <span class="n">data_type</span> <span class="n">dynamic_data</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">arg</span><span class="p">);</span>
+        <span class="p">});</span>
+
+    <span class="n">make_edge</span><span class="p">(</span><span class="n">static_result_computer_n</span><span class="p">,</span> <span class="n">write_once_n</span><span class="p">);</span>
+    <span class="n">make_edge</span><span class="p">(</span><span class="n">write_once_n</span><span class="p">,</span> <span class="n">input_port</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">join_n</span><span class="p">));</span>
+    <span class="n">make_edge</span><span class="p">(</span><span class="n">buffer_n</span><span class="p">,</span> <span class="n">input_port</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">join_n</span><span class="p">));</span>
+    <span class="n">make_edge</span><span class="p">(</span><span class="n">join_n</span><span class="p">,</span> <span class="n">consumer_n</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">do</span> <span class="n">one</span><span class="o">-</span><span class="n">time</span> <span class="n">calculation</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">reused</span> <span class="n">many</span> <span class="n">times</span> <span class="n">further</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">graph</span>
+    <span class="n">static_result_computer_n</span><span class="o">.</span><span class="n">try_put</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">buffer_n</span><span class="o">.</span><span class="n">try_put</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">g</span><span class="o">.</span><span class="n">wait_for_all</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="buffer_node_cls.html" class="btn btn-neutral float-right" title="buffer_node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overwrite_node_cls.html" class="btn btn-neutral float-left" title="overwrite_node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

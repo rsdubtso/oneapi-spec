@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. oneMKL Domains &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="2.1.1. Matrix Storage" href="matrix-storage.html" />
+    <link rel="prev" title="1. oneMKL Architecture" href="../architecture/architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../oneVPL/source/index.html">oneVPL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">oneMKL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../architecture/architecture.html">1. oneMKL Architecture</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. oneMKL Domains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dense-linear-algebra">2.1. Dense Linear Algebra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sparse-linear-algebra">2.2. Sparse Linear Algebra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discrete-fourier-transforms">2.3. Discrete Fourier Transforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#random-number-generators">2.4. Random Number Generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vector-math">2.5. Vector Math</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+          
+          <li><a href="../index.html">oneMKL</a> </li>
+          
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneMKL/source/domains/domains.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="onemkl-domains">
+<span id="id1"></span><h1><span class="section-number">2. </span>oneMKL Domains<a class="headerlink" href="#onemkl-domains" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the Data Parallel C++ (DPC++) interface.</p>
+<div class="section" id="dense-linear-algebra">
+<span id="onemkl-dense-linear-algebra"></span><h2><span class="section-number">2.1. </span>Dense Linear Algebra<a class="headerlink" href="#dense-linear-algebra" title="Permalink to this headline">¶</a></h2>
+<p>This section contains information about dense linear algebra routines:</p>
+<p><a class="reference internal" href="matrix-storage.html#matrix-storage"><span class="std std-ref">Matrix Storage</span></a> provides information about dense matrix and vector storage formats that are used by oneMKL <a class="reference internal" href="blas/blas.html#onemkl-blas"><span class="std std-ref">BLAS Routines</span></a> and <a class="reference internal" href="lapack/lapack.html#onemkl-lapack"><span class="std std-ref">LAPACK Routines</span></a>.</p>
+<p><a class="reference internal" href="blas/blas.html#onemkl-blas"><span class="std std-ref">BLAS Routines</span></a> provides vector, matrix-vector, and matrix-matrix routines for dense matrices and vector operations.</p>
+<p><a class="reference internal" href="lapack/lapack.html#onemkl-lapack"><span class="std std-ref">LAPACK Routines</span></a> provides more complex dense linear algebra routines, e.g., matrix factorization, solving dense systems of linear equations, least square problems, eigenvalue and singular value problems, and performing a number of related computational tasks.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="sparse-linear-algebra">
+<span id="onemkl-sparse-linear-algebra"></span><h2><span class="section-number">2.2. </span>Sparse Linear Algebra<a class="headerlink" href="#sparse-linear-algebra" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<p>The oneAPI Math Kernel Library provides a Data Parallel C++ interface
+to some of the Sparse Linear Algebra routines.</p>
+<p><a class="reference internal" href="spblas/spblas.html#onemkl-spblas"><span class="std std-ref">Sparse BLAS Routines</span></a> provide basic operations on sparse vectors and matrices</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="discrete-fourier-transforms">
+<span id="onemkl-discrete-fourier-transforms"></span><h2><span class="section-number">2.3. </span>Discrete Fourier Transforms<a class="headerlink" href="#discrete-fourier-transforms" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="dft/dft.html#onemkl-dft"><span class="std std-ref">Fourier Transform Functions</span></a> offer several options for computing Discrete Fourier Transforms (DFTs).</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="random-number-generators">
+<span id="onemkl-rng"></span><h2><span class="section-number">2.4. </span>Random Number Generators<a class="headerlink" href="#random-number-generators" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<p>Statistics Random Number Generators provide a set of routines implementing commonly
+used pseudorandom, quasi-random, and non-deterministic generators
+with continuous and discrete distributions.</p>
+<div class="section docutils container" id="guid-8f8296ec-7e54-4796-a425-35c4347ea1d0">
+<p class="sectiontitle rubric" id="definitions">Definitions</p>
+<p>Pseudo-random number generator is defined by a structure(<code class="docutils literal notranslate"><span class="pre">S</span></code>,
+<code class="docutils literal notranslate"><span class="pre">μ</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">U</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>), where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span></code> is a finite set of states (the state space)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">μ</span></code> is a probability distribution on S for the initial state
+(or seed) <code class="docutils literal notranslate"><span class="pre">s</span></code><sub>0</sub></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f:S→S</span></code> is the transition function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> – a finite set of output symbols</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g∶S→U</span></code> an output function</p></li>
+</ul>
+</div>
+<p>The generation of random numbers is as follows:</p>
+<ol class="arabic simple">
+<li><p>Generate the initial state (called the seed) <code class="docutils literal notranslate"><span class="pre">s</span></code><sub>0</sub>
+according to <code class="docutils literal notranslate"><span class="pre">μ</span></code> and compute
+<code class="docutils literal notranslate"><span class="pre">u</span></code><sub>0</sub>=g(<code class="docutils literal notranslate"><span class="pre">s</span></code><sub>0</sub>).</p></li>
+<li><p>Iterate for <code class="docutils literal notranslate"><span class="pre">i</span></code>=1,…,<code class="docutils literal notranslate"><span class="pre">s</span></code><sub>i</sub> =
+f(<code class="docutils literal notranslate"><span class="pre">s</span></code><sub>(``i`</sub>-1)`) and <code class="docutils literal notranslate"><span class="pre">u</span></code><sub>i</sub> =
+g(<code class="docutils literal notranslate"><span class="pre">s</span></code><sub>i</sub>). Output values <code class="docutils literal notranslate"><span class="pre">u</span></code><sub>i</sub> are the
+so-called random numbers produced by the PRNG.</p></li>
+</ol>
+<p>In computational statistics, random variate generation is usually
+made in two steps:</p>
+<ol class="arabic simple">
+<li><p>Generating imitations of independent and identically distributed
+(i.i.d.) random variables having the uniform distribution over the
+interval (0, 1)</p></li>
+<li><p>Applying transformations to these i.i.d. U(0, 1) random variates
+in order to generate (or imitate) random variates and random
+vectors from arbitrary distributions.</p></li>
+</ol>
+<p>All RNG routines can be classified into several categories:</p>
+<ul class="simple">
+<li><p>Engines (Basic random number generators) classes, which holds
+state of generator and is a source of i.i.d. random. Refer to
+<a class="reference external" href="rng/engines-basic-random-number-generators.html">Engines (Basic Random Number
+Generators)</a>
+for a detailed description.</p></li>
+<li><p>Transformation classes for different types of statistical
+distributions, for example, uniform, normal (Gaussian), binomial,
+etc. These classes contain all of the distribution’s parameters
+(including generation method). Refer to <a class="reference external" href="rng/distributions.html">Distribution
+Generators</a> for
+a detailed description of the distributions.</p></li>
+<li><p>Generate function. The current routine is used to obtain random
+numbers from a given engine with proper statistics defined by a
+given distribution. Refer to the <a class="reference external" href="rng/generate-routine.html">Generate
+Routine</a>
+section for a detailed description.</p></li>
+<li><p>Service routines to modify the engine state: skip ahead and
+leapfrog functions. Refer to <a class="reference external" href="rng/service-routines.html">Service
+Routines</a> for a
+description of these routines.</p></li>
+</ul>
+</div>
+<div class="docutils container">
+<ul class="simple">
+<li><p><a class="reference external" href="rng/onemkl-rng-usage-model.html">oneMKL RNG Usage
+Model</a></p></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="vector-math">
+<span id="onemkl-vm"></span><h2><span class="section-number">2.5. </span>Vector Math<a class="headerlink" href="#vector-math" title="Permalink to this headline">¶</a></h2>
+<div class="docutils container">
+<p>oneMKL Vector Mathematics functions (VM) compute a mathematical
+function of each of the vector elements. VM includes a set of
+functions (arithmetic, power, trigonometric, exponential,
+hyperbolic, special, and rounding) that operate on vectors of real
+and complex numbers.</p>
+<p>Application programs that improve performance with VM include
+nonlinear programming software, computation of integrals, financial
+calculations, computer graphics, and many others.</p>
+<p>VM functions fall into the following groups according to the
+operations they perform:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="vm/vm-mathematical-functions.html">VM Mathematical
+Functions</a>
+compute values of mathematical functions, such as sine, cosine,
+exponential, or logarithm, on vectors stored contiguously in
+memory.</p></li>
+<li><p><a class="reference external" href="vm/vm-service-functions.html">VM Service
+Functions</a>
+set/get the accuracy modes and the error codes,and create error
+handlers for mathematical functions.</p></li>
+</ul>
+<p>The VM mathematical functions take an input vector as an argument,
+compute values of the respective function element-wise, and return
+the results in an output vector. All the VM mathematical functions
+can perform in-place operations, where the input and output arrays
+are at the same memory locations.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="vm/special-value-notations.html#special-value-notations"><span class="std std-ref">Special Value Notations</span></a></p></li>
+<li><p><a class="reference internal" href="vm/miscellaneous-vm-functions.html#miscellaneous-vm-functions"><span class="std std-ref">Miscellaneous VM Functions</span></a></p></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="matrix-storage.html" class="btn btn-neutral float-right" title="2.1.1. Matrix Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../architecture/architecture.html" class="btn btn-neutral float-left" title="1. oneMKL Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

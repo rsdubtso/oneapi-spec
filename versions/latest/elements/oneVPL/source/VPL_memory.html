@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Creating memory objects &mdash; oneAPI Specification 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicons.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/custom.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="https://oneapi.com" class="icon icon-home"> oneAPI Specification
+          
+
+          
+            
+            <img src="../../../_static/oneAPI-rgb-rev-100.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library-interop.html">Library Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../elements.html">oneAPI Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dpcpp/source/index.html">DPC++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDPL/source/index.html">oneDPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDNN/source/index.html">oneDNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneCCL/source/index.html">oneCCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../l0/source/index.html">Level Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneDAL/source/index.html">oneDAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneTBB/source/nested-index.html">oneTBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">oneVPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneMKL/source/index.html">oneMKL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../versions.html">HTML and PDF Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notices.html">Legal Notices and Disclaimers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">oneAPI Specification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">oneAPI Specification</a> &raquo;</li>
+        
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/oneapi-src/oneapi-spec/blob/master/source/elements/oneVPL/source/VPL_memory.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Memory representation and memory allocation are important parts of
+VPL API. By default:</p>
+<ul class="simple">
+<li><p>Each workstream is responsible to allocate its output memory objects
+and passes the memory objects to its consumer workstreams.</p></li>
+<li><p>For performance, memory objects are passed asynchronously to consumers
+before its producer finishes writing to the objects. Hence, a consumer
+workstream must first acquire a read access right before reading the
+data from the memory object.</p></li>
+<li><p>Each memory objects may have multiple consumer workstreams. Hence a
+consumer workstream should avoid modifying its input memory objects.
+If a consumer workstream needs to modify an input memory object,
+it must first acquire a write access right to avoid corrupting
+the memory object.</p></li>
+</ul>
+<p>VPL Memory API provides sharing of 1D buffers and 2D images across
+different frameworks (e.g. SYCL, OpenCL, VAAPI, DXVA2) and different
+devices (CPU, GPU).  Buffer sharing across the decode, compute and
+encode pipeline is important for both performance and portability.</p>
+<p>The buffer sharing mechanisms can be classified into 3 types:</p>
+<ol class="arabic simple">
+<li><p><em>Direct</em> sharing when access is granted to the primary object’s
+representation in physical memory, but this happens via different
+framework specific logical memory objects (like VAAPI surface or
+OpenCL memory). That’s the case when handle from one framework can
+be converted to the handle of another framework. For example, via
+OpenCL VAAPI Sharing Extension.</p></li>
+<li><p><em>Mapping</em> when object is being mapped to the device memory and
+framework handle is generated. That’s a typical case for CPU (HOST)
+access to the video memory. Underneath implementation might
+significantly vary and result in a kind of direct access or
+accessing a copy of the memory object with the set of associated
+copy and on-the-fly conversion operations. For example, OpenCL
+provides two sets of functions: clEnqueueReadBuffer,
+clEnqueueWriteBuffer for copying, and clEnqueueMapBuffer for direct
+mapping between CPU and OpenCL device.</p></li>
+<li><p><em>Coherent</em> sharing when memory object has unified addressing the
+physical memory and the underlying hardware and software system
+layers assures coherency between these representations as in a
+unified shared memory mode.</p></li>
+</ol>
+<p>The Memory API aims to provide a sharing mechanism with the highest
+performance. From this perspective, the library uses “direct” sharing
+whenever possible. However, currently, there are a lot of various
+restrictions coming from all over the software stack which makes
+“direct” sharing unavailable:</p>
+<ol class="arabic simple">
+<li><p>Framework restrictions where some color formats are not supported,
+or lack of capability to import certain memory handle</p></li>
+<li><p>Underlying driver implementation (or even HW) restrictions</p></li>
+</ol>
+<p>As oneAPI software stack evolves, we intend to eliminate the <em>direct</em>
+sharing restrictions in the underlying frameworks and drivers through
+API extension and implementation enhancement.</p>
+<p>The current VPL Memory Library provides the following <em>direct</em> sharing
+capabilities:</p>
+<ul class="simple">
+<li><p>Sharing of CPU (HOST) allocated memory on Linux (via userptr):</p>
+<ul>
+<li><p>With VAAPI driver</p></li>
+<li><p>With OpenCL driver and SYCL</p></li>
+</ul>
+</li>
+<li><p>Sharing of VAAPI allocated memory:</p>
+<ul>
+<li><p>With OpenCL, SYCL</p></li>
+</ul>
+</li>
+<li><p>Exporting dmabuf handle:</p>
+<ul>
+<li><p>From VAAPI memory object</p></li>
+</ul>
+</li>
+</ul>
+<p>Recall that oneAPI platform is a host and a collection of devices; and
+each device has an associated command queue.  Operations on the
+devices are executed through submitting tasks to devices’ command
+queues.  In the application domain of video processing pipeline, each
+device may have multiple command queues corresponding to the media
+driver, OpenCL and SYCL compute drivers and 3D graphics drivers.  For
+Intel’s GPU on Linux, a VAAPI driver executes tasks for video
+decoding, post processing and encoding, an OpenCL driver executes
+tasks for compute such as DL inference, and an OpenGL driver executes
+tasks for 3D rendering. Buffers and images allocated by these drivers
+are initially only accessible in the context of their corresponding
+command queues.  To share a buffer between a source and a sink command
+queues, VPL Memory library must extract the buffer address from the
+source command queue context, map the address to the sink command
+queue context, such that, tasks in the sink command queue can now read
+or write to the buffer.  We call this &lt;command_queue,buffer&gt; pair a
+memory handler. Memory handlers are encapsulated in the
+<a class="reference internal" href="index.html#_CPPv4N4vplm6memoryE" title="vplm::memory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::memory</span></code></a> class hierarchy.</p>
+<p>To share a buffer to a device driver command queue context, just
+simply constructs a new memory handler of the corresponding derived
+class from the base <a class="reference internal" href="index.html#_CPPv4N4vplm6memoryE" title="vplm::memory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::memory</span></code></a> object.  For instance,
+the code above converts a CPU allocated memory to a GPU VAAPI surface
+for media processing.</p>
+<p>In addition to the buffer sharing API in vplm::*:memory
+subclass constructors, VPL Memory API also provides:</p>
+<ul class="simple">
+<li><p>API to import memory already allocated by the application external
+to VPL Memory library</p></li>
+<li><p>API to allocate memory</p></li>
+</ul>
+<p>The memory import and allocation functions are defined in
+<a class="reference internal" href="index.html#_CPPv4N4vplm3cpu11make_memoryERKN4vplm9cpu_imageE" title="vplm::cpu::make_memory"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vplm::cpu::make_memory()</span></code></a>, <a class="reference internal" href="index.html#_CPPv4N4vplm6opencl11make_memoryE16cl_command_queueRN4vplm8cl_imageE" title="vplm::opencl::make_memory"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vplm::opencl::make_memory()</span></code></a>,
+<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vplm::sycl::make_memory()</span></code>, and <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">vplm::vaapi::make_memory()</span></code>.</p>
+<div class="section" id="creating-memory-objects">
+<h1>Creating memory objects<a class="headerlink" href="#creating-memory-objects" title="Permalink to this headline">¶</a></h1>
+<p>An application can use the VPL Memory Library to create a memory
+object for one of the supported frameworks. For example, the following
+code allocates memory in system memory (we count CPU (HOST) as one of
+the frameworks):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;om++.h&gt;</span><span class="cp"></span>
+
+<span class="n">vplm</span><span class="o">::</span><span class="n">cpu</span><span class="o">::</span><span class="n">memory</span> <span class="n">yuv_image</span> <span class="o">=</span> <span class="n">vplm</span><span class="o">::</span><span class="n">cpu</span><span class="o">::</span><span class="n">make_memory</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">,</span> <span class="n">VPLM_PIXEL_FORMAT_NV12</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>or it can allocate memory externally and request the VPL Memory
+Library to manage it as in the following example for VAAPI:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;om++.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;om_vaapi++.h&gt;</span><span class="cp"></span>
+
+<span class="n">VADisplay</span> <span class="n">dpy</span><span class="p">;</span>
+<span class="n">VASurfaceID</span> <span class="n">id</span><span class="p">;</span>
+<span class="n">vaCreateSurfaces</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">VA_RT_FORMAT_RGB32</span><span class="p">,</span> <span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">id</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">attribs</span><span class="p">,</span> <span class="n">num_attribs</span><span class="p">);</span>
+
+<span class="n">vplm</span><span class="o">::</span><span class="n">vaapi</span><span class="o">::</span><span class="n">memory</span> <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">vplm</span><span class="o">::</span><span class="n">vaapi</span><span class="o">::</span><span class="n">make_surface</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">id</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In either case, it ends up with the framework specific C++ object (in
+our examples <a class="reference internal" href="index.html#_CPPv4N4vplm3cpu6memoryE" title="vplm::cpu::memory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::cpu::memory</span></code></a> or
+<a class="reference internal" href="index.html#_CPPv4N4vplm5vaapi6memoryE" title="vplm::vaapi::memory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::vaapi::memory</span></code></a>), and hence, have access to the
+framework specific API defined by VPL Memory for this object. For
+example, the following code will access CPU allocated image (via
+<a class="reference internal" href="index.html#_CPPv4N4vplm9cpu_imageE" title="vplm::cpu_image"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::cpu_image</span></code></a> representation):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">vplm</span><span class="o">::</span><span class="n">cpu_image</span> <span class="n">image</span><span class="p">;</span>
+<span class="n">yuv_image</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="n">VPLM_ACCESS_MODE_READ</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+
+<span class="c1">// do something with the image since you have access to data pointers:</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Y data pointer: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="n">yuv_image</span><span class="p">.</span><span class="n">unmap</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="helper-class-for-simplifying-image-data-access">
+<h1>Helper Class for Simplifying Image Data Access<a class="headerlink" href="#helper-class-for-simplifying-image-data-access" title="Permalink to this headline">¶</a></h1>
+<p>In the examples above we directly used a memory object to access its
+data. While this is possible, there is a simpler way. Most frameworks
+require a program to acquire and release access to data. For the CPU
+access example, we saw calls to map and unmap to acquire/release
+access to the data. Using the <a class="reference internal" href="index.html#_CPPv4N4vplm9cpu_imageE" title="vplm::cpu_image"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::cpu_image</span></code></a> helper
+class eliminates the need to map and unmap:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="n">vplm</span><span class="o">::</span><span class="n">cpu</span><span class="o">::</span><span class="n">image</span> <span class="n">cpu_image</span><span class="p">(</span><span class="n">yuv_image</span><span class="p">,</span> <span class="n">VPLM_ACCESS_MODE_READ</span><span class="p">);</span>
+
+  <span class="c1">// do something with the image since you have access to data pointers:</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Y data pointer: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This helper class issues acquire and release operations to mark
+start/stop data access in constructor and destructor.  Another
+“feature” of these helper classes is that they accept base
+memory object (<a class="reference internal" href="index.html#_CPPv4N4vplm6memoryE" title="vplm::memory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::memory</span></code></a>) in constructors. This means that we can
+use helper classes to make implicit conversion between different
+framework objects. For example, with the following we will map our
+VAAPI image on to CPU:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="n">vplm</span><span class="o">::</span><span class="n">cpu</span><span class="o">::</span><span class="n">image</span> <span class="n">cpu_image</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">,</span> <span class="n">VPLM_ACCESS_MODE_WRITE</span><span class="p">);</span>
+
+  <span class="c1">// do something with the image since you have access to data pointers:</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;R data pointer: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Usage example
+The following example summarize the key usage scenario:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;om++.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;om_vaapi++.h&gt;</span><span class="cp"></span>
+
+<span class="n">VADisplay</span> <span class="n">dpy</span> <span class="o">=</span> <span class="n">init_vaapi</span><span class="p">();</span>
+<span class="n">VASurfaceID</span> <span class="n">id</span> <span class="o">=</span> <span class="n">create_per_my_needs</span><span class="p">();</span> <span class="c1">// calls vaCreateSurfaces inside</span>
+
+<span class="n">vplm</span><span class="o">::</span><span class="n">cpu</span><span class="o">::</span><span class="n">memory</span> <span class="n">yuv_image</span> <span class="o">=</span> <span class="n">vplm</span><span class="o">::</span><span class="n">cpu</span><span class="o">::</span><span class="n">make_memory</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">,</span> <span class="n">VPLM_PIXEL_FORMAT_NV12</span><span class="p">);</span>
+<span class="n">vplm</span><span class="o">::</span><span class="n">vaapi</span><span class="o">::</span><span class="n">memory</span> <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">vplm</span><span class="o">::</span><span class="n">vaapi</span><span class="o">::</span><span class="n">make_surface</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">id</span><span class="p">);</span>
+
+<span class="p">{</span>
+  <span class="n">vplm</span><span class="o">::</span><span class="n">cpu</span><span class="o">::</span><span class="n">image</span> <span class="n">cpu_image</span><span class="p">(</span><span class="n">yuv_image</span><span class="p">,</span> <span class="n">VPLM_ACCESS_MODE_WRITE</span><span class="p">);</span>
+
+  <span class="c1">// do something with the image since you have access to data pointers:</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Y data pointer: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+  <span class="c1">// for example, write data into the surface</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+  <span class="n">vplm</span><span class="o">::</span><span class="n">vaapi</span><span class="o">::</span><span class="n">image</span> <span class="n">vaapi_cpu_image</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">yuv_image</span><span class="p">);</span>
+  <span class="n">vplm</span><span class="o">::</span><span class="n">vaapi</span><span class="o">::</span><span class="n">image</span> <span class="n">vaapi_rgb_image</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">rgb_image</span><span class="p">);</span> <span class="c1">// just for consistency</span>
+
+  <span class="c1">// do something with surfaces via VAAPI since we have access to them</span>
+  <span class="c1">// for example, convert yuv which we just wrote on CPU to rgb format</span>
+  <span class="n">convert_yuv_to_rgb</span><span class="p">(</span><span class="n">vaapi_cpu_image</span><span class="p">.</span><span class="n">id</span><span class="p">(),</span> <span class="n">vaapi_rgb_image</span><span class="p">.</span><span class="n">id</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+  <span class="n">vplm</span><span class="o">::</span><span class="n">cpu</span><span class="o">::</span><span class="n">image</span> <span class="n">cpu_image</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">,</span> <span class="n">VPLM_ACCESS_MODE_READ</span><span class="p">);</span>
+
+  <span class="c1">// now we can read from the CPU data which we got in rgb image after VAAPI conversion:</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;R data pointer: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The VPL API defines 4 different helper classes, one for each supported device context:
+<a class="reference internal" href="index.html#_CPPv4N4vplm3cpu5imageE" title="vplm::cpu::image"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::cpu::image</span></code></a>
+<a class="reference internal" href="index.html#_CPPv4N4vplm6opencl5imageE" title="vplm::opencl::image"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::opencl::image</span></code></a>,
+<a class="reference internal" href="index.html#_CPPv4N4vplm4sycl6memoryE" title="vplm::sycl::memory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::sycl::memory</span></code></a> and
+<a class="reference internal" href="index.html#_CPPv4N4vplm5vaapi5imageE" title="vplm::vaapi::image"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">vplm::vaapi::image</span></code></a>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Intel Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
